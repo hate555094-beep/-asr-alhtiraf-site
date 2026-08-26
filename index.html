@@ -453,25 +453,84 @@ href="tel:0553645396"
 
 <script>
 
-document
-.getElementById("registrationForm")
-.addEventListener("submit",function(event){
+<script type="module">
 
-event.preventDefault();
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+const SUPABASE_URL = "حط_API_URL_هنا";
+const SUPABASE_KEY = "حط_PUBLISHABLE_KEY_هنا";
+
+const supabase =
+  createClient(SUPABASE_URL, SUPABASE_KEY);
+
+
+const form =
+  document.getElementById("registrationForm");
 
 const message =
-document.getElementById("message");
+  document.getElementById("message");
 
-message.style.color="#ff6900";
 
-message.innerText =
-"تم استلام طلبك بنجاح، وسيتم التواصل معك قريبًا.";
+form.addEventListener("submit", async function(event){
 
-this.reset();
+  event.preventDefault();
+
+  message.style.color = "#ff6900";
+  message.innerText = "جاري إرسال الطلب...";
+
+  const playerName =
+    document.getElementById("playerName").value.trim();
+
+  const age =
+    Number(document.getElementById("age").value);
+
+  const guardianName =
+    document.getElementById("guardianName").value.trim();
+
+  const phone =
+    document.getElementById("phone").value.trim();
+
+  const notes =
+    document.getElementById("notes").value.trim();
+
+
+  const { error } = await supabase
+    .from("registrations")
+    .insert([
+      {
+        player_name: playerName,
+        age: age,
+        guardian_name: guardianName,
+        phone: phone,
+        notes: notes,
+        status: "pending"
+      }
+    ]);
+
+
+  if (error) {
+
+    console.error(error);
+
+    message.style.color = "red";
+    message.innerText =
+      "حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.";
+
+    return;
+  }
+
+
+  message.style.color = "#00c853";
+  message.innerText =
+    "تم إرسال طلب التسجيل بنجاح ✅";
+
+  form.reset();
 
 });
 
 </script>
+
 
 </body>
 </html>
