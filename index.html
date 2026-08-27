@@ -491,7 +491,7 @@ form.addEventListener("submit", async (event) => {
     document.getElementById("notes").value.trim();
 
   const { error } = await supabase
-    .from("registrations")
+    .from("registration")
     .insert({
       player_name: playerName,
       age: age,
