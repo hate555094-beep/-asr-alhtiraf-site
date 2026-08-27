@@ -1,1 +1,396 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
 
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>إدارة عصر الاحتراف</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+}
+
+body{
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:#080808;
+color:#fff;
+padding:30px 15px;
+}
+
+.container{
+max-width:900px;
+margin:auto;
+}
+
+h1{
+text-align:center;
+margin-bottom:30px;
+}
+
+h1 span{
+color:#ff6900;
+}
+
+.card{
+background:#151515;
+border-radius:16px;
+padding:22px;
+margin-bottom:18px;
+}
+
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+background:#0c0c0c;
+color:#fff;
+border:1px solid #333;
+border-radius:9px;
+font-size:16px;
+}
+
+button{
+padding:13px 22px;
+border:0;
+border-radius:9px;
+background:#ff6900;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
+}
+
+button:hover{
+opacity:.85;
+}
+
+#adminPanel{
+display:none;
+}
+
+.registration{
+border-radius:15px;
+padding:20px;
+margin-bottom:15px;
+}
+
+.new{
+background:#3d0b0b;
+border:2px solid #ff3333;
+}
+
+.reviewed{
+background:#073d20;
+border:2px solid #00c853;
+}
+
+.status{
+font-weight:bold;
+margin-top:12px;
+}
+
+.new .status{
+color:#ff3333;
+}
+
+.reviewed .status{
+color:#00c853;
+}
+
+.logout{
+background:#292929;
+margin-bottom:20px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h1>
+إدارة <span>عصر الاحتراف 🔐</span>
+</h1>
+
+
+<div id="loginBox" class="card">
+
+<h2>تسجيل دخول الأدمن</h2>
+
+<input
+id="adminEmail"
+type="email"
+placeholder="إيميل الأدمن"
+>
+
+<input
+id="adminPassword"
+type="password"
+placeholder="كلمة المرور"
+>
+
+<button id="loginBtn">
+دخول
+</button>
+
+<p id="loginMessage"></p>
+
+</div>
+
+
+<div id="adminPanel">
+
+<button class="logout" id="logoutBtn">
+تسجيل الخروج
+</button>
+
+<h2>
+طلبات التسجيل
+</h2>
+
+<div id="registrations">
+جاري تحميل الطلبات...
+</div>
+
+</div>
+
+</div>
+
+
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+const SUPABASE_URL =
+"https://ybbyvxpvblbnhqmkfxvw.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
+
+
+const supabase =
+createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+
+loginBtn.addEventListener("click", async () => {
+
+const email =
+document.getElementById("adminEmail").value.trim();
+
+const password =
+document.getElementById("adminPassword").value;
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+
+loginMessage.innerText =
+"جاري تسجيل الدخول...";
+
+
+const { error } =
+await supabase.auth.signInWithPassword({
+
+email: email,
+password: password
+
+});
+
+
+if(error){
+
+console.error(error);
+
+loginMessage.style.color =
+"#ff3333";
+
+loginMessage.innerText =
+"بيانات الدخول غير صحيحة ❌";
+
+return;
+
+}
+
+
+document.getElementById("loginBox")
+.style.display = "none";
+
+document.getElementById("adminPanel")
+.style.display = "block";
+
+
+loadRegistrations();
+
+});
+
+
+logoutBtn.addEventListener("click", async () => {
+
+await supabase.auth.signOut();
+
+document.getElementById("loginBox")
+.style.display = "block";
+
+document.getElementById("adminPanel")
+.style.display = "none";
+
+});
+
+
+async function loadRegistrations(){
+
+const container =
+document.getElementById("registrations");
+
+
+container.innerHTML =
+"جاري تحميل الطلبات...";
+
+
+const { data, error } =
+await supabase
+.from("registration")
+.select("*")
+.order("id", { ascending:false });
+
+
+if(error){
+
+console.error(error);
+
+container.innerHTML =
+"حدث خطأ أثناء تحميل الطلبات ❌";
+
+return;
+
+}
+
+
+if(!data || data.length === 0){
+
+container.innerHTML =
+"لا توجد طلبات حتى الآن.";
+
+return;
+
+}
+
+
+container.innerHTML =
+data.map(item => {
+
+const reviewed =
+item.status === "reviewed";
+
+
+return `
+
+<div class="registration ${
+reviewed ? "reviewed" : "new"
+}">
+
+<h3>
+${item.Player_name || "بدون اسم"}
+</h3>
+
+<p>
+العمر: ${item.age || "-"}
+</p>
+
+<p>
+ولي الأمر:
+${item.guardian_name || "-"}
+</p>
+
+<p>
+الجوال:
+${item.phone || "-"}
+</p>
+
+<p>
+الملاحظات:
+${item.notes || "لا يوجد"}
+</p>
+
+<p class="status">
+
+${
+reviewed
+? "🟢 تمت المراجعة"
+: "🔴 طلب جديد"
+}
+
+</p>
+
+${
+!reviewed
+?
+`
+<button onclick="reviewRegistration('${item.id}')">
+فتح الطلب ✓
+</button>
+`
+:
+""
+}
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+window.reviewRegistration =
+async function(id){
+
+const { error } =
+await supabase
+.from("registration")
+.update({
+status:"reviewed"
+})
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"حدث خطأ أثناء تحديث الطلب ❌"
+);
+
+return;
+
+}
+
+
+loadRegistrations();
+
+};
+
+</script>
+
+</body>
+</html>
