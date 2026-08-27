@@ -501,14 +501,13 @@ form.addEventListener("submit", async (event) => {
       status: "pending"
     });
 
-  if (error) {
-    console.error(error);
-    message.style.color = "red";
-    message.innerText =
-      "حدث خطأ أثناء إرسال الطلب ❌";
-    return;
-  }
-
+if (error) {
+  console.error("SUPABASE ERROR:", error);
+  message.style.color = "red";
+  message.innerText =
+    "خطأ: " + error.message;
+  return;
+}
   message.style.color = "#00c853";
   message.innerText =
     "تم إرسال طلب التسجيل بنجاح ✅";
