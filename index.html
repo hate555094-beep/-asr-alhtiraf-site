@@ -461,18 +461,15 @@ from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 const SUPABASE_URL = "https://ybbyvxpvblbnhqmkfxvw.supabase.co/rest/v1/";
 const SUPABASE_KEY = "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
 
-const supabase =
-  createClient(SUPABASE_URL, SUPABASE_KEY);
+const supabase = createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
 
+const form = document.getElementById("registrationForm");
+const message = document.getElementById("message");
 
-const form =
-  document.getElementById("registrationForm");
-
-const message =
-  document.getElementById("message");
-
-
-form.addEventListener("submit", async function(event){
+form.addEventListener("submit", async (event) => {
 
   event.preventDefault();
 
@@ -494,32 +491,24 @@ form.addEventListener("submit", async function(event){
   const notes =
     document.getElementById("notes").value.trim();
 
-
   const { error } = await supabase
     .from("registrations")
-    .insert([
-      {
-        player_name: playerName,
-        age: age,
-        guardian_name: guardianName,
-        phone: phone,
-        notes: notes,
-        status: "pending"
-      }
-    ]);
-
+    .insert({
+      player_name: playerName,
+      age: age,
+      guardian_name: guardianName,
+      phone: phone,
+      notes: notes,
+      status: "pending"
+    });
 
   if (error) {
-
     console.error(error);
-
     message.style.color = "red";
     message.innerText =
-      "حدث خطأ أثناء إرسال الطلب. حاول مرة أخرى.";
-
+      "حدث خطأ أثناء إرسال الطلب ❌";
     return;
   }
-
 
   message.style.color = "#00c853";
   message.innerText =
@@ -530,7 +519,5 @@ form.addEventListener("submit", async function(event){
 });
 
 </script>
-
-
 </body>
 </html>
