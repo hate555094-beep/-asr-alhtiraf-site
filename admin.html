@@ -1,4 +1,4 @@
-
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -720,7 +720,15 @@ adminPanel.style.display =
    تحميل الطلبات
 ========================= */
 
-async function loadRegistrations(){
+async function loadRegistrations(
+keepPosition = false
+){
+
+/* حفظ مكان الصفحة */
+
+const oldPosition =
+window.scrollY;
+
 
 registrations.innerHTML =
 "جاري تحميل الطلبات...";
@@ -808,6 +816,15 @@ registrations.innerHTML =
 لا توجد طلبات حتى الآن 📭
 </div>
 `;
+
+if(keepPosition){
+
+window.scrollTo(
+0,
+oldPosition
+);
+
+}
 
 return;
 
@@ -1000,6 +1017,24 @@ onclick="deleteRegistration('${item.id}')"
 
 }).join("");
 
+
+/* إرجاع الصفحة لمكانها */
+
+if(keepPosition){
+
+requestAnimationFrame(
+function(){
+
+window.scrollTo(
+0,
+oldPosition
+);
+
+}
+);
+
+}
+
 }
 
 
@@ -1034,7 +1069,7 @@ return;
 }
 
 
-await loadRegistrations();
+await loadRegistrations(true);
 
 };
 
@@ -1070,7 +1105,7 @@ return;
 }
 
 
-await loadRegistrations();
+await loadRegistrations(true);
 
 };
 
@@ -1154,7 +1189,7 @@ return;
 }
 
 
-await loadRegistrations();
+await loadRegistrations(true);
 
 });
 
@@ -1165,18 +1200,25 @@ await loadRegistrations();
 
 checkSession();
 
+
 supabase.auth.onAuthStateChange(
 (event, session) => {
 
 if(session){
 
-loginBox.style.display = "none";
-adminPanel.style.display = "block";
+loginBox.style.display =
+"none";
+
+adminPanel.style.display =
+"block";
 
 }else{
 
-loginBox.style.display = "block";
-adminPanel.style.display = "none";
+loginBox.style.display =
+"block";
+
+adminPanel.style.display =
+"none";
 
 }
 
@@ -1190,3 +1232,4 @@ adminPanel.style.display = "none";
 
 </html>
 ```
+
