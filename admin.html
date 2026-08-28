@@ -1,21 +1,13 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-
 <head>
-
 <meta charset="UTF-8">
-
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>إدارة أكاديمية عصر الاحتراف</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>إدارة عصر الاحتراف</title>
 <style>
-
 *{
 box-sizing:border-box;
 }
-
 body{
 margin:0;
 font-family:Arial,Tahoma,sans-serif;
@@ -23,29 +15,23 @@ background:#080808;
 color:#fff;
 padding:30px 15px;
 }
-
 .container{
 max-width:900px;
 margin:auto;
 }
-
 h1{
 text-align:center;
 margin-bottom:30px;
 }
-
 h1 span{
 color:#ff6900;
 }
-
 .card{
 background:#151515;
-border:1px solid #292929;
-border-radius:18px;
-padding:25px;
+border-radius:16px;
+padding:22px;
 margin-bottom:18px;
 }
-
 input{
 width:100%;
 padding:14px;
@@ -56,7 +42,6 @@ border:1px solid #333;
 border-radius:9px;
 font-size:16px;
 }
-
 button{
 padding:13px 22px;
 border:0;
@@ -66,421 +51,344 @@ color:#fff;
 font-weight:bold;
 cursor:pointer;
 }
-
 button:hover{
 opacity:.85;
 }
-
 #adminPanel{
 display:none;
 }
-
 .registration{
-border-radius:16px;
+border-radius:15px;
 padding:20px;
 margin-bottom:15px;
 }
-
 .new{
-background:#4a0b0b;
+background:#3d0b0b;
 border:2px solid #ff3333;
 }
-
-.reviewed{
-background:#0b3d20;
+.accepted{
+background:#073d20;
 border:2px solid #00c853;
 }
-
+.rejected{
+background:#292929;
+border:2px solid #777;
+}
 .status{
 font-weight:bold;
 margin-top:12px;
 }
-
 .new .status{
 color:#ff3333;
 }
-
-.reviewed .status{
+.accepted .status{
 color:#00c853;
 }
-
+.rejected .status{
+color:#aaa;
+}
+.actions{
+display:flex;
+gap:10px;
+margin-top:18px;
+flex-wrap:wrap;
+}
+.acceptBtn{
+background:#00c853;
+}
+.rejectBtn{
+background:#d50000;
+}
 .logout{
 background:#292929;
-margin-bottom:25px;
+margin-bottom:20px;
 }
-
 </style>
-
 </head>
-
-
 <body>
-
 <div class="container">
-
-
 <h1>
 إدارة <span>عصر الاحتراف 🔐</span>
 </h1>
-
-
+<!-- تسجيل الدخول -->
 <div id="loginBox" class="card">
-
 <h2>
 تسجيل دخول الأدمن
 </h2>
-
-
 <input
 id="adminEmail"
 type="email"
 placeholder="إيميل الأدمن"
 >
-
-
 <input
 id="adminPassword"
 type="password"
 placeholder="كلمة المرور"
 >
-
-
 <button id="loginBtn">
 دخول
 </button>
-
-
 <p id="loginMessage"></p>
-
 </div>
-
-
-
+<!-- لوحة الإدارة -->
 <div id="adminPanel">
-
-
-<button
-class="logout"
-id="logoutBtn"
->
+<button class="logout" id="logoutBtn">
 تسجيل الخروج
 </button>
-
-
 <h2>
 طلبات التسجيل
 </h2>
-
-
 <div id="registrations">
 جاري تحميل الطلبات...
 </div>
-
-
 </div>
-
 </div>
-
-
-
 <script type="module">
-
 import { createClient }
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
-
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
-
-
 const SUPABASE_KEY =
 "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
-
-
 const supabase =
 createClient(
 SUPABASE_URL,
 SUPABASE_KEY
 );
-
-
-
-// ===== التحقق من تسجيل الدخول عند تحديث الصفحة =====
-
+const loginBtn =
+document.getElementById("loginBtn");
+const logoutBtn =
+document.getElementById("logoutBtn");
+const loginBox =
+document.getElementById("loginBox");
+const adminPanel =
+document.getElementById("adminPanel");
+// ========================================
+// التحقق من تسجيل الدخول
+// ========================================
+async function checkSession(){
 const {
-data: {
+data:{
 session
 }
 } =
 await supabase.auth.getSession();
-
-
 if(session){
-
-document.getElementById("loginBox")
-.style.display = "none";
-
-document.getElementById("adminPanel")
-.style.display = "block";
-
-loadRegistrations();
-
+loginBox.style.display = "none";
+adminPanel.style.display = "block";
+await loadRegistrations();
+}else{
+loginBox.style.display = "block";
+adminPanel.style.display = "none";
 }
-
-
-
-// ===== تسجيل الدخول =====
-
-const loginBtn =
-document.getElementById("loginBtn");
-
-
-loginBtn.addEventListener(
-"click",
-async () => {
-
-
+}
+// ========================================
+// تسجيل الدخول
+// ========================================
+loginBtn.addEventListener("click", async () => {
 const email =
 document
 .getElementById("adminEmail")
 .value
 .trim();
-
-
 const password =
 document
 .getElementById("adminPassword")
 .value;
-
-
 const loginMessage =
 document.getElementById("loginMessage");
-
-
+loginMessage.style.color =
+"#ff6900";
 loginMessage.innerText =
 "جاري تسجيل الدخول...";
-
-
-const { error } =
+const {
+data,
+error
+} =
 await supabase.auth.signInWithPassword({
-
-email: email,
-
-password: password
-
+email:email,
+password:password
 });
-
-
 if(error){
-
 console.error(error);
-
 loginMessage.style.color =
 "#ff3333";
-
 loginMessage.innerText =
 "بيانات الدخول غير صحيحة ❌";
-
 return;
-
 }
-
-
-loginMessage.innerText = "";
-
-
-document.getElementById("loginBox")
-.style.display = "none";
-
-
-document.getElementById("adminPanel")
-.style.display = "block";
-
-
-loadRegistrations();
-
+loginMessage.style.color =
+"#00c853";
+loginMessage.innerText =
+"تم تسجيل الدخول ✅";
+loginBox.style.display =
+"none";
+adminPanel.style.display =
+"block";
+await loadRegistrations();
 });
-
-
-
-// ===== تسجيل الخروج =====
-
-const logoutBtn =
-document.getElementById("logoutBtn");
-
-
-logoutBtn.addEventListener(
-"click",
-async () => {
-
-
+// ========================================
+// تسجيل الخروج
+// ========================================
+logoutBtn.addEventListener("click", async () => {
 await supabase.auth.signOut();
-
-
-document.getElementById("loginBox")
-.style.display = "block";
-
-
-document.getElementById("adminPanel")
-.style.display = "none";
-
-
+loginBox.style.display =
+"block";
+adminPanel.style.display =
+"none";
 });
-
-
-
-// ===== تحميل الطلبات =====
-
+// ========================================
+// تحميل الطلبات
+// ========================================
 async function loadRegistrations(){
-
 const container =
 document.getElementById("registrations");
-
-
 container.innerHTML =
 "جاري تحميل الطلبات...";
-
-
-const { data, error } =
+const {
+data,
+error
+} =
 await supabase
 .from("registration")
 .select("*")
 .order("id", {
 ascending:false
 });
-
-
 if(error){
-
 console.error(error);
-
 container.innerHTML =
-"تعذر تحميل الطلبات ❌";
-
+"حدث خطأ أثناء تحميل الطلبات ❌";
 return;
-
 }
-
-
 if(!data || data.length === 0){
-
 container.innerHTML =
 "لا توجد طلبات حتى الآن.";
-
 return;
-
 }
-
-
 container.innerHTML =
 data.map(item => {
-
-
-const reviewed =
-item.status === "reviewed";
-
-
-const cardClass =
-reviewed
-? "reviewed"
-: "new";
-
-
+let cardClass = "new";
+let statusText =
+"🔴 طلب جديد";
+if(item.status === "accepted"){
+cardClass = "accepted";
+statusText =
+"🟢 تم قبول اللاعب";
+}
+else if(item.status === "rejected"){
+cardClass = "rejected";
+statusText =
+"❌ تم رفض اللاعب";
+}
 return `
-
-<div
-class="registration ${cardClass}"
-onclick="reviewRegistration('${item.id}')"
->
-
-
+<div class="registration ${cardClass}">
 <h3>
 ${item.player_name || "بدون اسم"}
 </h3>
-
-
 <p>
 العمر:
 ${item.age || "-"}
 </p>
-
-
 <p>
 ولي الأمر:
 ${item.guardian_name || "-"}
 </p>
-
-
 <p>
 الجوال:
 ${item.phone || "-"}
 </p>
-
-
 <p>
 الملاحظات:
 ${item.notes || "لا يوجد"}
 </p>
-
-
 <p class="status">
-
-${
-reviewed
-? "🟢 تمت المراجعة"
-: "🔴 طلب جديد — اضغط لفتح الطلب"
-}
-
+${statusText}
 </p>
-
-
+${
+item.status !== "accepted" &&
+item.status !== "rejected"
+?
+`
+<div class="actions">
+<button
+class="acceptBtn"
+onclick="acceptRegistration('${item.id}')"
+>
+🟢 قبول اللاعب
+</button>
+<button
+class="rejectBtn"
+onclick="rejectRegistration('${item.id}')"
+>
+🔴 رفض الطلب
+</button>
 </div>
-
-`;
-
-}).join("");
-
+`
+:
+""
 }
-
-
-
-// ===== تحويل الطلب إلى تمت المراجعة =====
-
-window.reviewRegistration =
+</div>
+`;
+}).join("");
+}
+// ========================================
+// قبول اللاعب
+// ========================================
+window.acceptRegistration =
 async function(id){
-
-
-const { error } =
+const {
+error
+} =
 await supabase
 .from("registration")
 .update({
-
-status:"reviewed"
-
+status:"accepted"
 })
 .eq("id",id);
-
-
 if(error){
-
 console.error(error);
-
 alert(
-"تعذر تحديث حالة الطلب ❌"
+"حدث خطأ أثناء قبول اللاعب ❌"
 );
-
 return;
-
 }
-
-
-loadRegistrations();
-
+await loadRegistrations();
 };
-
+// ========================================
+// رفض اللاعب
+// ========================================
+window.rejectRegistration =
+async function(id){
+const confirmReject =
+confirm(
+"هل أنت متأكد من رفض هذا الطلب؟"
+);
+if(!confirmReject){
+return;
+}
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
+status:"rejected"
+})
+.eq("id",id);
+if(error){
+console.error(error);
+alert(
+"حدث خطأ أثناء رفض الطلب ❌"
+);
+return;
+}
+await loadRegistrations();
+};
+// ========================================
+// تشغيل الصفحة
+// ========================================
+checkSession();
 </script>
-
 </body>
-
 </html>
