@@ -399,28 +399,24 @@ birth_date
 );
 
 
-const {
-error
-} =
+const { error } =
 await supabase
 .from("registration")
 .insert([{
 
-player_name:player_name,
+player_name: player_name,
 
-birth_date:birth_date,
+birth_date: birth_date,
 
-birth_year:result.birthYear,
+age: result.age,
 
-age:result.age,
+guardian_name: guardian_name,
 
-guardian_name:guardian_name,
+phone: phone,
 
-phone:phone,
+notes: notes,
 
-notes:notes,
-
-status:"pending"
+status: "pending"
 
 }]);
 
