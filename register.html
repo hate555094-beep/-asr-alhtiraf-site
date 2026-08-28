@@ -265,11 +265,54 @@ submitBtn.innerText =
 "إرسال الطلب 📨";
 return;
 }
-message.className =
-"success";
-message.innerText =
-"تم إرسال طلبك بنجاح ✅\nسيتم مراجعته من إدارة الأكاديمية.";
-form.reset();
+document.querySelector(".card").innerHTML = `
+<div style="
+text-align:center;
+padding:50px 20px;
+">
+
+<div style="
+font-size:70px;
+margin-bottom:20px;
+">
+✅
+</div>
+
+<h2 style="
+color:#00c853;
+font-size:28px;
+margin-bottom:15px;
+">
+تم إرسال الطلب بنجاح
+</h2>
+
+<p style="
+color:#aaa;
+font-size:17px;
+line-height:1.8;
+">
+تم استلام طلبك بنجاح<br>
+وسيتم مراجعته من إدارة أكاديمية عصر الاحتراف.
+</p>
+
+<a
+href="index.html"
+style="
+display:inline-block;
+margin-top:25px;
+padding:13px 25px;
+background:#ff6900;
+color:#fff;
+text-decoration:none;
+border-radius:9px;
+font-weight:bold;
+"
+>
+العودة للرئيسية
+</a>
+
+</div>
+`;
 submitBtn.disabled = false;
 submitBtn.innerText =
 "إرسال الطلب 📨";
