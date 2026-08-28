@@ -5,7 +5,6 @@
 <head>
 
 <meta charset="UTF-8">
-
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>إدارة عصر الاحتراف</title>
@@ -19,13 +18,14 @@ box-sizing:border-box;
 body{
 margin:0;
 font-family:Arial,Tahoma,sans-serif;
-background:#f7f9fc;
+background:linear-gradient(135deg,#f7f9fc,#ffffff);
 color:#222;
 padding:30px 15px;
+min-height:100vh;
 }
 
 .container{
-max-width:900px;
+max-width:950px;
 margin:auto;
 }
 
@@ -41,36 +41,35 @@ color:#ff6900;
 .card{
 background:#fff;
 border:1px solid #eee;
-border-radius:18px;
-padding:22px;
-margin-bottom:18px;
-box-shadow:0 8px 25px rgba(0,0,0,.07);
+border-radius:20px;
+padding:25px;
+margin-bottom:20px;
+box-shadow:0 10px 35px rgba(0,0,0,.08);
 }
 
 input{
 width:100%;
-padding:14px;
-margin-bottom:12px;
+padding:15px;
+margin-bottom:14px;
 background:#f8f9fa;
 color:#222;
 border:1px solid #ddd;
-border-radius:9px;
+border-radius:11px;
 font-size:16px;
+outline:none;
 }
 
 input:focus{
-outline:none;
 border-color:#ff6900;
 }
 
 button{
-padding:13px 22px;
+padding:13px 20px;
 border:0;
-border-radius:9px;
-background:#ff6900;
-color:#fff;
+border-radius:10px;
 font-weight:bold;
 cursor:pointer;
+font-size:15px;
 }
 
 button:hover{
@@ -81,34 +80,102 @@ opacity:.85;
 display:none;
 }
 
-.registration{
-background:#fff;
-border-radius:15px;
-padding:20px;
-margin-bottom:15px;
-border:1px solid #eee;
-box-shadow:0 6px 18px rgba(0,0,0,.06);
+.loginButton{
+width:100%;
+background:#ff6900;
+color:white;
+font-size:17px;
 }
 
-.new{
+.logoutButton{
+background:#333;
+color:white;
+margin-bottom:20px;
+}
+
+.stats{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(180px,1fr));
+gap:15px;
+margin-bottom:25px;
+}
+
+.stat{
+background:#fff;
+border:1px solid #eee;
+border-radius:18px;
+padding:20px;
+text-align:center;
+box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+.statNumber{
+font-size:30px;
+font-weight:bold;
+color:#ff6900;
+}
+
+.statTitle{
+color:#777;
+margin-top:5px;
+}
+
+.registration{
+background:#fff;
+border:1px solid #eee;
+border-radius:18px;
+padding:20px;
+margin-bottom:15px;
+box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+.registration.new{
 border-right:5px solid #ff3333;
 }
 
-.accepted{
+.registration.accepted{
 border-right:5px solid #00c853;
 }
 
-.rejected{
+.registration.rejected{
 border-right:5px solid #777;
+}
+
+.registration h3{
+margin-top:0;
+font-size:21px;
+}
+
+.info{
+display:grid;
+grid-template-columns:
+repeat(auto-fit,minmax(200px,1fr));
+gap:10px;
+}
+
+.infoBox{
+background:#f8f9fa;
+border-radius:10px;
+padding:12px;
+}
+
+.infoBox strong{
+display:block;
+margin-bottom:5px;
+}
+
+.infoBox span{
+color:#666;
 }
 
 .status{
 font-weight:bold;
-margin-top:12px;
+margin-top:18px;
 }
 
 .new .status{
-color:#ff3333;
+color:#d40000;
 }
 
 .accepted .status{
@@ -126,26 +193,30 @@ margin-top:18px;
 flex-wrap:wrap;
 }
 
-.acceptBtn{
+.acceptButton{
 background:#00c853;
+color:white;
 }
 
-.rejectBtn{
-background:#d50000;
+.rejectButton{
+background:#d40000;
+color:white;
 }
 
-.deleteBtn{
+.deleteButton{
 background:#555;
+color:white;
 }
 
-.logout{
-background:#292929;
-margin-bottom:20px;
+.empty{
+text-align:center;
+padding:40px 10px;
+color:#777;
 }
 
 
 /* =========================
-   مربع التأكيد
+   مربع تأكيد الحذف
 ========================= */
 
 .modal{
@@ -153,7 +224,7 @@ display:none;
 position:fixed;
 inset:0;
 background:rgba(0,0,0,.45);
-backdrop-filter:blur(5px);
+backdrop-filter:blur(6px);
 align-items:center;
 justify-content:center;
 z-index:9999;
@@ -163,7 +234,7 @@ padding:20px;
 .modalBox{
 width:100%;
 max-width:420px;
-background:#fff;
+background:white;
 border-radius:22px;
 padding:30px;
 text-align:center;
@@ -177,7 +248,6 @@ margin-bottom:10px;
 
 .modalBox h2{
 margin:0 0 10px;
-color:#222;
 }
 
 .modalBox p{
@@ -195,24 +265,31 @@ margin-top:25px;
 flex:1;
 }
 
-.cancelBtn{
+.cancelButton{
 background:#eee;
 color:#333;
 }
 
-.confirmDeleteBtn{
-background:#d50000;
-color:#fff;
+.confirmDeleteButton{
+background:#d40000;
+color:white;
 }
 
 
-/* للجوال */
+/* الجوال */
 
 @media(max-width:600px){
 
+body{
+padding:20px 10px;
+}
+
+.card{
+padding:18px;
+}
+
 .actions button{
 flex:1;
-min-width:110px;
 }
 
 .modalButtons{
@@ -232,20 +309,19 @@ flex-direction:column;
 <div class="container">
 
 
-<h1>
-إدارة <span>عصر الاحتراف 🔐</span>
-</h1>
-
-
 <!-- =========================
      تسجيل الدخول
 ========================= -->
 
 <div id="loginBox" class="card">
 
-<h2>
-تسجيل دخول الأدمن
-</h2>
+<h1>
+إدارة <span>عصر الاحتراف 🔐</span>
+</h1>
+
+<p style="text-align:center;color:#777;">
+تسجيل دخول لوحة الإدارة
+</p>
 
 
 <input
@@ -262,14 +338,21 @@ placeholder="كلمة المرور"
 >
 
 
-<button id="loginBtn">
+<button
+id="loginBtn"
+class="loginButton"
+>
 دخول
 </button>
 
 
-<p id="loginMessage"></p>
+<p
+id="loginMessage"
+style="text-align:center;font-weight:bold;"
+></p>
 
 </div>
+
 
 
 <!-- =========================
@@ -279,21 +362,106 @@ placeholder="كلمة المرور"
 <div id="adminPanel">
 
 
+<h1>
+لوحة تحكم
+<span>عصر الاحتراف ⚽</span>
+</h1>
+
+
 <button
-class="logout"
 id="logoutBtn"
+class="logoutButton"
 >
 تسجيل الخروج
 </button>
 
 
+<!-- الإحصائيات -->
+
+<div class="stats">
+
+
+<div class="stat">
+
+<div
+id="totalCount"
+class="statNumber"
+>
+0
+</div>
+
+<div class="statTitle">
+إجمالي الطلبات
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+id="pendingCount"
+class="statNumber"
+>
+0
+</div>
+
+<div class="statTitle">
+طلبات جديدة
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+id="acceptedCount"
+class="statNumber"
+>
+0
+</div>
+
+<div class="statTitle">
+المقبولين
+</div>
+
+</div>
+
+
+<div class="stat">
+
+<div
+id="rejectedCount"
+class="statNumber"
+>
+0
+</div>
+
+<div class="statTitle">
+المرفوضين
+</div>
+
+</div>
+
+
+</div>
+
+
+
+<div class="card">
+
 <h2>
-طلبات التسجيل
+📋 طلبات التسجيل
 </h2>
 
 
 <div id="registrations">
+
 جاري تحميل الطلبات...
+
+</div>
+
 </div>
 
 
@@ -301,6 +469,7 @@ id="logoutBtn"
 
 
 </div>
+
 
 
 <!-- =========================
@@ -314,35 +483,43 @@ class="modal"
 
 <div class="modalBox">
 
+
 <div class="modalIcon">
 ⚠️
 </div>
+
 
 <h2>
 تأكيد الحذف
 </h2>
 
+
 <p>
 هل أنت متأكد أنك تريد حذف هذا الطلب نهائيًا؟
 </p>
 
+
 <div class="modalButtons">
+
 
 <button
 id="cancelDelete"
-class="cancelBtn"
+class="cancelButton"
 >
 إلغاء
 </button>
 
+
 <button
 id="confirmDelete"
-class="confirmDeleteBtn"
+class="confirmDeleteButton"
 >
 نعم، احذف
 </button>
 
+
 </div>
+
 
 </div>
 
@@ -356,13 +533,15 @@ import { createClient }
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
+/* =========================
+   Supabase
+========================= */
+
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
 
-
 const SUPABASE_KEY =
 "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
-
 
 const supabase =
 createClient(
@@ -371,17 +550,21 @@ SUPABASE_KEY
 );
 
 
-const loginBtn =
-document.getElementById("loginBtn");
-
-const logoutBtn =
-document.getElementById("logoutBtn");
+/* =========================
+   العناصر
+========================= */
 
 const loginBox =
 document.getElementById("loginBox");
 
 const adminPanel =
 document.getElementById("adminPanel");
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
 
 const registrations =
 document.getElementById("registrations");
@@ -399,9 +582,9 @@ document.getElementById("confirmDelete");
 let deleteId = null;
 
 
-// ========================================
-// التحقق من تسجيل الدخول
-// ========================================
+/* =========================
+   فحص تسجيل الدخول
+========================= */
 
 async function checkSession(){
 
@@ -436,14 +619,13 @@ adminPanel.style.display =
 }
 
 
-// ========================================
-// تسجيل الدخول
-// ========================================
+/* =========================
+   تسجيل الدخول
+========================= */
 
 loginBtn.addEventListener(
 "click",
-async () => {
-
+async function(){
 
 const email =
 document
@@ -451,29 +633,25 @@ document
 .value
 .trim();
 
-
 const password =
 document
 .getElementById("adminPassword")
 .value;
 
-
-const loginMessage =
+const message =
 document.getElementById(
 "loginMessage"
 );
 
 
-loginMessage.style.color =
+message.style.color =
 "#ff6900";
 
-
-loginMessage.innerText =
+message.innerText =
 "جاري تسجيل الدخول...";
 
 
 const {
-data,
 error
 } =
 await supabase.auth.signInWithPassword({
@@ -489,10 +667,10 @@ if(error){
 
 console.error(error);
 
-loginMessage.style.color =
-"#ff3333";
+message.style.color =
+"#d40000";
 
-loginMessage.innerText =
+message.innerText =
 "بيانات الدخول غير صحيحة ❌";
 
 return;
@@ -500,16 +678,15 @@ return;
 }
 
 
-loginMessage.style.color =
-"#00c853";
+message.style.color =
+"#00a844";
 
-loginMessage.innerText =
+message.innerText =
 "تم تسجيل الدخول ✅";
 
 
 loginBox.style.display =
 "none";
-
 
 adminPanel.style.display =
 "block";
@@ -520,21 +697,18 @@ await loadRegistrations();
 });
 
 
-// ========================================
-// تسجيل الخروج
-// ========================================
+/* =========================
+   تسجيل الخروج
+========================= */
 
 logoutBtn.addEventListener(
 "click",
-async () => {
-
+async function(){
 
 await supabase.auth.signOut();
 
-
 loginBox.style.display =
 "block";
-
 
 adminPanel.style.display =
 "none";
@@ -542,9 +716,9 @@ adminPanel.style.display =
 });
 
 
-// ========================================
-// تحميل الطلبات
-// ========================================
+/* =========================
+   تحميل الطلبات
+========================= */
 
 async function loadRegistrations(){
 
@@ -569,22 +743,78 @@ if(error){
 console.error(error);
 
 registrations.innerHTML =
-"حدث خطأ أثناء تحميل الطلبات ❌";
+`
+<div class="empty">
+تعذر تحميل الطلبات ❌
+</div>
+`;
 
 return;
 
 }
 
 
-if(!data || data.length === 0){
+/* الإحصائيات */
+
+const total =
+data.length;
+
+const pending =
+data.filter(
+item =>
+!item.status ||
+item.status === "pending"
+).length;
+
+const accepted =
+data.filter(
+item =>
+item.status === "accepted"
+).length;
+
+const rejected =
+data.filter(
+item =>
+item.status === "rejected"
+).length;
+
+
+document.getElementById(
+"totalCount"
+).innerText =
+total;
+
+document.getElementById(
+"pendingCount"
+).innerText =
+pending;
+
+document.getElementById(
+"acceptedCount"
+).innerText =
+accepted;
+
+document.getElementById(
+"rejectedCount"
+).innerText =
+rejected;
+
+
+if(!data.length){
 
 registrations.innerHTML =
-"لا توجد طلبات حتى الآن.";
+`
+<div class="empty">
+لا توجد طلبات حتى الآن 📭
+</div>
+`;
 
 return;
 
 }
 
+
+/* عرض الطلبات */
 
 registrations.innerHTML =
 data.map(item => {
@@ -624,32 +854,79 @@ return `
 <div class="registration ${cardClass}">
 
 <h3>
-${item.player_name || "بدون اسم"}
+👤 ${item.player_name || "بدون اسم"}
 </h3>
 
 
-<p>
-العمر:
+<div class="info">
+
+
+<div class="infoBox">
+
+<strong>
+🎂 تاريخ الميلاد
+</strong>
+
+<span>
+${item.birth_date || "-"}
+</span>
+
+</div>
+
+
+<div class="infoBox">
+
+<strong>
+العمر
+</strong>
+
+<span>
 ${item.age || "-"}
-</p>
+</span>
+
+</div>
 
 
-<p>
-ولي الأمر:
+<div class="infoBox">
+
+<strong>
+👨‍👦 ولي الأمر
+</strong>
+
+<span>
 ${item.guardian_name || "-"}
-</p>
+</span>
+
+</div>
 
 
-<p>
-الجوال:
+<div class="infoBox">
+
+<strong>
+📱 الجوال
+</strong>
+
+<span>
 ${item.phone || "-"}
-</p>
+</span>
+
+</div>
 
 
-<p>
-الملاحظات:
+<div class="infoBox">
+
+<strong>
+📝 الملاحظات
+</strong>
+
+<span>
 ${item.notes || "لا يوجد"}
-</p>
+</span>
+
+</div>
+
+
+</div>
 
 
 <p class="status">
@@ -657,61 +934,65 @@ ${statusText}
 </p>
 
 
+<div class="actions">
+
+
 ${
-item.status !== "accepted" &&
+item.status !== "accepted"
+
+?
+
+`
+
+<button
+class="acceptButton"
+onclick="acceptRegistration('${item.id}')"
+>
+🟢 قبول اللاعب
+</button>
+
+`
+
+:
+
+""
+
+}
+
+
+${
 item.status !== "rejected"
 
 ?
 
 `
 
-<div class="actions">
-
 <button
-class="acceptBtn"
-onclick="acceptRegistration('${item.id}')"
->
-🟢 قبول اللاعب
-</button>
-
-
-<button
-class="rejectBtn"
+class="rejectButton"
 onclick="rejectRegistration('${item.id}')"
 >
 🔴 رفض الطلب
 </button>
 
-
-<button
-class="deleteBtn"
-onclick="deleteRegistration('${item.id}')"
->
-🗑️ حذف
-</button>
-
-</div>
-
 `
 
 :
 
-`
+""
 
-<div class="actions">
+}
+
 
 <button
-class="deleteBtn"
+class="deleteButton"
 onclick="deleteRegistration('${item.id}')"
 >
 🗑️ حذف
 </button>
 
+
 </div>
 
-`
-
-}
 
 </div>
 
@@ -722,9 +1003,9 @@ onclick="deleteRegistration('${item.id}')"
 }
 
 
-// ========================================
-// قبول اللاعب
-// ========================================
+/* =========================
+   قبول اللاعب
+========================= */
 
 window.acceptRegistration =
 async function(id){
@@ -745,7 +1026,7 @@ if(error){
 console.error(error);
 
 alert(
-"حدث خطأ أثناء قبول اللاعب ❌"
+"تعذر قبول اللاعب ❌"
 );
 
 return;
@@ -758,9 +1039,9 @@ await loadRegistrations();
 };
 
 
-// ========================================
-// رفض اللاعب
-// ========================================
+/* =========================
+   رفض اللاعب
+========================= */
 
 window.rejectRegistration =
 async function(id){
@@ -781,7 +1062,7 @@ if(error){
 console.error(error);
 
 alert(
-"حدث خطأ أثناء رفض الطلب ❌"
+"تعذر رفض الطلب ❌"
 );
 
 return;
@@ -794,9 +1075,9 @@ await loadRegistrations();
 };
 
 
-// ========================================
-// فتح مربع الحذف
-// ========================================
+/* =========================
+   فتح مربع الحذف
+========================= */
 
 window.deleteRegistration =
 function(id){
@@ -809,9 +1090,9 @@ confirmModal.style.display =
 };
 
 
-// ========================================
-// إلغاء الحذف
-// ========================================
+/* =========================
+   إلغاء الحذف
+========================= */
 
 cancelDelete.addEventListener(
 "click",
@@ -825,16 +1106,18 @@ confirmModal.style.display =
 });
 
 
-// ========================================
-// تأكيد الحذف
-// ========================================
+/* =========================
+   تأكيد الحذف
+========================= */
 
 confirmDelete.addEventListener(
 "click",
 async function(){
 
 if(!deleteId){
+
 return;
+
 }
 
 
@@ -863,7 +1146,7 @@ if(error){
 console.error(error);
 
 alert(
-"حدث خطأ أثناء حذف الطلب ❌"
+"تعذر حذف الطلب ❌"
 );
 
 return;
@@ -876,369 +1159,15 @@ await loadRegistrations();
 });
 
 
-// ========================================
-// تشغيل الصفحة
-// ========================================
+/* =========================
+   تشغيل
+========================= */
 
 checkSession();
 
 </script>
 
 
-</body>
-
-</html>
-```
-
-
-
-<div class="info-box">
-
-<strong>
-👤 العمر
-</strong>
-
-<span>
-${item.age || "-"}
-</span>
-
-</div>
-
-
-<div class="info-box">
-
-<strong>
-👨‍👦 ولي الأمر
-</strong>
-
-<span>
-${item.guardian_name || "-"}
-</span>
-
-</div>
-
-
-<div class="info-box">
-
-<strong>
-📱 الجوال
-</strong>
-
-<span>
-${item.phone || "-"}
-</span>
-
-</div>
-
-
-<div class="info-box">
-
-<strong>
-📝 الملاحظات
-</strong>
-
-<span>
-${item.notes || "لا يوجد"}
-</span>
-
-</div>
-
-
-</div>
-
-
-<div class="actions">
-
-${
-item.status !== "approved"
-?
-`
-<button
-class="accept"
-onclick="approveRegistration('${item.id}')"
->
-🟢 قبول
-</button>
-`
-:
-""
-}
-
-
-${
-item.status !== "rejected"
-?
-`
-<button
-class="reject"
-onclick="rejectRegistration('${item.id}')"
->
-🔴 رفض
-</button>
-`
-:
-""
-}
-
-
-<button
-class="delete"
-onclick="deleteRegistration('${item.id}')"
->
-🗑️ حذف
-</button>
-
-</div>
-
-
-</div>
-
-`;
-
-}
-).join("");
-
-}
-
-
-// ========================================
-// APPROVE
-// ========================================
-
-let deleteId = null;
-
-window.deleteRegistration =
-function(id){
-
-deleteId = id;
-
-document.getElementById(
-"confirmModal"
-).style.display = "flex";
-
-};
-
-
-document.getElementById(
-"cancelDelete"
-).addEventListener(
-"click",
-function(){
-
-deleteId = null;
-
-document.getElementById(
-"confirmModal"
-).style.display = "none";
-
-});
-
-
-document.getElementById(
-"confirmDelete"
-).addEventListener(
-"click",
-async function(){
-
-if(!deleteId){
-return;
-}
-
-const id = deleteId;
-
-deleteId = null;
-
-document.getElementById(
-"confirmModal"
-).style.display = "none";
-
-
-const { error } =
-await supabase
-.from("registration")
-.delete()
-.eq("id",id);
-
-
-if(error){
-
-console.error(error);
-
-alert("تعذر حذف الطلب ❌");
-
-return;
-
-}
-
-loadRegistrations();
-
-});
-
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-
-status:"approved"
-
-})
-.eq("id",id);
-
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر قبول اللاعب ❌"
-);
-
-return;
-
-}
-
-
-loadRegistrations();
-
-};
-
-
-// ========================================
-// REJECT
-// ========================================
-
-window.rejectRegistration =
-async function(id){
-
-const confirmReject =
-confirm(
-"هل تريد رفض هذا الطلب؟"
-);
-
-if(!confirmReject){
-return;
-}
-
-
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-
-status:"rejected"
-
-})
-.eq("id",id);
-
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر رفض الطلب ❌"
-);
-
-return;
-
-}
-
-
-loadRegistrations();
-
-};
-
-
-// ========================================
-// DELETE
-// ========================================
-
-window.deleteRegistration =
-async function(id){
-
-const confirmDelete =
-confirm(
-"⚠️ هل أنت متأكد من حذف هذا الطلب نهائيًا؟"
-);
-
-if(!confirmDelete){
-return;
-}
-
-
-const {
-error
-} =
-await supabase
-.from("registration")
-.delete()
-.eq("id",id);
-
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر حذف الطلب ❌"
-);
-
-return;
-
-}
-
-
-loadRegistrations();
-
-};
-
-
-// ========================================
-// START
-// ========================================
-
-checkSession();
-
-</script>
-<div id="confirmModal" class="modal">
-
-<div class="modal-box">
-
-<div class="modal-icon">
-⚠️
-</div>
-
-<h2>تأكيد الحذف</h2>
-
-<p>
-هل أنت متأكد أنك تريد حذف هذا الطلب نهائيًا؟
-</p>
-
-<div class="modal-buttons">
-
-<button
-id="cancelDelete"
-class="cancel-btn"
->
-إلغاء
-</button>
-
-<button
-id="confirmDelete"
-class="confirm-delete"
->
-نعم، احذف
-</button>
-
-</div>
-
-</div>
-
-</div>
 </body>
 
 </html>
