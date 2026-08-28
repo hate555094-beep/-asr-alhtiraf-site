@@ -121,6 +121,55 @@ color:#777;
 margin-top:5px;
 }
 
+
+/* =========================
+   الأقسام
+========================= */
+
+.section{
+background:#fff;
+border-radius:20px;
+padding:22px;
+margin-bottom:25px;
+box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.sectionTitle{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+margin-bottom:20px;
+padding-bottom:15px;
+border-bottom:1px solid #eee;
+}
+
+.sectionTitle h2{
+margin:0;
+}
+
+.sectionCount{
+background:#ff6900;
+color:white;
+padding:6px 12px;
+border-radius:20px;
+font-size:14px;
+font-weight:bold;
+}
+
+.pendingSection{
+border-top:5px solid #ff3333;
+}
+
+.acceptedSection{
+border-top:5px solid #00c853;
+}
+
+.rejectedSection{
+border-top:5px solid #777;
+}
+
+
 .registration{
 background:#fff;
 border:1px solid #eee;
@@ -210,7 +259,7 @@ color:white;
 
 .empty{
 text-align:center;
-padding:40px 10px;
+padding:30px 10px;
 color:#777;
 }
 
@@ -449,16 +498,89 @@ class="statNumber"
 
 
 
-<div class="card">
+<!-- =========================
+     طلبات جديدة
+========================= -->
+
+<div class="section pendingSection">
+
+<div class="sectionTitle">
 
 <h2>
-📋 طلبات التسجيل
+🔴 طلبات جديدة
 </h2>
 
+<span
+id="pendingSectionCount"
+class="sectionCount"
+>
+0
+</span>
 
-<div id="registrations">
+</div>
 
-جاري تحميل الطلبات...
+
+<div id="pendingRegistrations">
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     المقبولون
+========================= -->
+
+<div class="section acceptedSection">
+
+<div class="sectionTitle">
+
+<h2>
+🟢 المقبولون
+</h2>
+
+<span
+id="acceptedSectionCount"
+class="sectionCount"
+>
+0
+</span>
+
+</div>
+
+
+<div id="acceptedRegistrations">
+
+</div>
+
+</div>
+
+
+
+<!-- =========================
+     المرفوضون
+========================= -->
+
+<div class="section rejectedSection">
+
+<div class="sectionTitle">
+
+<h2>
+❌ المرفوضون
+</h2>
+
+<span
+id="rejectedSectionCount"
+class="sectionCount"
+>
+0
+</span>
+
+</div>
+
+
+<div id="rejectedRegistrations">
 
 </div>
 
@@ -565,9 +687,6 @@ document.getElementById("loginBtn");
 
 const logoutBtn =
 document.getElementById("logoutBtn");
-
-const registrations =
-document.getElementById("registrations");
 
 const confirmModal =
 document.getElementById("confirmModal");
@@ -724,14 +843,34 @@ async function loadRegistrations(
 keepPosition = false
 ){
 
-/* حفظ مكان الصفحة */
-
 const oldPosition =
 window.scrollY;
 
 
-registrations.innerHTML =
-"جاري تحميل الطلبات...";
+const pendingContainer =
+document.getElementById(
+"pendingRegistrations"
+);
+
+const acceptedContainer =
+document.getElementById(
+"acceptedRegistrations"
+);
+
+const rejectedContainer =
+document.getElementById(
+"rejectedRegistrations"
+);
+
+
+pendingContainer.innerHTML =
+"جاري التحميل...";
+
+acceptedContainer.innerHTML =
+"جاري التحميل...";
+
+rejectedContainer.innerHTML =
+"جاري التحميل...";
 
 
 const {
@@ -750,125 +889,98 @@ if(error){
 
 console.error(error);
 
-registrations.innerHTML =
+pendingContainer.innerHTML =
 `
 <div class="empty">
 تعذر تحميل الطلبات ❌
 </div>
 `;
 
+acceptedContainer.innerHTML = "";
+rejectedContainer.innerHTML = "";
+
 return;
 
 }
 
 
-/* الإحصائيات */
-
-const total =
-data.length;
+/* =========================
+   تقسيم الطلبات
+========================= */
 
 const pending =
 data.filter(
 item =>
 !item.status ||
 item.status === "pending"
-).length;
+);
 
 const accepted =
 data.filter(
 item =>
 item.status === "accepted"
-).length;
+);
 
 const rejected =
 data.filter(
 item =>
 item.status === "rejected"
-).length;
+);
 
+
+/* =========================
+   الإحصائيات
+========================= */
 
 document.getElementById(
 "totalCount"
 ).innerText =
-total;
+data.length;
 
 document.getElementById(
 "pendingCount"
 ).innerText =
-pending;
+pending.length;
 
 document.getElementById(
 "acceptedCount"
 ).innerText =
-accepted;
+accepted.length;
 
 document.getElementById(
 "rejectedCount"
 ).innerText =
-rejected;
+rejected.length;
 
 
-if(!data.length){
+document.getElementById(
+"pendingSectionCount"
+).innerText =
+pending.length;
 
-registrations.innerHTML =
-`
-<div class="empty">
-لا توجد طلبات حتى الآن 📭
-</div>
-`;
+document.getElementById(
+"acceptedSectionCount"
+).innerText =
+accepted.length;
 
-if(keepPosition){
-
-window.scrollTo(
-0,
-oldPosition
-);
-
-}
-
-return;
-
-}
+document.getElementById(
+"rejectedSectionCount"
+).innerText =
+rejected.length;
 
 
-/* عرض الطلبات */
+/* =========================
+   إنشاء بطاقة اللاعب
+========================= */
 
-registrations.innerHTML =
-data.map(item => {
-
-
-let cardClass =
-"new";
-
-let statusText =
-"🔴 طلب جديد";
-
-
-if(item.status === "accepted"){
-
-cardClass =
-"accepted";
-
-statusText =
-"🟢 تم قبول اللاعب";
-
-}
-
-
-else if(item.status === "rejected"){
-
-cardClass =
-"rejected";
-
-statusText =
-"❌ تم رفض اللاعب";
-
-}
-
+function createRegistrationCard(
+item,
+type
+){
 
 return `
 
-<div class="registration ${cardClass}">
+<div class="registration ${type}">
 
 <h3>
 👤 ${item.player_name || "بدون اسم"}
@@ -947,7 +1059,19 @@ ${item.notes || "لا يوجد"}
 
 
 <p class="status">
-${statusText}
+
+${
+type === "new"
+?
+"🔴 طلب جديد"
+:
+type === "accepted"
+?
+"🟢 تم قبول اللاعب"
+:
+"❌ تم رفض اللاعب"
+}
+
 </p>
 
 
@@ -955,7 +1079,7 @@ ${statusText}
 
 
 ${
-item.status !== "accepted"
+type !== "accepted"
 
 ?
 
@@ -978,7 +1102,7 @@ onclick="acceptRegistration('${item.id}')"
 
 
 ${
-item.status !== "rejected"
+type !== "rejected"
 
 ?
 
@@ -1015,10 +1139,91 @@ onclick="deleteRegistration('${item.id}')"
 
 `;
 
-}).join("");
+}
 
 
-/* إرجاع الصفحة لمكانها */
+/* =========================
+   عرض الأقسام
+========================= */
+
+if(pending.length){
+
+pendingContainer.innerHTML =
+pending
+.map(
+item =>
+createRegistrationCard(
+item,
+"new"
+)
+)
+.join("");
+
+}else{
+
+pendingContainer.innerHTML =
+`
+<div class="empty">
+لا توجد طلبات جديدة 📭
+</div>
+`;
+
+}
+
+
+if(accepted.length){
+
+acceptedContainer.innerHTML =
+accepted
+.map(
+item =>
+createRegistrationCard(
+item,
+"accepted"
+)
+)
+.join("");
+
+}else{
+
+acceptedContainer.innerHTML =
+`
+<div class="empty">
+لا يوجد لاعبون مقبولون حاليًا.
+</div>
+`;
+
+}
+
+
+if(rejected.length){
+
+rejectedContainer.innerHTML =
+rejected
+.map(
+item =>
+createRegistrationCard(
+item,
+"rejected"
+)
+)
+.join("");
+
+}else{
+
+rejectedContainer.innerHTML =
+`
+<div class="empty">
+لا توجد طلبات مرفوضة حاليًا.
+</div>
+`;
+
+}
+
+
+/* =========================
+   إرجاع مكان الصفحة
+========================= */
 
 if(keepPosition){
 
@@ -1232,4 +1437,5 @@ adminPanel.style.display =
 
 </html>
 ```
+
 
