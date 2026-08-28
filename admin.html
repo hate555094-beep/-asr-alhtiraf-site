@@ -1165,6 +1165,24 @@ await loadRegistrations();
 
 checkSession();
 
+supabase.auth.onAuthStateChange(
+(event, session) => {
+
+if(session){
+
+loginBox.style.display = "none";
+adminPanel.style.display = "block";
+
+}else{
+
+loginBox.style.display = "block";
+adminPanel.style.display = "none";
+
+}
+
+}
+);
+
 </script>
 
 
