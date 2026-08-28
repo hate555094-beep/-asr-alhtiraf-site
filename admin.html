@@ -12,7 +12,41 @@ content="width=device-width, initial-scale=1.0">
 <title>لوحة إدارة عصر الاحتراف</title>
 
 <style>
+<div id="confirmModal" class="modal">
 
+<div class="modal-box">
+
+<div class="modal-icon">
+⚠️
+</div>
+
+<h2>تأكيد الحذف</h2>
+
+<p>
+هل أنت متأكد أنك تريد حذف هذا الطلب نهائيًا؟
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="cancelDelete"
+class="cancel-btn"
+>
+إلغاء
+</button>
+
+<button
+id="confirmDelete"
+class="confirm-delete"
+>
+نعم، احذف
+</button>
+
+</div>
+
+</div>
+
+</div>
 *{
 box-sizing:border-box;
 }
@@ -1024,18 +1058,74 @@ onclick="deleteRegistration('${item.id}')"
 // APPROVE
 // ========================================
 
-window.approveRegistration =
-async function(id){
+let deleteId = null;
 
-const confirmApprove =
-confirm(
-"هل تريد قبول هذا اللاعب؟"
-);
+window.deleteRegistration =
+function(id){
 
-if(!confirmApprove){
+deleteId = id;
+
+document.getElementById(
+"confirmModal"
+).style.display = "flex";
+
+};
+
+
+document.getElementById(
+"cancelDelete"
+).addEventListener(
+"click",
+function(){
+
+deleteId = null;
+
+document.getElementById(
+"confirmModal"
+).style.display = "none";
+
+});
+
+
+document.getElementById(
+"confirmDelete"
+).addEventListener(
+"click",
+async function(){
+
+if(!deleteId){
 return;
 }
 
+const id = deleteId;
+
+deleteId = null;
+
+document.getElementById(
+"confirmModal"
+).style.display = "none";
+
+
+const { error } =
+await supabase
+.from("registration")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert("تعذر حذف الطلب ❌");
+
+return;
+
+}
+
+loadRegistrations();
+
+});
 
 const {
 error
@@ -1167,7 +1257,41 @@ loadRegistrations();
 checkSession();
 
 </script>
+<div id="confirmModal" class="modal">
 
+<div class="modal-box">
+
+<div class="modal-icon">
+⚠️
+</div>
+
+<h2>تأكيد الحذف</h2>
+
+<p>
+هل أنت متأكد أنك تريد حذف هذا الطلب نهائيًا؟
+</p>
+
+<div class="modal-buttons">
+
+<button
+id="cancelDelete"
+class="cancel-btn"
+>
+إلغاء
+</button>
+
+<button
+id="confirmDelete"
+class="confirm-delete"
+>
+نعم، احذف
+</button>
+
+</div>
+
+</div>
+
+</div>
 </body>
 
 </html>
