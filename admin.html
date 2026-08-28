@@ -1,4 +1,4 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -93,6 +93,11 @@ color:white;
 margin-bottom:20px;
 }
 
+
+/* =========================
+   الإحصائيات
+========================= */
+
 .stats{
 display:grid;
 grid-template-columns:
@@ -123,52 +128,106 @@ margin-top:5px;
 
 
 /* =========================
-   الأقسام
+   قوائم الأقسام
 ========================= */
 
-.section{
-background:#fff;
-border-radius:20px;
-padding:22px;
-margin-bottom:25px;
-box-shadow:0 8px 25px rgba(0,0,0,.06);
+.sections{
+display:flex;
+flex-direction:column;
+gap:12px;
 }
 
-.sectionTitle{
+.sectionBox{
+background:#fff;
+border:1px solid #eee;
+border-radius:16px;
+overflow:hidden;
+box-shadow:0 5px 18px rgba(0,0,0,.06);
+}
+
+.sectionButton{
+width:100%;
+background:#fff;
+color:#222;
+padding:18px 20px;
 display:flex;
 align-items:center;
 justify-content:space-between;
-gap:10px;
-margin-bottom:20px;
-padding-bottom:15px;
-border-bottom:1px solid #eee;
+text-align:right;
+font-size:17px;
+transition:.2s;
 }
 
-.sectionTitle h2{
-margin:0;
+.sectionButton:hover{
+opacity:1;
+background:#fafafa;
 }
 
-.sectionCount{
-background:#ff6900;
-color:white;
-padding:6px 12px;
-border-radius:20px;
-font-size:14px;
+.sectionRight{
+display:flex;
+align-items:center;
+gap:12px;
+}
+
+.sectionIcon{
+font-size:21px;
+}
+
+.sectionName{
 font-weight:bold;
 }
 
-.pendingSection{
-border-top:5px solid #ff3333;
+.sectionCount{
+min-width:32px;
+height:32px;
+display:flex;
+align-items:center;
+justify-content:center;
+border-radius:50%;
+background:#ff6900;
+color:white;
+font-size:14px;
 }
 
-.acceptedSection{
-border-top:5px solid #00c853;
+.sectionArrow{
+font-size:18px;
+transition:.2s;
 }
 
-.rejectedSection{
-border-top:5px solid #777;
+.sectionBox.open .sectionArrow{
+transform:rotate(180deg);
 }
 
+.sectionContent{
+display:none;
+padding:15px;
+border-top:1px solid #eee;
+background:#fafafa;
+}
+
+.sectionBox.open .sectionContent{
+display:block;
+}
+
+
+/* ألوان الأقسام */
+
+.pendingBox{
+border-right:4px solid #ff3333;
+}
+
+.acceptedBox{
+border-right:4px solid #00c853;
+}
+
+.rejectedBox{
+border-right:4px solid #777;
+}
+
+
+/* =========================
+   بطاقة اللاعب
+========================= */
 
 .registration{
 background:#fff;
@@ -177,6 +236,10 @@ border-radius:18px;
 padding:20px;
 margin-bottom:15px;
 box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+.registration:last-child{
+margin-bottom:0;
 }
 
 .registration.new{
@@ -259,7 +322,7 @@ color:white;
 
 .empty{
 text-align:center;
-padding:30px 10px;
+padding:25px 10px;
 color:#777;
 }
 
@@ -325,7 +388,9 @@ color:white;
 }
 
 
-/* الجوال */
+/* =========================
+   الجوال
+========================= */
 
 @media(max-width:600px){
 
@@ -343,6 +408,10 @@ flex:1;
 
 .modalButtons{
 flex-direction:column;
+}
+
+.sectionButton{
+padding:16px;
 }
 
 }
@@ -499,16 +568,30 @@ class="statNumber"
 
 
 <!-- =========================
-     طلبات جديدة
+     الأقسام
 ========================= -->
 
-<div class="section pendingSection">
+<div class="sections">
 
-<div class="sectionTitle">
 
-<h2>
-🔴 طلبات جديدة
-</h2>
+<!-- الطلبات الجديدة -->
+
+<div class="sectionBox pendingBox">
+
+<button
+class="sectionButton"
+onclick="toggleSection('pendingBox')"
+>
+
+<div class="sectionRight">
+
+<span class="sectionIcon">
+🔴
+</span>
+
+<span class="sectionName">
+طلبات جديدة
+</span>
 
 <span
 id="pendingSectionCount"
@@ -519,26 +602,48 @@ class="sectionCount"
 
 </div>
 
+<span class="sectionArrow">
+⌄
+</span>
+
+</button>
+
+
+<div
+id="pendingBox"
+class="sectionContent"
+>
 
 <div id="pendingRegistrations">
 
+جاري تحميل الطلبات...
+
+</div>
+
 </div>
 
 </div>
 
 
 
-<!-- =========================
-     المقبولون
-========================= -->
+<!-- المقبولون -->
 
-<div class="section acceptedSection">
+<div class="sectionBox acceptedBox">
 
-<div class="sectionTitle">
+<button
+class="sectionButton"
+onclick="toggleSection('acceptedBox')"
+>
 
-<h2>
-🟢 المقبولون
-</h2>
+<div class="sectionRight">
+
+<span class="sectionIcon">
+🟢
+</span>
+
+<span class="sectionName">
+المقبولون
+</span>
 
 <span
 id="acceptedSectionCount"
@@ -549,26 +654,48 @@ class="sectionCount"
 
 </div>
 
+<span class="sectionArrow">
+⌄
+</span>
+
+</button>
+
+
+<div
+id="acceptedBox"
+class="sectionContent"
+>
 
 <div id="acceptedRegistrations">
 
+جاري تحميل الطلبات...
+
+</div>
+
 </div>
 
 </div>
 
 
 
-<!-- =========================
-     المرفوضون
-========================= -->
+<!-- المرفوضون -->
 
-<div class="section rejectedSection">
+<div class="sectionBox rejectedBox">
 
-<div class="sectionTitle">
+<button
+class="sectionButton"
+onclick="toggleSection('rejectedBox')"
+>
 
-<h2>
-❌ المرفوضون
-</h2>
+<div class="sectionRight">
+
+<span class="sectionIcon">
+❌
+</span>
+
+<span class="sectionName">
+المرفوضون
+</span>
 
 <span
 id="rejectedSectionCount"
@@ -579,10 +706,28 @@ class="sectionCount"
 
 </div>
 
+<span class="sectionArrow">
+⌄
+</span>
+
+</button>
+
+
+<div
+id="rejectedBox"
+class="sectionContent"
+>
 
 <div id="rejectedRegistrations">
 
+جاري تحميل الطلبات...
+
 </div>
+
+</div>
+
+</div>
+
 
 </div>
 
@@ -699,6 +844,23 @@ document.getElementById("confirmDelete");
 
 
 let deleteId = null;
+
+
+/* =========================
+   فتح وإغلاق الأقسام
+========================= */
+
+window.toggleSection =
+function(sectionId){
+
+const box =
+document.getElementById(sectionId);
+
+box.parentElement.classList.toggle(
+"open"
+);
+
+};
 
 
 /* =========================
@@ -895,9 +1057,6 @@ pendingContainer.innerHTML =
 تعذر تحميل الطلبات ❌
 </div>
 `;
-
-acceptedContainer.innerHTML = "";
-rejectedContainer.innerHTML = "";
 
 return;
 
@@ -1143,7 +1302,7 @@ onclick="deleteRegistration('${item.id}')"
 
 
 /* =========================
-   عرض الأقسام
+   عرض الطلبات
 ========================= */
 
 if(pending.length){
@@ -1437,5 +1596,6 @@ adminPanel.style.display =
 
 </html>
 ```
+
 
 
