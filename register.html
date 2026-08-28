@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+<title>تسجيل لاعب - عصر الاحتراف</title>
+<style>
+*{
+box-sizing:border-box;
+}
+body{
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:#080808;
+color:#fff;
+min-height:100vh;
+padding:30px 15px;
+}
+.container{
+max-width:700px;
+margin:auto;
+}
+.header{
+text-align:center;
+margin-bottom:30px;
+}
+.header h1{
+margin:0 0 10px;
+font-size:32px;
+}
+.header h1 span{
+color:#ff6900;
+}
+.header p{
+color:#aaa;
+font-size:15px;
+}
+.card{
+background:#151515;
+border:1px solid #292929;
+border-radius:18px;
+padding:25px;
+box-shadow:0 10px 30px rgba(0,0,0,.3);
+}
+label{
+display:block;
+margin-bottom:8px;
+font-weight:bold;
+}
+input,
+textarea{
+width:100%;
+padding:14px;
+margin-bottom:18px;
+background:#0c0c0c;
+color:#fff;
+border:1px solid #333;
+border-radius:10px;
+font-size:16px;
+outline:none;
+}
+input:focus,
+textarea:focus{
+border-color:#ff6900;
+}
+textarea{
+height:120px;
+resize:vertical;
+}
+button{
+width:100%;
+padding:15px;
+border:0;
+border-radius:10px;
+background:#ff6900;
+color:#fff;
+font-size:17px;
+font-weight:bold;
+cursor:pointer;
+}
+button:hover{
+opacity:.88;
+}
+button:disabled{
+opacity:.5;
+cursor:not-allowed;
+}
+#message{
+margin-top:18px;
+text-align:center;
+font-weight:bold;
+line-height:1.8;
+}
+.success{
+color:#00c853;
+}
+.error{
+color:#ff3333;
+}
+.back{
+display:block;
+text-align:center;
+margin-top:20px;
+color:#aaa;
+text-decoration:none;
+}
+.back:hover{
+color:#ff6900;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="header">
+<h1>
+تسجيل لاعب في
+<span>عصر الاحتراف ⚽</span>
+</h1>
+<p>
+املأ البيانات التالية وسيتم مراجعة طلبك من إدارة الأكاديمية.
+</p>
+</div>
+<div class="card">
+<form id="registrationForm">
+<label>
+اسم اللاعب
+</label>
+<input
+id="player_name"
+type="text"
+placeholder="اكتب اسم اللاعب"
+required
+>
+<label>
+العمر
+</label>
+<input
+id="age"
+type="number"
+placeholder="اكتب عمر اللاعب"
+min="1"
+max="100"
+required
+>
+<label>
+اسم ولي الأمر
+</label>
+<input
+id="guardian_name"
+type="text"
+placeholder="اكتب اسم ولي الأمر"
+required
+>
+<label>
+رقم الجوال
+</label>
+<input
+id="phone"
+type="tel"
+placeholder="05xxxxxxxx"
+required
+>
+<label>
+الملاحظات
+</label>
+<textarea
+id="notes"
+placeholder="أي معلومات إضافية..."
+></textarea>
+<button
+id="submitBtn"
+type="submit"
+>
+إرسال الطلب 📨
+</button>
+<div id="message"></div>
+</form>
+</div>
+<a
+class="back"
+href="index.html"
+>
+← العودة إلى الرئيسية
+</a>
+</div>
+<script type="module">
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+const SUPABASE_URL =
+"https://ybbyvxpvblbnhqmkfxvw.supabase.co";
+const SUPABASE_KEY =
+"sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
+const supabase =
+createClient(
+SUPABASE_URL,
+SUPABASE_KEY
+);
+const form =
+document.getElementById(
+"registrationForm"
+);
+const submitBtn =
+document.getElementById(
+"submitBtn"
+);
+const message =
+document.getElementById(
+"message"
+);
+form.addEventListener(
+"submit",
+async function(event){
+event.preventDefault();
+submitBtn.disabled = true;
+submitBtn.innerText =
+"جاري إرسال الطلب...";
+message.className = "";
+message.innerText = "";
+const player_name =
+document
+.getElementById("player_name")
+.value
+.trim();
+const age =
+document
+.getElementById("age")
+.value;
+const guardian_name =
+document
+.getElementById("guardian_name")
+.value
+.trim();
+const phone =
+document
+.getElementById("phone")
+.value
+.trim();
+const notes =
+document
+.getElementById("notes")
+.value
+.trim();
+const {
+error
+} =
+await supabase
+.from("registration")
+.insert([{
+player_name: player_name,
+age: age,
+guardian_name: guardian_name,
+phone: phone,
+notes: notes,
+status: "pending"
+}]);
+if(error){
+console.error(error);
+message.className =
+"error";
+message.innerText =
+"تعذر إرسال الطلب ❌ حاول مرة أخرى.";
+submitBtn.disabled = false;
+submitBtn.innerText =
+"إرسال الطلب 📨";
+return;
+}
+message.className =
+"success";
+message.innerText =
+"تم إرسال طلبك بنجاح ✅\nسيتم مراجعته من إدارة الأكاديمية.";
+form.reset();
+submitBtn.disabled = false;
+submitBtn.innerText =
+"إرسال الطلب 📨";
+});
+</script>
+</body>
+</html>
