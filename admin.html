@@ -1,457 +1,135 @@
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>أكاديمية عصر الاحتراف | جدة</title>
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>إدارة أكاديمية عصر الاحتراف</title>
 
 <style>
+
 *{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+box-sizing:border-box;
 }
 
 body{
-  font-family:Arial,Tahoma,sans-serif;
-  background:#080808;
-  color:#fff;
-  line-height:1.7;
+margin:0;
+font-family:Arial,Tahoma,sans-serif;
+background:#080808;
+color:#fff;
+padding:30px 15px;
 }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:#080808f5;
-  border-bottom:1px solid #292929;
+.container{
+max-width:900px;
+margin:auto;
 }
 
-nav{
-  max-width:1100px;
-  margin:auto;
-  padding:17px 20px;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  gap:20px;
+h1{
+text-align:center;
+margin-bottom:30px;
 }
 
-.logo{
-  font-size:23px;
-  font-weight:900;
-}
-
-.logo span{
-  color:#ff6900;
-}
-
-nav a{
-  color:#fff;
-  text-decoration:none;
-  margin:0 7px;
-  font-size:14px;
-}
-
-nav a:hover{
-  color:#ff6900;
-}
-
-.hero{
-  min-height:75vh;
-  display:flex;
-  justify-content:center;
-  align-items:center;
-  text-align:center;
-  padding:60px 20px;
-  background:
-  radial-gradient(circle at center,#4b2107 0%,#1b120d 32%,#080808 72%);
-}
-
-.hero small{
-  color:#ff6900;
-  font-size:17px;
-  font-weight:bold;
-}
-
-.hero h1{
-  font-size:clamp(45px,9vw,85px);
-  margin:10px 0;
-  font-weight:900;
-}
-
-.hero h1 span{
-  color:#ff6900;
-}
-
-.hero p{
-  max-width:650px;
-  margin:0 auto 25px;
-  color:#bbb;
-  font-size:19px;
-}
-
-.btn{
-  display:inline-block;
-  padding:13px 25px;
-  margin:5px;
-  border-radius:10px;
-  background:#ff6900;
-  color:#fff;
-  text-decoration:none;
-  font-weight:bold;
-  border:0;
-  cursor:pointer;
-}
-
-.btn:hover{
-  opacity:.85;
-}
-
-.btn.dark{
-  background:#1c1c1c;
-  border:1px solid #333;
-}
-
-section{
-  max-width:1100px;
-  margin:auto;
-  padding:70px 20px;
-}
-
-section h2{
-  font-size:34px;
-  margin-bottom:30px;
-}
-
-section h2 span{
-  color:#ff6900;
+h1 span{
+color:#ff6900;
 }
 
 .card{
-  background:#151515;
-  border:1px solid #292929;
-  border-radius:18px;
-  padding:28px;
+background:#151515;
+border:1px solid #292929;
+border-radius:18px;
+padding:25px;
+margin-bottom:18px;
 }
 
-.card p{
-  color:#bbb;
+input{
+width:100%;
+padding:14px;
+margin-bottom:12px;
+background:#0c0c0c;
+color:#fff;
+border:1px solid #333;
+border-radius:9px;
+font-size:16px;
 }
 
-.grid{
-  display:grid;
-  grid-template-columns:
-  repeat(auto-fit,minmax(220px,1fr));
-  gap:18px;
+button{
+padding:13px 22px;
+border:0;
+border-radius:9px;
+background:#ff6900;
+color:#fff;
+font-weight:bold;
+cursor:pointer;
 }
 
-.program{
-  transition:.2s;
+button:hover{
+opacity:.85;
 }
 
-.program:hover{
-  transform:translateY(-5px);
-  border-color:#ff6900;
+#adminPanel{
+display:none;
 }
 
-.icon{
-  font-size:40px;
-  margin-bottom:10px;
+.registration{
+border-radius:16px;
+padding:20px;
+margin-bottom:15px;
 }
 
-.program h3{
-  margin-bottom:8px;
+.new{
+background:#4a0b0b;
+border:2px solid #ff3333;
 }
 
-form{
-  max-width:650px;
-  display:grid;
-  gap:13px;
+.reviewed{
+background:#0b3d20;
+border:2px solid #00c853;
 }
 
-input,
-textarea{
-  width:100%;
-  padding:14px;
-  background:#0c0c0c;
-  color:#fff;
-  border:1px solid #333;
-  border-radius:9px;
-  font-size:16px;
-  outline:none;
+.status{
+font-weight:bold;
+margin-top:12px;
 }
 
-input:focus,
-textarea:focus{
-  border-color:#ff6900;
+.new .status{
+color:#ff3333;
 }
 
-textarea{
-  min-height:120px;
-  resize:vertical;
+.reviewed .status{
+color:#00c853;
 }
 
-.phone{
-  display:inline-block;
-  direction:ltr;
-  color:#ff6900;
-  font-size:27px;
-  font-weight:bold;
-  text-decoration:none;
-  margin:8px 0 15px;
+.logout{
+background:#292929;
+margin-bottom:25px;
 }
 
-#message{
-  margin-top:15px;
-  font-weight:bold;
-}
-
-footer{
-  text-align:center;
-  padding:30px 20px;
-  border-top:1px solid #292929;
-  color:#888;
-}
-
-@media(max-width:700px){
-
-  nav{
-    flex-direction:column;
-  }
-
-  nav a{
-    font-size:13px;
-  }
-
-  .hero{
-    min-height:65vh;
-  }
-}
 </style>
+
 </head>
+
 
 <body>
 
-<header>
+<div class="container">
 
-<nav>
-
-<div class="logo">
-عصر <span>الاحتراف</span> ⚽
-</div>
-
-<div>
-<a href="#about">عن الأكاديمية</a>
-<a href="#programs">التدريب</a>
-<a href="#register">التسجيل</a>
-<a href="#contact">تواصل</a>
-<a href="#admin.html">الإدارة 🔐</a>
-</div>
-
-</nav>
-
-</header>
-
-
-<section class="hero">
-
-<div>
-
-<small>أكاديمية كرة قدم في جدة ⚽</small>
 
 <h1>
-عصر <span>الاحتراف</span>
+إدارة <span>عصر الاحتراف 🔐</span>
 </h1>
 
-<p>
-نطوّر المواهب، نصنع الشغف، ونبني مستقبل اللاعبين
-في بيئة تدريبية رياضية احترافية.
-</p>
 
-<a class="btn" href="#register">
-سجّل لاعبك
-</a>
-
-<a class="btn dark" href="#contact">
-تواصل معنا
-</a>
-
-</div>
-
-</section>
-
-
-<section id="about">
+<div id="loginBox" class="card">
 
 <h2>
-عن <span>الأكاديمية</span>
+تسجيل دخول الأدمن
 </h2>
 
-<div class="card">
-
-<p>
-أكاديمية عصر الاحتراف لكرة القدم في جدة تهدف إلى تطوير
-المهارات الكروية للاعبين، ورفع مستواهم الفني والبدني،
-ومساعدتهم على بناء أساس قوي في كرة القدم.
-</p>
-
-<br>
-
-<p>
-📍 جدة — المملكة العربية السعودية
-</p>
-
-</div>
-
-</section>
-
-
-<section id="programs">
-
-<h2>
-برامج <span>التدريب</span>
-</h2>
-
-<div class="grid">
-
-<div class="card program">
-
-<div class="icon">⚽</div>
-
-<h3>تطوير المهارات</h3>
-
-<p>
-تدريبات على التحكم بالكرة والتمرير والمراوغة والتسديد.
-</p>
-
-</div>
-
-
-<div class="card program">
-
-<div class="icon">🏃</div>
-
-<h3>الإعداد البدني</h3>
-
-<p>
-تطوير السرعة والرشاقة والتحمل والقدرة البدنية.
-</p>
-
-</div>
-
-
-<div class="card program">
-
-<div class="icon">🧠</div>
-
-<h3>التطوير التكتيكي</h3>
-
-<p>
-تحسين فهم اللاعب للمراكز والتحرك واتخاذ القرار.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<section id="register">
-
-<h2>
-تسجيل <span>لاعب جديد</span>
-</h2>
-
-<div class="card">
-
-<form id="registrationForm">
-
-<input
-id="playerName"
-type="text"
-placeholder="اسم اللاعب"
-required
->
-
-<input
-id="age"
-type="number"
-placeholder="العمر"
-min="3"
-max="30"
-required
->
-
-<input
-id="guardianName"
-type="text"
-placeholder="اسم ولي الأمر"
-required
->
-
-<input
-id="phone"
-type="tel"
-placeholder="رقم الجوال"
-required
->
-
-<textarea
-id="notes"
-placeholder="ملاحظات إضافية"
-></textarea>
-
-<button class="btn" type="submit">
-إرسال طلب التسجيل
-</button>
-
-</form>
-
-<p id="message"></p>
-
-</div>
-
-</section>
-
-
-<section id="contact">
-
-<h2>
-تواصل <span>معنا</span>
-</h2>
-
-<div class="card">
-
-<p>
-للاستفسار والتسجيل تواصل معنا على:
-</p>
-
-<a
-class="phone"
-href="tel:0553645396"
->
-055 364 5396
-</a>
-
-<p>
-📍 جدة
-</p>
-
-</div>
-
-</section>
-<section id="admin">
-
-<h2>
-لوحة <span>الإدارة 🔐</span>
-</h2>
-
-<div class="card">
-
-<div id="loginBox">
 
 <input
 id="adminEmail"
@@ -459,46 +137,49 @@ type="email"
 placeholder="إيميل الأدمن"
 >
 
+
 <input
 id="adminPassword"
 type="password"
 placeholder="كلمة المرور"
 >
 
-<button class="btn" id="loginBtn">
-دخول الأدمن
+
+<button id="loginBtn">
+دخول
 </button>
+
 
 <p id="loginMessage"></p>
 
 </div>
 
 
-<div id="adminPanel" style="display:none;">
 
-<button class="btn dark" id="logoutBtn">
-تسجيل خروج
+<div id="adminPanel">
+
+
+<button
+class="logout"
+id="logoutBtn"
+>
+تسجيل الخروج
 </button>
 
-<h3 style="margin:25px 0 15px;">
+
+<h2>
 طلبات التسجيل
-</h3>
+</h2>
+
 
 <div id="registrations">
 جاري تحميل الطلبات...
 </div>
 
-</div>
 
 </div>
 
-</section>
-
-<footer>
-
-© 2026 أكاديمية عصر الاحتراف — جميع الحقوق محفوظة
-
-</footer>
+</div>
 
 
 
@@ -507,249 +188,299 @@ placeholder="كلمة المرور"
 import { createClient }
 from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
-const SUPABASE_URL = "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
-const SUPABASE_KEY = "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
 
-const supabase = createClient(
-  SUPABASE_URL,
-  SUPABASE_KEY
+
+const SUPABASE_URL =
+"https://ybbyvxpvblbnhqmkfxvw.supabase.co";
+
+
+const SUPABASE_KEY =
+"sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
+
+
+const supabase =
+createClient(
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
-const form = document.getElementById("registrationForm");
-const message = document.getElementById("message");
 
-form.addEventListener("submit", async (event) => {
 
-  event.preventDefault();
+// ===== التحقق من تسجيل الدخول عند تحديث الصفحة =====
 
-  message.style.color = "#ff6900";
-  message.innerText = "جاري إرسال الطلب...";
-
-  const playerName =
-    document.getElementById("playerName").value.trim();
-
-  const age =
-    Number(document.getElementById("age").value);
-
-  const guardianName =
-    document.getElementById("guardianName").value.trim();
-
-  const phone =
-    document.getElementById("phone").value.trim();
-
-  const notes =
-    document.getElementById("notes").value.trim();
-
-  const { error } = await supabase
-    .from("registration")
-    .insert({
-      player_name: playerName,
-      age: age,
-      guardian_name: guardianName,
-      phone: phone,
-      notes: notes,
-      status: "pending"
-    });
-
-if (error) {
-  console.error("SUPABASE ERROR:", error);
-  message.style.color = "red";
-  message.innerText =
-    "خطأ: " + error.message;
-  return;
+const {
+data: {
+session
 }
-  message.style.color = "#00c853";
-  message.innerText =
-    "تم إرسال طلب التسجيل بنجاح ✅";
+} =
+await supabase.auth.getSession();
 
 
-});
-// ===== ADMIN PANEL =====
+if(session){
 
-const loginBtn = document.getElementById("loginBtn");
-const logoutBtn = document.getElementById("logoutBtn");
+document.getElementById("loginBox")
+.style.display = "none";
 
-loginBtn.addEventListener("click", async () => {
+document.getElementById("adminPanel")
+.style.display = "block";
 
-  const email =
-    document.getElementById("adminEmail").value.trim();
+loadRegistrations();
 
-  const password =
-    document.getElementById("adminPassword").value;
-
-  const loginMessage =
-    document.getElementById("loginMessage");
-
-  loginMessage.innerText =
-    "جاري تسجيل الدخول...";
-
-  const { error } =
-    await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
-
-  if (error) {
-
-    console.error(error);
-
-    loginMessage.style.color = "red";
-    loginMessage.innerText =
-      "بيانات الدخول غير صحيحة ❌";
-
-    return;
-  }
-
-  document.getElementById("loginBox").style.display =
-    "none";
-
-  document.getElementById("adminPanel").style.display =
-    "block";
-
-  loadRegistrations();
-});
-
-
-logoutBtn.addEventListener("click", async () => {
-
-  await supabase.auth.signOut();
-
-  document.getElementById("loginBox").style.display =
-    "block";
-
-  document.getElementById("adminPanel").style.display =
-    "none";
-
-});
-
-
-async function loadRegistrations() {
-
-  const container =
-    document.getElementById("registrations");
-
-  container.innerHTML =
-    "جاري تحميل الطلبات...";
-
-  const { data, error } =
-    await supabase
-      .from("registration")
-      .select("*")
-      .order("id", { ascending: false });
-
-  if (error) {
-
-    console.error(error);
-
-    container.innerHTML =
-      "تعذر تحميل الطلبات ❌";
-
-    return;
-  }
-
-  if (!data || data.length === 0) {
-
-    container.innerHTML =
-      "لا توجد طلبات حتى الآن.";
-
-    return;
-  }
-
-
-  container.innerHTML = data.map(item => {
-
-    const reviewed =
-      item.status === "reviewed";
-
-    const cardColor =
-      reviewed ? "#0b3d20" : "#4a0b0b";
-
-    const borderColor =
-      reviewed ? "#00c853" : "#ff3333";
-
-    const statusText =
-      reviewed
-        ? "تمت المراجعة ✅"
-        : "طلب جديد 🔴";
-
-    return `
-
-      <div
-        style="
-          background:${cardColor};
-          border:2px solid ${borderColor};
-          border-radius:16px;
-          padding:20px;
-          margin-bottom:15px;
-          cursor:pointer;
-        "
-        onclick="reviewRegistration('${item.id}')"
-      >
-
-        <h3 style="margin-bottom:12px;">
-          ${item.player_name || "بدون اسم"}
-        </h3>
-
-        <p>
-          العمر: ${item.age || "-"}
-        </p>
-
-        <p>
-          ولي الأمر:
-          ${item.guardian_name || "-"}
-        </p>
-
-        <p>
-          الجوال:
-          ${item.phone || "-"}
-        </p>
-
-        <p>
-          الملاحظات:
-          ${item.notes || "لا يوجد"}
-        </p>
-
-        <p
-          style="
-            margin-top:12px;
-            font-weight:bold;
-          "
-        >
-          ${statusText}
-        </p>
-
-      </div>
-
-    `;
-
-  }).join("");
 }
 
+
+
+// ===== تسجيل الدخول =====
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+
+loginBtn.addEventListener(
+"click",
+async () => {
+
+
+const email =
+document
+.getElementById("adminEmail")
+.value
+.trim();
+
+
+const password =
+document
+.getElementById("adminPassword")
+.value;
+
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+
+loginMessage.innerText =
+"جاري تسجيل الدخول...";
+
+
+const { error } =
+await supabase.auth.signInWithPassword({
+
+email: email,
+
+password: password
+
+});
+
+
+if(error){
+
+console.error(error);
+
+loginMessage.style.color =
+"#ff3333";
+
+loginMessage.innerText =
+"بيانات الدخول غير صحيحة ❌";
+
+return;
+
+}
+
+
+loginMessage.innerText = "";
+
+
+document.getElementById("loginBox")
+.style.display = "none";
+
+
+document.getElementById("adminPanel")
+.style.display = "block";
+
+
+loadRegistrations();
+
+});
+
+
+
+// ===== تسجيل الخروج =====
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+
+logoutBtn.addEventListener(
+"click",
+async () => {
+
+
+await supabase.auth.signOut();
+
+
+document.getElementById("loginBox")
+.style.display = "block";
+
+
+document.getElementById("adminPanel")
+.style.display = "none";
+
+
+});
+
+
+
+// ===== تحميل الطلبات =====
+
+async function loadRegistrations(){
+
+const container =
+document.getElementById("registrations");
+
+
+container.innerHTML =
+"جاري تحميل الطلبات...";
+
+
+const { data, error } =
+await supabase
+.from("registration")
+.select("*")
+.order("id", {
+ascending:false
+});
+
+
+if(error){
+
+console.error(error);
+
+container.innerHTML =
+"تعذر تحميل الطلبات ❌";
+
+return;
+
+}
+
+
+if(!data || data.length === 0){
+
+container.innerHTML =
+"لا توجد طلبات حتى الآن.";
+
+return;
+
+}
+
+
+container.innerHTML =
+data.map(item => {
+
+
+const reviewed =
+item.status === "reviewed";
+
+
+const cardClass =
+reviewed
+? "reviewed"
+: "new";
+
+
+return `
+
+<div
+class="registration ${cardClass}"
+onclick="reviewRegistration('${item.id}')"
+>
+
+
+<h3>
+${item.player_name || "بدون اسم"}
+</h3>
+
+
+<p>
+العمر:
+${item.age || "-"}
+</p>
+
+
+<p>
+ولي الأمر:
+${item.guardian_name || "-"}
+</p>
+
+
+<p>
+الجوال:
+${item.phone || "-"}
+</p>
+
+
+<p>
+الملاحظات:
+${item.notes || "لا يوجد"}
+</p>
+
+
+<p class="status">
+
+${
+reviewed
+? "🟢 تمت المراجعة"
+: "🔴 طلب جديد — اضغط لفتح الطلب"
+}
+
+</p>
+
+
+</div>
+
+`;
+
+}).join("");
+
+}
+
+
+
+// ===== تحويل الطلب إلى تمت المراجعة =====
 
 window.reviewRegistration =
-  async function(id) {
+async function(id){
 
-    const { error } =
-      await supabase
-        .from("registration")
-        .update({
-          status: "reviewed"
-        })
-        .eq("id", id);
 
-    if (error) {
+const { error } =
+await supabase
+.from("registration")
+.update({
 
-      console.error(error);
+status:"reviewed"
 
-      alert(
-        "تعذر تحديث حالة الطلب ❌"
-      );
+})
+.eq("id",id);
 
-      return;
-    }
 
-    loadRegistrations();
-  };
+if(error){
+
+console.error(error);
+
+alert(
+"تعذر تحديث حالة الطلب ❌"
+);
+
+return;
+
+}
+
+
+loadRegistrations();
+
+};
+
 </script>
+
 </body>
+
 </html>
