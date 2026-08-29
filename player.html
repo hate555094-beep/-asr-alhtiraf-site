@@ -1,0 +1,1108 @@
+```html
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>ملف اللاعب | عصر الاحتراف</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:#f4f6f8;
+    color:#1f2937;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.header{
+    background:#111827;
+    color:white;
+    padding:22px 20px;
+    text-align:center;
+}
+
+.header h1{
+    margin:0;
+    font-size:28px;
+}
+
+.header h1 span{
+    color:#ff6900;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+
+.container{
+    width:100%;
+    max-width:900px;
+    margin:30px auto;
+    padding:0 15px;
+}
+
+/* =========================
+   LOGIN
+========================= */
+
+.loginCard{
+    max-width:430px;
+    margin:60px auto;
+    background:white;
+    padding:30px;
+    border-radius:18px;
+    box-shadow:0 12px 40px rgba(0,0,0,.08);
+}
+
+.loginCard h2{
+    text-align:center;
+    margin-top:0;
+}
+
+.input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ddd;
+    border-radius:10px;
+    margin-bottom:14px;
+    font-size:15px;
+    outline:none;
+}
+
+.input:focus{
+    border-color:#ff6900;
+}
+
+.btn{
+    width:100%;
+    border:0;
+    padding:14px;
+    border-radius:10px;
+    background:#ff6900;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.btn:hover{
+    background:#e85e00;
+}
+
+.message{
+    text-align:center;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+/* =========================
+   PROFILE
+========================= */
+
+.profile{
+    display:none;
+}
+
+.profileHeader{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    border:1px solid #e5e7eb;
+    margin-bottom:18px;
+}
+
+.profileHeader h2{
+    margin:0 0 8px;
+}
+
+.profileHeader p{
+    margin:0;
+    color:#777;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.grid{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:18px;
+}
+
+.card{
+    background:white;
+    border:1px solid #e5e7eb;
+    border-radius:18px;
+    padding:22px;
+}
+
+.card h3{
+    margin-top:0;
+    margin-bottom:18px;
+}
+
+.info{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px 0;
+    border-bottom:1px solid #eee;
+}
+
+.info:last-child{
+    border-bottom:0;
+}
+
+.label{
+    color:#777;
+}
+
+.value{
+    font-weight:bold;
+}
+
+/* =========================
+   SUBSCRIPTION
+========================= */
+
+.subscription{
+    margin-top:18px;
+}
+
+.subscriptionStatus{
+    display:inline-block;
+    padding:8px 14px;
+    border-radius:20px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.active{
+    background:#e9f9ef;
+    color:#087a35;
+}
+
+.expired{
+    background:#fff0f0;
+    color:#b42318;
+}
+
+.none{
+    background:#f1f1f1;
+    color:#666;
+}
+
+.daysBox{
+    text-align:center;
+    background:#fff8f2;
+    border:1px solid #ffe0c7;
+    border-radius:14px;
+    padding:20px;
+    margin-top:15px;
+}
+
+.daysNumber{
+    font-size:42px;
+    font-weight:bold;
+    color:#ff6900;
+}
+
+.daysText{
+    color:#777;
+}
+
+/* =========================
+   PAYMENT
+========================= */
+
+.paymentBox{
+    margin-top:18px;
+}
+
+.paymentStatus{
+    padding:12px;
+    border-radius:10px;
+    margin-bottom:15px;
+    text-align:center;
+    font-weight:bold;
+}
+
+.paid{
+    background:#e9f9ef;
+    color:#087a35;
+}
+
+.unpaid{
+    background:#fff4e8;
+    color:#d85b00;
+}
+
+.payBtn{
+    width:100%;
+    border:0;
+    padding:14px;
+    border-radius:10px;
+    background:#08a045;
+    color:white;
+    font-size:16px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.payBtn:hover{
+    background:#078b3c;
+}
+
+/* =========================
+   LOGOUT
+========================= */
+
+.logout{
+    margin-top:18px;
+    background:#111827;
+}
+
+.logout:hover{
+    background:#1f2937;
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:650px){
+
+    .grid{
+        grid-template-columns:1fr;
+    }
+
+    .container{
+        margin-top:20px;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =========================
+     HEADER
+========================= -->
+
+<div class="header">
+
+    <h1>
+        عصر <span>الاحتراف</span>
+    </h1>
+
+</div>
+
+
+<!-- =========================
+     LOGIN
+========================= -->
+
+<div id="loginCard" class="loginCard">
+
+    <h2>
+        دخول اللاعب
+    </h2>
+
+    <p style="text-align:center;color:#777;">
+        أدخل رقم الجوال المسجل في الأكاديمية
+    </p>
+
+    <input
+        id="phoneInput"
+        class="input"
+        type="tel"
+        placeholder="05xxxxxxxx"
+    >
+
+    <button
+        id="loginBtn"
+        class="btn"
+    >
+        دخول
+    </button>
+
+    <div
+        id="loginMessage"
+        class="message"
+    ></div>
+
+</div>
+
+
+<!-- =========================
+     PLAYER PROFILE
+========================= -->
+
+<div
+    id="profile"
+    class="profile"
+>
+
+    <div class="container">
+
+        <div class="profileHeader">
+
+            <h2 id="playerName">
+                اللاعب
+            </h2>
+
+            <p>
+                الملف الشخصي للاعب في أكاديمية عصر الاحتراف
+            </p>
+
+        </div>
+
+
+        <div class="grid">
+
+
+            <!-- PLAYER INFO -->
+
+            <div class="card">
+
+                <h3>
+                    👤 بيانات اللاعب
+                </h3>
+
+                <div class="info">
+
+                    <span class="label">
+                        الاسم
+                    </span>
+
+                    <span
+                        id="infoName"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        تاريخ الميلاد
+                    </span>
+
+                    <span
+                        id="infoBirth"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        العمر
+                    </span>
+
+                    <span
+                        id="infoAge"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        الفئة
+                    </span>
+
+                    <span
+                        id="infoCategory"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        المسار
+                    </span>
+
+                    <span
+                        id="infoPathway"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <!-- SUBSCRIPTION -->
+
+            <div class="card">
+
+                <h3>
+                    💳 الاشتراك
+                </h3>
+
+                <div>
+
+                    الحالة:
+
+                    <span
+                        id="subscriptionStatus"
+                        class="subscriptionStatus none"
+                    >
+                        غير مشترك
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        بداية الاشتراك
+                    </span>
+
+                    <span
+                        id="subscriptionStart"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div class="info">
+
+                    <span class="label">
+                        نهاية الاشتراك
+                    </span>
+
+                    <span
+                        id="subscriptionEnd"
+                        class="value"
+                    >
+                        -
+                    </span>
+
+                </div>
+
+
+                <div
+                    id="daysBox"
+                    class="daysBox"
+                >
+
+                    <div
+                        id="daysNumber"
+                        class="daysNumber"
+                    >
+                        -
+                    </div>
+
+                    <div class="daysText">
+                        يوم متبقي
+                    </div>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="card paymentBox">
+
+            <h3>
+                💰 الدفع
+            </h3>
+
+            <div
+                id="paymentStatus"
+                class="paymentStatus unpaid"
+            >
+                لم يتم الدفع
+            </div>
+
+            <button
+                id="payBtn"
+                class="payBtn"
+            >
+                دفع الاشتراك 💳
+            </button>
+
+            <p
+                style="
+                text-align:center;
+                color:#777;
+                font-size:13px;
+                margin-bottom:0;
+                "
+            >
+                سيتم تحويلك إلى صفحة الدفع عند تفعيل بوابة الدفع.
+            </p>
+
+        </div>
+
+
+        <button
+            id="logoutBtn"
+            class="btn logout"
+        >
+            تسجيل الخروج
+        </button>
+
+    </div>
+
+</div>
+
+
+<script type="module">
+
+import {
+    createClient
+}
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
+/* =========================
+   SUPABASE
+========================= */
+
+const SUPABASE_URL =
+"https://ybbyvxpvblbnhqmkfxvw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
+
+const supabase =
+createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loginCard =
+document.getElementById(
+    "loginCard"
+);
+
+const profile =
+document.getElementById(
+    "profile"
+);
+
+const phoneInput =
+document.getElementById(
+    "phoneInput"
+);
+
+const loginBtn =
+document.getElementById(
+    "loginBtn"
+);
+
+const loginMessage =
+document.getElementById(
+    "loginMessage"
+);
+
+const payBtn =
+document.getElementById(
+    "payBtn"
+);
+
+const logoutBtn =
+document.getElementById(
+    "logoutBtn"
+);
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginBtn.addEventListener(
+"click",
+async function(){
+
+    const phone =
+    phoneInput.value.trim();
+
+    if(!phone){
+
+        loginMessage.style.color =
+        "#d92d20";
+
+        loginMessage.innerText =
+        "اكتب رقم الجوال أولًا.";
+
+        return;
+
+    }
+
+
+    loginMessage.style.color =
+    "#777";
+
+    loginMessage.innerText =
+    "جاري البحث عن اللاعب...";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("registration")
+    .select("*")
+    .eq("phone",phone)
+    .eq("status","accepted")
+    .maybeSingle();
+
+
+    if(error){
+
+        console.error(error);
+
+        loginMessage.style.color =
+        "#d92d20";
+
+        loginMessage.innerText =
+        "حدث خطأ أثناء الدخول ❌";
+
+        return;
+
+    }
+
+
+    if(!data){
+
+        loginMessage.style.color =
+        "#d92d20";
+
+        loginMessage.innerText =
+        "لم يتم العثور على لاعب مقبول بهذا الرقم.";
+
+        return;
+
+    }
+
+
+    localStorage.setItem(
+        "academy_player_id",
+        data.id
+    );
+
+
+    showPlayer(
+        data
+    );
+
+});
+
+
+/* =========================
+   SHOW PLAYER
+========================= */
+
+function showPlayer(player){
+
+    loginCard.style.display =
+    "none";
+
+    profile.style.display =
+    "block";
+
+
+    document.getElementById(
+        "playerName"
+    ).innerText =
+    player.player_name || "اللاعب";
+
+
+    document.getElementById(
+        "infoName"
+    ).innerText =
+    player.player_name || "-";
+
+
+    document.getElementById(
+        "infoBirth"
+    ).innerText =
+    formatDate(
+        player.birth_date
+    );
+
+
+    document.getElementById(
+        "infoAge"
+    ).innerText =
+    player.age
+    ? `${player.age} سنة`
+    : "-";
+
+
+    document.getElementById(
+        "infoCategory"
+    ).innerText =
+    player.category || "-";
+
+
+    document.getElementById(
+        "infoPathway"
+    ).innerText =
+    player.pathway || "—";
+
+
+    updateSubscription(
+        player
+    );
+
+}
+
+
+/* =========================
+   SUBSCRIPTION
+========================= */
+
+function updateSubscription(player){
+
+    const status =
+    player.subscription_status || "none";
+
+    const start =
+    player.subscription_start;
+
+    const end =
+    player.subscription_end;
+
+
+    const statusElement =
+    document.getElementById(
+        "subscriptionStatus"
+    );
+
+
+    statusElement.className =
+    "subscriptionStatus";
+
+
+    if(
+        status === "active" &&
+        end
+    ){
+
+        const today =
+        new Date();
+
+        const endDate =
+        new Date(
+            end + "T23:59:59"
+        );
+
+
+        const difference =
+        endDate.getTime()
+        -
+        today.getTime();
+
+
+        const days =
+        Math.max(
+            0,
+            Math.ceil(
+                difference /
+                (1000*60*60*24)
+            )
+        );
+
+
+        if(days > 0){
+
+            statusElement.classList.add(
+                "active"
+            );
+
+            statusElement.innerText =
+            "فعال";
+
+            document.getElementById(
+                "daysNumber"
+            ).innerText =
+            days;
+
+        }else{
+
+            statusElement.classList.add(
+                "expired"
+            );
+
+            statusElement.innerText =
+            "منتهي";
+
+            document.getElementById(
+                "daysNumber"
+            ).innerText =
+            "0";
+
+            document.querySelector(
+                ".daysText"
+            ).innerText =
+            "الاشتراك منتهي";
+
+        }
+
+    }else{
+
+        statusElement.classList.add(
+            "none"
+        );
+
+        statusElement.innerText =
+        "غير مشترك";
+
+        document.getElementById(
+            "daysNumber"
+        ).innerText =
+        "-";
+
+    }
+
+
+    document.getElementById(
+        "subscriptionStart"
+    ).innerText =
+    formatDate(start);
+
+
+    document.getElementById(
+        "subscriptionEnd"
+    ).innerText =
+    formatDate(end);
+
+
+    updatePayment(
+        player
+    );
+
+}
+
+
+/* =========================
+   PAYMENT
+========================= */
+
+function updatePayment(player){
+
+    const paymentStatus =
+    player.payment_status || "unpaid";
+
+
+    const element =
+    document.getElementById(
+        "paymentStatus"
+    );
+
+
+    if(paymentStatus === "paid"){
+
+        element.className =
+        "paymentStatus paid";
+
+        element.innerText =
+        "تم دفع الاشتراك ✅";
+
+        payBtn.style.display =
+        "none";
+
+    }else{
+
+        element.className =
+        "paymentStatus unpaid";
+
+        element.innerText =
+        "لم يتم الدفع";
+
+        payBtn.style.display =
+        "block";
+
+    }
+
+}
+
+
+/* =========================
+   PAYMENT BUTTON
+========================= */
+
+payBtn.addEventListener(
+"click",
+function(){
+
+    alert(
+        "بوابة الدفع غير مفعلة حاليًا.\n\nسنربطها ببوابة الدفع في الخطوة القادمة."
+    );
+
+});
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+logoutBtn.addEventListener(
+"click",
+function(){
+
+    localStorage.removeItem(
+        "academy_player_id"
+    );
+
+    profile.style.display =
+    "none";
+
+    loginCard.style.display =
+    "block";
+
+    phoneInput.value =
+    "";
+
+    loginMessage.innerText =
+    "";
+
+});
+
+
+/* =========================
+   AUTO LOGIN
+========================= */
+
+async function checkSavedPlayer(){
+
+    const id =
+    localStorage.getItem(
+        "academy_player_id"
+    );
+
+
+    if(!id){
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("registration")
+    .select("*")
+    .eq("id",id)
+    .eq("status","accepted")
+    .maybeSingle();
+
+
+    if(error || !data){
+
+        localStorage.removeItem(
+            "academy_player_id"
+        );
+
+        return;
+
+    }
+
+
+    showPlayer(
+        data
+    );
+
+}
+
+
+/* =========================
+   FORMAT DATE
+========================= */
+
+function formatDate(date){
+
+    if(!date){
+
+        return "-";
+
+    }
+
+
+    const parts =
+    date.split("-");
+
+
+    if(parts.length !== 3){
+
+        return date;
+
+    }
+
+
+    return `${parts[2]}/${parts[1]}/${parts[0]}`;
+
+}
+
+
+/* =========================
+   START
+========================= */
+
+checkSavedPlayer();
+
+</script>
+
+</body>
+
+</html>
+```
