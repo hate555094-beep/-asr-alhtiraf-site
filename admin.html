@@ -350,55 +350,101 @@ tr:hover td{
 }
 
 /* =========================
-   SCHEDULE
+   WEEKLY SCHOOL STYLE
 ========================= */
 
-.scheduleToolbar{
-    display:flex;
-    gap:10px;
-    flex-wrap:wrap;
-    margin-bottom:20px;
-}
-
-.scheduleTable{
+.weekSchedule{
+    width:100%;
     min-width:1100px;
+    border-collapse:separate;
+    border-spacing:0;
+    overflow:hidden;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
 }
 
-.scheduleTable th{
+.weekSchedule th{
     background:#111827;
     color:white;
+    text-align:center;
+    padding:16px 10px;
+    font-size:14px;
+    border-left:1px solid #374151;
 }
 
-.scheduleTable td{
-    height:70px;
+.weekSchedule th.categoryHead{
+    width:170px;
+}
+
+.weekSchedule th.timeHead{
+    width:150px;
+}
+
+.weekSchedule td{
+    height:105px;
+    text-align:center;
+    padding:8px;
+    background:white;
+    border-left:1px solid #e5e7eb;
+    border-bottom:1px solid #e5e7eb;
+}
+
+.weekSchedule td.categoryCell{
+    background:#f8fafc;
+    text-align:right;
+    font-weight:bold;
+    color:#111827;
+    padding:15px;
+}
+
+.categoryTitle{
+    font-size:16px;
+    font-weight:bold;
+    color:#ff6900;
+}
+
+.categoryPathway{
+    font-size:12px;
+    color:#6b7280;
+    margin-top:6px;
 }
 
 .timeCell{
     font-weight:bold;
+    text-align:center !important;
+    color:#111827;
+    background:#f8fafc !important;
     white-space:nowrap;
 }
 
-.scheduleItem{
-    border-right:4px solid #ff6900;
+.trainingCard{
     background:#fff8f2;
-    padding:10px;
-    border-radius:8px;
+    border-right:4px solid #ff6900;
+    border-radius:9px;
+    padding:9px;
+    min-height:75px;
+    text-align:right;
 }
 
-.scheduleItem.match{
-    border-right-color:#d92d20;
-    background:#fff5f5;
-}
-
-.scheduleItem strong{
+.trainingCard strong{
     display:block;
+    color:#111827;
     margin-bottom:5px;
 }
 
-.scheduleItem small{
-    color:#666;
+.trainingCard small{
     display:block;
-    margin-bottom:4px;
+    color:#6b7280;
+    margin-top:3px;
+}
+
+.trainingCard .actions{
+    margin-top:7px;
+}
+
+.emptyCell{
+    color:#d1d5db;
+    font-size:22px;
 }
 
 /* =========================
@@ -605,53 +651,34 @@ textarea.input{
 
 <div id="app" class="app" style="display:none;">
 
-    <!-- SIDEBAR -->
-
     <aside class="sidebar">
 
         <div class="logo">
             عصر <span>الاحتراف ⚽</span>
         </div>
 
-        <button
-            class="navButton active"
-            data-page="dashboard"
-        >
+        <button class="navButton active" data-page="dashboard">
             🏠 الرئيسية
         </button>
 
-        <button
-            class="navButton"
-            data-page="players"
-        >
+        <button class="navButton" data-page="players">
             👥 اللاعبين
         </button>
 
-        <button
-            class="navButton"
-            data-page="pending"
-        >
+        <button class="navButton" data-page="pending">
             📨 الطلبات
         </button>
 
-        <button
-            class="navButton"
-            data-page="schedule"
-        >
+        <button class="navButton" data-page="schedule">
             📅 جدول التدريب
         </button>
 
-        <button
-            class="navButton"
-            data-page="matches"
-        >
+        <button class="navButton" data-page="matches">
             ⚽ المباريات الودية
         </button>
 
     </aside>
 
-
-    <!-- MAIN -->
 
     <main class="main">
 
@@ -662,85 +689,46 @@ textarea.input{
                 <span>عصر الاحتراف</span>
             </h1>
 
-            <button
-                id="logoutBtn"
-                class="logout"
-            >
+            <button id="logoutBtn" class="logout">
                 تسجيل الخروج
             </button>
 
         </div>
 
 
-        <!-- =========================
-             DASHBOARD
-        ========================= -->
+        <!-- DASHBOARD -->
 
-        <section
-            id="dashboard"
-            class="page active"
-        >
+        <section id="dashboard" class="page active">
 
             <div class="stats">
 
                 <div class="stat">
-                    <div
-                        id="totalCount"
-                        class="statNumber"
-                    >
-                        0
-                    </div>
-                    <div class="statTitle">
-                        إجمالي الطلبات
-                    </div>
+                    <div id="totalCount" class="statNumber">0</div>
+                    <div class="statTitle">إجمالي الطلبات</div>
                 </div>
 
                 <div class="stat">
-                    <div
-                        id="pendingCount"
-                        class="statNumber"
-                    >
-                        0
-                    </div>
-                    <div class="statTitle">
-                        طلبات جديدة
-                    </div>
+                    <div id="pendingCount" class="statNumber">0</div>
+                    <div class="statTitle">طلبات جديدة</div>
                 </div>
 
                 <div class="stat">
-                    <div
-                        id="acceptedCount"
-                        class="statNumber"
-                    >
-                        0
-                    </div>
-                    <div class="statTitle">
-                        اللاعبين المقبولين
-                    </div>
+                    <div id="acceptedCount" class="statNumber">0</div>
+                    <div class="statTitle">اللاعبين المقبولين</div>
                 </div>
 
                 <div class="stat">
-                    <div
-                        id="scheduleCount"
-                        class="statNumber"
-                    >
-                        0
-                    </div>
-                    <div class="statTitle">
-                        مواعيد الجدول
-                    </div>
+                    <div id="scheduleCount" class="statNumber">0</div>
+                    <div class="statTitle">مواعيد الجدول</div>
                 </div>
 
             </div>
-
 
             <div class="panel">
 
                 <div class="panelHeader">
 
-                    <h2>
-                        آخر الطلبات
-                    </h2>
+                    <h2>آخر الطلبات</h2>
 
                     <button
                         class="btn btnOrange"
@@ -751,10 +739,7 @@ textarea.input{
 
                 </div>
 
-                <div
-                    id="recentPlayers"
-                    class="tableWrap"
-                >
+                <div id="recentPlayers" class="tableWrap">
                     جاري التحميل...
                 </div>
 
@@ -763,23 +748,14 @@ textarea.input{
         </section>
 
 
-        <!-- =========================
-             PLAYERS
-        ========================= -->
+        <!-- PLAYERS -->
 
-        <section
-            id="players"
-            class="page"
-        >
+        <section id="players" class="page">
 
             <div class="panel">
 
                 <div class="panelHeader">
-
-                    <h2>
-                        اللاعبين
-                    </h2>
-
+                    <h2>اللاعبين</h2>
                 </div>
 
                 <div class="filters">
@@ -790,10 +766,8 @@ textarea.input{
                         placeholder="بحث باسم اللاعب..."
                     >
 
-                    <select
-                        id="categoryFilter"
-                        class="input"
-                    >
+                    <select id="categoryFilter" class="input">
+
                         <option value="">كل الفئات</option>
                         <option>2020–2021</option>
                         <option>2019–2018</option>
@@ -801,23 +775,39 @@ textarea.input{
                         <option>2015–2014</option>
                         <option>2013–2012</option>
                         <option>2011–2009</option>
+
                     </select>
 
-                    <select
-                        id="pathwayFilter"
-                        class="input"
-                    >
+                    <select id="pathwayFilter" class="input">
+
                         <option value="">كل المسارات</option>
                         <option>التميز اللياقي</option>
                         <option>التطوير</option>
+
                     </select>
 
                 </div>
 
-                <div
-                    id="playersTable"
-                    class="tableWrap"
-                >
+                <div id="playersTable" class="tableWrap">
+                    جاري التحميل...
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- REQUESTS -->
+
+        <section id="pending" class="page">
+
+            <div class="panel">
+
+                <div class="panelHeader">
+                    <h2>طلبات التسجيل</h2>
+                </div>
+
+                <div id="requestsTable" class="tableWrap">
                     جاري التحميل...
                 </div>
 
@@ -827,51 +817,17 @@ textarea.input{
 
 
         <!-- =========================
-             PENDING
+             WEEKLY SCHEDULE
         ========================= -->
 
-        <section
-            id="pending"
-            class="page"
-        >
+        <section id="schedule" class="page">
 
             <div class="panel">
 
                 <div class="panelHeader">
 
                     <h2>
-                        طلبات التسجيل
-                    </h2>
-
-                </div>
-
-                <div
-                    id="requestsTable"
-                    class="tableWrap"
-                >
-                    جاري التحميل...
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- =========================
-             SCHEDULE
-        ========================= -->
-
-        <section
-            id="schedule"
-            class="page"
-        >
-
-            <div class="panel">
-
-                <div class="panelHeader">
-
-                    <h2>
-                        جدول التدريب
+                        جدول التدريب الأسبوعي
                     </h2>
 
                     <button
@@ -889,15 +845,12 @@ textarea.input{
                         class="btn btnLight"
                         onclick="loadSchedule()"
                     >
-                        تحديث الجدول
+                        🔄 تحديث الجدول
                     </button>
 
                 </div>
 
-                <div
-                    id="scheduleTable"
-                    class="tableWrap"
-                >
+                <div id="scheduleTable" class="tableWrap">
                     جاري تحميل الجدول...
                 </div>
 
@@ -906,14 +859,9 @@ textarea.input{
         </section>
 
 
-        <!-- =========================
-             MATCHES
-        ========================= -->
+        <!-- MATCHES -->
 
-        <section
-            id="matches"
-            class="page"
-        >
+        <section id="matches" class="page">
 
             <div class="panel">
 
@@ -932,10 +880,7 @@ textarea.input{
 
                 </div>
 
-                <div
-                    id="matchesTable"
-                    class="tableWrap"
-                >
+                <div id="matchesTable" class="tableWrap">
                     جاري تحميل المباريات...
                 </div>
 
@@ -952,10 +897,7 @@ textarea.input{
      SCHEDULE MODAL
 ========================= -->
 
-<div
-    id="scheduleModal"
-    class="modal"
->
+<div id="scheduleModal" class="modal">
 
     <div class="modalBox">
 
@@ -974,24 +916,19 @@ textarea.input{
 
         </div>
 
-
-        <input
-            type="hidden"
-            id="scheduleId"
-        >
+        <input type="hidden" id="scheduleId">
 
         <div class="formGrid">
 
             <div class="formGroup">
 
-                <label>
-                    الفئة
-                </label>
+                <label>الفئة</label>
 
                 <select
                     id="scheduleCategory"
                     class="input"
                 >
+
                     <option value="">اختر الفئة</option>
                     <option>2020–2021</option>
                     <option>2019–2018</option>
@@ -999,6 +936,7 @@ textarea.input{
                     <option>2015–2014</option>
                     <option>2013–2012</option>
                     <option>2011–2009</option>
+
                 </select>
 
             </div>
@@ -1006,17 +944,17 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    المسار
-                </label>
+                <label>المسار</label>
 
                 <select
                     id="schedulePathway"
                     class="input"
                 >
+
                     <option value="">بدون مسار</option>
                     <option>التميز اللياقي</option>
                     <option>التطوير</option>
+
                 </select>
 
             </div>
@@ -1024,14 +962,13 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    اليوم
-                </label>
+                <label>اليوم</label>
 
                 <select
                     id="scheduleDay"
                     class="input"
                 >
+
                     <option>السبت</option>
                     <option>الأحد</option>
                     <option>الاثنين</option>
@@ -1039,6 +976,7 @@ textarea.input{
                     <option>الأربعاء</option>
                     <option>الخميس</option>
                     <option>الجمعة</option>
+
                 </select>
 
             </div>
@@ -1046,9 +984,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    المدرب
-                </label>
+                <label>المدرب</label>
 
                 <input
                     id="scheduleCoach"
@@ -1061,9 +997,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    من الساعة
-                </label>
+                <label>من الساعة</label>
 
                 <input
                     id="scheduleStart"
@@ -1076,9 +1010,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    إلى الساعة
-                </label>
+                <label>إلى الساعة</label>
 
                 <input
                     id="scheduleEnd"
@@ -1091,9 +1023,7 @@ textarea.input{
 
             <div class="formGroup full">
 
-                <label>
-                    ملاحظات
-                </label>
+                <label>ملاحظات</label>
 
                 <textarea
                     id="scheduleNotes"
@@ -1133,10 +1063,7 @@ textarea.input{
      MATCH MODAL
 ========================= -->
 
-<div
-    id="matchModal"
-    class="modal"
->
+<div id="matchModal" class="modal">
 
     <div class="modalBox">
 
@@ -1155,24 +1082,19 @@ textarea.input{
 
         </div>
 
-
-        <input
-            type="hidden"
-            id="matchId"
-        >
+        <input type="hidden" id="matchId">
 
         <div class="formGrid">
 
             <div class="formGroup">
 
-                <label>
-                    الفئة
-                </label>
+                <label>الفئة</label>
 
                 <select
                     id="matchCategory"
                     class="input"
                 >
+
                     <option value="">اختر الفئة</option>
                     <option>2020–2021</option>
                     <option>2019–2018</option>
@@ -1180,6 +1102,7 @@ textarea.input{
                     <option>2015–2014</option>
                     <option>2013–2012</option>
                     <option>2011–2009</option>
+
                 </select>
 
             </div>
@@ -1187,9 +1110,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    الخصم
-                </label>
+                <label>الخصم</label>
 
                 <input
                     id="matchOpponent"
@@ -1202,14 +1123,13 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    اليوم
-                </label>
+                <label>اليوم</label>
 
                 <select
                     id="matchDay"
                     class="input"
                 >
+
                     <option>السبت</option>
                     <option>الأحد</option>
                     <option>الاثنين</option>
@@ -1217,6 +1137,7 @@ textarea.input{
                     <option>الأربعاء</option>
                     <option>الخميس</option>
                     <option>الجمعة</option>
+
                 </select>
 
             </div>
@@ -1224,9 +1145,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    المدرب
-                </label>
+                <label>المدرب</label>
 
                 <input
                     id="matchCoach"
@@ -1239,9 +1158,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    وقت المباراة
-                </label>
+                <label>وقت المباراة</label>
 
                 <input
                     id="matchStart"
@@ -1254,9 +1171,7 @@ textarea.input{
 
             <div class="formGroup">
 
-                <label>
-                    الملعب / المكان
-                </label>
+                <label>الملعب / المكان</label>
 
                 <input
                     id="matchLocation"
@@ -1269,9 +1184,7 @@ textarea.input{
 
             <div class="formGroup full">
 
-                <label>
-                    ملاحظات
-                </label>
+                <label>ملاحظات</label>
 
                 <textarea
                     id="matchNotes"
@@ -1333,7 +1246,7 @@ createClient(
 
 
 /* =========================
-   ELEMENTS
+   VARIABLES
 ========================= */
 
 const loginPage =
@@ -1347,7 +1260,6 @@ document.getElementById("loginBtn");
 
 const logoutBtn =
 document.getElementById("logoutBtn");
-
 
 let allPlayers = [];
 let allSchedule = [];
@@ -1380,10 +1292,8 @@ async function(){
         error
     } =
     await supabase.auth.signInWithPassword({
-
         email,
         password
-
     });
 
     if(error){
@@ -1397,7 +1307,6 @@ async function(){
         "بيانات الدخول غير صحيحة ❌";
 
         return;
-
     }
 
     message.style.color =
@@ -1491,10 +1400,9 @@ document
     "click",
     function(){
 
-        const page =
-        this.dataset.page;
-
-        goPage(page);
+        goPage(
+            this.dataset.page
+        );
 
     });
 
@@ -1520,22 +1428,36 @@ function(page){
     .querySelectorAll(".page")
     .forEach(section => {
 
-        section.classList.remove("active");
+        section.classList.remove(
+            "active"
+        );
 
     });
 
 
-    document
-    .getElementById(page)
-    .classList.add("active");
+    const target =
+    document.getElementById(page);
+
+    if(target){
+
+        target.classList.add(
+            "active"
+        );
+
+    }
 
 
     if(page === "schedule"){
+
         loadSchedule();
+
     }
 
+
     if(page === "matches"){
+
         renderMatches();
+
     }
 
 };
@@ -1570,7 +1492,6 @@ async function loadPlayers(){
 
     allPlayers =
     data || [];
-
 
     updateStats();
 
@@ -1611,18 +1532,15 @@ function updateStats(){
     ).innerText =
     total;
 
-
     document.getElementById(
         "pendingCount"
     ).innerText =
     pending;
 
-
     document.getElementById(
         "acceptedCount"
     ).innerText =
     accepted;
-
 
     document.getElementById(
         "scheduleCount"
@@ -1633,7 +1551,7 @@ function updateStats(){
 
 
 /* =========================
-   PLAYERS TABLE
+   PLAYERS
 ========================= */
 
 function renderPlayers(){
@@ -1643,7 +1561,6 @@ function renderPlayers(){
         "playersTable"
     );
 
-
     const search =
     document.getElementById(
         "playerSearch"
@@ -1651,12 +1568,10 @@ function renderPlayers(){
     .trim()
     .toLowerCase();
 
-
     const category =
     document.getElementById(
         "categoryFilter"
     ).value;
-
 
     const pathway =
     document.getElementById(
@@ -1667,11 +1582,12 @@ function renderPlayers(){
     const players =
     allPlayers.filter(player => {
 
-        const accepted =
-        player.status === "accepted";
+        if(
+            player.status !== "accepted"
+        ){
 
-        if(!accepted){
             return false;
+
         }
 
 
@@ -1686,7 +1602,9 @@ function renderPlayers(){
             search &&
             !name.includes(search)
         ){
+
             return false;
+
         }
 
 
@@ -1694,7 +1612,9 @@ function renderPlayers(){
             category &&
             player.category !== category
         ){
+
             return false;
+
         }
 
 
@@ -1702,7 +1622,9 @@ function renderPlayers(){
             pathway &&
             player.pathway !== pathway
         ){
+
             return false;
+
         }
 
 
@@ -1732,14 +1654,12 @@ function renderPlayers(){
         <thead>
 
             <tr>
-
                 <th>اللاعب</th>
                 <th>الميلاد</th>
                 <th>الفئة</th>
                 <th>المسار</th>
                 <th>الجوال</th>
                 <th>إجراء</th>
-
             </tr>
 
         </thead>
@@ -1749,56 +1669,52 @@ function renderPlayers(){
             ${
                 players.map(player => `
 
-                    <tr>
+                <tr>
 
-                        <td>
-                            <strong>
-                                ${escapeHtml(
-                                    player.player_name || "-"
-                                )}
-                            </strong>
-                        </td>
-
-                        <td>
+                    <td>
+                        <strong>
                             ${escapeHtml(
-                                player.birth_date || "-"
+                                player.player_name || "-"
                             )}
-                        </td>
+                        </strong>
+                    </td>
 
-                        <td>
-                            ${escapeHtml(
-                                player.category || "غير محددة"
-                            )}
-                        </td>
+                    <td>
+                        ${escapeHtml(
+                            player.birth_date || "-"
+                        )}
+                    </td>
 
-                        <td>
-                            ${escapeHtml(
-                                player.pathway || "—"
-                            )}
-                        </td>
+                    <td>
+                        ${escapeHtml(
+                            player.category || "غير محددة"
+                        )}
+                    </td>
 
-                        <td>
-                            ${escapeHtml(
-                                player.phone || "-"
-                            )}
-                        </td>
+                    <td>
+                        ${escapeHtml(
+                            player.pathway || "—"
+                        )}
+                    </td>
 
-                        <td>
+                    <td>
+                        ${escapeHtml(
+                            player.phone || "-"
+                        )}
+                    </td>
 
-                            <div class="actions">
+                    <td>
 
-                                <button
-                                    class="btn btnOrange"
-                                    onclick="editPlayer('${player.id}')"
-                                >
-                                    تعديل
-                                </button>
+                        <button
+                            class="btn btnOrange"
+                            onclick="editPlayer('${player.id}')"
+                        >
+                            تعديل
+                        </button>
 
-                            </div>
+                    </td>
 
-                        </td>
-
-                    </tr>
+                </tr>
 
                 `).join("")
             }
@@ -1830,13 +1746,11 @@ function renderRequests(){
         p.status === "pending"
     );
 
-
     const accepted =
     allPlayers.filter(
         p =>
         p.status === "accepted"
     );
-
 
     const rejected =
     allPlayers.filter(
@@ -1874,14 +1788,12 @@ function renderRequests(){
         <thead>
 
             <tr>
-
                 <th>اللاعب</th>
                 <th>ولي الأمر</th>
                 <th>الجوال</th>
                 <th>الفئة</th>
                 <th>الحالة</th>
                 <th>الإجراءات</th>
-
             </tr>
 
         </thead>
@@ -1893,7 +1805,6 @@ function renderRequests(){
 
                     const status =
                     player.status || "pending";
-
 
                     const statusText =
                     status === "accepted"
@@ -1936,13 +1847,9 @@ function renderRequests(){
                         </td>
 
                         <td>
-
-                            <span
-                                class="badge ${status}"
-                            >
+                            <span class="badge ${status}">
                                 ${statusText}
                             </span>
-
                         </td>
 
                         <td>
@@ -1964,7 +1871,6 @@ function renderRequests(){
                                     ""
                                 }
 
-
                                 ${
                                     status !== "rejected"
                                     ?
@@ -1979,7 +1885,6 @@ function renderRequests(){
                                     :
                                     ""
                                 }
-
 
                                 <button
                                     class="btn btnDark"
@@ -2190,7 +2095,9 @@ async function(id){
             "هل أنت متأكد من حذف اللاعب؟"
         )
     ){
+
         return;
+
     }
 
 
@@ -2307,7 +2214,7 @@ async function updatePlayerPlacement(
         console.error(error);
 
         alert(
-            "تعذر تعديل الفئة والمسار ❌\n\nتأكد أن أعمدة category و pathway موجودة في registration."
+            "تعذر تعديل الفئة والمسار ❌"
         );
 
         return;
@@ -2331,14 +2238,12 @@ document
 renderPlayers
 );
 
-
 document
 .getElementById("categoryFilter")
 .addEventListener(
 "change",
 renderPlayers
 );
-
 
 document
 .getElementById("pathwayFilter")
@@ -2385,6 +2290,8 @@ async function(){
         `
         <div style="padding:30px;text-align:center;color:#d92d20;">
             تعذر تحميل الجدول ❌
+            <br><br>
+            تأكد أن جدول academy_schedule موجود في Supabase.
         </div>
         `;
 
@@ -2407,7 +2314,7 @@ async function(){
 
 
 /* =========================
-   DAY ORDER
+   DAYS
 ========================= */
 
 const days = [
@@ -2422,7 +2329,21 @@ const days = [
 
 
 /* =========================
-   RENDER SCHEDULE
+   CATEGORIES
+========================= */
+
+const categories = [
+    "2020–2021",
+    "2019–2018",
+    "2017–2016",
+    "2015–2014",
+    "2013–2012",
+    "2011–2009"
+];
+
+
+/* =========================
+   RENDER WEEKLY SCHEDULE
 ========================= */
 
 function renderSchedule(){
@@ -2446,6 +2367,8 @@ function renderSchedule(){
         `
         <div style="padding:35px;text-align:center;color:#777;">
             لا توجد مواعيد تدريب مضافة حاليًا.
+            <br><br>
+            اضغط «+ إضافة موعد» لإضافة أول تدريب.
         </div>
         `;
 
@@ -2454,15 +2377,58 @@ function renderSchedule(){
     }
 
 
-    container.innerHTML =
-    `
-    <table class="scheduleTable">
+    /*
+       نجمع الأوقات الموجودة فعليًا
+       حتى يظهر الجدول بشكل مدرسي
+    */
+
+    const timeMap = {};
+
+
+    training.forEach(item => {
+
+        const start =
+        item.start_time || "";
+
+        const end =
+        item.end_time || "";
+
+        const key =
+        `${start}|${end}`;
+
+
+        if(!timeMap[key]){
+
+            timeMap[key] = [];
+
+        }
+
+
+        timeMap[key].push(item);
+
+    });
+
+
+    const timeKeys =
+    Object.keys(timeMap)
+    .sort();
+
+
+    let html = `
+
+    <table class="weekSchedule">
 
         <thead>
 
             <tr>
 
-                <th>الوقت</th>
+                <th class="categoryHead">
+                    الفئة
+                </th>
+
+                <th class="timeHead">
+                    الوقت
+                </th>
 
                 ${
                     days.map(
@@ -2476,132 +2442,161 @@ function renderSchedule(){
         </thead>
 
         <tbody>
-
-            ${
-                createScheduleRows(training)
-            }
-
-        </tbody>
-
-    </table>
     `;
 
-}
+
+    categories.forEach(category => {
+
+        const categoryItems =
+        training.filter(
+            item =>
+            item.category === category
+        );
 
 
-/* =========================
-   CREATE SCHEDULE ROWS
-========================= */
+        if(!categoryItems.length){
 
-function createScheduleRows(items){
+            return;
 
-    const timeMap = {};
-
-    items.forEach(item => {
-
-        const start =
-        item.start_time || "";
-
-        const end =
-        item.end_time || "";
-
-        const key =
-        `${start}-${end}`;
-
-        if(!timeMap[key]){
-            timeMap[key] = [];
         }
 
-        timeMap[key].push(item);
+
+        timeKeys.forEach(timeKey => {
+
+            const [start,end] =
+            timeKey.split("|");
+
+
+            const items =
+            categoryItems.filter(
+                item =>
+                item.start_time === start &&
+                item.end_time === end
+            );
+
+
+            const pathway =
+            items.length
+            ? items[0].pathway
+            : "";
+
+
+            html += `
+
+            <tr>
+
+                <td class="categoryCell">
+
+                    <div class="categoryTitle">
+                        ${escapeHtml(category)}
+                    </div>
+
+                    ${
+                        pathway
+                        ?
+                        `
+                        <div class="categoryPathway">
+                            ${escapeHtml(pathway)}
+                        </div>
+                        `
+                        :
+                        ""
+                    }
+
+                </td>
+
+
+                <td class="timeCell">
+
+                    ${formatTime(start)}
+                    <br>
+                    <span style="color:#9ca3af;">
+                        إلى
+                    </span>
+                    <br>
+                    ${formatTime(end)}
+
+                </td>
+
+
+                ${
+                    days.map(day => {
+
+                        const dayItems =
+                        items.filter(
+                            item =>
+                            item.day === day
+                        );
+
+
+                        if(!dayItems.length){
+
+                            return `
+                            <td>
+                                <span class="emptyCell">
+                                    —
+                                </span>
+                            </td>
+                            `;
+
+                        }
+
+
+                        return `
+
+                        <td>
+
+                            ${
+                                dayItems
+                                .map(
+                                    createScheduleItem
+                                )
+                                .join("")
+                            }
+
+                        </td>
+
+                        `;
+
+                    }).join("")
+                }
+
+            </tr>
+
+            `;
+
+        });
 
     });
 
 
-    const keys =
-    Object.keys(timeMap)
-    .sort();
+    html += `
+
+        </tbody>
+
+    </table>
+
+    `;
 
 
-    return keys.map(key => {
-
-        const parts =
-        key.split("-");
-
-        const start =
-        parts[0] || "";
-
-        const end =
-        parts[1] || "";
-
-
-        return `
-
-        <tr>
-
-            <td class="timeCell">
-                ${formatTime(start)}
-                -
-                ${formatTime(end)}
-            </td>
-
-            ${
-                days.map(day => {
-
-                    const list =
-                    timeMap[key]
-                    .filter(
-                        item =>
-                        item.day === day
-                    );
-
-
-                    if(!list.length){
-
-                        return `<td></td>`;
-
-                    }
-
-
-                    return `
-
-                    <td>
-
-                        ${
-                            list.map(
-                                createScheduleItem
-                            ).join("")
-                        }
-
-                    </td>
-
-                    `;
-
-                }).join("")
-            }
-
-        </tr>
-
-        `;
-
-    }).join("");
+    container.innerHTML =
+    html;
 
 }
 
 
 /* =========================
-   SCHEDULE ITEM
+   TRAINING CARD
 ========================= */
 
 function createScheduleItem(item){
 
     return `
 
-    <div class="scheduleItem">
+    <div class="trainingCard">
 
         <strong>
-            ${escapeHtml(
-                item.category || "تدريب"
-            )}
+            تدريب
         </strong>
 
         ${
@@ -2619,17 +2614,24 @@ function createScheduleItem(item){
             ""
         }
 
-        <small>
-            👤
-            ${escapeHtml(
-                item.coach || "-"
-            )}
-        </small>
 
-        <div
-            class="actions"
-            style="margin-top:7px;"
-        >
+        ${
+            item.coach
+            ?
+            `
+            <small>
+                المدرب:
+                ${escapeHtml(
+                    item.coach
+                )}
+            </small>
+            `
+            :
+            ""
+        }
+
+
+        <div class="actions">
 
             <button
                 class="btn btnLight"
@@ -2880,6 +2882,28 @@ async function(){
     }
 
 
+    if(!payload.start_time){
+
+        alert(
+            "اختر وقت البداية."
+        );
+
+        return;
+
+    }
+
+
+    if(!payload.end_time){
+
+        alert(
+            "اختر وقت النهاية."
+        );
+
+        return;
+
+    }
+
+
     let result;
 
 
@@ -2933,7 +2957,9 @@ async function(id){
             "هل تريد حذف هذا الموعد؟"
         )
     ){
+
         return;
+
     }
 
 
@@ -3387,7 +3413,9 @@ async function(id){
             "هل تريد حذف المباراة؟"
         )
     ){
+
         return;
+
     }
 
 
@@ -3452,7 +3480,9 @@ function formatTime(time){
 
 
     if(hour === 0){
+
         hour = 12;
+
     }
 
 
