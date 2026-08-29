@@ -1,400 +1,861 @@
-```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
 <head>
 
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
 <title>إدارة عصر الاحتراف</title>
 
 <style>
 
+/* =====================================================
+   الأساس
+===================================================== */
+
 *{
-box-sizing:border-box;
+    box-sizing:border-box;
 }
 
 body{
-margin:0;
-font-family:Arial,Tahoma,sans-serif;
-background:linear-gradient(135deg,#f7f9fc,#ffffff);
-color:#222;
-padding:30px 15px;
-min-height:100vh;
+    margin:0;
+    font-family:Arial,Tahoma,sans-serif;
+    background:linear-gradient(135deg,#f7f9fc,#ffffff);
+    color:#222;
+    min-height:100vh;
 }
 
-.container{
-max-width:950px;
-margin:auto;
+
+/* =====================================================
+   تسجيل الدخول
+===================================================== */
+
+.loginPage{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
 }
 
-h1{
-text-align:center;
-margin-bottom:30px;
+.loginBox{
+    width:100%;
+    max-width:430px;
+    background:white;
+    border:1px solid #eee;
+    border-radius:24px;
+    padding:35px;
+    box-shadow:0 20px 60px rgba(0,0,0,.10);
 }
 
-h1 span{
-color:#ff6900;
+.loginBox h1{
+    text-align:center;
+    margin-top:0;
 }
 
-.card{
-background:#fff;
-border:1px solid #eee;
-border-radius:20px;
-padding:25px;
-margin-bottom:20px;
-box-shadow:0 10px 35px rgba(0,0,0,.08);
+.orange{
+    color:#ff6900;
 }
 
-input{
-width:100%;
-padding:15px;
-margin-bottom:14px;
-background:#f8f9fa;
-color:#222;
-border:1px solid #ddd;
-border-radius:11px;
-font-size:16px;
-outline:none;
+input,
+select,
+textarea{
+
+    width:100%;
+    padding:14px;
+
+    margin-bottom:12px;
+
+    background:#f8f9fa;
+
+    color:#222;
+
+    border:1px solid #ddd;
+
+    border-radius:11px;
+
+    font-size:15px;
+
+    outline:none;
 }
 
-input:focus{
-border-color:#ff6900;
+input:focus,
+select:focus,
+textarea:focus{
+    border-color:#ff6900;
+}
+
+textarea{
+    min-height:100px;
+    resize:vertical;
 }
 
 button{
-padding:13px 20px;
-border:0;
-border-radius:10px;
-font-weight:bold;
-cursor:pointer;
-font-size:15px;
+    padding:12px 18px;
+
+    border:0;
+
+    border-radius:11px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    font-size:14px;
+
+    transition:.2s;
 }
 
 button:hover{
-opacity:.85;
+    transform:translateY(-1px);
 }
+
+.primary{
+    background:#ff6900;
+    color:white;
+}
+
+.dark{
+    background:#333;
+    color:white;
+}
+
+.green{
+    background:#00b956;
+    color:white;
+}
+
+.red{
+    background:#d40000;
+    color:white;
+}
+
+.gray{
+    background:#eee;
+    color:#333;
+}
+
+
+/* =====================================================
+   لوحة الإدارة
+===================================================== */
 
 #adminPanel{
-display:none;
+    display:none;
 }
 
-.loginButton{
-width:100%;
-background:#ff6900;
-color:white;
-font-size:17px;
-}
-
-.logoutButton{
-background:#333;
-color:white;
-margin-bottom:20px;
+.app{
+    display:flex;
+    min-height:100vh;
 }
 
 
-/* =========================
+/* =====================================================
+   القائمة الجانبية
+===================================================== */
+
+.sidebar{
+
+    width:245px;
+
+    background:#111;
+
+    color:white;
+
+    padding:25px 15px;
+
+    position:fixed;
+
+    top:0;
+    right:0;
+
+    bottom:0;
+
+    z-index:100;
+
+    overflow-y:auto;
+}
+
+.logo{
+    text-align:center;
+
+    font-size:22px;
+
+    font-weight:bold;
+
+    margin-bottom:30px;
+}
+
+.logo span{
+    color:#ff6900;
+}
+
+.menu{
+    display:flex;
+
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.menu button{
+
+    width:100%;
+
+    text-align:right;
+
+    background:transparent;
+
+    color:#ddd;
+
+    padding:14px;
+
+    border-radius:12px;
+}
+
+.menu button:hover{
+    background:#222;
+}
+
+.menu button.active{
+    background:#ff6900;
+    color:white;
+}
+
+
+/* =====================================================
+   المحتوى
+===================================================== */
+
+.main{
+
+    margin-right:245px;
+
+    width:calc(100% - 245px);
+
+    padding:30px;
+
+    max-width:1500px;
+}
+
+.topbar{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:15px;
+
+    margin-bottom:25px;
+
+    flex-wrap:wrap;
+}
+
+.topbar h1{
+    margin:0;
+}
+
+
+/* =====================================================
+   الصفحات
+===================================================== */
+
+.page{
+    display:none;
+}
+
+.page.active{
+    display:block;
+}
+
+
+/* =====================================================
    الإحصائيات
-========================= */
+===================================================== */
 
 .stats{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(180px,1fr));
-gap:15px;
-margin-bottom:25px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:15px;
+
+    margin-bottom:25px;
 }
 
 .stat{
-background:#fff;
-border:1px solid #eee;
-border-radius:18px;
-padding:20px;
-text-align:center;
-box-shadow:0 6px 20px rgba(0,0,0,.05);
+
+    background:white;
+
+    border:1px solid #eee;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
 }
 
 .statNumber{
-font-size:30px;
-font-weight:bold;
-color:#ff6900;
+
+    font-size:30px;
+
+    font-weight:bold;
+
+    color:#ff6900;
 }
 
 .statTitle{
-color:#777;
-margin-top:5px;
+    color:#777;
+    margin-top:5px;
 }
 
 
-/* =========================
-   مربعات الأقسام
-========================= */
+/* =====================================================
+   البطاقات
+===================================================== */
+
+.card{
+
+    background:white;
+
+    border:1px solid #eee;
+
+    border-radius:20px;
+
+    padding:22px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+}
+
+.card h2{
+    margin-top:0;
+}
+
+
+/* =====================================================
+   أزرار الفئات
+===================================================== */
 
 .categoryButtons{
-display:grid;
-grid-template-columns:
-repeat(3,1fr);
-gap:12px;
-margin-bottom:20px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:12px;
+
+    margin-bottom:20px;
 }
 
 .categoryButton{
-background:#fff;
-border:1px solid #e5e5e5;
-border-radius:16px;
-padding:18px 10px;
-color:#222;
-box-shadow:0 6px 20px rgba(0,0,0,.06);
-transition:.2s;
-}
 
-.categoryButton:hover{
-opacity:1;
-transform:translateY(-2px);
+    background:white;
+
+    border:1px solid #e5e5e5;
+
+    border-radius:16px;
+
+    padding:18px;
+
+    text-align:right;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.04);
 }
 
 .categoryButton.active{
-border:2px solid #ff6900;
-background:#fff8f2;
+
+    border:2px solid #ff6900;
+
+    background:#fff8f2;
 }
 
 .categoryTitle{
-font-size:16px;
-font-weight:bold;
-display:block;
-margin-bottom:8px;
+    display:block;
+    font-weight:bold;
 }
 
 .categoryNumber{
-font-size:25px;
-font-weight:bold;
-color:#ff6900;
-display:block;
+
+    display:block;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    color:#ff6900;
+
+    margin-top:7px;
 }
 
 
-/* =========================
-   قائمة القسم
-========================= */
+/* =====================================================
+   جدول المدرسة
+===================================================== */
 
-.categoryContent{
-display:none;
+.scheduleWrapper{
+
+    background:white;
+
+    border-radius:20px;
+
+    border:1px solid #eee;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.06);
+
+    overflow-x:auto;
 }
 
-.categoryContent.active{
-display:block;
+.schoolSchedule{
+
+    min-width:850px;
+
+    border-collapse:collapse;
+
+    width:100%;
 }
 
-.sectionCard{
-background:#fff;
-border:1px solid #eee;
-border-radius:20px;
-padding:20px;
-box-shadow:0 8px 25px rgba(0,0,0,.07);
+.schoolSchedule th{
+
+    background:#111;
+
+    color:white;
+
+    padding:16px;
+
+    border:1px solid #333;
+
+    text-align:center;
+}
+
+.schoolSchedule th:first-child{
+    background:#ff6900;
+}
+
+.schoolSchedule td{
+
+    border:1px solid #e4e4e4;
+
+    padding:10px;
+
+    text-align:center;
+
+    vertical-align:top;
+
+    min-width:150px;
+
+    height:105px;
+}
+
+.timeCell{
+
+    background:#fff5ed;
+
+    color:#ff6900;
+
+    font-weight:bold;
+
+    width:130px;
+}
+
+.lesson{
+
+    background:#fff8f2;
+
+    border-right:4px solid #ff6900;
+
+    border-radius:10px;
+
+    padding:10px;
+
+    margin-bottom:6px;
+
+    cursor:pointer;
+
+    transition:.2s;
+}
+
+.lesson:hover{
+    transform:translateY(-2px);
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+}
+
+.lessonCategory{
+    font-weight:bold;
+}
+
+.lessonCoach{
+    font-size:13px;
+
+    color:#666;
+
+    margin-top:5px;
+}
+
+.lessonLocation{
+    font-size:12px;
+
+    color:#888;
+
+    margin-top:3px;
 }
 
 
-/* =========================
-   بطاقة اللاعب
-========================= */
+/* =====================================================
+   اللاعبين
+===================================================== */
+
+.playersGrid{
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(300px,1fr));
+
+    gap:15px;
+}
+
+.playerCard{
+
+    background:white;
+
+    border:1px solid #eee;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
+}
+
+.playerCard h3{
+    margin-top:0;
+}
+
+.playerInfo{
+
+    background:#f8f9fa;
+
+    border-radius:10px;
+
+    padding:10px;
+
+    margin-bottom:8px;
+}
+
+.playerInfo strong{
+    display:block;
+
+    margin-bottom:4px;
+}
+
+.playerInfo span{
+    color:#666;
+}
+
+.playerActions{
+
+    display:flex;
+
+    gap:8px;
+
+    margin-top:15px;
+
+    flex-wrap:wrap;
+}
+
+
+/* =====================================================
+   المسار
+===================================================== */
+
+.timeline{
+
+    position:relative;
+
+    margin-top:20px;
+
+    padding-right:30px;
+}
+
+.timeline::before{
+
+    content:"";
+
+    position:absolute;
+
+    right:10px;
+
+    top:0;
+
+    bottom:0;
+
+    width:3px;
+
+    background:#ff6900;
+}
+
+.timelineItem{
+
+    position:relative;
+
+    background:#f8f9fa;
+
+    border-radius:14px;
+
+    padding:16px;
+
+    margin-bottom:15px;
+}
+
+.timelineItem::before{
+
+    content:"";
+
+    position:absolute;
+
+    right:-26px;
+
+    top:20px;
+
+    width:13px;
+
+    height:13px;
+
+    border-radius:50%;
+
+    background:#ff6900;
+
+    border:3px solid white;
+
+}
+
+.currentBadge{
+
+    display:inline-block;
+
+    background:#00b956;
+
+    color:white;
+
+    padding:5px 9px;
+
+    border-radius:20px;
+
+    font-size:11px;
+}
+
+
+/* =====================================================
+   الطلبات
+===================================================== */
 
 .registration{
-background:#fff;
-border:1px solid #eee;
-border-radius:18px;
-padding:20px;
-margin-bottom:15px;
-box-shadow:0 6px 20px rgba(0,0,0,.05);
-}
 
-.registration:last-child{
-margin-bottom:0;
+    background:white;
+
+    border:1px solid #eee;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:15px;
+
+    box-shadow:0 6px 20px rgba(0,0,0,.05);
 }
 
 .registration.new{
-border-right:5px solid #ff3333;
+    border-right:5px solid #ff3333;
 }
 
 .registration.accepted{
-border-right:5px solid #00c853;
+    border-right:5px solid #00c853;
 }
 
 .registration.rejected{
-border-right:5px solid #777;
-}
-
-.registration h3{
-margin-top:0;
-font-size:21px;
+    border-right:5px solid #777;
 }
 
 .info{
-display:grid;
-grid-template-columns:
-repeat(auto-fit,minmax(200px,1fr));
-gap:10px;
+
+    display:grid;
+
+    grid-template-columns:
+    repeat(auto-fit,minmax(180px,1fr));
+
+    gap:10px;
 }
 
 .infoBox{
-background:#f8f9fa;
-border-radius:10px;
-padding:12px;
+
+    background:#f8f9fa;
+
+    border-radius:10px;
+
+    padding:12px;
 }
 
 .infoBox strong{
-display:block;
-margin-bottom:5px;
+
+    display:block;
+
+    margin-bottom:5px;
 }
 
 .infoBox span{
-color:#666;
-}
-
-.status{
-font-weight:bold;
-margin-top:18px;
-}
-
-.new .status{
-color:#d40000;
-}
-
-.accepted .status{
-color:#00a844;
-}
-
-.rejected .status{
-color:#777;
+    color:#666;
 }
 
 .actions{
-display:flex;
-gap:10px;
-margin-top:18px;
-flex-wrap:wrap;
-}
 
-.acceptButton{
-background:#00c853;
-color:white;
-}
+    display:flex;
 
-.rejectButton{
-background:#d40000;
-color:white;
-}
+    gap:10px;
 
-.deleteButton{
-background:#555;
-color:white;
-}
+    margin-top:18px;
 
-.empty{
-text-align:center;
-padding:30px 10px;
-color:#777;
+    flex-wrap:wrap;
 }
 
 
-/* =========================
-   مربع تأكيد الحذف
-========================= */
+/* =====================================================
+   النوافذ
+===================================================== */
 
 .modal{
-display:none;
-position:fixed;
-inset:0;
-background:rgba(0,0,0,.45);
-backdrop-filter:blur(6px);
-align-items:center;
-justify-content:center;
-z-index:9999;
-padding:20px;
+
+    display:none;
+
+    position:fixed;
+
+    inset:0;
+
+    background:rgba(0,0,0,.5);
+
+    backdrop-filter:blur(5px);
+
+    align-items:center;
+
+    justify-content:center;
+
+    z-index:9999;
+
+    padding:20px;
 }
 
 .modalBox{
-width:100%;
-max-width:420px;
-background:white;
-border-radius:22px;
-padding:30px;
-text-align:center;
-box-shadow:0 20px 60px rgba(0,0,0,.25);
-}
 
-.modalIcon{
-font-size:55px;
-margin-bottom:10px;
+    width:100%;
+
+    max-width:550px;
+
+    max-height:90vh;
+
+    overflow-y:auto;
+
+    background:white;
+
+    border-radius:22px;
+
+    padding:28px;
+
+    box-shadow:0 20px 60px rgba(0,0,0,.25);
 }
 
 .modalBox h2{
-margin:0 0 10px;
-}
-
-.modalBox p{
-color:#777;
-line-height:1.8;
+    margin-top:0;
 }
 
 .modalButtons{
-display:flex;
-gap:10px;
-margin-top:25px;
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:20px;
 }
 
 .modalButtons button{
-flex:1;
+    flex:1;
 }
 
-.cancelButton{
-background:#eee;
-color:#333;
+.empty{
+
+    text-align:center;
+
+    padding:35px;
+
+    color:#777;
 }
 
-.confirmDeleteButton{
-background:#d40000;
-color:white;
-}
 
-
-/* =========================
+/* =====================================================
    الجوال
-========================= */
+===================================================== */
+
+.mobileMenuButton{
+    display:none;
+}
+
+@media(max-width:800px){
+
+    .sidebar{
+
+        transform:translateX(100%);
+
+        transition:.25s;
+    }
+
+    .sidebar.open{
+        transform:translateX(0);
+    }
+
+    .main{
+
+        margin-right:0;
+
+        width:100%;
+
+        padding:18px;
+    }
+
+    .mobileMenuButton{
+        display:block;
+    }
+
+}
 
 @media(max-width:600px){
 
-body{
-padding:20px 10px;
-}
+    .stats{
+        grid-template-columns:repeat(2,1fr);
+    }
 
-.card{
-padding:18px;
-}
+    .stat{
+        padding:15px;
+    }
 
-.categoryButtons{
-gap:8px;
-}
+    .statNumber{
+        font-size:24px;
+    }
 
-.categoryButton{
-padding:15px 5px;
-}
-
-.categoryTitle{
-font-size:14px;
-}
-
-.categoryNumber{
-font-size:22px;
-}
-
-.actions button{
-flex:1;
-}
-
-.modalButtons{
-flex-direction:column;
-}
+    .modalButtons{
+        flex-direction:column;
+    }
 
 }
 
@@ -406,23 +867,24 @@ flex-direction:column;
 <body>
 
 
-<div class="container">
-
-
-<!-- =========================
+<!-- =====================================================
      تسجيل الدخول
-========================= -->
+===================================================== -->
 
-<div id="loginBox" class="card">
+<div id="loginBox" class="loginPage">
+
+<div class="loginBox">
 
 <h1>
-إدارة <span>عصر الاحتراف 🔐</span>
+إدارة
+<span class="orange">
+عصر الاحتراف ⚽
+</span>
 </h1>
 
 <p style="text-align:center;color:#777;">
 تسجيل دخول لوحة الإدارة
 </p>
-
 
 <input
 id="adminEmail"
@@ -430,21 +892,19 @@ type="email"
 placeholder="إيميل الأدمن"
 >
 
-
 <input
 id="adminPassword"
 type="password"
 placeholder="كلمة المرور"
 >
 
-
 <button
 id="loginBtn"
-class="loginButton"
+class="primary"
+style="width:100%;"
 >
 دخول
 </button>
-
 
 <p
 id="loginMessage"
@@ -453,33 +913,126 @@ style="text-align:center;font-weight:bold;"
 
 </div>
 
+</div>
 
 
-<!-- =========================
+
+<!-- =====================================================
      لوحة الإدارة
-========================= -->
+===================================================== -->
 
-<div id="adminPanel">
+<div
+id="adminPanel"
+>
+
+<div class="app">
 
 
-<h1>
-لوحة تحكم
-<span>عصر الاحتراف ⚽</span>
-</h1>
+<!-- =====================================================
+     القائمة الجانبية
+===================================================== -->
 
+<aside
+id="sidebar"
+class="sidebar"
+>
+
+<div class="logo">
+عصر <span>الاحتراف</span> ⚽
+</div>
+
+<div class="menu">
+
+<button
+class="active"
+onclick="showPage('dashboard',this)"
+>
+🏠 الرئيسية
+</button>
+
+<button
+onclick="showPage('players',this)"
+>
+👥 اللاعبين
+</button>
+
+<button
+onclick="showPage('schedule',this)"
+>
+📅 الجدول
+</button>
+
+<button
+onclick="showPage('categories',this)"
+>
+📋 الفئات
+</button>
+
+<button
+onclick="showPage('registrations',this)"
+>
+📝 طلبات التسجيل
+</button>
+
+<button
+onclick="showPage('coaches',this)"
+>
+👨‍🏫 المدربين
+</button>
+
+</div>
+
+<hr
+style="border:0;border-top:1px solid #333;margin:25px 0;"
+>
 
 <button
 id="logoutBtn"
-class="logoutButton"
+class="dark"
+style="width:100%;"
 >
 تسجيل الخروج
 </button>
 
+</aside>
 
-<!-- الإحصائيات -->
+
+<!-- =====================================================
+     المحتوى
+===================================================== -->
+
+<main class="main">
+
+
+<div class="topbar">
+
+<button
+class="primary mobileMenuButton"
+onclick="toggleSidebar()"
+>
+☰ القائمة
+</button>
+
+<h1>
+لوحة تحكم
+<span class="orange">
+عصر الاحتراف
+</span>
+</h1>
+
+</div>
+
+
+<!-- =====================================================
+     الرئيسية
+===================================================== -->
+
+<section
+id="dashboard"
+class="page active"
+>
 
 <div class="stats">
-
 
 <div class="stat">
 
@@ -532,34 +1085,242 @@ class="statNumber"
 <div class="stat">
 
 <div
-id="rejectedCount"
+id="playersCount"
 class="statNumber"
 >
 0
 </div>
 
 <div class="statTitle">
-المرفوضين
+اللاعبين
 </div>
 
 </div>
 
-
 </div>
 
 
+<div class="card">
 
-<!-- =========================
-     مربعات الأقسام
-========================= -->
+<h2>
+مرحبًا بك في إدارة عصر الاحتراف 👋
+</h2>
 
-<div class="categoryButtons">
+<p style="color:#777;line-height:1.8;">
 
+من هنا تقدر تدير اللاعبين، وتنقل اللاعب بين الفئات،
+وتحدد مساره، وتعدل جدول التدريبات الأسبوعي.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     اللاعبين
+===================================================== -->
+
+<section
+id="players"
+class="page"
+>
+
+<div class="card">
+
+<div class="topbar">
+
+<h2>
+👥 اللاعبين
+</h2>
 
 <button
-id="pendingButton"
+class="primary"
+onclick="openPlayerModal()"
+>
+＋ إضافة لاعب
+</button>
+
+</div>
+
+
+<input
+id="playerSearch"
+placeholder="🔍 ابحث باسم اللاعب..."
+oninput="renderPlayers()"
+>
+
+</div>
+
+
+<div
+id="playersContainer"
+class="playersGrid"
+>
+
+<div class="empty">
+جاري تحميل اللاعبين...
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     الجدول
+===================================================== -->
+
+<section
+id="schedule"
+class="page"
+>
+
+<div class="card">
+
+<div class="topbar">
+
+<div>
+
+<h2>
+📅 جدول التدريبات الأسبوعي
+</h2>
+
+<p style="color:#777;">
+بنفس فكرة جدول المدرسة
+</p>
+
+</div>
+
+<button
+class="primary"
+onclick="openScheduleModal()"
+>
+＋ إضافة حصة
+</button>
+
+</div>
+
+
+<div class="scheduleWrapper">
+
+<table
+class="schoolSchedule"
+>
+
+<thead>
+
+<tr>
+
+<th>
+الوقت
+</th>
+
+<th>
+الأحد
+</th>
+
+<th>
+الإثنين
+</th>
+
+<th>
+الثلاثاء
+</th>
+
+<th>
+الأربعاء
+</th>
+
+<th>
+الخميس
+</th>
+
+<th>
+الجمعة
+</th>
+
+<th>
+السبت
+</th>
+
+</tr>
+
+</thead>
+
+<tbody
+id="scheduleBody"
+>
+</tbody>
+
+</table>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     الفئات
+===================================================== -->
+
+<section
+id="categories"
+class="page"
+>
+
+<div class="card">
+
+<h2>
+📋 الفئات
+</h2>
+
+<div
+id="categoryButtons"
+class="categoryButtons"
+>
+</div>
+
+</div>
+
+<div
+id="categoryPlayers"
+class="playersGrid"
+>
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     الطلبات
+===================================================== -->
+
+<section
+id="registrations"
+class="page"
+>
+
+<div class="card">
+
+<h2>
+📝 طلبات التسجيل
+</h2>
+
+<div
+class="categoryButtons"
+>
+
+<button
 class="categoryButton active"
-onclick="showCategory('pending')"
+onclick="showRegistrationCategory('pending',this)"
 >
 
 <span class="categoryTitle">
@@ -576,11 +1337,9 @@ class="categoryNumber"
 </button>
 
 
-
 <button
-id="acceptedButton"
 class="categoryButton"
-onclick="showCategory('accepted')"
+onclick="showRegistrationCategory('accepted',this)"
 >
 
 <span class="categoryTitle">
@@ -597,11 +1356,9 @@ class="categoryNumber"
 </button>
 
 
-
 <button
-id="rejectedButton"
 class="categoryButton"
-onclick="showCategory('rejected')"
+onclick="showRegistrationCategory('rejected',this)"
 >
 
 <span class="categoryTitle">
@@ -619,119 +1376,482 @@ class="categoryNumber"
 
 </div>
 
+</div>
 
-
-<!-- =========================
-     محتوى الأقسام
-========================= -->
 
 <div
-id="pendingContent"
-class="categoryContent active"
+id="registrationContainer"
+>
+</div>
+
+</section>
+
+
+
+<!-- =====================================================
+     المدربين
+===================================================== -->
+
+<section
+id="coaches"
+class="page"
 >
 
-<div class="sectionCard">
+<div class="card">
 
-<div id="pendingRegistrations">
-
-جاري تحميل الطلبات...
-
-</div>
-
-</div>
-
-</div>
-
-
+<h2>
+👨‍🏫 المدربين
+</h2>
 
 <div
-id="acceptedContent"
-class="categoryContent"
+id="coachesContainer"
 >
+</div>
 
-<div class="sectionCard">
+</div>
 
-<div id="acceptedRegistrations">
+</section>
+
+
+</main>
 
 </div>
 
 </div>
 
-</div>
 
 
+<!-- =====================================================
+     نافذة اللاعب
+===================================================== -->
 
 <div
-id="rejectedContent"
-class="categoryContent"
->
-
-<div class="sectionCard">
-
-<div id="rejectedRegistrations">
-
-</div>
-
-</div>
-
-</div>
-
-
-</div>
-
-
-</div>
-
-
-
-<!-- =========================
-     مربع تأكيد الحذف
-========================= -->
-
-<div
-id="confirmModal"
+id="playerModal"
 class="modal"
 >
 
 <div class="modalBox">
 
-
-<div class="modalIcon">
-⚠️
-</div>
-
-
-<h2>
-تأكيد الحذف
+<h2 id="playerModalTitle">
+إضافة لاعب
 </h2>
 
+<input
+id="playerId"
+type="hidden"
+>
 
-<p>
-هل أنت متأكد أنك تريد حذف هذا الطلب نهائيًا؟
-</p>
+<label>
+اسم اللاعب
+</label>
+
+<input
+id="playerName"
+placeholder="اسم اللاعب"
+>
+
+<label>
+تاريخ الميلاد
+</label>
+
+<input
+id="playerBirth"
+type="date"
+>
+
+<label>
+العمر
+</label>
+
+<input
+id="playerAge"
+type="number"
+placeholder="العمر"
+>
+
+<label>
+اسم ولي الأمر
+</label>
+
+<input
+id="playerGuardian"
+placeholder="اسم ولي الأمر"
+>
+
+<label>
+الجوال
+</label>
+
+<input
+id="playerPhone"
+placeholder="رقم الجوال"
+>
+
+<label>
+الفئة الحالية
+</label>
+
+<select id="playerCategory">
+<option value="">اختر الفئة</option>
+</select>
+
+<label>
+اسم الفئة الخاصة
+</label>
+
+<select id="playerGroup">
+
+<option value="">
+بدون فئة خاصة
+</option>
+
+<option value="التميز اللياقي">
+التميز اللياقي
+</option>
+
+<option value="التطوير">
+التطوير
+</option>
+
+</select>
+
+<label>
+المدرب
+</label>
+
+<input
+id="playerCoach"
+placeholder="اسم المدرب"
+>
+
+<label>
+الحالة
+</label>
+
+<select id="playerStatus">
+
+<option value="active">
+نشط
+</option>
+
+<option value="inactive">
+غير نشط
+</option>
+
+</select>
+
+<label>
+ملاحظات
+</label>
+
+<textarea
+id="playerNotes"
+placeholder="ملاحظات اللاعب"
+></textarea>
 
 
 <div class="modalButtons">
 
-
 <button
-id="cancelDelete"
-class="cancelButton"
+class="gray"
+onclick="closeModal('playerModal')"
 >
 إلغاء
 </button>
 
-
 <button
-id="confirmDelete"
-class="confirmDeleteButton"
+class="primary"
+onclick="savePlayer()"
 >
-نعم، احذف
+حفظ اللاعب
 </button>
-
 
 </div>
 
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     نافذة نقل اللاعب
+===================================================== -->
+
+<div
+id="transferModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<h2>
+🔄 نقل اللاعب
+</h2>
+
+<p
+id="transferPlayerName"
+style="color:#777;"
+></p>
+
+<input
+type="hidden"
+id="transferPlayerId"
+>
+
+<label>
+الفئة الجديدة
+</label>
+
+<select
+id="transferCategory"
+>
+</select>
+
+<label>
+الفئة الخاصة
+</label>
+
+<select
+id="transferGroup"
+>
+
+<option value="">
+بدون فئة خاصة
+</option>
+
+<option value="التميز اللياقي">
+التميز اللياقي
+</option>
+
+<option value="التطوير">
+التطوير
+</option>
+
+</select>
+
+<label>
+المدرب
+</label>
+
+<input
+id="transferCoach"
+placeholder="المدرب الجديد"
+>
+
+<label>
+تاريخ الانتقال
+</label>
+
+<input
+id="transferDate"
+type="date"
+>
+
+<div class="modalButtons">
+
+<button
+class="gray"
+onclick="closeModal('transferModal')"
+>
+إلغاء
+</button>
+
+<button
+class="primary"
+onclick="transferPlayer()"
+>
+نقل اللاعب
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     نافذة مسار اللاعب
+===================================================== -->
+
+<div
+id="historyModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<h2>
+⚽ مسار اللاعب
+</h2>
+
+<h3 id="historyPlayerName"></h3>
+
+<div
+id="historyContainer"
+class="timeline"
+>
+</div>
+
+<div class="modalButtons">
+
+<button
+class="gray"
+onclick="closeModal('historyModal')"
+>
+إغلاق
+</button>
+
+<button
+class="primary"
+onclick="openTransferFromHistory()"
+>
+＋ إضافة انتقال
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     نافذة الجدول
+===================================================== -->
+
+<div
+id="scheduleModal"
+class="modal"
+>
+
+<div class="modalBox">
+
+<h2 id="scheduleModalTitle">
+إضافة حصة
+</h2>
+
+<input
+type="hidden"
+id="scheduleId"
+>
+
+<label>
+اليوم
+</label>
+
+<select id="scheduleDay">
+
+<option value="الأحد">الأحد</option>
+<option value="الإثنين">الإثنين</option>
+<option value="الثلاثاء">الثلاثاء</option>
+<option value="الأربعاء">الأربعاء</option>
+<option value="الخميس">الخميس</option>
+<option value="الجمعة">الجمعة</option>
+<option value="السبت">السبت</option>
+
+</select>
+
+
+<label>
+الفئة
+</label>
+
+<select id="scheduleCategory">
+</select>
+
+
+<label>
+الفئة الخاصة
+</label>
+
+<select id="scheduleGroup">
+
+<option value="">
+بدون فئة خاصة
+</option>
+
+<option value="التميز اللياقي">
+التميز اللياقي
+</option>
+
+<option value="التطوير">
+التطوير
+</option>
+
+</select>
+
+
+<label>
+المدرب المسؤول
+</label>
+
+<input
+id="scheduleCoach"
+placeholder="مثال: كوتش يحيى"
+>
+
+
+<label>
+من
+</label>
+
+<input
+id="scheduleStart"
+type="time"
+>
+
+
+<label>
+إلى
+</label>
+
+<input
+id="scheduleEnd"
+type="time"
+>
+
+
+<label>
+الملعب
+</label>
+
+<input
+id="scheduleLocation"
+placeholder="مثال: الملعب الرئيسي"
+>
+
+
+<label>
+ملاحظات
+</label>
+
+<textarea
+id="scheduleNotes"
+placeholder="ملاحظات"
+></textarea>
+
+
+<div class="modalButtons">
+
+<button
+class="gray"
+onclick="closeModal('scheduleModal')"
+>
+إلغاء
+</button>
+
+<button
+class="primary"
+onclick="saveSchedule()"
+>
+حفظ
+</button>
+
+</div>
 
 </div>
 
@@ -741,13 +1861,16 @@ class="confirmDeleteButton"
 
 <script type="module">
 
-import { createClient }
-from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+import {
+    createClient
+}
+from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
-/* =========================
+/* =====================================================
    Supabase
-========================= */
+===================================================== */
 
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
@@ -757,14 +1880,53 @@ const SUPABASE_KEY =
 
 const supabase =
 createClient(
-SUPABASE_URL,
-SUPABASE_KEY
+    SUPABASE_URL,
+    SUPABASE_KEY
 );
 
 
-/* =========================
+/* =====================================================
+   البيانات
+===================================================== */
+
+const CATEGORIES = [
+
+    "2020–2021",
+    "2019–2018",
+    "2017–2016",
+    "2015–2014",
+    "2013–2012",
+    "2012–2013",
+    "2011–2009"
+
+];
+
+
+const DAYS = [
+
+    "الأحد",
+    "الإثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة",
+    "السبت"
+
+];
+
+
+let players = [];
+
+let schedule = [];
+
+let registrations = [];
+
+let currentHistoryPlayer = null;
+
+
+/* =====================================================
    العناصر
-========================= */
+===================================================== */
 
 const loginBox =
 document.getElementById("loginBox");
@@ -778,826 +1940,2703 @@ document.getElementById("loginBtn");
 const logoutBtn =
 document.getElementById("logoutBtn");
 
-const confirmModal =
-document.getElementById("confirmModal");
 
-const cancelDelete =
-document.getElementById("cancelDelete");
+/* =====================================================
+   القائمة
+===================================================== */
 
-const confirmDelete =
-document.getElementById("confirmDelete");
+window.toggleSidebar =
+function(){
 
-
-let deleteId = null;
-
-
-/* =========================
-   القسم الحالي
-========================= */
-
-let currentCategory =
-"pending";
-
-
-/* =========================
-   تغيير القسم
-========================= */
-
-window.showCategory =
-function(category){
-
-currentCategory =
-category;
-
-
-document
-.querySelectorAll(".categoryButton")
-.forEach(
-button =>
-button.classList.remove("active")
-);
-
-
-document
-.querySelectorAll(".categoryContent")
-.forEach(
-content =>
-content.classList.remove("active")
-);
-
-
-if(category === "pending"){
-
-document
-.getElementById("pendingButton")
-.classList.add("active");
-
-document
-.getElementById("pendingContent")
-.classList.add("active");
-
-}
-
-
-if(category === "accepted"){
-
-document
-.getElementById("acceptedButton")
-.classList.add("active");
-
-document
-.getElementById("acceptedContent")
-.classList.add("active");
-
-}
-
-
-if(category === "rejected"){
-
-document
-.getElementById("rejectedButton")
-.classList.add("active");
-
-document
-.getElementById("rejectedContent")
-.classList.add("active");
-
-}
+    document
+    .getElementById("sidebar")
+    .classList
+    .toggle("open");
 
 };
 
 
-/* =========================
-   فحص تسجيل الدخول
-========================= */
+window.showPage =
+function(pageId,button){
 
-async function checkSession(){
+    document
+    .querySelectorAll(".page")
+    .forEach(
+        page =>
+        page.classList.remove("active")
+    );
 
-const {
-data:{
-session
-}
-} =
-await supabase.auth.getSession();
-
-
-if(session){
-
-loginBox.style.display =
-"none";
-
-adminPanel.style.display =
-"block";
-
-await loadRegistrations();
-
-}else{
-
-loginBox.style.display =
-"block";
-
-adminPanel.style.display =
-"none";
-
-}
-
-}
+    document
+    .getElementById(pageId)
+    .classList.add("active");
 
 
-/* =========================
+    document
+    .querySelectorAll(".menu button")
+    .forEach(
+        btn =>
+        btn.classList.remove("active")
+    );
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }
+
+
+    if(pageId === "players"){
+
+        loadPlayers();
+
+    }
+
+
+    if(pageId === "schedule"){
+
+        loadSchedule();
+
+    }
+
+
+    if(pageId === "categories"){
+
+        renderCategories();
+
+    }
+
+
+    if(pageId === "registrations"){
+
+        loadRegistrations();
+
+    }
+
+
+    if(pageId === "coaches"){
+
+        renderCoaches();
+
+    }
+
+
+    document
+    .getElementById("sidebar")
+    .classList
+    .remove("open");
+
+};
+
+
+/* =====================================================
    تسجيل الدخول
-========================= */
+===================================================== */
 
 loginBtn.addEventListener(
 "click",
 async function(){
 
-const email =
-document
-.getElementById("adminEmail")
-.value
-.trim();
-
-const password =
-document
-.getElementById("adminPassword")
-.value;
-
-const message =
-document.getElementById(
-"loginMessage"
-);
+    const email =
+    document
+    .getElementById("adminEmail")
+    .value
+    .trim();
 
 
-message.style.color =
-"#ff6900";
+    const password =
+    document
+    .getElementById("adminPassword")
+    .value;
 
-message.innerText =
-"جاري تسجيل الدخول...";
+
+    const message =
+    document
+    .getElementById("loginMessage");
 
 
-const {
-error
-} =
-await supabase.auth.signInWithPassword({
+    message.style.color =
+    "#ff6900";
 
-email:email,
+    message.innerText =
+    "جاري تسجيل الدخول...";
 
-password:password
+
+    const {
+        error
+    } =
+    await supabase.auth
+    .signInWithPassword({
+
+        email:email,
+
+        password:password
+
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        message.style.color =
+        "#d40000";
+
+        message.innerText =
+        "بيانات الدخول غير صحيحة ❌";
+
+        return;
+
+    }
+
+
+    await checkAdmin();
 
 });
 
 
-if(error){
+/* =====================================================
+   فحص الأدمن
+===================================================== */
 
-console.error(error);
+async function checkAdmin(){
 
-message.style.color =
-"#d40000";
+    const {
+        data:{
+            user
+        }
+    } =
+    await supabase.auth
+    .getUser();
 
-message.innerText =
-"بيانات الدخول غير صحيحة ❌";
 
-return;
+    if(!user){
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("admin_users")
+    .select("user_id")
+    .eq("user_id",user.id)
+    .maybeSingle();
+
+
+    if(error || !data){
+
+        await supabase.auth.signOut();
+
+        document
+        .getElementById("loginMessage")
+        .innerText =
+        "هذا الحساب ليس أدمن ❌";
+
+        return;
+
+    }
+
+
+    loginBox.style.display =
+    "none";
+
+    adminPanel.style.display =
+    "block";
+
+
+    await loadDashboard();
 
 }
 
 
-message.style.color =
-"#00a844";
-
-message.innerText =
-"تم تسجيل الدخول ✅";
-
-
-loginBox.style.display =
-"none";
-
-adminPanel.style.display =
-"block";
-
-
-await loadRegistrations();
-
-});
-
-
-/* =========================
+/* =====================================================
    تسجيل الخروج
-========================= */
+===================================================== */
 
 logoutBtn.addEventListener(
 "click",
 async function(){
 
-await supabase.auth.signOut();
+    await supabase.auth.signOut();
 
-loginBox.style.display =
-"block";
+    adminPanel.style.display =
+    "none";
 
-adminPanel.style.display =
-"none";
+    loginBox.style.display =
+    "flex";
 
 });
 
 
-/* =========================
-   تحميل الطلبات
-========================= */
+/* =====================================================
+   فحص الجلسة عند فتح الصفحة
+===================================================== */
 
-async function loadRegistrations(
-keepPosition = false
-){
+async function checkSession(){
 
-const oldPosition =
-window.scrollY;
-
-
-const pendingContainer =
-document.getElementById(
-"pendingRegistrations"
-);
-
-const acceptedContainer =
-document.getElementById(
-"acceptedRegistrations"
-);
-
-const rejectedContainer =
-document.getElementById(
-"rejectedRegistrations"
-);
+    const {
+        data:{
+            session
+        }
+    } =
+    await supabase.auth
+    .getSession();
 
 
-pendingContainer.innerHTML =
-"جاري التحميل...";
+    if(session){
 
-acceptedContainer.innerHTML =
-"جاري التحميل...";
+        await checkAdmin();
 
-rejectedContainer.innerHTML =
-"جاري التحميل...";
-
-
-const {
-data,
-error
-} =
-await supabase
-.from("registration")
-.select("*")
-.order("id",{
-ascending:false
-});
-
-
-if(error){
-
-console.error(error);
-
-pendingContainer.innerHTML =
-`
-<div class="empty">
-تعذر تحميل الطلبات ❌
-</div>
-`;
-
-return;
+    }
 
 }
 
 
-/* =========================
-   تقسيم الطلبات
-========================= */
+/* =====================================================
+   لوحة الرئيسية
+===================================================== */
 
-const pending =
-data.filter(
-item =>
-!item.status ||
-item.status === "pending"
-);
+async function loadDashboard(){
 
-const accepted =
-data.filter(
-item =>
-item.status === "accepted"
-);
+    await loadRegistrations();
 
-const rejected =
-data.filter(
-item =>
-item.status === "rejected"
-);
-
-
-/* =========================
-   الإحصائيات
-========================= */
-
-document.getElementById(
-"totalCount"
-).innerText =
-data.length;
-
-document.getElementById(
-"pendingCount"
-).innerText =
-pending.length;
-
-document.getElementById(
-"acceptedCount"
-).innerText =
-accepted.length;
-
-document.getElementById(
-"rejectedCount"
-).innerText =
-rejected.length;
-
-
-document.getElementById(
-"pendingSectionCount"
-).innerText =
-pending.length;
-
-document.getElementById(
-"acceptedSectionCount"
-).innerText =
-accepted.length;
-
-document.getElementById(
-"rejectedSectionCount"
-).innerText =
-rejected.length;
-
-
-/* =========================
-   إنشاء بطاقة اللاعب
-========================= */
-
-function createRegistrationCard(
-item,
-type
-){
-
-return `
-
-<div class="registration ${type}">
-
-<h3>
-👤 ${item.player_name || "بدون اسم"}
-</h3>
-
-
-<div class="info">
-
-
-<div class="infoBox">
-
-<strong>
-🎂 تاريخ الميلاد
-</strong>
-
-<span>
-${item.birth_date || "-"}
-</span>
-
-</div>
-
-
-<div class="infoBox">
-
-<strong>
-العمر
-</strong>
-
-<span>
-${item.age || "-"}
-</span>
-
-</div>
-
-
-<div class="infoBox">
-
-<strong>
-👨‍👦 ولي الأمر
-</strong>
-
-<span>
-${item.guardian_name || "-"}
-</span>
-
-</div>
-
-
-<div class="infoBox">
-
-<strong>
-📱 الجوال
-</strong>
-
-<span>
-${item.phone || "-"}
-</span>
-
-</div>
-
-
-<div class="infoBox">
-
-<strong>
-📝 الملاحظات
-</strong>
-
-<span>
-${item.notes || "لا يوجد"}
-</span>
-
-</div>
-
-
-</div>
-
-
-<p class="status">
-
-${
-type === "new"
-?
-"🔴 طلب جديد"
-:
-type === "accepted"
-?
-"🟢 تم قبول اللاعب"
-:
-"❌ تم رفض اللاعب"
-}
-
-</p>
-
-
-<div class="actions">
-
-
-${
-type !== "accepted"
-
-?
-
-`
-
-<button
-class="acceptButton"
-onclick="acceptRegistration('${item.id}')"
->
-🟢 قبول اللاعب
-</button>
-
-`
-
-:
-
-""
+    await loadPlayers();
 
 }
 
 
-${
-type !== "rejected"
+/* =====================================================
+   تحميل اللاعبين
+===================================================== */
 
-?
+async function loadPlayers(){
 
-`
-
-<button
-class="rejectButton"
-onclick="rejectRegistration('${item.id}')"
->
-🔴 رفض الطلب
-</button>
-
-`
-
-:
-
-""
-
-}
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("players")
+    .select("*")
+    .order("id",{ascending:false});
 
 
-<button
-class="deleteButton"
-onclick="deleteRegistration('${item.id}')"
->
-🗑️ حذف
-</button>
+    if(error){
+
+        console.error(error);
+
+        document
+        .getElementById("playersContainer")
+        .innerHTML =
+        `
+        <div class="empty">
+        تعذر تحميل اللاعبين ❌
+        </div>
+        `;
+
+        return;
+
+    }
 
 
-</div>
+    players =
+    data || [];
 
 
-</div>
+    document
+    .getElementById("playersCount")
+    .innerText =
+    players.length;
 
-`;
 
-}
-
-
-/* =========================
-   عرض الطلبات
-========================= */
-
-if(pending.length){
-
-pendingContainer.innerHTML =
-pending
-.map(
-item =>
-createRegistrationCard(
-item,
-"new"
-)
-)
-.join("");
-
-}else{
-
-pendingContainer.innerHTML =
-`
-<div class="empty">
-لا توجد طلبات جديدة 📭
-</div>
-`;
+    renderPlayers();
 
 }
 
 
-if(accepted.length){
+/* =====================================================
+   عرض اللاعبين
+===================================================== */
 
-acceptedContainer.innerHTML =
-accepted
-.map(
-item =>
-createRegistrationCard(
-item,
-"accepted"
-)
-)
-.join("");
-
-}else{
-
-acceptedContainer.innerHTML =
-`
-<div class="empty">
-لا يوجد لاعبون مقبولون حاليًا.
-</div>
-`;
-
-}
-
-
-if(rejected.length){
-
-rejectedContainer.innerHTML =
-rejected
-.map(
-item =>
-createRegistrationCard(
-item,
-"rejected"
-)
-)
-.join("");
-
-}else{
-
-rejectedContainer.innerHTML =
-`
-<div class="empty">
-لا توجد طلبات مرفوضة حاليًا.
-</div>
-`;
-
-}
-
-
-/* =========================
-   إرجاع مكان الصفحة
-========================= */
-
-if(keepPosition){
-
-requestAnimationFrame(
+window.renderPlayers =
 function(){
 
-window.scrollTo(
-0,
-oldPosition
-);
+    const container =
+    document
+    .getElementById("playersContainer");
+
+
+    const search =
+    document
+    .getElementById("playerSearch")
+    .value
+    .trim()
+    .toLowerCase();
+
+
+    const filtered =
+    players.filter(
+        player =>
+        (player.player_name || "")
+        .toLowerCase()
+        .includes(search)
+    );
+
+
+    if(!filtered.length){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+        لا يوجد لاعبين.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    filtered
+    .map(player => `
+
+        <div class="playerCard">
+
+            <h3>
+            👤 ${escapeHtml(player.player_name)}
+            </h3>
+
+            <div class="playerInfo">
+
+                <strong>
+                الفئة الحالية
+                </strong>
+
+                <span>
+                ${escapeHtml(player.current_category || "-")}
+                ${
+                    player.current_group
+                    ?
+                    " — " +
+                    escapeHtml(player.current_group)
+                    :
+                    ""
+                }
+                </span>
+
+            </div>
+
+
+            <div class="playerInfo">
+
+                <strong>
+                المدرب
+                </strong>
+
+                <span>
+                ${escapeHtml(player.current_coach || "-")}
+                </span>
+
+            </div>
+
+
+            <div class="playerInfo">
+
+                <strong>
+                الحالة
+                </strong>
+
+                <span>
+                ${
+                    player.status === "active"
+                    ?
+                    "🟢 نشط"
+                    :
+                    "⚪ غير نشط"
+                }
+                </span>
+
+            </div>
+
+
+            <div class="playerActions">
+
+                <button
+                class="primary"
+                onclick="editPlayer(${player.id})"
+                >
+                ✏️ تعديل
+                </button>
+
+                <button
+                class="dark"
+                onclick="openTransferModal(${player.id})"
+                >
+                🔄 نقل
+                </button>
+
+                <button
+                class="green"
+                onclick="openHistory(${player.id})"
+                >
+                ⚽ المسار
+                </button>
+
+                <button
+                class="red"
+                onclick="deletePlayer(${player.id})"
+                >
+                🗑️ حذف
+                </button>
+
+            </div>
+
+        </div>
+
+    `)
+    .join("");
+
+};
+
+
+/* =====================================================
+   تعبئة قائمة الفئات
+===================================================== */
+
+function fillCategorySelect(selectId){
+
+    const select =
+    document.getElementById(selectId);
+
+
+    select.innerHTML =
+    `<option value="">اختر الفئة</option>`;
+
+
+    CATEGORIES.forEach(category => {
+
+        const option =
+        document.createElement("option");
+
+        option.value =
+        category;
+
+        option.textContent =
+        category;
+
+        select.appendChild(option);
+
+    });
 
 }
-);
+
+
+/* =====================================================
+   إضافة لاعب
+===================================================== */
+
+window.openPlayerModal =
+function(){
+
+    document
+    .getElementById("playerModalTitle")
+    .innerText =
+    "إضافة لاعب";
+
+
+    document
+    .getElementById("playerId")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerName")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerBirth")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerAge")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerGuardian")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerPhone")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerCategory")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerGroup")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerCoach")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerStatus")
+    .value =
+    "active";
+
+
+    document
+    .getElementById("playerNotes")
+    .value =
+    "";
+
+
+    fillCategorySelect("playerCategory");
+
+
+    document
+    .getElementById("playerModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   تعديل لاعب
+===================================================== */
+
+window.editPlayer =
+function(id){
+
+    const player =
+    players.find(
+        item => item.id === id
+    );
+
+
+    if(!player){
+
+        return;
+
+    }
+
+
+    fillCategorySelect("playerCategory");
+
+
+    document
+    .getElementById("playerModalTitle")
+    .innerText =
+    "تعديل اللاعب";
+
+
+    document
+    .getElementById("playerId")
+    .value =
+    player.id;
+
+
+    document
+    .getElementById("playerName")
+    .value =
+    player.player_name || "";
+
+
+    document
+    .getElementById("playerBirth")
+    .value =
+    player.birth_date || "";
+
+
+    document
+    .getElementById("playerAge")
+    .value =
+    player.age || "";
+
+
+    document
+    .getElementById("playerGuardian")
+    .value =
+    player.guardian_name || "";
+
+
+    document
+    .getElementById("playerPhone")
+    .value =
+    player.phone || "";
+
+
+    document
+    .getElementById("playerCategory")
+    .value =
+    player.current_category || "";
+
+
+    document
+    .getElementById("playerGroup")
+    .value =
+    player.current_group || "";
+
+
+    document
+    .getElementById("playerCoach")
+    .value =
+    player.current_coach || "";
+
+
+    document
+    .getElementById("playerStatus")
+    .value =
+    player.status || "active";
+
+
+    document
+    .getElementById("playerNotes")
+    .value =
+    player.notes || "";
+
+
+    document
+    .getElementById("playerModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   حفظ اللاعب
+===================================================== */
+
+window.savePlayer =
+async function(){
+
+    const id =
+    document
+    .getElementById("playerId")
+    .value;
+
+
+    const name =
+    document
+    .getElementById("playerName")
+    .value
+    .trim();
+
+
+    if(!name){
+
+        alert("اكتب اسم اللاعب أولاً");
+
+        return;
+
+    }
+
+
+    const playerData = {
+
+        player_name:name,
+
+        birth_date:
+        document
+        .getElementById("playerBirth")
+        .value || null,
+
+        age:
+        Number(
+            document
+            .getElementById("playerAge")
+            .value
+        ) || null,
+
+        guardian_name:
+        document
+        .getElementById("playerGuardian")
+        .value
+        .trim(),
+
+        phone:
+        document
+        .getElementById("playerPhone")
+        .value
+        .trim(),
+
+        current_category:
+        document
+        .getElementById("playerCategory")
+        .value,
+
+        current_group:
+        document
+        .getElementById("playerGroup")
+        .value,
+
+        current_coach:
+        document
+        .getElementById("playerCoach")
+        .value
+        .trim(),
+
+        status:
+        document
+        .getElementById("playerStatus")
+        .value,
+
+        notes:
+        document
+        .getElementById("playerNotes")
+        .value
+        .trim(),
+
+        updated_at:
+        new Date().toISOString()
+
+    };
+
+
+    let result;
+
+
+    if(id){
+
+        result =
+        await supabase
+        .from("players")
+        .update(playerData)
+        .eq("id",id);
+
+    }else{
+
+        result =
+        await supabase
+        .from("players")
+        .insert(playerData);
+
+    }
+
+
+    if(result.error){
+
+        console.error(result.error);
+
+        alert(
+            "تعذر حفظ اللاعب ❌\n" +
+            result.error.message
+        );
+
+        return;
+
+    }
+
+
+    closeModal("playerModal");
+
+    await loadPlayers();
+
+};
+
+
+/* =====================================================
+   حذف اللاعب
+===================================================== */
+
+window.deletePlayer =
+async function(id){
+
+    const player =
+    players.find(
+        item => item.id === id
+    );
+
+
+    if(!player){
+
+        return;
+
+    }
+
+
+    if(
+        !confirm(
+            "هل أنت متأكد من حذف اللاعب " +
+            player.player_name +
+            "؟"
+        )
+    ){
+
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabase
+    .from("players")
+    .delete()
+    .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "تعذر حذف اللاعب ❌"
+        );
+
+        return;
+
+    }
+
+
+    await loadPlayers();
+
+};
+
+
+/* =====================================================
+   نقل اللاعب
+===================================================== */
+
+window.openTransferModal =
+function(id){
+
+    const player =
+    players.find(
+        item => item.id === id
+    );
+
+
+    if(!player){
+
+        return;
+
+    }
+
+
+    fillCategorySelect("transferCategory");
+
+
+    document
+    .getElementById("transferPlayerId")
+    .value =
+    id;
+
+
+    document
+    .getElementById("transferPlayerName")
+    .innerText =
+    "اللاعب: " + player.player_name;
+
+
+    document
+    .getElementById("transferCategory")
+    .value =
+    "";
+
+
+    document
+    .getElementById("transferGroup")
+    .value =
+    "";
+
+
+    document
+    .getElementById("transferCoach")
+    .value =
+    "";
+
+
+    document
+    .getElementById("transferDate")
+    .value =
+    new Date()
+    .toISOString()
+    .split("T")[0];
+
+
+    document
+    .getElementById("transferModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   تنفيذ النقل
+===================================================== */
+
+window.transferPlayer =
+async function(){
+
+    const playerId =
+    Number(
+        document
+        .getElementById("transferPlayerId")
+        .value
+    );
+
+
+    const category =
+    document
+    .getElementById("transferCategory")
+    .value;
+
+
+    const group =
+    document
+    .getElementById("transferGroup")
+    .value;
+
+
+    const coach =
+    document
+    .getElementById("transferCoach")
+    .value
+    .trim();
+
+
+    const date =
+    document
+    .getElementById("transferDate")
+    .value;
+
+
+    if(!category){
+
+        alert("اختر الفئة الجديدة");
+
+        return;
+
+    }
+
+
+    const player =
+    players.find(
+        item => item.id === playerId
+    );
+
+
+    if(!player){
+
+        return;
+
+    }
+
+
+    const {
+        error:updateError
+    } =
+    await supabase
+    .from("players")
+    .update({
+
+        current_category:category,
+
+        current_group:group,
+
+        current_coach:coach,
+
+        updated_at:
+        new Date().toISOString()
+
+    })
+    .eq("id",playerId);
+
+
+    if(updateError){
+
+        alert(
+            "تعذر نقل اللاعب ❌"
+        );
+
+        return;
+
+    }
+
+
+    /* إنهاء آخر مرحلة */
+
+    await supabase
+    .from("player_history")
+    .update({
+
+        end_date:date
+
+    })
+    .eq("player_id",playerId)
+    .is("end_date",null);
+
+
+    /* إضافة المرحلة الجديدة */
+
+    const {
+        error:historyError
+    } =
+    await supabase
+    .from("player_history")
+    .insert({
+
+        player_id:playerId,
+
+        category:category,
+
+        group_name:group,
+
+        coach:coach,
+
+        start_date:date
+
+    });
+
+
+    if(historyError){
+
+        console.error(historyError);
+
+    }
+
+
+    closeModal("transferModal");
+
+    await loadPlayers();
+
+};
+
+
+/* =====================================================
+   مسار اللاعب
+===================================================== */
+
+window.openHistory =
+async function(id){
+
+    const player =
+    players.find(
+        item => item.id === id
+    );
+
+
+    if(!player){
+
+        return;
+
+    }
+
+
+    currentHistoryPlayer =
+    player;
+
+
+    document
+    .getElementById("historyPlayerName")
+    .innerText =
+    player.player_name;
+
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("player_history")
+    .select("*")
+    .eq("player_id",id)
+    .order("start_date",{
+        ascending:true
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    const container =
+    document
+    .getElementById("historyContainer");
+
+
+    if(!data || !data.length){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+        لا يوجد مسار مسجل لهذا اللاعب حتى الآن.
+        </div>
+        `;
+
+    }else{
+
+        container.innerHTML =
+        data
+        .map(
+            (item,index) => `
+
+            <div class="timelineItem">
+
+                <strong>
+                ${escapeHtml(item.category)}
+                </strong>
+
+                ${
+                    item.group_name
+                    ?
+                    `<div>
+                    ${escapeHtml(item.group_name)}
+                    </div>`
+                    :
+                    ""
+                }
+
+                <div style="color:#777;margin-top:7px;">
+
+                    المدرب:
+                    ${escapeHtml(item.coach || "-")}
+
+                </div>
+
+                <div style="color:#777;margin-top:5px;">
+
+                    من:
+                    ${escapeHtml(item.start_date || "-")}
+
+                    ${
+                        item.end_date
+                        ?
+                        " — إلى: " +
+                        escapeHtml(item.end_date)
+                        :
+                        ""
+                    }
+
+                </div>
+
+                ${
+                    !item.end_date
+                    ?
+                    `<span class="currentBadge">
+                    الفئة الحالية
+                    </span>`
+                    :
+                    ""
+                }
+
+            </div>
+
+            `
+        )
+        .join("");
+
+    }
+
+
+    document
+    .getElementById("historyModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   فتح النقل من المسار
+===================================================== */
+
+window.openTransferFromHistory =
+function(){
+
+    closeModal("historyModal");
+
+    if(currentHistoryPlayer){
+
+        openTransferModal(
+            currentHistoryPlayer.id
+        );
+
+    }
+
+};
+
+
+/* =====================================================
+   الجدول
+===================================================== */
+
+async function loadSchedule(){
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("training_schedule")
+    .select("*")
+    .order("start_time",{
+        ascending:true
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    schedule =
+    data || [];
+
+
+    renderSchedule();
 
 }
 
+
+/* =====================================================
+   عرض جدول المدرسة
+===================================================== */
+
+function renderSchedule(){
+
+    const body =
+    document
+    .getElementById("scheduleBody");
+
+
+    const timeSlots = [];
+
+
+    schedule.forEach(item => {
+
+        const start =
+        item.start_time
+        .slice(0,5);
+
+        const end =
+        item.end_time
+        .slice(0,5);
+
+        const key =
+        start + "-" + end;
+
+
+        if(!timeSlots.includes(key)){
+
+            timeSlots.push(key);
+
+        }
+
+    });
+
+
+    /* أوقات افتراضية إذا كان الجدول فارغ */
+
+    if(!timeSlots.length){
+
+        timeSlots.push(
+            "04:30-06:00",
+            "06:00-07:30",
+            "07:30-09:00"
+        );
+
+    }
+
+
+    timeSlots.sort();
+
+
+    body.innerHTML =
+    timeSlots
+    .map(slot => {
+
+        const parts =
+        slot.split("-");
+
+        const start =
+        parts[0];
+
+        const end =
+        parts[1];
+
+
+        return `
+
+        <tr>
+
+            <td class="timeCell">
+            ${formatTime(start)}
+            –
+            ${formatTime(end)}
+            </td>
+
+            ${DAYS.map(day => {
+
+                const lessons =
+                schedule.filter(item => {
+
+                    return (
+                        item.day_name === day &&
+                        item.start_time
+                        .slice(0,5) === start &&
+                        item.end_time
+                        .slice(0,5) === end
+                    );
+
+                });
+
+
+                return `
+
+                <td>
+
+                ${
+                    lessons.length
+                    ?
+                    lessons
+                    .map(
+                        lesson => `
+
+                        <div
+                        class="lesson"
+                        onclick="editSchedule(${lesson.id})"
+                        >
+
+                            <div class="lessonCategory">
+
+                            ${escapeHtml(
+                                lesson.category
+                            )}
+
+                            </div>
+
+                            ${
+                                lesson.group_name
+                                ?
+                                `<div>
+                                ${escapeHtml(
+                                    lesson.group_name
+                                )}
+                                </div>`
+                                :
+                                ""
+                            }
+
+                            <div class="lessonCoach">
+
+                            👨‍🏫
+                            ${escapeHtml(
+                                lesson.coach
+                            )}
+
+                            </div>
+
+                            ${
+                                lesson.location
+                                ?
+                                `<div class="lessonLocation">
+                                📍
+                                ${escapeHtml(
+                                    lesson.location
+                                )}
+                                </div>`
+                                :
+                                ""
+                            }
+
+                        </div>
+
+                        `
+                    )
+                    .join("")
+                    :
+                    ""
+                }
+
+                </td>
+
+                `;
+
+            }).join("")}
+
+        </tr>
+
+        `;
+
+    })
+    .join("");
+
 }
 
 
-/* =========================
-   قبول اللاعب
-========================= */
+/* =====================================================
+   إضافة حصة
+===================================================== */
+
+window.openScheduleModal =
+function(){
+
+    fillCategorySelect(
+        "scheduleCategory"
+    );
+
+
+    document
+    .getElementById("scheduleModalTitle")
+    .innerText =
+    "إضافة حصة";
+
+
+    document
+    .getElementById("scheduleId")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleDay")
+    .value =
+    "الأحد";
+
+
+    document
+    .getElementById("scheduleCategory")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleGroup")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleCoach")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleStart")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleEnd")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleLocation")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleNotes")
+    .value =
+    "";
+
+
+    document
+    .getElementById("scheduleModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   تعديل حصة
+===================================================== */
+
+window.editSchedule =
+function(id){
+
+    const item =
+    schedule.find(
+        row => row.id === id
+    );
+
+
+    if(!item){
+
+        return;
+
+    }
+
+
+    fillCategorySelect(
+        "scheduleCategory"
+    );
+
+
+    document
+    .getElementById("scheduleModalTitle")
+    .innerText =
+    "تعديل الحصة";
+
+
+    document
+    .getElementById("scheduleId")
+    .value =
+    id;
+
+
+    document
+    .getElementById("scheduleDay")
+    .value =
+    item.day_name;
+
+
+    document
+    .getElementById("scheduleCategory")
+    .value =
+    item.category;
+
+
+    document
+    .getElementById("scheduleGroup")
+    .value =
+    item.group_name || "";
+
+
+    document
+    .getElementById("scheduleCoach")
+    .value =
+    item.coach || "";
+
+
+    document
+    .getElementById("scheduleStart")
+    .value =
+    item.start_time
+    .slice(0,5);
+
+
+    document
+    .getElementById("scheduleEnd")
+    .value =
+    item.end_time
+    .slice(0,5);
+
+
+    document
+    .getElementById("scheduleLocation")
+    .value =
+    item.location || "";
+
+
+    document
+    .getElementById("scheduleNotes")
+    .value =
+    item.notes || "";
+
+
+    document
+    .getElementById("scheduleModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   حفظ الحصة
+===================================================== */
+
+window.saveSchedule =
+async function(){
+
+    const id =
+    document
+    .getElementById("scheduleId")
+    .value;
+
+
+    const scheduleData = {
+
+        day_name:
+        document
+        .getElementById("scheduleDay")
+        .value,
+
+        category:
+        document
+        .getElementById("scheduleCategory")
+        .value,
+
+        group_name:
+        document
+        .getElementById("scheduleGroup")
+        .value,
+
+        coach:
+        document
+        .getElementById("scheduleCoach")
+        .value
+        .trim(),
+
+        start_time:
+        document
+        .getElementById("scheduleStart")
+        .value,
+
+        end_time:
+        document
+        .getElementById("scheduleEnd")
+        .value,
+
+        location:
+        document
+        .getElementById("scheduleLocation")
+        .value
+        .trim(),
+
+        notes:
+        document
+        .getElementById("scheduleNotes")
+        .value
+        .trim(),
+
+        updated_at:
+        new Date().toISOString()
+
+    };
+
+
+    if(
+        !scheduleData.category ||
+        !scheduleData.coach ||
+        !scheduleData.start_time ||
+        !scheduleData.end_time
+    ){
+
+        alert(
+            "أكمل بيانات الحصة أولاً"
+        );
+
+        return;
+
+    }
+
+
+    if(id){
+
+        const {
+            error
+        } =
+        await supabase
+        .from("training_schedule")
+        .update(scheduleData)
+        .eq("id",id);
+
+
+        if(error){
+
+            alert(
+                "تعذر تعديل الحصة ❌"
+            );
+
+            return;
+
+        }
+
+    }else{
+
+        const {
+            error
+        } =
+        await supabase
+        .from("training_schedule")
+        .insert(scheduleData);
+
+
+        if(error){
+
+            alert(
+                "تعذر إضافة الحصة ❌"
+            );
+
+            return;
+
+        }
+
+    }
+
+
+    closeModal("scheduleModal");
+
+    await loadSchedule();
+
+};
+
+
+/* =====================================================
+   الفئات
+===================================================== */
+
+window.renderCategories =
+function(){
+
+    const buttons =
+    document
+    .getElementById("categoryButtons");
+
+
+    buttons.innerHTML =
+    CATEGORIES
+    .map(
+        (category,index) => {
+
+            const count =
+            players.filter(
+                player =>
+                player.current_category === category
+            ).length;
+
+
+            return `
+
+            <button
+            class="categoryButton"
+            onclick="showCategoryPlayers('${category}')"
+            >
+
+                <span class="categoryTitle">
+
+                ${category}
+
+                </span>
+
+                <span class="categoryNumber">
+
+                ${count}
+
+                </span>
+
+            </button>
+
+            `;
+
+        }
+    )
+    .join("");
+
+};
+
+
+window.showCategoryPlayers =
+function(category){
+
+    const container =
+    document
+    .getElementById("categoryPlayers");
+
+
+    const filtered =
+    players.filter(
+        player =>
+        player.current_category === category
+    );
+
+
+    if(!filtered.length){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+        لا يوجد لاعبين في فئة ${category}
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    filtered
+    .map(
+        player => `
+
+        <div class="playerCard">
+
+            <h3>
+            👤 ${escapeHtml(
+                player.player_name
+            )}
+            </h3>
+
+            <div class="playerInfo">
+
+                <strong>
+                المدرب
+                </strong>
+
+                <span>
+                ${escapeHtml(
+                    player.current_coach || "-"
+                )}
+                </span>
+
+            </div>
+
+            ${
+                player.current_group
+                ?
+                `<div class="playerInfo">
+                <strong>نوع الفئة</strong>
+                <span>
+                ${escapeHtml(
+                    player.current_group
+                )}
+                </span>
+                </div>`
+                :
+                ""
+            }
+
+        </div>
+
+        `
+    )
+    .join("");
+
+};
+
+
+/* =====================================================
+   المدربين
+===================================================== */
+
+window.renderCoaches =
+function(){
+
+    const container =
+    document
+    .getElementById("coachesContainer");
+
+
+    const coaches = {};
+
+
+    players.forEach(player => {
+
+        const coach =
+        player.current_coach ||
+        "غير محدد";
+
+
+        if(!coaches[coach]){
+
+            coaches[coach] = [];
+
+        }
+
+
+        coaches[coach].push(player);
+
+    });
+
+
+    /* المدربين من الجدول */
+
+    schedule.forEach(item => {
+
+        const coach =
+        item.coach ||
+        "غير محدد";
+
+
+        if(!coaches[coach]){
+
+            coaches[coach] = [];
+
+        }
+
+    });
+
+
+    const names =
+    Object.keys(coaches);
+
+
+    if(!names.length){
+
+        container.innerHTML =
+        `
+        <div class="empty">
+        لا يوجد مدربين مسجلين حتى الآن.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    names
+    .map(
+        coach => `
+
+        <div class="playerCard">
+
+            <h3>
+            👨‍🏫
+            ${escapeHtml(coach)}
+            </h3>
+
+            <p style="color:#777;">
+
+            عدد اللاعبين الحاليين:
+            ${coaches[coach].length}
+
+            </p>
+
+        </div>
+
+        `
+    )
+    .join("");
+
+};
+
+
+/* =====================================================
+   الطلبات
+===================================================== */
+
+async function loadRegistrations(){
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("registration")
+    .select("*")
+    .order("id",{
+        ascending:false
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    registrations =
+    data || [];
+
+
+    const pending =
+    registrations.filter(
+        item =>
+        !item.status ||
+        item.status === "pending"
+    );
+
+
+    const accepted =
+    registrations.filter(
+        item =>
+        item.status === "accepted"
+    );
+
+
+    const rejected =
+    registrations.filter(
+        item =>
+        item.status === "rejected"
+    );
+
+
+    document
+    .getElementById("totalCount")
+    .innerText =
+    registrations.length;
+
+
+    document
+    .getElementById("pendingCount")
+    .innerText =
+    pending.length;
+
+
+    document
+    .getElementById("acceptedCount")
+    .innerText =
+    accepted.length;
+
+
+    document
+    .getElementById("pendingSectionCount")
+    .innerText =
+    pending.length;
+
+
+    document
+    .getElementById("acceptedSectionCount")
+    .innerText =
+    accepted.length;
+
+
+    document
+    .getElementById("rejectedSectionCount")
+    .innerText =
+    rejected.length;
+
+
+    showRegistrationCategory(
+        "pending"
+    );
+
+}
+
+
+/* =====================================================
+   عرض الطلبات
+===================================================== */
+
+window.showRegistrationCategory =
+function(category,button){
+
+    document
+    .querySelectorAll(
+        "#registrations .categoryButton"
+    )
+    .forEach(
+        btn =>
+        btn.classList.remove("active")
+    );
+
+
+    if(button){
+
+        button.classList.add("active");
+
+    }else{
+
+        document
+        .querySelector(
+            "#registrations .categoryButton"
+        )
+        ?.classList
+        .add("active");
+
+    }
+
+
+    let list;
+
+
+    if(category === "pending"){
+
+        list =
+        registrations.filter(
+            item =>
+            !item.status ||
+            item.status === "pending"
+        );
+
+    }
+
+    else if(category === "accepted"){
+
+        list =
+        registrations.filter(
+            item =>
+            item.status === "accepted"
+        );
+
+    }
+
+    else{
+
+        list =
+        registrations.filter(
+            item =>
+            item.status === "rejected"
+        );
+
+    }
+
+
+    const container =
+    document
+    .getElementById("registrationContainer");
+
+
+    if(!list.length){
+
+        container.innerHTML =
+        `
+        <div class="card empty">
+        لا توجد طلبات في هذا القسم.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    list
+    .map(
+        item => `
+
+        <div class="registration">
+
+            <h3>
+            👤
+            ${escapeHtml(
+                item.player_name || "بدون اسم"
+            )}
+            </h3>
+
+
+            <div class="info">
+
+                <div class="infoBox">
+
+                    <strong>
+                    🎂 تاريخ الميلاد
+                    </strong>
+
+                    <span>
+                    ${escapeHtml(
+                        item.birth_date || "-"
+                    )}
+                    </span>
+
+                </div>
+
+
+                <div class="infoBox">
+
+                    <strong>
+                    العمر
+                    </strong>
+
+                    <span>
+                    ${escapeHtml(
+                        String(item.age || "-")
+                    )}
+                    </span>
+
+                </div>
+
+
+                <div class="infoBox">
+
+                    <strong>
+                    👨‍👦 ولي الأمر
+                    </strong>
+
+                    <span>
+                    ${escapeHtml(
+                        item.guardian_name || "-"
+                    )}
+                    </span>
+
+                </div>
+
+
+                <div class="infoBox">
+
+                    <strong>
+                    📱 الجوال
+                    </strong>
+
+                    <span>
+                    ${escapeHtml(
+                        item.phone || "-"
+                    )}
+                    </span>
+
+                </div>
+
+            </div>
+
+
+            <div class="actions">
+
+                ${
+                    item.status !== "accepted"
+                    ?
+                    `
+                    <button
+                    class="green"
+                    onclick="acceptRegistration(${item.id})"
+                    >
+                    🟢 قبول اللاعب
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    item.status !== "rejected"
+                    ?
+                    `
+                    <button
+                    class="red"
+                    onclick="rejectRegistration(${item.id})"
+                    >
+                    🔴 رفض
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+
+                ${
+                    item.status === "accepted"
+                    ?
+                    `
+                    <button
+                    class="primary"
+                    onclick="createPlayerFromRegistration(${item.id})"
+                    >
+                    👤 إضافة للاعبين
+                    </button>
+                    `
+                    :
+                    ""
+                }
+
+
+                <button
+                class="dark"
+                onclick="deleteRegistration(${item.id})"
+                >
+                🗑️ حذف
+                </button>
+
+            </div>
+
+        </div>
+
+        `
+    )
+    .join("");
+
+};
+
+
+/* =====================================================
+   قبول الطلب
+===================================================== */
 
 window.acceptRegistration =
 async function(id){
 
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-status:"accepted"
-})
-.eq("id",id);
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .update({
+        status:"accepted"
+    })
+    .eq("id",id);
 
 
-if(error){
+    if(error){
 
-console.error(error);
+        alert(
+            "تعذر قبول اللاعب ❌"
+        );
 
-alert(
-"تعذر قبول اللاعب ❌"
-);
+        return;
 
-return;
-
-}
+    }
 
 
-await loadRegistrations(true);
+    await loadRegistrations();
 
 };
 
 
-/* =========================
-   رفض اللاعب
-========================= */
+/* =====================================================
+   رفض الطلب
+===================================================== */
 
 window.rejectRegistration =
 async function(id){
 
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-status:"rejected"
-})
-.eq("id",id);
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .update({
+        status:"rejected"
+    })
+    .eq("id",id);
 
 
-if(error){
+    if(error){
 
-console.error(error);
+        alert(
+            "تعذر رفض الطلب ❌"
+        );
 
-alert(
-"تعذر رفض الطلب ❌"
-);
+        return;
 
-return;
-
-}
+    }
 
 
-await loadRegistrations(true);
+    await loadRegistrations();
 
 };
 
 
-/* =========================
-   فتح مربع الحذف
-========================= */
+/* =====================================================
+   تحويل طلب إلى لاعب
+===================================================== */
+
+window.createPlayerFromRegistration =
+async function(id){
+
+    const registration =
+    registrations.find(
+        item => item.id === id
+    );
+
+
+    if(!registration){
+
+        return;
+
+    }
+
+
+    fillCategorySelect(
+        "playerCategory"
+    );
+
+
+    document
+    .getElementById("playerModalTitle")
+    .innerText =
+    "إضافة اللاعب من الطلب";
+
+
+    document
+    .getElementById("playerId")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerName")
+    .value =
+    registration.player_name || "";
+
+
+    document
+    .getElementById("playerBirth")
+    .value =
+    registration.birth_date || "";
+
+
+    document
+    .getElementById("playerAge")
+    .value =
+    registration.age || "";
+
+
+    document
+    .getElementById("playerGuardian")
+    .value =
+    registration.guardian_name || "";
+
+
+    document
+    .getElementById("playerPhone")
+    .value =
+    registration.phone || "";
+
+
+    document
+    .getElementById("playerCategory")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerGroup")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerCoach")
+    .value =
+    "";
+
+
+    document
+    .getElementById("playerStatus")
+    .value =
+    "active";
+
+
+    document
+    .getElementById("playerNotes")
+    .value =
+    registration.notes || "";
+
+
+    document
+    .getElementById("playerModal")
+    .style.display =
+    "flex";
+
+};
+
+
+/* =====================================================
+   حذف الطلب
+===================================================== */
 
 window.deleteRegistration =
-function(id){
+async function(id){
 
-deleteId = id;
+    if(
+        !confirm(
+            "هل أنت متأكد من حذف الطلب؟"
+        )
+    ){
 
-confirmModal.style.display =
-"flex";
+        return;
+
+    }
+
+
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .delete()
+    .eq("id",id);
+
+
+    if(error){
+
+        alert(
+            "تعذر حذف الطلب ❌"
+        );
+
+        return;
+
+    }
+
+
+    await loadRegistrations();
 
 };
 
 
-/* =========================
-   إلغاء الحذف
-========================= */
+/* =====================================================
+   إغلاق النوافذ
+===================================================== */
 
-cancelDelete.addEventListener(
-"click",
-function(){
+window.closeModal =
+function(id){
 
-deleteId = null;
+    document
+    .getElementById(id)
+    .style.display =
+    "none";
 
-confirmModal.style.display =
-"none";
-
-});
+};
 
 
-/* =========================
-   تأكيد الحذف
-========================= */
+/* =====================================================
+   تحويل الوقت
+===================================================== */
 
-confirmDelete.addEventListener(
-"click",
-async function(){
+function formatTime(time){
 
-if(!deleteId){
+    if(!time){
 
-return;
+        return "";
+
+    }
+
+
+    let [hour,minute] =
+    time.split(":")
+    .map(Number);
+
+
+    const period =
+    hour >= 12
+    ?
+    "م"
+    :
+    "ص";
+
+
+    let h =
+    hour % 12;
+
+
+    if(h === 0){
+
+        h = 12;
+
+    }
+
+
+    return (
+        h +
+        ":" +
+        String(minute).padStart(2,"0") +
+        " " +
+        period
+    );
 
 }
 
 
-const id =
-deleteId;
+/* =====================================================
+   حماية عرض النصوص
+===================================================== */
+
+function escapeHtml(value){
+
+    if(value === null || value === undefined){
+
+        return "";
+
+    }
 
 
-deleteId = null;
+    return String(value)
 
+    .replaceAll("&","&amp;")
 
-confirmModal.style.display =
-"none";
+    .replaceAll("<","&lt;")
 
+    .replaceAll(">","&gt;")
 
-const {
-error
-} =
-await supabase
-.from("registration")
-.delete()
-.eq("id",id);
+    .replaceAll('"',"&quot;")
 
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر حذف الطلب ❌"
-);
-
-return;
+    .replaceAll("'","&#039;");
 
 }
 
 
-await loadRegistrations(true);
+/* =====================================================
+   إغلاق النافذة عند الضغط خارجها
+===================================================== */
+
+document
+.querySelectorAll(".modal")
+.forEach(modal => {
+
+    modal.addEventListener(
+        "click",
+        function(event){
+
+            if(event.target === modal){
+
+                modal.style.display =
+                "none";
+
+            }
+
+        }
+    );
 
 });
 
 
-/* =========================
+/* =====================================================
    تشغيل
-========================= */
+===================================================== */
+
+fillCategorySelect("playerCategory");
+
+fillCategorySelect("transferCategory");
+
+fillCategorySelect("scheduleCategory");
 
 checkSession();
 
 
 supabase.auth.onAuthStateChange(
-(event, session) => {
+    (event,session) => {
 
-if(session){
+        if(session){
 
-loginBox.style.display =
-"none";
+            checkAdmin();
 
-adminPanel.style.display =
-"block";
+        }else{
 
-}else{
+            adminPanel.style.display =
+            "none";
 
-loginBox.style.display =
-"block";
+            loginBox.style.display =
+            "flex";
 
-adminPanel.style.display =
-"none";
+        }
 
-}
-
-}
+    }
 );
 
 </script>
 
-
 </body>
 
 </html>
-```
-
