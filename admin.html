@@ -16,14 +16,11 @@
 body{
     margin:0;
     font-family:Arial,Tahoma,sans-serif;
-    background:#f5f6f8;
+    background:#f4f6f8;
     color:#1f2937;
 }
 
-button,
-input,
-select,
-textarea{
+button,input,select,textarea{
     font-family:inherit;
 }
 
@@ -31,157 +28,154 @@ button{
     cursor:pointer;
 }
 
-.container{
-    max-width:1400px;
-    margin:auto;
-    padding:30px 20px;
+.app{
+    min-height:100vh;
+    display:flex;
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar{
+    width:245px;
+    background:#111827;
+    color:white;
+    position:fixed;
+    right:0;
+    top:0;
+    bottom:0;
+    padding:25px 15px;
+    z-index:100;
+}
+
+.logo{
+    font-size:22px;
+    font-weight:bold;
+    padding:10px 12px 30px;
+}
+
+.logo span{
+    color:#ff6900;
+}
+
+.navButton{
+    width:100%;
+    border:0;
+    background:transparent;
+    color:#cbd5e1;
+    padding:14px;
+    text-align:right;
+    border-radius:10px;
+    margin-bottom:7px;
+    font-size:15px;
+}
+
+.navButton:hover,
+.navButton.active{
+    background:#ff6900;
+    color:white;
+}
+
+/* =========================
+   MAIN
+========================= */
+
+.main{
+    margin-right:245px;
+    width:calc(100% - 245px);
+    padding:30px;
+}
+
+.topbar{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:25px;
+}
+
+.topbar h1{
+    margin:0;
+    font-size:28px;
+}
+
+.topbar h1 span{
+    color:#ff6900;
+}
+
+.logout{
+    background:#111827;
+    color:white;
+    border:0;
+    padding:11px 18px;
+    border-radius:9px;
 }
 
 /* =========================
    LOGIN
 ========================= */
 
+.loginPage{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#f4f6f8;
+    padding:20px;
+}
+
 .loginBox{
-    max-width:450px;
-    margin:80px auto;
-    background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
+    width:100%;
+    max-width:430px;
+    background:white;
     padding:35px;
+    border-radius:18px;
     box-shadow:0 15px 45px rgba(0,0,0,.08);
 }
 
-.loginLogo{
+.loginBox h1{
     text-align:center;
-    margin-bottom:30px;
 }
 
-.loginLogo h1{
-    margin:0;
-    font-size:28px;
-}
-
-.orange{
+.loginBox h1 span{
     color:#ff6900;
 }
 
-.loginLogo p{
-    color:#777;
-    margin-top:10px;
-}
-
-input,
-select,
-textarea{
+.input{
     width:100%;
-    border:1px solid #ddd;
-    background:#fff;
     padding:13px;
+    border:1px solid #ddd;
     border-radius:9px;
+    margin-bottom:13px;
     outline:none;
-    font-size:15px;
+    background:#fff;
 }
 
-input:focus,
-select:focus,
-textarea:focus{
+.input:focus{
     border-color:#ff6900;
 }
 
-.formGroup{
-    margin-bottom:15px;
-}
-
-.formGroup label{
-    display:block;
-    margin-bottom:7px;
-    font-weight:bold;
-    font-size:14px;
-}
-
-.loginButton{
+.loginBtn{
     width:100%;
     background:#ff6900;
-    color:#fff;
+    color:white;
     border:0;
     padding:14px;
     border-radius:9px;
+    font-weight:bold;
     font-size:16px;
-    font-weight:bold;
-}
-
-.loginMessage{
-    text-align:center;
-    margin-top:15px;
-    font-weight:bold;
 }
 
 /* =========================
-   ADMIN
+   PAGES
 ========================= */
 
-#adminPanel{
+.page{
     display:none;
 }
 
-.header{
-    background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:18px;
-    padding:22px 25px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    gap:15px;
-    margin-bottom:22px;
-}
-
-.header h1{
-    margin:0;
-    font-size:25px;
-}
-
-.header p{
-    color:#777;
-    margin:7px 0 0;
-}
-
-.logoutButton{
-    background:#1f2937;
-    color:#fff;
-    border:0;
-    padding:12px 20px;
-    border-radius:8px;
-}
-
-/* =========================
-   NAV
-========================= */
-
-.nav{
-    background:#fff;
-    border:1px solid #e5e7eb;
-    border-radius:15px;
-    padding:8px;
-    display:flex;
-    gap:5px;
-    margin-bottom:22px;
-    overflow-x:auto;
-}
-
-.navButton{
-    white-space:nowrap;
-    border:0;
-    background:transparent;
-    padding:13px 20px;
-    border-radius:9px;
-    font-weight:bold;
-    color:#555;
-}
-
-.navButton.active{
-    background:#ff6900;
-    color:#fff;
+.page.active{
+    display:block;
 }
 
 /* =========================
@@ -192,143 +186,83 @@ textarea:focus{
     display:grid;
     grid-template-columns:repeat(4,1fr);
     gap:15px;
-    margin-bottom:22px;
+    margin-bottom:25px;
 }
 
 .stat{
-    background:#fff;
-    border:1px solid #e5e7eb;
+    background:white;
+    padding:22px;
     border-radius:15px;
-    padding:20px;
-}
-
-.statTitle{
-    color:#777;
-    font-size:14px;
+    border:1px solid #e5e7eb;
 }
 
 .statNumber{
     font-size:30px;
     font-weight:bold;
-    margin-top:8px;
     color:#ff6900;
 }
 
+.statTitle{
+    color:#6b7280;
+    margin-top:5px;
+}
+
 /* =========================
-   SECTIONS
+   PANEL
 ========================= */
 
-.adminSection{
-    display:none;
-}
-
-.adminSection.active{
-    display:block;
-}
-
 .panel{
-    background:#fff;
+    background:white;
     border:1px solid #e5e7eb;
-    border-radius:17px;
-    overflow:hidden;
+    border-radius:15px;
+    padding:22px;
+    margin-bottom:20px;
 }
 
 .panelHeader{
-    padding:20px 22px;
-    border-bottom:1px solid #eee;
     display:flex;
     justify-content:space-between;
     align-items:center;
     gap:15px;
+    margin-bottom:20px;
 }
 
 .panelHeader h2{
     margin:0;
-    font-size:20px;
-}
-
-.panelHeader p{
-    color:#777;
-    margin:6px 0 0;
-}
-
-.primaryButton{
-    background:#ff6900;
-    color:#fff;
-    border:0;
-    padding:11px 18px;
-    border-radius:8px;
-    font-weight:bold;
-}
-
-.secondaryButton{
-    background:#f1f2f4;
-    color:#333;
-    border:0;
-    padding:10px 15px;
-    border-radius:8px;
-}
-
-.dangerButton{
-    background:#dc2626;
-    color:#fff;
-    border:0;
-    padding:10px 15px;
-    border-radius:8px;
-}
-
-.successButton{
-    background:#16a34a;
-    color:#fff;
-    border:0;
-    padding:10px 15px;
-    border-radius:8px;
 }
 
 /* =========================
-   REGISTRATION TABLE
+   TABLE
 ========================= */
 
 .tableWrap{
     overflow-x:auto;
 }
 
-.dataTable{
+table{
     width:100%;
     border-collapse:collapse;
-    min-width:1000px;
+    min-width:850px;
 }
 
-.dataTable th{
-    background:#f8f9fa;
-    color:#555;
-    font-size:13px;
+th{
+    background:#f3f4f6;
+    padding:14px;
     text-align:right;
-    padding:15px;
-    border-bottom:1px solid #e5e7eb;
+    font-size:14px;
 }
 
-.dataTable td{
-    padding:15px;
+td{
+    padding:14px;
     border-bottom:1px solid #eee;
     vertical-align:middle;
 }
 
-.dataTable tr:hover{
+tr:hover td{
     background:#fafafa;
 }
 
-.playerName{
-    font-weight:bold;
-}
-
-.subText{
-    color:#777;
-    font-size:13px;
-    margin-top:4px;
-}
-
-.statusBadge{
+.badge{
     display:inline-block;
     padding:6px 10px;
     border-radius:20px;
@@ -336,53 +270,72 @@ textarea:focus{
     font-weight:bold;
 }
 
-.statusPending{
+.badge.pending{
     background:#fff4e8;
-    color:#d85d00;
+    color:#d85b00;
 }
 
-.statusAccepted{
-    background:#eaf8ef;
-    color:#14853b;
+.badge.accepted{
+    background:#e9f9ef;
+    color:#087a35;
 }
 
-.statusRejected{
-    background:#f3f4f6;
+.badge.rejected{
+    background:#f1f1f1;
     color:#666;
 }
 
-.actionRow{
-    display:flex;
-    gap:7px;
-    flex-wrap:wrap;
+.badge.training{
+    background:#eef4ff;
+    color:#2755a5;
 }
 
-.smallButton{
+.badge.match{
+    background:#fff0f0;
+    color:#b42318;
+}
+
+/* =========================
+   BUTTONS
+========================= */
+
+.btn{
     border:0;
-    padding:8px 11px;
-    border-radius:7px;
-    font-size:12px;
+    padding:9px 13px;
+    border-radius:8px;
+    font-size:13px;
     font-weight:bold;
 }
 
-.acceptBtn{
-    background:#16a34a;
-    color:#fff;
+.btnOrange{
+    background:#ff6900;
+    color:white;
 }
 
-.rejectBtn{
-    background:#dc2626;
-    color:#fff;
+.btnGreen{
+    background:#08a045;
+    color:white;
 }
 
-.editBtn{
-    background:#f1f2f4;
+.btnRed{
+    background:#d92d20;
+    color:white;
+}
+
+.btnDark{
+    background:#374151;
+    color:white;
+}
+
+.btnLight{
+    background:#eef0f2;
     color:#333;
 }
 
-.deleteBtn{
-    background:#333;
-    color:#fff;
+.actions{
+    display:flex;
+    gap:6px;
+    flex-wrap:wrap;
 }
 
 /* =========================
@@ -391,10 +344,9 @@ textarea:focus{
 
 .filters{
     display:grid;
-    grid-template-columns:1fr 220px 220px;
-    gap:10px;
-    padding:18px;
-    border-bottom:1px solid #eee;
+    grid-template-columns:repeat(4,1fr);
+    gap:12px;
+    margin-bottom:20px;
 }
 
 /* =========================
@@ -402,116 +354,51 @@ textarea:focus{
 ========================= */
 
 .scheduleToolbar{
-    padding:18px;
     display:flex;
     gap:10px;
     flex-wrap:wrap;
-    border-bottom:1px solid #eee;
+    margin-bottom:20px;
 }
 
-.weekDays{
-    display:grid;
-    grid-template-columns:repeat(6,1fr);
-    min-width:1050px;
+.scheduleTable{
+    min-width:1100px;
 }
 
-.scheduleWrap{
-    overflow-x:auto;
+.scheduleTable th{
+    background:#111827;
+    color:white;
 }
 
-.dayColumn{
-    border-left:1px solid #eee;
-    min-height:500px;
+.scheduleTable td{
+    height:70px;
 }
 
-.dayColumn:last-child{
-    border-left:0;
-}
-
-.dayHeader{
-    background:#f7f8fa;
-    padding:16px 10px;
-    text-align:center;
+.timeCell{
     font-weight:bold;
-    border-bottom:1px solid #eee;
+    white-space:nowrap;
 }
 
-.trainingRow{
-    margin:10px;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    padding:12px;
-    background:#fff;
+.scheduleItem{
+    border-right:4px solid #ff6900;
+    background:#fff8f2;
+    padding:10px;
+    border-radius:8px;
 }
 
-.trainingTime{
-    color:#ff6900;
-    font-weight:bold;
-    font-size:14px;
+.scheduleItem.match{
+    border-right-color:#d92d20;
+    background:#fff5f5;
 }
 
-.trainingCategory{
-    font-weight:bold;
-    margin-top:7px;
+.scheduleItem strong{
+    display:block;
+    margin-bottom:5px;
 }
 
-.trainingCoach{
+.scheduleItem small{
     color:#666;
-    font-size:13px;
-    margin-top:6px;
-}
-
-.trainingPath{
-    display:inline-block;
-    margin-top:8px;
-    background:#f3f4f6;
-    padding:4px 7px;
-    border-radius:5px;
-    font-size:11px;
-}
-
-.trainingActions{
-    display:flex;
-    gap:5px;
-    margin-top:10px;
-}
-
-.trainingActions button{
-    flex:1;
-    border:0;
-    padding:7px;
-    border-radius:6px;
-    font-size:11px;
-}
-
-/* =========================
-   MATCHES
-========================= */
-
-.matchList{
-    padding:20px;
-    display:grid;
-    gap:12px;
-}
-
-.matchRow{
-    border:1px solid #e5e7eb;
-    border-radius:12px;
-    padding:16px;
-    display:grid;
-    grid-template-columns:1.2fr 1fr 1fr 1fr auto;
-    gap:15px;
-    align-items:center;
-}
-
-.matchLabel{
-    color:#777;
-    font-size:12px;
-}
-
-.matchValue{
-    font-weight:bold;
-    margin-top:5px;
+    display:block;
+    margin-bottom:4px;
 }
 
 /* =========================
@@ -522,8 +409,8 @@ textarea:focus{
     display:none;
     position:fixed;
     inset:0;
-    background:rgba(0,0,0,.45);
-    z-index:9999;
+    background:rgba(0,0,0,.5);
+    z-index:999;
     align-items:center;
     justify-content:center;
     padding:20px;
@@ -535,44 +422,64 @@ textarea:focus{
 
 .modalBox{
     width:100%;
-    max-width:650px;
-    background:#fff;
-    border-radius:17px;
+    max-width:600px;
+    background:white;
+    border-radius:18px;
     padding:25px;
-    box-shadow:0 25px 70px rgba(0,0,0,.25);
     max-height:90vh;
-    overflow-y:auto;
+    overflow:auto;
 }
 
-.modalBox h2{
-    margin-top:0;
+.modalHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:20px;
+}
+
+.modalHeader h2{
+    margin:0;
+}
+
+.close{
+    border:0;
+    background:#eee;
+    width:35px;
+    height:35px;
+    border-radius:50%;
 }
 
 .formGrid{
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:15px;
+    gap:12px;
 }
 
-.full{
+.formGroup{
+    margin-bottom:13px;
+}
+
+.formGroup.full{
     grid-column:1/-1;
 }
 
-.modalActions{
-    display:flex;
-    gap:10px;
-    justify-content:flex-start;
-    margin-top:20px;
+.formGroup label{
+    display:block;
+    font-size:13px;
+    font-weight:bold;
+    margin-bottom:6px;
 }
 
-/* =========================
-   EMPTY
-========================= */
+textarea.input{
+    min-height:90px;
+    resize:vertical;
+}
 
-.empty{
-    text-align:center;
-    padding:60px 20px;
-    color:#888;
+.modalFooter{
+    display:flex;
+    justify-content:flex-end;
+    gap:8px;
+    margin-top:15px;
 }
 
 /* =========================
@@ -581,595 +488,462 @@ textarea:focus{
 
 @media(max-width:900px){
 
+    .sidebar{
+        width:200px;
+    }
+
+    .main{
+        margin-right:200px;
+        width:calc(100% - 200px);
+    }
+
     .stats{
         grid-template-columns:repeat(2,1fr);
+    }
+
+    .filters{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .sidebar{
+        position:relative;
+        width:100%;
+        height:auto;
+    }
+
+    .app{
+        display:block;
+    }
+
+    .main{
+        margin:0;
+        width:100%;
+        padding:15px;
+    }
+
+    .stats{
+        grid-template-columns:1fr 1fr;
     }
 
     .filters{
         grid-template-columns:1fr;
     }
 
-    .matchRow{
-        grid-template-columns:1fr 1fr;
-    }
-
-}
-
-@media(max-width:600px){
-
-    .container{
-        padding:15px 10px;
-    }
-
-    .header{
-        flex-direction:column;
-        align-items:stretch;
-    }
-
-    .header h1{
-        font-size:21px;
-    }
-
-    .stats{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .stat{
-        padding:15px;
-    }
-
-    .statNumber{
-        font-size:24px;
+    .topbar{
+        gap:10px;
+        align-items:flex-start;
     }
 
     .formGrid{
         grid-template-columns:1fr;
     }
 
-    .full{
+    .formGroup.full{
         grid-column:auto;
-    }
-
-    .matchRow{
-        grid-template-columns:1fr;
     }
 
 }
 
 </style>
-
 </head>
 
 <body>
-
-<div class="container">
 
 <!-- =========================
      LOGIN
 ========================= -->
 
-<div id="loginBox" class="loginBox">
+<div id="loginPage" class="loginPage">
 
-<div class="loginLogo">
+    <div class="loginBox">
 
-<h1>
-إدارة <span class="orange">عصر الاحتراف</span>
-</h1>
+        <h1>
+            إدارة <span>عصر الاحتراف</span>
+        </h1>
 
-<p>
-تسجيل الدخول إلى لوحة الإدارة
-</p>
+        <p style="text-align:center;color:#777;">
+            تسجيل دخول لوحة الإدارة
+        </p>
 
-</div>
+        <input
+            id="email"
+            class="input"
+            type="email"
+            placeholder="البريد الإلكتروني"
+        >
 
-<div class="formGroup">
+        <input
+            id="password"
+            class="input"
+            type="password"
+            placeholder="كلمة المرور"
+        >
 
-<label>الإيميل</label>
+        <button
+            id="loginBtn"
+            class="loginBtn"
+        >
+            تسجيل الدخول
+        </button>
 
-<input
-id="adminEmail"
-type="email"
-placeholder="إيميل الأدمن"
-value="hate.555094@gmail.com"
->
+        <p
+            id="loginMessage"
+            style="text-align:center;font-weight:bold;"
+        ></p>
 
-</div>
-
-<div class="formGroup">
-
-<label>كلمة المرور</label>
-
-<input
-id="adminPassword"
-type="password"
-placeholder="كلمة المرور"
->
-
-</div>
-
-<button
-id="loginBtn"
-class="loginButton"
->
-دخول إلى لوحة الإدارة
-</button>
-
-<div
-id="loginMessage"
-class="loginMessage"
-></div>
+    </div>
 
 </div>
 
 
 <!-- =========================
-     ADMIN
+     APP
 ========================= -->
 
-<div id="adminPanel">
+<div id="app" class="app" style="display:none;">
+
+    <!-- SIDEBAR -->
+
+    <aside class="sidebar">
+
+        <div class="logo">
+            عصر <span>الاحتراف ⚽</span>
+        </div>
+
+        <button
+            class="navButton active"
+            data-page="dashboard"
+        >
+            🏠 الرئيسية
+        </button>
+
+        <button
+            class="navButton"
+            data-page="players"
+        >
+            👥 اللاعبين
+        </button>
+
+        <button
+            class="navButton"
+            data-page="pending"
+        >
+            📨 الطلبات
+        </button>
+
+        <button
+            class="navButton"
+            data-page="schedule"
+        >
+            📅 جدول التدريب
+        </button>
+
+        <button
+            class="navButton"
+            data-page="matches"
+        >
+            ⚽ المباريات الودية
+        </button>
+
+    </aside>
+
+
+    <!-- MAIN -->
+
+    <main class="main">
+
+        <div class="topbar">
+
+            <h1>
+                لوحة تحكم
+                <span>عصر الاحتراف</span>
+            </h1>
+
+            <button
+                id="logoutBtn"
+                class="logout"
+            >
+                تسجيل الخروج
+            </button>
+
+        </div>
+
+
+        <!-- =========================
+             DASHBOARD
+        ========================= -->
+
+        <section
+            id="dashboard"
+            class="page active"
+        >
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div
+                        id="totalCount"
+                        class="statNumber"
+                    >
+                        0
+                    </div>
+                    <div class="statTitle">
+                        إجمالي الطلبات
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div
+                        id="pendingCount"
+                        class="statNumber"
+                    >
+                        0
+                    </div>
+                    <div class="statTitle">
+                        طلبات جديدة
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div
+                        id="acceptedCount"
+                        class="statNumber"
+                    >
+                        0
+                    </div>
+                    <div class="statTitle">
+                        اللاعبين المقبولين
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div
+                        id="scheduleCount"
+                        class="statNumber"
+                    >
+                        0
+                    </div>
+                    <div class="statTitle">
+                        مواعيد الجدول
+                    </div>
+                </div>
+
+            </div>
+
+
+            <div class="panel">
+
+                <div class="panelHeader">
+
+                    <h2>
+                        آخر الطلبات
+                    </h2>
+
+                    <button
+                        class="btn btnOrange"
+                        onclick="goPage('pending')"
+                    >
+                        عرض الطلبات
+                    </button>
+
+                </div>
+
+                <div
+                    id="recentPlayers"
+                    class="tableWrap"
+                >
+                    جاري التحميل...
+                </div>
 
-<div class="header">
+            </div>
 
-<div>
+        </section>
 
-<h1>
-لوحة تحكم <span class="orange">عصر الاحتراف ⚽</span>
-</h1>
 
-<p>
-إدارة اللاعبين والجدول الأسبوعي والمباريات
-</p>
+        <!-- =========================
+             PLAYERS
+        ========================= -->
 
-</div>
+        <section
+            id="players"
+            class="page"
+        >
 
-<button
-id="logoutBtn"
-class="logoutButton"
->
-تسجيل الخروج
-</button>
+            <div class="panel">
 
-</div>
+                <div class="panelHeader">
 
+                    <h2>
+                        اللاعبين
+                    </h2>
 
-<!-- NAV -->
+                </div>
 
-<div class="nav">
+                <div class="filters">
 
-<button
-class="navButton active"
-onclick="openSection('dashboard',this)"
->
-📊 الرئيسية
-</button>
+                    <input
+                        id="playerSearch"
+                        class="input"
+                        placeholder="بحث باسم اللاعب..."
+                    >
 
-<button
-class="navButton"
-onclick="openSection('players',this)"
->
-👥 اللاعبين
-</button>
+                    <select
+                        id="categoryFilter"
+                        class="input"
+                    >
+                        <option value="">كل الفئات</option>
+                        <option>2020–2021</option>
+                        <option>2019–2018</option>
+                        <option>2017–2016</option>
+                        <option>2015–2014</option>
+                        <option>2013–2012</option>
+                        <option>2011–2009</option>
+                    </select>
 
-<button
-class="navButton"
-onclick="openSection('schedule',this)"
->
-📅 الجدول الأسبوعي
-</button>
+                    <select
+                        id="pathwayFilter"
+                        class="input"
+                    >
+                        <option value="">كل المسارات</option>
+                        <option>التميز اللياقي</option>
+                        <option>التطوير</option>
+                    </select>
 
-<button
-class="navButton"
-onclick="openSection('matches',this)"
->
-⚽ المباريات الودية
-</button>
+                </div>
 
-</div>
+                <div
+                    id="playersTable"
+                    class="tableWrap"
+                >
+                    جاري التحميل...
+                </div>
 
+            </div>
 
-<!-- =========================
-     DASHBOARD
-========================= -->
+        </section>
 
-<section
-id="dashboard"
-class="adminSection active"
->
 
-<div class="stats">
+        <!-- =========================
+             PENDING
+        ========================= -->
 
-<div class="stat">
+        <section
+            id="pending"
+            class="page"
+        >
 
-<div class="statTitle">
-إجمالي اللاعبين والطلبات
-</div>
+            <div class="panel">
 
-<div
-id="totalCount"
-class="statNumber"
->
-0
-</div>
+                <div class="panelHeader">
 
-</div>
+                    <h2>
+                        طلبات التسجيل
+                    </h2>
 
-<div class="stat">
+                </div>
 
-<div class="statTitle">
-طلبات جديدة
-</div>
+                <div
+                    id="requestsTable"
+                    class="tableWrap"
+                >
+                    جاري التحميل...
+                </div>
 
-<div
-id="pendingCount"
-class="statNumber"
->
-0
-</div>
+            </div>
 
-</div>
+        </section>
 
-<div class="stat">
 
-<div class="statTitle">
-المقبولون
-</div>
+        <!-- =========================
+             SCHEDULE
+        ========================= -->
 
-<div
-id="acceptedCount"
-class="statNumber"
->
-0
-</div>
+        <section
+            id="schedule"
+            class="page"
+        >
 
-</div>
+            <div class="panel">
 
-<div class="stat">
+                <div class="panelHeader">
 
-<div class="statTitle">
-المرفوضون
-</div>
+                    <h2>
+                        جدول التدريب
+                    </h2>
 
-<div
-id="rejectedCount"
-class="statNumber"
->
-0
-</div>
+                    <button
+                        class="btn btnOrange"
+                        onclick="openScheduleModal()"
+                    >
+                        + إضافة موعد
+                    </button>
 
-</div>
+                </div>
 
-</div>
+                <div class="scheduleToolbar">
 
+                    <button
+                        class="btn btnLight"
+                        onclick="loadSchedule()"
+                    >
+                        تحديث الجدول
+                    </button>
 
-<div class="panel">
+                </div>
 
-<div class="panelHeader">
+                <div
+                    id="scheduleTable"
+                    class="tableWrap"
+                >
+                    جاري تحميل الجدول...
+                </div>
 
-<div>
+            </div>
 
-<h2>
-نظرة سريعة
-</h2>
+        </section>
 
-<p>
-آخر الطلبات المسجلة في النظام
-</p>
 
-</div>
+        <!-- =========================
+             MATCHES
+        ========================= -->
 
-<button
-class="primaryButton"
-onclick="openSectionById('players')"
->
-إدارة اللاعبين
-</button>
+        <section
+            id="matches"
+            class="page"
+        >
 
-</div>
+            <div class="panel">
 
-<div
-id="dashboardRecent"
-class="tableWrap"
-></div>
+                <div class="panelHeader">
 
-</div>
+                    <h2>
+                        المباريات الودية
+                    </h2>
 
-</section>
+                    <button
+                        class="btn btnOrange"
+                        onclick="openMatchModal()"
+                    >
+                        + إضافة مباراة
+                    </button>
 
+                </div>
 
-<!-- =========================
-     PLAYERS
-========================= -->
+                <div
+                    id="matchesTable"
+                    class="tableWrap"
+                >
+                    جاري تحميل المباريات...
+                </div>
 
-<section
-id="players"
-class="adminSection"
->
+            </div>
 
-<div class="panel">
+        </section>
 
-<div class="panelHeader">
-
-<div>
-
-<h2>
-إدارة اللاعبين
-</h2>
-
-<p>
-قبول ورفض ونقل اللاعبين بين الفئات
-</p>
-
-</div>
-
-</div>
-
-
-<div class="filters">
-
-<input
-id="searchPlayer"
-placeholder="بحث باسم اللاعب أو ولي الأمر..."
-oninput="renderPlayers()"
->
-
-<select
-id="statusFilter"
-onchange="renderPlayers()"
->
-
-<option value="all">
-كل الحالات
-</option>
-
-<option value="pending">
-طلبات جديدة
-</option>
-
-<option value="accepted">
-المقبولون
-</option>
-
-<option value="rejected">
-المرفوضون
-</option>
-
-</select>
-
-<select
-id="categoryFilter"
-onchange="renderPlayers()"
->
-
-<option value="all">
-كل الفئات
-</option>
-
-</select>
-
-</div>
-
-
-<div
-id="playersTable"
-class="tableWrap"
->
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     SCHEDULE
-========================= -->
-
-<section
-id="schedule"
-class="adminSection"
->
-
-<div class="panel">
-
-<div class="panelHeader">
-
-<div>
-
-<h2>
-الجدول الأسبوعي
-</h2>
-
-<p>
-إدارة الحصص والأوقات والمدربين والفئات
-</p>
-
-</div>
-
-<button
-class="primaryButton"
-onclick="openScheduleModal()"
->
-+ إضافة حصة
-</button>
-
-</div>
-
-
-<div class="scheduleToolbar">
-
-<button
-class="secondaryButton"
-onclick="resetSchedule()"
->
-استعادة الجدول الأساسي
-</button>
-
-<button
-class="secondaryButton"
-onclick="openMatchModal()"
->
-+ إضافة مباراة ودية
-</button>
-
-</div>
-
-
-<div class="scheduleWrap">
-
-<div
-id="weekDays"
-class="weekDays"
-></div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- =========================
-     MATCHES
-========================= -->
-
-<section
-id="matches"
-class="adminSection"
->
-
-<div class="panel">
-
-<div class="panelHeader">
-
-<div>
-
-<h2>
-المباريات الودية
-</h2>
-
-<p>
-إضافة وتعديل المباريات الودية للفريق
-</p>
-
-</div>
-
-<button
-class="primaryButton"
-onclick="openMatchModal()"
->
-+ مباراة ودية
-</button>
-
-</div>
-
-
-<div
-id="matchesList"
-class="matchList"
-></div>
-
-</div>
-
-</section>
-
-</div>
-
-</div>
-
-
-<!-- =========================
-     PLAYER MODAL
-========================= -->
-
-<div
-id="playerModal"
-class="modal"
->
-
-<div class="modalBox">
-
-<h2>
-تعديل بيانات اللاعب
-</h2>
-
-<div class="formGrid">
-
-<div class="formGroup">
-
-<label>اسم اللاعب</label>
-
-<input id="editPlayerName">
-
-</div>
-
-<div class="formGroup">
-
-<label>تاريخ الميلاد</label>
-
-<input
-id="editBirthDate"
-type="date"
-onchange="updateSuggestedCategory()"
->
-
-</div>
-
-<div class="formGroup">
-
-<label>الفئة</label>
-
-<select id="editCategory"></select>
-
-</div>
-
-<div class="formGroup">
-
-<label>المسار</label>
-
-<select id="editPathway">
-
-<option value="">
-بدون مسار
-</option>
-
-<option value="التميز اللياقي">
-التميز اللياقي
-</option>
-
-<option value="التطويرية">
-التطويرية
-</option>
-
-</select>
-
-</div>
-
-</div>
-
-<div
-id="categorySuggestion"
-style="margin-top:10px;color:#777;font-size:13px;"
-></div>
-
-<div class="modalActions">
-
-<button
-class="primaryButton"
-onclick="savePlayerChanges()"
->
-حفظ التعديلات
-</button>
-
-<button
-class="secondaryButton"
-onclick="closeModal('playerModal')"
->
-إلغاء
-</button>
-
-</div>
-
-</div>
+    </main>
 
 </div>
 
@@ -1179,128 +953,178 @@ onclick="closeModal('playerModal')"
 ========================= -->
 
 <div
-id="scheduleModal"
-class="modal"
+    id="scheduleModal"
+    class="modal"
 >
 
-<div class="modalBox">
+    <div class="modalBox">
 
-<h2 id="scheduleModalTitle">
-إضافة حصة
-</h2>
+        <div class="modalHeader">
 
-<div class="formGrid">
+            <h2 id="scheduleModalTitle">
+                إضافة موعد تدريب
+            </h2>
 
-<div class="formGroup">
+            <button
+                class="close"
+                onclick="closeScheduleModal()"
+            >
+                ✕
+            </button>
 
-<label>اليوم</label>
+        </div>
 
-<select id="scheduleDay">
 
-<option>السبت</option>
-<option>الأحد</option>
-<option>الاثنين</option>
-<option>الثلاثاء</option>
-<option>الأربعاء</option>
-<option>الخميس</option>
+        <input
+            type="hidden"
+            id="scheduleId"
+        >
 
-</select>
+        <div class="formGrid">
 
-</div>
+            <div class="formGroup">
 
-<div class="formGroup">
+                <label>
+                    الفئة
+                </label>
 
-<label>الفئة</label>
+                <select
+                    id="scheduleCategory"
+                    class="input"
+                >
+                    <option value="">اختر الفئة</option>
+                    <option>2020–2021</option>
+                    <option>2019–2018</option>
+                    <option>2017–2016</option>
+                    <option>2015–2014</option>
+                    <option>2013–2012</option>
+                    <option>2011–2009</option>
+                </select>
 
-<select id="scheduleCategory">
+            </div>
 
-<option>2020–2021</option>
-<option>2018–2019</option>
-<option>2016–2017</option>
-<option>2014–2015</option>
-<option>2012–2013</option>
-<option>2011–2009</option>
 
-</select>
+            <div class="formGroup">
 
-</div>
+                <label>
+                    المسار
+                </label>
 
-<div class="formGroup">
+                <select
+                    id="schedulePathway"
+                    class="input"
+                >
+                    <option value="">بدون مسار</option>
+                    <option>التميز اللياقي</option>
+                    <option>التطوير</option>
+                </select>
 
-<label>المسار</label>
+            </div>
 
-<select id="schedulePathway">
 
-<option value="">
-بدون مسار
-</option>
+            <div class="formGroup">
 
-<option value="التميز اللياقي">
-التميز اللياقي
-</option>
+                <label>
+                    اليوم
+                </label>
 
-<option value="التطويرية">
-التطويرية
-</option>
+                <select
+                    id="scheduleDay"
+                    class="input"
+                >
+                    <option>السبت</option>
+                    <option>الأحد</option>
+                    <option>الاثنين</option>
+                    <option>الثلاثاء</option>
+                    <option>الأربعاء</option>
+                    <option>الخميس</option>
+                    <option>الجمعة</option>
+                </select>
 
-</select>
+            </div>
 
-</div>
 
-<div class="formGroup">
+            <div class="formGroup">
 
-<label>المدرب</label>
+                <label>
+                    المدرب
+                </label>
 
-<input
-id="scheduleCoach"
-placeholder="مثال: كوتش يحيى"
->
+                <input
+                    id="scheduleCoach"
+                    class="input"
+                    placeholder="اسم المدرب"
+                >
 
-</div>
+            </div>
 
-<div class="formGroup">
 
-<label>من الساعة</label>
+            <div class="formGroup">
 
-<input
-id="scheduleStart"
-type="time"
->
+                <label>
+                    من الساعة
+                </label>
 
-</div>
+                <input
+                    id="scheduleStart"
+                    class="input"
+                    type="time"
+                >
 
-<div class="formGroup">
+            </div>
 
-<label>إلى الساعة</label>
 
-<input
-id="scheduleEnd"
-type="time"
->
+            <div class="formGroup">
 
-</div>
+                <label>
+                    إلى الساعة
+                </label>
 
-</div>
+                <input
+                    id="scheduleEnd"
+                    class="input"
+                    type="time"
+                >
 
-<div class="modalActions">
+            </div>
 
-<button
-class="primaryButton"
-onclick="saveSchedule()"
->
-حفظ
-</button>
 
-<button
-class="secondaryButton"
-onclick="closeModal('scheduleModal')"
->
-إلغاء
-</button>
+            <div class="formGroup full">
 
-</div>
+                <label>
+                    ملاحظات
+                </label>
 
-</div>
+                <textarea
+                    id="scheduleNotes"
+                    class="input"
+                    placeholder="ملاحظات اختيارية"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="modalFooter">
+
+            <button
+                class="btn btnLight"
+                onclick="closeScheduleModal()"
+            >
+                إلغاء
+            </button>
+
+            <button
+                class="btn btnOrange"
+                onclick="saveSchedule()"
+            >
+                حفظ
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -1310,112 +1134,175 @@ onclick="closeModal('scheduleModal')"
 ========================= -->
 
 <div
-id="matchModal"
-class="modal"
+    id="matchModal"
+    class="modal"
 >
 
-<div class="modalBox">
+    <div class="modalBox">
 
-<h2 id="matchModalTitle">
-إضافة مباراة ودية
-</h2>
+        <div class="modalHeader">
 
-<div class="formGrid">
+            <h2 id="matchModalTitle">
+                إضافة مباراة ودية
+            </h2>
 
-<div class="formGroup">
+            <button
+                class="close"
+                onclick="closeMatchModal()"
+            >
+                ✕
+            </button>
 
-<label>التاريخ</label>
+        </div>
 
-<input
-id="matchDate"
-type="date"
->
 
-</div>
+        <input
+            type="hidden"
+            id="matchId"
+        >
 
-<div class="formGroup">
+        <div class="formGrid">
 
-<label>الوقت</label>
+            <div class="formGroup">
 
-<input
-id="matchTime"
-type="time"
->
+                <label>
+                    الفئة
+                </label>
 
-</div>
+                <select
+                    id="matchCategory"
+                    class="input"
+                >
+                    <option value="">اختر الفئة</option>
+                    <option>2020–2021</option>
+                    <option>2019–2018</option>
+                    <option>2017–2016</option>
+                    <option>2015–2014</option>
+                    <option>2013–2012</option>
+                    <option>2011–2009</option>
+                </select>
 
-<div class="formGroup">
+            </div>
 
-<label>الفئة</label>
 
-<select id="matchCategory">
+            <div class="formGroup">
 
-<option>2020–2021</option>
-<option>2018–2019</option>
-<option>2016–2017</option>
-<option>2014–2015</option>
-<option>2012–2013</option>
-<option>2011–2009</option>
+                <label>
+                    الخصم
+                </label>
 
-</select>
+                <input
+                    id="matchOpponent"
+                    class="input"
+                    placeholder="اسم الفريق الخصم"
+                >
 
-</div>
+            </div>
 
-<div class="formGroup">
 
-<label>الملعب</label>
+            <div class="formGroup">
 
-<input
-id="matchVenue"
-placeholder="اسم الملعب"
->
+                <label>
+                    اليوم
+                </label>
 
-</div>
+                <select
+                    id="matchDay"
+                    class="input"
+                >
+                    <option>السبت</option>
+                    <option>الأحد</option>
+                    <option>الاثنين</option>
+                    <option>الثلاثاء</option>
+                    <option>الأربعاء</option>
+                    <option>الخميس</option>
+                    <option>الجمعة</option>
+                </select>
 
-<div class="formGroup full">
+            </div>
 
-<label>الفريق المنافس</label>
 
-<input
-id="matchOpponent"
-placeholder="مثال: أكاديمية النخبة"
->
+            <div class="formGroup">
 
-</div>
+                <label>
+                    المدرب
+                </label>
 
-<div class="formGroup full">
+                <input
+                    id="matchCoach"
+                    class="input"
+                    placeholder="المدرب المسؤول"
+                >
 
-<label>ملاحظات</label>
+            </div>
 
-<textarea
-id="matchNotes"
-rows="3"
-placeholder="أي ملاحظات إضافية"
-></textarea>
 
-</div>
+            <div class="formGroup">
 
-</div>
+                <label>
+                    وقت المباراة
+                </label>
 
-<div class="modalActions">
+                <input
+                    id="matchStart"
+                    class="input"
+                    type="time"
+                >
 
-<button
-class="primaryButton"
-onclick="saveMatch()"
->
-حفظ المباراة
-</button>
+            </div>
 
-<button
-class="secondaryButton"
-onclick="closeModal('matchModal')"
->
-إلغاء
-</button>
 
-</div>
+            <div class="formGroup">
 
-</div>
+                <label>
+                    الملعب / المكان
+                </label>
+
+                <input
+                    id="matchLocation"
+                    class="input"
+                    placeholder="اسم الملعب"
+                >
+
+            </div>
+
+
+            <div class="formGroup full">
+
+                <label>
+                    ملاحظات
+                </label>
+
+                <textarea
+                    id="matchNotes"
+                    class="input"
+                    placeholder="ملاحظات المباراة"
+                ></textarea>
+
+            </div>
+
+        </div>
+
+
+        <div class="modalFooter">
+
+            <button
+                class="btn btnLight"
+                onclick="closeMatchModal()"
+            >
+                إلغاء
+            </button>
+
+            <button
+                class="btn btnOrange"
+                onclick="saveMatch()"
+            >
+                حفظ المباراة
+            </button>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -1446,14 +1333,14 @@ createClient(
 
 
 /* =========================
-   العناصر
+   ELEMENTS
 ========================= */
 
-const loginBox =
-document.getElementById("loginBox");
+const loginPage =
+document.getElementById("loginPage");
 
-const adminPanel =
-document.getElementById("adminPanel");
+const app =
+document.getElementById("app");
 
 const loginBtn =
 document.getElementById("loginBtn");
@@ -1461,2270 +1348,2152 @@ document.getElementById("loginBtn");
 const logoutBtn =
 document.getElementById("logoutBtn");
 
-let registrations = [];
 
-let editingPlayerId = null;
-
-let editingScheduleId = null;
-
-let editingMatchId = null;
+let allPlayers = [];
+let allSchedule = [];
 
 
 /* =========================
-   الفئات
+   LOGIN
 ========================= */
-
-const categories = [
-
-"2020–2021",
-"2018–2019",
-"2016–2017",
-"2014–2015",
-"2012–2013",
-"2011–2009"
-
-];
-
-
-/* =========================
-   الجدول الأساسي
-========================= */
-
-const defaultSchedule = [
-
-{
-id:1,
-day:"الأحد",
-category:"2020–2021",
-pathway:"",
-start:"16:30",
-end:"18:00",
-coach:"كوتش يحيى"
-},
-
-{
-id:2,
-day:"الثلاثاء",
-category:"2020–2021",
-pathway:"",
-start:"16:30",
-end:"18:00",
-coach:"كوتش يحيى"
-},
-
-{
-id:3,
-day:"الخميس",
-category:"2020–2021",
-pathway:"",
-start:"16:30",
-end:"18:00",
-coach:"كوتش يحيى"
-},
-
-{
-id:4,
-day:"الأحد",
-category:"2018–2019",
-pathway:"",
-start:"16:30",
-end:"18:00",
-coach:"كوتش يحيى"
-},
-
-{
-id:5,
-day:"الثلاثاء",
-category:"2018–2019",
-pathway:"",
-start:"16:30",
-end:"18:00",
-coach:"كوتش يحيى"
-},
-
-{
-id:6,
-day:"الخميس",
-category:"2018–2019",
-pathway:"",
-start:"16:30",
-end:"18:00",
-coach:"كوتش يحيى"
-},
-
-{
-id:7,
-day:"الأحد",
-category:"2016–2017",
-pathway:"",
-start:"18:00",
-end:"19:30",
-coach:"كوتش يحيى"
-},
-
-{
-id:8,
-day:"الثلاثاء",
-category:"2016–2017",
-pathway:"",
-start:"18:00",
-end:"19:30",
-coach:"كوتش يحيى"
-},
-
-{
-id:9,
-day:"الخميس",
-category:"2016–2017",
-pathway:"",
-start:"18:00",
-end:"19:30",
-coach:"كوتش يحيى"
-},
-
-{
-id:10,
-day:"الأحد",
-category:"2014–2015",
-pathway:"",
-start:"19:30",
-end:"21:00",
-coach:"كوتش ريان"
-},
-
-{
-id:11,
-day:"الثلاثاء",
-category:"2014–2015",
-pathway:"",
-start:"19:30",
-end:"21:00",
-coach:"كوتش ريان"
-},
-
-{
-id:12,
-day:"الخميس",
-category:"2014–2015",
-pathway:"",
-start:"19:30",
-end:"21:00",
-coach:"كوتش ريان"
-},
-
-{
-id:13,
-day:"الأحد",
-category:"2012–2013",
-pathway:"التميز اللياقي",
-start:"16:30",
-end:"18:00",
-coach:"كوتش حمزة"
-},
-
-{
-id:14,
-day:"الثلاثاء",
-category:"2012–2013",
-pathway:"التميز اللياقي",
-start:"16:30",
-end:"18:00",
-coach:"كوتش حمزة"
-},
-
-{
-id:15,
-day:"الخميس",
-category:"2012–2013",
-pathway:"التميز اللياقي",
-start:"16:30",
-end:"18:00",
-coach:"كوتش حمزة"
-},
-
-{
-id:16,
-day:"الأحد",
-category:"2012–2013",
-pathway:"التطويرية",
-start:"18:00",
-end:"19:30",
-coach:"كوتش بكوري"
-},
-
-{
-id:17,
-day:"الثلاثاء",
-category:"2012–2013",
-pathway:"التطويرية",
-start:"18:00",
-end:"19:30",
-coach:"كوتش بكوري"
-},
-
-{
-id:18,
-day:"الخميس",
-category:"2012–2013",
-pathway:"التطويرية",
-start:"18:00",
-end:"19:30",
-coach:"كوتش بكوري"
-},
-
-{
-id:19,
-day:"الأحد",
-category:"2011–2009",
-pathway:"",
-start:"19:30",
-end:"21:00",
-coach:"كوتش علي"
-},
-
-{
-id:20,
-day:"الثلاثاء",
-category:"2011–2009",
-pathway:"",
-start:"19:30",
-end:"21:00",
-coach:"كوتش علي"
-},
-
-{
-id:21,
-day:"الخميس",
-category:"2011–2009",
-pathway:"",
-start:"19:30",
-end:"21:00",
-coach:"كوتش علي"
-}
-
-];
-
-
-const days = [
-"السبت",
-"الأحد",
-"الاثنين",
-"الثلاثاء",
-"الأربعاء",
-"الخميس"
-];
-
-
-/* =========================
-   تحميل الجدول
-========================= */
-
-function getSchedule(){
-
-const saved =
-localStorage.getItem(
-"asrSchedule"
-);
-
-if(!saved){
-
-localStorage.setItem(
-"asrSchedule",
-JSON.stringify(defaultSchedule)
-);
-
-return [...defaultSchedule];
-
-}
-
-try{
-
-return JSON.parse(saved);
-
-}catch{
-
-localStorage.setItem(
-"asrSchedule",
-JSON.stringify(defaultSchedule)
-);
-
-return [...defaultSchedule];
-
-}
-
-}
-
-
-/* =========================
-   حفظ الجدول
-========================= */
-
-function saveScheduleStorage(data){
-
-localStorage.setItem(
-"asrSchedule",
-JSON.stringify(data)
-);
-
-}
-
-
-/* =========================
-   عرض الجدول
-========================= */
-
-function renderSchedule(){
-
-const container =
-document.getElementById("weekDays");
-
-const schedule =
-getSchedule();
-
-container.innerHTML = "";
-
-days.forEach(day => {
-
-const column =
-document.createElement("div");
-
-column.className =
-"dayColumn";
-
-column.innerHTML = `
-
-<div class="dayHeader">
-${day}
-</div>
-
-`;
-
-const dayItems =
-schedule
-.filter(item => item.day === day)
-.sort((a,b) =>
-a.start.localeCompare(b.start)
-);
-
-if(!dayItems.length){
-
-column.innerHTML += `
-
-<div class="empty">
-لا توجد حصص
-</div>
-
-`;
-
-}else{
-
-dayItems.forEach(item => {
-
-const row =
-document.createElement("div");
-
-row.className =
-"trainingRow";
-
-row.innerHTML = `
-
-<div class="trainingTime">
-
-${formatTime(item.start)}
- -
-${formatTime(item.end)}
-
-</div>
-
-<div class="trainingCategory">
-
-${escapeHtml(item.category)}
-
-</div>
-
-${
-item.pathway
-?
-`
-<div class="trainingPath">
-${escapeHtml(item.pathway)}
-</div>
-`
-:
-""
-}
-
-<div class="trainingCoach">
-
-👨‍🏫 ${escapeHtml(item.coach)}
-
-</div>
-
-<div class="trainingActions">
-
-<button
-class="editBtn"
-onclick="editSchedule(${item.id})"
->
-تعديل
-</button>
-
-<button
-class="deleteBtn"
-onclick="deleteSchedule(${item.id})"
->
-حذف
-</button>
-
-</div>
-
-`;
-
-column.appendChild(row);
-
-});
-
-}
-
-container.appendChild(column);
-
-});
-
-}
-
-
-/* =========================
-   الوقت
-========================= */
-
-function formatTime(time){
-
-if(!time) return "-";
-
-const parts =
-time.split(":");
-
-let hour =
-parseInt(parts[0]);
-
-const minute =
-parts[1];
-
-const period =
-hour >= 12
-?
-"م"
-:
-"ص";
-
-hour =
-hour % 12;
-
-if(hour === 0)
-hour = 12;
-
-return `${hour}:${minute} ${period}`;
-
-}
-
-
-/* =========================
-   إضافة / تعديل الجدول
-========================= */
-
-window.openScheduleModal =
-function(id=null){
-
-editingScheduleId =
-id;
-
-const modal =
-document.getElementById(
-"scheduleModal"
-);
-
-document.getElementById(
-"scheduleModalTitle"
-).innerText =
-id
-?
-"تعديل الحصة"
-:
-"إضافة حصة";
-
-
-if(id){
-
-const item =
-getSchedule()
-.find(x => x.id === id);
-
-if(item){
-
-document.getElementById(
-"scheduleDay"
-).value =
-item.day;
-
-document.getElementById(
-"scheduleCategory"
-).value =
-item.category;
-
-document.getElementById(
-"schedulePathway"
-).value =
-item.pathway || "";
-
-document.getElementById(
-"scheduleCoach"
-).value =
-item.coach;
-
-document.getElementById(
-"scheduleStart"
-).value =
-item.start;
-
-document.getElementById(
-"scheduleEnd"
-).value =
-item.end;
-
-}
-
-}else{
-
-document.getElementById(
-"scheduleDay"
-).value =
-"الأحد";
-
-document.getElementById(
-"scheduleCategory"
-).value =
-"2020–2021";
-
-document.getElementById(
-"schedulePathway"
-).value =
-"";
-
-document.getElementById(
-"scheduleCoach"
-).value =
-"";
-
-document.getElementById(
-"scheduleStart"
-).value =
-"16:30";
-
-document.getElementById(
-"scheduleEnd"
-).value =
-"18:00";
-
-}
-
-modal.classList.add("show");
-
-};
-
-
-window.editSchedule =
-function(id){
-
-openScheduleModal(id);
-
-};
-
-
-window.saveSchedule =
-function(){
-
-const item = {
-
-day:document.getElementById(
-"scheduleDay"
-).value,
-
-category:document.getElementById(
-"scheduleCategory"
-).value,
-
-pathway:document.getElementById(
-"schedulePathway"
-).value,
-
-coach:document.getElementById(
-"scheduleCoach"
-).value.trim(),
-
-start:document.getElementById(
-"scheduleStart"
-).value,
-
-end:document.getElementById(
-"scheduleEnd"
-).value
-
-};
-
-
-if(
-!item.coach ||
-!item.start ||
-!item.end
-){
-
-alert(
-"أكمل بيانات الحصة أولًا"
-);
-
-return;
-
-}
-
-
-const schedule =
-getSchedule();
-
-if(editingScheduleId){
-
-const index =
-schedule.findIndex(
-x => x.id === editingScheduleId
-);
-
-if(index !== -1){
-
-schedule[index] = {
-
-...schedule[index],
-...item
-
-};
-
-}
-
-}else{
-
-item.id =
-Date.now();
-
-schedule.push(item);
-
-}
-
-saveScheduleStorage(schedule);
-
-closeModal("scheduleModal");
-
-renderSchedule();
-
-};
-
-
-window.deleteSchedule =
-function(id){
-
-if(
-!confirm(
-"هل تريد حذف هذه الحصة؟"
-)
-){
-
-return;
-
-}
-
-const schedule =
-getSchedule()
-.filter(
-x => x.id !== id
-);
-
-saveScheduleStorage(schedule);
-
-renderSchedule();
-
-};
-
-
-window.resetSchedule =
-function(){
-
-if(
-!confirm(
-"سيتم استعادة الجدول الأساسي وحذف تعديلاتك على الحصص. هل أنت متأكد؟"
-)
-){
-
-return;
-
-}
-
-saveScheduleStorage(
-defaultSchedule
-);
-
-renderSchedule();
-
-};
-
-
-/* =========================
-   المباريات
-========================= */
-
-function getMatches(){
-
-const saved =
-localStorage.getItem(
-"asrMatches"
-);
-
-if(!saved)
-return [];
-
-try{
-
-return JSON.parse(saved);
-
-}catch{
-
-return [];
-
-}
-
-}
-
-
-function saveMatches(data){
-
-localStorage.setItem(
-"asrMatches",
-JSON.stringify(data)
-);
-
-}
-
-
-function renderMatches(){
-
-const container =
-document.getElementById(
-"matchesList"
-);
-
-const matches =
-getMatches()
-.sort(
-(a,b) =>
-a.date.localeCompare(b.date)
-);
-
-if(!matches.length){
-
-container.innerHTML = `
-
-<div class="empty">
-
-لا توجد مباريات ودية مضافة حاليًا.
-
-</div>
-
-`;
-
-return;
-
-}
-
-container.innerHTML =
-matches
-.map(match => `
-
-<div class="matchRow">
-
-<div>
-
-<div class="matchLabel">
-التاريخ
-</div>
-
-<div class="matchValue">
-${match.date}
-</div>
-
-</div>
-
-<div>
-
-<div class="matchLabel">
-الوقت
-</div>
-
-<div class="matchValue">
-${formatTime(match.time)}
-</div>
-
-</div>
-
-<div>
-
-<div class="matchLabel">
-الفئة
-</div>
-
-<div class="matchValue">
-${escapeHtml(match.category)}
-</div>
-
-</div>
-
-<div>
-
-<div class="matchLabel">
-المنافس
-</div>
-
-<div class="matchValue">
-${escapeHtml(match.opponent)}
-</div>
-
-</div>
-
-<div class="actionRow">
-
-<button
-class="smallButton editBtn"
-onclick="editMatch(${match.id})"
->
-تعديل
-</button>
-
-<button
-class="smallButton deleteBtn"
-onclick="deleteMatch(${match.id})"
->
-حذف
-</button>
-
-</div>
-
-</div>
-
-${
-match.venue || match.notes
-?
-`
-<div style="
-padding:0 16px 15px;
-color:#777;
-font-size:13px;
-">
-${match.venue ? "📍 " + escapeHtml(match.venue) : ""}
-${match.notes ? " — " + escapeHtml(match.notes) : ""}
-</div>
-`
-:
-""
-
-}
-
-`)
-.join("");
-
-}
-
-
-window.openMatchModal =
-function(id=null){
-
-editingMatchId =
-id;
-
-document.getElementById(
-"matchModalTitle"
-).innerText =
-id
-?
-"تعديل مباراة ودية"
-:
-"إضافة مباراة ودية";
-
-
-if(id){
-
-const match =
-getMatches()
-.find(x => x.id === id);
-
-if(match){
-
-document.getElementById(
-"matchDate"
-).value =
-match.date;
-
-document.getElementById(
-"matchTime"
-).value =
-match.time;
-
-document.getElementById(
-"matchCategory"
-).value =
-match.category;
-
-document.getElementById(
-"matchVenue"
-).value =
-match.venue || "";
-
-document.getElementById(
-"matchOpponent"
-).value =
-match.opponent || "";
-
-document.getElementById(
-"matchNotes"
-).value =
-match.notes || "";
-
-}
-
-}else{
-
-document.getElementById(
-"matchDate"
-).value =
-"";
-
-document.getElementById(
-"matchTime"
-).value =
-"";
-
-document.getElementById(
-"matchCategory"
-).value =
-"2020–2021";
-
-document.getElementById(
-"matchVenue"
-).value =
-"";
-
-document.getElementById(
-"matchOpponent"
-).value =
-"";
-
-document.getElementById(
-"matchNotes"
-).value =
-"";
-
-}
-
-document
-.getElementById("matchModal")
-.classList.add("show");
-
-};
-
-
-window.editMatch =
-function(id){
-
-openMatchModal(id);
-
-};
-
-
-window.saveMatch =
-function(){
-
-const match = {
-
-date:document.getElementById(
-"matchDate"
-).value,
-
-time:document.getElementById(
-"matchTime"
-).value,
-
-category:document.getElementById(
-"matchCategory"
-).value,
-
-venue:document.getElementById(
-"matchVenue"
-).value.trim(),
-
-opponent:document.getElementById(
-"matchOpponent"
-).value.trim(),
-
-notes:document.getElementById(
-"matchNotes"
-).value.trim()
-
-};
-
-
-if(
-!match.date ||
-!match.time ||
-!match.opponent
-){
-
-alert(
-"أدخل التاريخ والوقت والفريق المنافس"
-);
-
-return;
-
-}
-
-
-const matches =
-getMatches();
-
-if(editingMatchId){
-
-const index =
-matches.findIndex(
-x => x.id === editingMatchId
-);
-
-if(index !== -1){
-
-matches[index] = {
-
-...matches[index],
-...match
-
-};
-
-}
-
-}else{
-
-match.id =
-Date.now();
-
-matches.push(match);
-
-}
-
-saveMatches(matches);
-
-closeModal("matchModal");
-
-renderMatches();
-
-};
-
-
-window.deleteMatch =
-function(id){
-
-if(
-!confirm(
-"هل تريد حذف المباراة؟"
-)
-){
-
-return;
-
-}
-
-const matches =
-getMatches()
-.filter(
-x => x.id !== id
-);
-
-saveMatches(matches);
-
-renderMatches();
-
-};
-
-
-/* =========================
-   تسجيل الدخول
-========================= */
-
-async function checkSession(){
-
-const {
-data:{
-session
-}
-} =
-await supabase.auth.getSession();
-
-if(session){
-
-showAdmin();
-
-}else{
-
-showLogin();
-
-}
-
-}
-
-
-function showAdmin(){
-
-loginBox.style.display =
-"none";
-
-adminPanel.style.display =
-"block";
-
-loadRegistrations();
-
-renderSchedule();
-
-renderMatches();
-
-}
-
-
-function showLogin(){
-
-loginBox.style.display =
-"block";
-
-adminPanel.style.display =
-"none";
-
-}
-
 
 loginBtn.addEventListener(
 "click",
 async function(){
 
-const email =
-document
-.getElementById("adminEmail")
-.value
-.trim();
+    const email =
+    document.getElementById("email")
+    .value
+    .trim();
 
-const password =
-document
-.getElementById("adminPassword")
-.value;
+    const password =
+    document.getElementById("password")
+    .value;
 
-const message =
-document.getElementById(
-"loginMessage"
-);
+    const message =
+    document.getElementById("loginMessage");
 
-message.style.color =
-"#ff6900";
+    message.innerText =
+    "جاري تسجيل الدخول...";
 
-message.innerText =
-"جاري تسجيل الدخول...";
+    const {
+        error
+    } =
+    await supabase.auth.signInWithPassword({
 
+        email,
+        password
 
-const {
-error
-} =
-await supabase.auth
-.signInWithPassword({
+    });
 
-email,
-password
+    if(error){
 
-});
+        console.error(error);
 
+        message.style.color =
+        "#d92d20";
 
-if(error){
+        message.innerText =
+        "بيانات الدخول غير صحيحة ❌";
 
-console.error(error);
+        return;
 
-message.style.color =
-"#dc2626";
+    }
 
-message.innerText =
-"بيانات الدخول غير صحيحة ❌";
+    message.style.color =
+    "#087a35";
 
-return;
+    message.innerText =
+    "تم تسجيل الدخول ✅";
 
-}
-
-message.style.color =
-"#16a34a";
-
-message.innerText =
-"تم تسجيل الدخول بنجاح ✅";
-
-showAdmin();
+    showApp();
 
 });
 
+
+/* =========================
+   LOGOUT
+========================= */
 
 logoutBtn.addEventListener(
 "click",
 async function(){
 
-await supabase.auth.signOut();
+    await supabase.auth.signOut();
 
-showLogin();
+    app.style.display =
+    "none";
 
-});
-
-
-supabase.auth.onAuthStateChange(
-(event,session)=>{
-
-if(session){
-
-showAdmin();
-
-}else{
-
-showLogin();
-
-}
+    loginPage.style.display =
+    "flex";
 
 });
 
 
 /* =========================
-   تحميل اللاعبين
+   SESSION
 ========================= */
 
-async function loadRegistrations(){
+async function checkSession(){
 
-const {
-data,
-error
-} =
-await supabase
-.from("registration")
-.select("*")
-.order("id",{
-ascending:false
-});
+    const {
+        data:{
+            session
+        }
+    } =
+    await supabase.auth.getSession();
 
+    if(session){
 
-if(error){
+        showApp();
 
-console.error(error);
+    }else{
 
-alert(
-"تعذر تحميل بيانات اللاعبين"
-);
+        loginPage.style.display =
+        "flex";
 
-return;
+        app.style.display =
+        "none";
 
-}
-
-registrations =
-data || [];
-
-updateStats();
-
-renderPlayers();
-
-renderDashboardRecent();
-
-populateCategoryFilter();
+    }
 
 }
 
 
 /* =========================
-   الإحصائيات
+   SHOW APP
+========================= */
+
+async function showApp(){
+
+    loginPage.style.display =
+    "none";
+
+    app.style.display =
+    "flex";
+
+    await loadPlayers();
+
+    await loadSchedule();
+
+}
+
+
+/* =========================
+   NAVIGATION
+========================= */
+
+document
+.querySelectorAll(".navButton")
+.forEach(button => {
+
+    button.addEventListener(
+    "click",
+    function(){
+
+        const page =
+        this.dataset.page;
+
+        goPage(page);
+
+    });
+
+});
+
+
+window.goPage =
+function(page){
+
+    document
+    .querySelectorAll(".navButton")
+    .forEach(button => {
+
+        button.classList.toggle(
+            "active",
+            button.dataset.page === page
+        );
+
+    });
+
+
+    document
+    .querySelectorAll(".page")
+    .forEach(section => {
+
+        section.classList.remove("active");
+
+    });
+
+
+    document
+    .getElementById(page)
+    .classList.add("active");
+
+
+    if(page === "schedule"){
+        loadSchedule();
+    }
+
+    if(page === "matches"){
+        renderMatches();
+    }
+
+};
+
+
+/* =========================
+   LOAD PLAYERS
+========================= */
+
+async function loadPlayers(){
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("registration")
+    .select("*")
+    .order("id",{
+        ascending:false
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        return;
+
+    }
+
+
+    allPlayers =
+    data || [];
+
+
+    updateStats();
+
+    renderPlayers();
+
+    renderRequests();
+
+    renderRecent();
+
+}
+
+
+/* =========================
+   STATS
 ========================= */
 
 function updateStats(){
 
-const pending =
-registrations.filter(
-x =>
-!x.status ||
-x.status === "pending"
-);
+    const total =
+    allPlayers.length;
 
-const accepted =
-registrations.filter(
-x =>
-x.status === "accepted"
-);
+    const pending =
+    allPlayers.filter(
+        p =>
+        !p.status ||
+        p.status === "pending"
+    ).length;
 
-const rejected =
-registrations.filter(
-x =>
-x.status === "rejected"
-);
+    const accepted =
+    allPlayers.filter(
+        p =>
+        p.status === "accepted"
+    ).length;
 
 
-document.getElementById(
-"totalCount"
-).innerText =
-registrations.length;
-
-document.getElementById(
-"pendingCount"
-).innerText =
-pending.length;
-
-document.getElementById(
-"acceptedCount"
-).innerText =
-accepted.length;
-
-document.getElementById(
-"rejectedCount"
-).innerText =
-rejected.length;
-
-}
+    document.getElementById(
+        "totalCount"
+    ).innerText =
+    total;
 
 
-/* =========================
-   الفئة التلقائية
-========================= */
+    document.getElementById(
+        "pendingCount"
+    ).innerText =
+    pending;
 
-function getAutomaticCategory(birthDate){
 
-if(!birthDate)
-return null;
+    document.getElementById(
+        "acceptedCount"
+    ).innerText =
+    accepted;
 
-const year =
-parseInt(
-birthDate.substring(0,4)
-);
 
-if(year >= 2020)
-return "2020–2021";
-
-if(year >= 2018)
-return "2018–2019";
-
-if(year >= 2016)
-return "2016–2017";
-
-if(year >= 2014)
-return "2014–2015";
-
-if(year >= 2012)
-return "2012–2013";
-
-if(year >= 2009)
-return "2011–2009";
-
-return null;
+    document.getElementById(
+        "scheduleCount"
+    ).innerText =
+    allSchedule.length;
 
 }
 
 
 /* =========================
-   عرض اللاعبين
+   PLAYERS TABLE
 ========================= */
 
 function renderPlayers(){
 
-const container =
-document.getElementById(
-"playersTable"
-);
+    const container =
+    document.getElementById(
+        "playersTable"
+    );
 
-const search =
-document.getElementById(
-"searchPlayer"
-).value
-.toLowerCase()
-.trim();
 
-const status =
-document.getElementById(
-"statusFilter"
-).value;
+    const search =
+    document.getElementById(
+        "playerSearch"
+    ).value
+    .trim()
+    .toLowerCase();
 
-const category =
-document.getElementById(
-"categoryFilter"
-).value;
 
+    const category =
+    document.getElementById(
+        "categoryFilter"
+    ).value;
 
-let list =
-registrations.filter(item => {
 
-const itemStatus =
-item.status || "pending";
+    const pathway =
+    document.getElementById(
+        "pathwayFilter"
+    ).value;
 
-const automatic =
-getAutomaticCategory(
-item.birth_date
-);
 
-const playerCategory =
-item.category ||
-automatic ||
-"غير محددة";
+    const players =
+    allPlayers.filter(player => {
 
-const matchesSearch =
-!search ||
-(item.player_name || "")
-.toLowerCase()
-.includes(search) ||
-(item.guardian_name || "")
-.toLowerCase()
-.includes(search);
+        const accepted =
+        player.status === "accepted";
 
-const matchesStatus =
-status === "all" ||
-itemStatus === status;
+        if(!accepted){
+            return false;
+        }
 
-const matchesCategory =
-category === "all" ||
-playerCategory === category;
 
-return (
-matchesSearch &&
-matchesStatus &&
-matchesCategory
-);
+        const name =
+        (
+            player.player_name ||
+            ""
+        ).toLowerCase();
 
-});
 
+        if(
+            search &&
+            !name.includes(search)
+        ){
+            return false;
+        }
 
-if(!list.length){
 
-container.innerHTML = `
+        if(
+            category &&
+            player.category !== category
+        ){
+            return false;
+        }
 
-<div class="empty">
-لا توجد نتائج.
-</div>
 
-`;
+        if(
+            pathway &&
+            player.pathway !== pathway
+        ){
+            return false;
+        }
 
-return;
 
-}
+        return true;
 
+    });
 
-container.innerHTML = `
 
-<table class="dataTable">
+    if(!players.length){
 
-<thead>
+        container.innerHTML =
+        `
+        <div style="padding:30px;text-align:center;color:#777;">
+            لا يوجد لاعبين.
+        </div>
+        `;
 
-<tr>
+        return;
 
-<th>اللاعب</th>
+    }
 
-<th>الميلاد</th>
 
-<th>الفئة</th>
+    container.innerHTML =
+    `
+    <table>
 
-<th>ولي الأمر</th>
+        <thead>
 
-<th>الجوال</th>
+            <tr>
 
-<th>الحالة</th>
+                <th>اللاعب</th>
+                <th>الميلاد</th>
+                <th>الفئة</th>
+                <th>المسار</th>
+                <th>الجوال</th>
+                <th>إجراء</th>
 
-<th>الإجراءات</th>
+            </tr>
 
-</tr>
+        </thead>
 
-</thead>
+        <tbody>
 
-<tbody>
+            ${
+                players.map(player => `
 
-${list.map(item => {
+                    <tr>
 
-const status =
-item.status || "pending";
+                        <td>
+                            <strong>
+                                ${escapeHtml(
+                                    player.player_name || "-"
+                                )}
+                            </strong>
+                        </td>
 
-const automatic =
-getAutomaticCategory(
-item.birth_date
-);
+                        <td>
+                            ${escapeHtml(
+                                player.birth_date || "-"
+                            )}
+                        </td>
 
-const category =
-item.category ||
-automatic ||
-"غير محددة";
+                        <td>
+                            ${escapeHtml(
+                                player.category || "غير محددة"
+                            )}
+                        </td>
 
-return `
+                        <td>
+                            ${escapeHtml(
+                                player.pathway || "—"
+                            )}
+                        </td>
 
-<tr>
+                        <td>
+                            ${escapeHtml(
+                                player.phone || "-"
+                            )}
+                        </td>
 
-<td>
+                        <td>
 
-<div class="playerName">
+                            <div class="actions">
 
-${escapeHtml(
-item.player_name ||
-"بدون اسم"
-)}
+                                <button
+                                    class="btn btnOrange"
+                                    onclick="editPlayer('${player.id}')"
+                                >
+                                    تعديل
+                                </button>
 
-</div>
+                            </div>
 
-<div class="subText">
+                        </td>
 
-رقم الطلب:
-${item.id}
+                    </tr>
 
-</div>
+                `).join("")
+            }
 
-</td>
+        </tbody>
 
-<td>
-
-${item.birth_date || "-"}
-
-</td>
-
-<td>
-
-<strong>
-${escapeHtml(category)}
-</strong>
-
-${
-item.pathway
-?
-`
-<div class="subText">
-${escapeHtml(item.pathway)}
-</div>
-`
-:
-""
-}
-
-</td>
-
-<td>
-
-${escapeHtml(
-item.guardian_name ||
-"-"
-)}
-
-</td>
-
-<td>
-
-${escapeHtml(
-item.phone ||
-"-"
-)}
-
-</td>
-
-<td>
-
-<span class="statusBadge ${
-status === "accepted"
-?
-"statusAccepted"
-:
-status === "rejected"
-?
-"statusRejected"
-:
-"statusPending"
-}">
-
-${
-status === "accepted"
-?
-"مقبول"
-:
-status === "rejected"
-?
-"مرفوض"
-:
-"طلب جديد"
-}
-
-</span>
-
-</td>
-
-<td>
-
-<div class="actionRow">
-
-${
-status !== "accepted"
-?
-`
-<button
-class="smallButton acceptBtn"
-onclick="acceptPlayer('${item.id}')"
->
-قبول
-</button>
-`
-:
-""
-}
-
-${
-status !== "rejected"
-?
-`
-<button
-class="smallButton rejectBtn"
-onclick="rejectPlayer('${item.id}')"
->
-رفض
-</button>
-`
-:
-""
-}
-
-<button
-class="smallButton editBtn"
-onclick="editPlayer('${item.id}')"
->
-تعديل
-</button>
-
-<button
-class="smallButton deleteBtn"
-onclick="deletePlayer('${item.id}')"
->
-حذف
-</button>
-
-</div>
-
-</td>
-
-</tr>
-
-`;
-
-}).join("")}
-
-</tbody>
-
-</table>
-
-`;
+    </table>
+    `;
 
 }
 
 
 /* =========================
-   الفئات في الفلتر
+   REQUESTS
 ========================= */
 
-function populateCategoryFilter(){
+function renderRequests(){
 
-const select =
-document.getElementById(
-"categoryFilter"
-);
+    const container =
+    document.getElementById(
+        "requestsTable"
+    );
 
-const current =
-select.value;
 
-select.innerHTML = `
+    const requests =
+    allPlayers.filter(
+        p =>
+        !p.status ||
+        p.status === "pending"
+    );
 
-<option value="all">
-كل الفئات
-</option>
 
-${categories.map(
-category =>
-`
-<option value="${category}">
-${category}
-</option>
-`
-).join("")}
+    const accepted =
+    allPlayers.filter(
+        p =>
+        p.status === "accepted"
+    );
 
-`;
 
-select.value =
-current || "all";
+    const rejected =
+    allPlayers.filter(
+        p =>
+        p.status === "rejected"
+    );
+
+
+    const list =
+    [
+        ...requests,
+        ...accepted,
+        ...rejected
+    ];
+
+
+    if(!list.length){
+
+        container.innerHTML =
+        `
+        <div style="padding:30px;text-align:center;color:#777;">
+            لا توجد طلبات.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    `
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>اللاعب</th>
+                <th>ولي الأمر</th>
+                <th>الجوال</th>
+                <th>الفئة</th>
+                <th>الحالة</th>
+                <th>الإجراءات</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            ${
+                list.map(player => {
+
+                    const status =
+                    player.status || "pending";
+
+
+                    const statusText =
+                    status === "accepted"
+                    ? "مقبول"
+                    :
+                    status === "rejected"
+                    ? "مرفوض"
+                    :
+                    "جديد";
+
+
+                    return `
+
+                    <tr>
+
+                        <td>
+                            <strong>
+                                ${escapeHtml(
+                                    player.player_name || "-"
+                                )}
+                            </strong>
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                player.guardian_name || "-"
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                player.phone || "-"
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                player.category || "غير محددة"
+                            )}
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${status}"
+                            >
+                                ${statusText}
+                            </span>
+
+                        </td>
+
+                        <td>
+
+                            <div class="actions">
+
+                                ${
+                                    status !== "accepted"
+                                    ?
+                                    `
+                                    <button
+                                        class="btn btnGreen"
+                                        onclick="acceptPlayer('${player.id}')"
+                                    >
+                                        قبول
+                                    </button>
+                                    `
+                                    :
+                                    ""
+                                }
+
+
+                                ${
+                                    status !== "rejected"
+                                    ?
+                                    `
+                                    <button
+                                        class="btn btnRed"
+                                        onclick="rejectPlayer('${player.id}')"
+                                    >
+                                        رفض
+                                    </button>
+                                    `
+                                    :
+                                    ""
+                                }
+
+
+                                <button
+                                    class="btn btnDark"
+                                    onclick="deletePlayer('${player.id}')"
+                                >
+                                    حذف
+                                </button>
+
+                            </div>
+
+                        </td>
+
+                    </tr>
+
+                    `;
+
+                }).join("")
+            }
+
+        </tbody>
+
+    </table>
+    `;
 
 }
 
 
 /* =========================
-   قبول
+   RECENT
+========================= */
+
+function renderRecent(){
+
+    const container =
+    document.getElementById(
+        "recentPlayers"
+    );
+
+
+    const list =
+    allPlayers.slice(0,5);
+
+
+    if(!list.length){
+
+        container.innerHTML =
+        "لا توجد طلبات.";
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    `
+    <table>
+
+        <thead>
+
+            <tr>
+                <th>اللاعب</th>
+                <th>الفئة</th>
+                <th>الحالة</th>
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            ${
+                list.map(p => {
+
+                    const status =
+                    p.status || "pending";
+
+                    const text =
+                    status === "accepted"
+                    ? "مقبول"
+                    :
+                    status === "rejected"
+                    ? "مرفوض"
+                    :
+                    "جديد";
+
+
+                    return `
+
+                    <tr>
+
+                        <td>
+                            ${escapeHtml(
+                                p.player_name || "-"
+                            )}
+                        </td>
+
+                        <td>
+                            ${escapeHtml(
+                                p.category || "-"
+                            )}
+                        </td>
+
+                        <td>
+
+                            <span
+                                class="badge ${status}"
+                            >
+                                ${text}
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    `;
+
+                }).join("")
+            }
+
+        </tbody>
+
+    </table>
+    `;
+
+}
+
+
+/* =========================
+   ACCEPT
 ========================= */
 
 window.acceptPlayer =
 async function(id){
 
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-status:"accepted"
-})
-.eq("id",id);
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .update({
+        status:"accepted"
+    })
+    .eq("id",id);
 
-if(error){
 
-console.error(error);
+    if(error){
 
-alert(
-"تعذر قبول اللاعب ❌"
-);
+        console.error(error);
 
-return;
+        alert(
+            "تعذر قبول اللاعب ❌"
+        );
 
-}
+        return;
 
-await loadRegistrations();
+    }
+
+
+    await loadPlayers();
 
 };
 
 
 /* =========================
-   رفض
+   REJECT
 ========================= */
 
 window.rejectPlayer =
 async function(id){
 
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-status:"rejected"
-})
-.eq("id",id);
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر رفض اللاعب ❌"
-);
-
-return;
-
-}
-
-await loadRegistrations();
-
-};
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .update({
+        status:"rejected"
+    })
+    .eq("id",id);
 
 
-/* =========================
-   تعديل اللاعب
-========================= */
+    if(error){
 
-window.editPlayer =
-function(id){
+        console.error(error);
 
-const player =
-registrations.find(
-x =>
-String(x.id) === String(id)
-);
+        alert(
+            "تعذر رفض اللاعب ❌"
+        );
 
-if(!player)
-return;
+        return;
 
-editingPlayerId =
-id;
-
-document.getElementById(
-"editPlayerName"
-).value =
-player.player_name || "";
-
-document.getElementById(
-"editBirthDate"
-).value =
-player.birth_date || "";
+    }
 
 
-const automatic =
-getAutomaticCategory(
-player.birth_date
-);
-
-const category =
-player.category ||
-automatic ||
-"2020–2021";
-
-
-document.getElementById(
-"editCategory"
-).innerHTML =
-categories.map(
-x =>
-`
-<option value="${x}">
-${x}
-</option>
-`
-).join("");
-
-document.getElementById(
-"editCategory"
-).value =
-category;
-
-document.getElementById(
-"editPathway"
-).value =
-player.pathway || "";
-
-updateSuggestedCategory();
-
-document
-.getElementById("playerModal")
-.classList.add("show");
+    await loadPlayers();
 
 };
 
 
 /* =========================
-   اقتراح الفئة
-========================= */
-
-window.updateSuggestedCategory =
-function(){
-
-const birth =
-document.getElementById(
-"editBirthDate"
-).value;
-
-const automatic =
-getAutomaticCategory(
-birth
-);
-
-const text =
-document.getElementById(
-"categorySuggestion"
-);
-
-if(automatic){
-
-text.innerText =
-"التصنيف التلقائي المقترح: " +
-automatic +
-" — يمكنك تغييره يدويًا.";
-
-}else{
-
-text.innerText =
-"أدخل تاريخ الميلاد لإظهار الفئة المقترحة.";
-
-}
-
-};
-
-
-/* =========================
-   حفظ اللاعب
-========================= */
-
-window.savePlayerChanges =
-async function(){
-
-if(!editingPlayerId)
-return;
-
-const name =
-document.getElementById(
-"editPlayerName"
-).value
-.trim();
-
-const birth =
-document.getElementById(
-"editBirthDate"
-).value;
-
-const category =
-document.getElementById(
-"editCategory"
-).value;
-
-const pathway =
-document.getElementById(
-"editPathway"
-).value;
-
-
-if(!name){
-
-alert(
-"اكتب اسم اللاعب"
-);
-
-return;
-
-}
-
-
-/*
-   مهم:
-   الفئة التي يحددها الأدمن
-   تحفظ في category.
-*/
-
-const {
-error
-} =
-await supabase
-.from("registration")
-.update({
-
-player_name:name,
-
-birth_date:birth,
-
-category:category,
-
-pathway:pathway
-
-})
-.eq("id",editingPlayerId);
-
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر حفظ التعديلات ❌\n\n" +
-error.message
-);
-
-return;
-
-}
-
-closeModal("playerModal");
-
-editingPlayerId =
-null;
-
-await loadRegistrations();
-
-};
-
-
-/* =========================
-   حذف اللاعب
+   DELETE
 ========================= */
 
 window.deletePlayer =
 async function(id){
 
-if(
-!confirm(
-"هل أنت متأكد من حذف اللاعب نهائيًا؟"
-)
+    if(
+        !confirm(
+            "هل أنت متأكد من حذف اللاعب؟"
+        )
+    ){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .delete()
+    .eq("id",id);
+
+
+    if(error){
+
+        console.error(error);
+
+        alert(
+            "تعذر حذف اللاعب ❌"
+        );
+
+        return;
+
+    }
+
+
+    await loadPlayers();
+
+};
+
+
+/* =========================
+   EDIT PLAYER
+========================= */
+
+window.editPlayer =
+function(id){
+
+    const player =
+    allPlayers.find(
+        p =>
+        String(p.id) === String(id)
+    );
+
+
+    if(!player){
+
+        return;
+
+    }
+
+
+    const category =
+    prompt(
+        "الفئة الجديدة:\n\n2020–2021\n2019–2018\n2017–2016\n2015–2014\n2013–2012\n2011–2009",
+        player.category || ""
+    );
+
+
+    if(category === null){
+
+        return;
+
+    }
+
+
+    const pathway =
+    prompt(
+        "المسار:\n\nالتميز اللياقي\nالتطوير\nأو اتركه فارغًا",
+        player.pathway || ""
+    );
+
+
+    if(pathway === null){
+
+        return;
+
+    }
+
+
+    updatePlayerPlacement(
+        id,
+        category,
+        pathway
+    );
+
+};
+
+
+async function updatePlayerPlacement(
+    id,
+    category,
+    pathway
 ){
 
-return;
+    const {
+        error
+    } =
+    await supabase
+    .from("registration")
+    .update({
 
-}
+        category:
+        category || null,
 
-const {
-error
-} =
-await supabase
-.from("registration")
-.delete()
-.eq("id",id);
+        pathway:
+        pathway || null
 
-
-if(error){
-
-console.error(error);
-
-alert(
-"تعذر حذف اللاعب ❌"
-);
-
-return;
-
-}
-
-await loadRegistrations();
-
-};
+    })
+    .eq("id",id);
 
 
-/* =========================
-   الرئيسية
-========================= */
+    if(error){
 
-function renderDashboardRecent(){
+        console.error(error);
 
-const container =
-document.getElementById(
-"dashboardRecent"
-);
+        alert(
+            "تعذر تعديل الفئة والمسار ❌\n\nتأكد أن أعمدة category و pathway موجودة في registration."
+        );
 
-const recent =
-registrations.slice(0,5);
+        return;
 
-if(!recent.length){
+    }
 
-container.innerHTML = `
 
-<div class="empty">
-لا توجد طلبات حتى الآن.
-</div>
-
-`;
-
-return;
-
-}
-
-container.innerHTML = `
-
-<table class="dataTable">
-
-<thead>
-
-<tr>
-
-<th>اللاعب</th>
-
-<th>تاريخ الميلاد</th>
-
-<th>الفئة</th>
-
-<th>الحالة</th>
-
-</tr>
-
-</thead>
-
-<tbody>
-
-${recent.map(item => {
-
-const status =
-item.status || "pending";
-
-const category =
-item.category ||
-getAutomaticCategory(
-item.birth_date
-) ||
-"غير محددة";
-
-return `
-
-<tr>
-
-<td class="playerName">
-${escapeHtml(
-item.player_name ||
-"بدون اسم"
-)}
-</td>
-
-<td>
-${item.birth_date || "-"}
-</td>
-
-<td>
-${escapeHtml(category)}
-</td>
-
-<td>
-
-<span class="statusBadge ${
-status === "accepted"
-?
-"statusAccepted"
-:
-status === "rejected"
-?
-"statusRejected"
-:
-"statusPending"
-}">
-
-${
-status === "accepted"
-?
-"مقبول"
-:
-status === "rejected"
-?
-"مرفوض"
-:
-"طلب جديد"
-}
-
-</span>
-
-</td>
-
-</tr>
-
-`;
-
-}).join("")}
-
-</tbody>
-
-</table>
-
-`;
+    await loadPlayers();
 
 }
 
 
 /* =========================
-   التنقل
+   SEARCH
 ========================= */
 
-window.openSection =
-function(sectionId,button){
-
 document
-.querySelectorAll(".adminSection")
-.forEach(section =>
-section.classList.remove("active")
+.getElementById("playerSearch")
+.addEventListener(
+"input",
+renderPlayers
 );
 
-document
-.getElementById(sectionId)
-.classList.add("active");
-
 
 document
-.querySelectorAll(".navButton")
-.forEach(btn =>
-btn.classList.remove("active")
+.getElementById("categoryFilter")
+.addEventListener(
+"change",
+renderPlayers
 );
 
-if(button)
-button.classList.add("active");
+
+document
+.getElementById("pathwayFilter")
+.addEventListener(
+"change",
+renderPlayers
+);
 
 
-if(sectionId === "schedule")
-renderSchedule();
+/* =========================
+   LOAD SCHEDULE
+========================= */
 
-if(sectionId === "matches")
-renderMatches();
+window.loadSchedule =
+async function(){
+
+    const container =
+    document.getElementById(
+        "scheduleTable"
+    );
+
+
+    container.innerHTML =
+    "جاري تحميل الجدول...";
+
+
+    const {
+        data,
+        error
+    } =
+    await supabase
+    .from("academy_schedule")
+    .select("*")
+    .order("id",{
+        ascending:true
+    });
+
+
+    if(error){
+
+        console.error(error);
+
+        container.innerHTML =
+        `
+        <div style="padding:30px;text-align:center;color:#d92d20;">
+            تعذر تحميل الجدول ❌
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    allSchedule =
+    data || [];
+
+
+    updateStats();
+
+    renderSchedule();
+
+    renderMatches();
 
 };
 
 
-window.openSectionById =
+/* =========================
+   DAY ORDER
+========================= */
+
+const days = [
+    "السبت",
+    "الأحد",
+    "الاثنين",
+    "الثلاثاء",
+    "الأربعاء",
+    "الخميس",
+    "الجمعة"
+];
+
+
+/* =========================
+   RENDER SCHEDULE
+========================= */
+
+function renderSchedule(){
+
+    const container =
+    document.getElementById(
+        "scheduleTable"
+    );
+
+
+    const training =
+    allSchedule.filter(
+        item =>
+        item.type === "training"
+    );
+
+
+    if(!training.length){
+
+        container.innerHTML =
+        `
+        <div style="padding:35px;text-align:center;color:#777;">
+            لا توجد مواعيد تدريب مضافة حاليًا.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    `
+    <table class="scheduleTable">
+
+        <thead>
+
+            <tr>
+
+                <th>الوقت</th>
+
+                ${
+                    days.map(
+                        day =>
+                        `<th>${day}</th>`
+                    ).join("")
+                }
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            ${
+                createScheduleRows(training)
+            }
+
+        </tbody>
+
+    </table>
+    `;
+
+}
+
+
+/* =========================
+   CREATE SCHEDULE ROWS
+========================= */
+
+function createScheduleRows(items){
+
+    const timeMap = {};
+
+    items.forEach(item => {
+
+        const start =
+        item.start_time || "";
+
+        const end =
+        item.end_time || "";
+
+        const key =
+        `${start}-${end}`;
+
+        if(!timeMap[key]){
+            timeMap[key] = [];
+        }
+
+        timeMap[key].push(item);
+
+    });
+
+
+    const keys =
+    Object.keys(timeMap)
+    .sort();
+
+
+    return keys.map(key => {
+
+        const parts =
+        key.split("-");
+
+        const start =
+        parts[0] || "";
+
+        const end =
+        parts[1] || "";
+
+
+        return `
+
+        <tr>
+
+            <td class="timeCell">
+                ${formatTime(start)}
+                -
+                ${formatTime(end)}
+            </td>
+
+            ${
+                days.map(day => {
+
+                    const list =
+                    timeMap[key]
+                    .filter(
+                        item =>
+                        item.day === day
+                    );
+
+
+                    if(!list.length){
+
+                        return `<td></td>`;
+
+                    }
+
+
+                    return `
+
+                    <td>
+
+                        ${
+                            list.map(
+                                createScheduleItem
+                            ).join("")
+                        }
+
+                    </td>
+
+                    `;
+
+                }).join("")
+            }
+
+        </tr>
+
+        `;
+
+    }).join("");
+
+}
+
+
+/* =========================
+   SCHEDULE ITEM
+========================= */
+
+function createScheduleItem(item){
+
+    return `
+
+    <div class="scheduleItem">
+
+        <strong>
+            ${escapeHtml(
+                item.category || "تدريب"
+            )}
+        </strong>
+
+        ${
+            item.pathway
+            ?
+            `
+            <small>
+                المسار:
+                ${escapeHtml(
+                    item.pathway
+                )}
+            </small>
+            `
+            :
+            ""
+        }
+
+        <small>
+            👤
+            ${escapeHtml(
+                item.coach || "-"
+            )}
+        </small>
+
+        <div
+            class="actions"
+            style="margin-top:7px;"
+        >
+
+            <button
+                class="btn btnLight"
+                onclick="editSchedule('${item.id}')"
+            >
+                تعديل
+            </button>
+
+            <button
+                class="btn btnRed"
+                onclick="deleteSchedule('${item.id}')"
+            >
+                حذف
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+
+/* =========================
+   OPEN SCHEDULE MODAL
+========================= */
+
+window.openScheduleModal =
+function(){
+
+    document.getElementById(
+        "scheduleModalTitle"
+    ).innerText =
+    "إضافة موعد تدريب";
+
+
+    document.getElementById(
+        "scheduleId"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "scheduleCategory"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "schedulePathway"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "scheduleDay"
+    ).value =
+    "الأحد";
+
+
+    document.getElementById(
+        "scheduleCoach"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "scheduleStart"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "scheduleEnd"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "scheduleNotes"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "scheduleModal"
+    ).classList.add("show");
+
+};
+
+
+window.closeScheduleModal =
+function(){
+
+    document.getElementById(
+        "scheduleModal"
+    ).classList.remove("show");
+
+};
+
+
+/* =========================
+   EDIT SCHEDULE
+========================= */
+
+window.editSchedule =
 function(id){
 
-document
-.querySelectorAll(".navButton")
-.forEach(btn =>
-btn.classList.remove("active")
-);
+    const item =
+    allSchedule.find(
+        x =>
+        String(x.id) === String(id)
+    );
 
-const button =
-[...document.querySelectorAll(
-".navButton"
-)]
-.find(btn =>
-btn.getAttribute(
-"onclick"
-)
-?.includes(
-"'" + id + "'"
-)
-);
 
-openSection(id,button);
+    if(!item){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "scheduleModalTitle"
+    ).innerText =
+    "تعديل موعد التدريب";
+
+
+    document.getElementById(
+        "scheduleId"
+    ).value =
+    item.id;
+
+
+    document.getElementById(
+        "scheduleCategory"
+    ).value =
+    item.category || "";
+
+
+    document.getElementById(
+        "schedulePathway"
+    ).value =
+    item.pathway || "";
+
+
+    document.getElementById(
+        "scheduleDay"
+    ).value =
+    item.day || "الأحد";
+
+
+    document.getElementById(
+        "scheduleCoach"
+    ).value =
+    item.coach || "";
+
+
+    document.getElementById(
+        "scheduleStart"
+    ).value =
+    item.start_time || "";
+
+
+    document.getElementById(
+        "scheduleEnd"
+    ).value =
+    item.end_time || "";
+
+
+    document.getElementById(
+        "scheduleNotes"
+    ).value =
+    item.notes || "";
+
+
+    document.getElementById(
+        "scheduleModal"
+    ).classList.add("show");
 
 };
 
 
 /* =========================
-   إغلاق المودال
+   SAVE SCHEDULE
 ========================= */
 
-window.closeModal =
-function(id){
+window.saveSchedule =
+async function(){
 
-document
-.getElementById(id)
-.classList.remove("show");
+    const id =
+    document.getElementById(
+        "scheduleId"
+    ).value;
+
+
+    const payload = {
+
+        type:"training",
+
+        category:
+        document.getElementById(
+            "scheduleCategory"
+        ).value || null,
+
+        pathway:
+        document.getElementById(
+            "schedulePathway"
+        ).value || null,
+
+        day:
+        document.getElementById(
+            "scheduleDay"
+        ).value,
+
+        start_time:
+        document.getElementById(
+            "scheduleStart"
+        ).value || null,
+
+        end_time:
+        document.getElementById(
+            "scheduleEnd"
+        ).value || null,
+
+        coach:
+        document.getElementById(
+            "scheduleCoach"
+        ).value || null,
+
+        notes:
+        document.getElementById(
+            "scheduleNotes"
+        ).value || null
+
+    };
+
+
+    if(!payload.category){
+
+        alert(
+            "اختر الفئة أولًا."
+        );
+
+        return;
+
+    }
+
+
+    let result;
+
+
+    if(id){
+
+        result =
+        await supabase
+        .from("academy_schedule")
+        .update(payload)
+        .eq("id",id);
+
+    }else{
+
+        result =
+        await supabase
+        .from("academy_schedule")
+        .insert(payload);
+
+    }
+
+
+    if(result.error){
+
+        console.error(result.error);
+
+        alert(
+            "تعذر حفظ الموعد ❌"
+        );
+
+        return;
+
+    }
+
+
+    closeScheduleModal();
+
+    await loadSchedule();
 
 };
 
 
 /* =========================
-   منع مشاكل HTML
+   DELETE SCHEDULE
+========================= */
+
+window.deleteSchedule =
+async function(id){
+
+    if(
+        !confirm(
+            "هل تريد حذف هذا الموعد؟"
+        )
+    ){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabase
+    .from("academy_schedule")
+    .delete()
+    .eq("id",id);
+
+
+    if(error){
+
+        console.error(error);
+
+        alert(
+            "تعذر حذف الموعد ❌"
+        );
+
+        return;
+
+    }
+
+
+    await loadSchedule();
+
+};
+
+
+/* =========================
+   MATCHES
+========================= */
+
+function renderMatches(){
+
+    const container =
+    document.getElementById(
+        "matchesTable"
+    );
+
+
+    const matches =
+    allSchedule.filter(
+        item =>
+        item.type === "match"
+    );
+
+
+    if(!matches.length){
+
+        container.innerHTML =
+        `
+        <div style="padding:35px;text-align:center;color:#777;">
+            لا توجد مباريات ودية مضافة.
+        </div>
+        `;
+
+        return;
+
+    }
+
+
+    container.innerHTML =
+    `
+    <table>
+
+        <thead>
+
+            <tr>
+
+                <th>اليوم</th>
+                <th>الفئة</th>
+                <th>الخصم</th>
+                <th>الوقت</th>
+                <th>المكان</th>
+                <th>المدرب</th>
+                <th>الإجراءات</th>
+
+            </tr>
+
+        </thead>
+
+        <tbody>
+
+            ${
+                matches.map(match => `
+
+                <tr>
+
+                    <td>
+                        ${escapeHtml(
+                            match.day || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            match.category || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        <strong>
+                            ${escapeHtml(
+                                match.opponent || "-"
+                            )}
+                        </strong>
+                    </td>
+
+                    <td>
+                        ${formatTime(
+                            match.start_time
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            match.location || "-"
+                        )}
+                    </td>
+
+                    <td>
+                        ${escapeHtml(
+                            match.coach || "-"
+                        )}
+                    </td>
+
+                    <td>
+
+                        <div class="actions">
+
+                            <button
+                                class="btn btnOrange"
+                                onclick="editMatch('${match.id}')"
+                            >
+                                تعديل
+                            </button>
+
+                            <button
+                                class="btn btnRed"
+                                onclick="deleteMatch('${match.id}')"
+                            >
+                                حذف
+                            </button>
+
+                        </div>
+
+                    </td>
+
+                </tr>
+
+                `).join("")
+            }
+
+        </tbody>
+
+    </table>
+    `;
+
+}
+
+
+/* =========================
+   OPEN MATCH MODAL
+========================= */
+
+window.openMatchModal =
+function(){
+
+    document.getElementById(
+        "matchModalTitle"
+    ).innerText =
+    "إضافة مباراة ودية";
+
+
+    document.getElementById(
+        "matchId"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchCategory"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchOpponent"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchDay"
+    ).value =
+    "السبت";
+
+
+    document.getElementById(
+        "matchCoach"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchStart"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchLocation"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchNotes"
+    ).value =
+    "";
+
+
+    document.getElementById(
+        "matchModal"
+    ).classList.add("show");
+
+};
+
+
+window.closeMatchModal =
+function(){
+
+    document.getElementById(
+        "matchModal"
+    ).classList.remove("show");
+
+};
+
+
+/* =========================
+   EDIT MATCH
+========================= */
+
+window.editMatch =
+function(id){
+
+    const match =
+    allSchedule.find(
+        x =>
+        String(x.id) === String(id)
+    );
+
+
+    if(!match){
+
+        return;
+
+    }
+
+
+    document.getElementById(
+        "matchModalTitle"
+    ).innerText =
+    "تعديل المباراة";
+
+
+    document.getElementById(
+        "matchId"
+    ).value =
+    match.id;
+
+
+    document.getElementById(
+        "matchCategory"
+    ).value =
+    match.category || "";
+
+
+    document.getElementById(
+        "matchOpponent"
+    ).value =
+    match.opponent || "";
+
+
+    document.getElementById(
+        "matchDay"
+    ).value =
+    match.day || "السبت";
+
+
+    document.getElementById(
+        "matchCoach"
+    ).value =
+    match.coach || "";
+
+
+    document.getElementById(
+        "matchStart"
+    ).value =
+    match.start_time || "";
+
+
+    document.getElementById(
+        "matchLocation"
+    ).value =
+    match.location || "";
+
+
+    document.getElementById(
+        "matchNotes"
+    ).value =
+    match.notes || "";
+
+
+    document.getElementById(
+        "matchModal"
+    ).classList.add("show");
+
+};
+
+
+/* =========================
+   SAVE MATCH
+========================= */
+
+window.saveMatch =
+async function(){
+
+    const id =
+    document.getElementById(
+        "matchId"
+    ).value;
+
+
+    const payload = {
+
+        type:"match",
+
+        category:
+        document.getElementById(
+            "matchCategory"
+        ).value || null,
+
+        day:
+        document.getElementById(
+            "matchDay"
+        ).value,
+
+        start_time:
+        document.getElementById(
+            "matchStart"
+        ).value || null,
+
+        coach:
+        document.getElementById(
+            "matchCoach"
+        ).value || null,
+
+        opponent:
+        document.getElementById(
+            "matchOpponent"
+        ).value || null,
+
+        location:
+        document.getElementById(
+            "matchLocation"
+        ).value || null,
+
+        notes:
+        document.getElementById(
+            "matchNotes"
+        ).value || null
+
+    };
+
+
+    if(!payload.category){
+
+        alert(
+            "اختر الفئة أولًا."
+        );
+
+        return;
+
+    }
+
+
+    if(!payload.opponent){
+
+        alert(
+            "اكتب اسم الفريق الخصم."
+        );
+
+        return;
+
+    }
+
+
+    let result;
+
+
+    if(id){
+
+        result =
+        await supabase
+        .from("academy_schedule")
+        .update(payload)
+        .eq("id",id);
+
+    }else{
+
+        result =
+        await supabase
+        .from("academy_schedule")
+        .insert(payload);
+
+    }
+
+
+    if(result.error){
+
+        console.error(result.error);
+
+        alert(
+            "تعذر حفظ المباراة ❌"
+        );
+
+        return;
+
+    }
+
+
+    closeMatchModal();
+
+    await loadSchedule();
+
+};
+
+
+/* =========================
+   DELETE MATCH
+========================= */
+
+window.deleteMatch =
+async function(id){
+
+    if(
+        !confirm(
+            "هل تريد حذف المباراة؟"
+        )
+    ){
+        return;
+    }
+
+
+    const {
+        error
+    } =
+    await supabase
+    .from("academy_schedule")
+    .delete()
+    .eq("id",id);
+
+
+    if(error){
+
+        console.error(error);
+
+        alert(
+            "تعذر حذف المباراة ❌"
+        );
+
+        return;
+
+    }
+
+
+    await loadSchedule();
+
+};
+
+
+/* =========================
+   FORMAT TIME
+========================= */
+
+function formatTime(time){
+
+    if(!time){
+
+        return "-";
+
+    }
+
+
+    const parts =
+    time.split(":");
+
+    let hour =
+    parseInt(parts[0]);
+
+    const minute =
+    parts[1] || "00";
+
+
+    const period =
+    hour >= 12
+    ? "م"
+    : "ص";
+
+
+    hour =
+    hour % 12;
+
+
+    if(hour === 0){
+        hour = 12;
+    }
+
+
+    return `${hour}:${minute} ${period}`;
+
+}
+
+
+/* =========================
+   ESCAPE HTML
 ========================= */
 
 function escapeHtml(value){
 
-return String(value ?? "")
-.replaceAll("&","&amp;")
-.replaceAll("<","&lt;")
-.replaceAll(">","&gt;")
-.replaceAll('"',"&quot;")
-.replaceAll("'","&#039;");
+    return String(value)
+    .replaceAll("&","&amp;")
+    .replaceAll("<","&lt;")
+    .replaceAll(">","&gt;")
+    .replaceAll('"',"&quot;")
+    .replaceAll("'","&#039;");
 
 }
 
 
 /* =========================
-   إغلاق عند الضغط خارج
-========================= */
-
-document
-.querySelectorAll(".modal")
-.forEach(modal => {
-
-modal.addEventListener(
-"click",
-function(event){
-
-if(event.target === modal){
-
-modal.classList.remove(
-"show"
-);
-
-}
-
-});
-
-});
-
-
-/* =========================
-   تشغيل
+   START
 ========================= */
 
 checkSession();
+
+
+supabase.auth.onAuthStateChange(
+(event,session) => {
+
+    if(session){
+
+        showApp();
+
+    }
+
+});
 
 </script>
 
