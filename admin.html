@@ -937,8 +937,6 @@ onclick="closePlayerModal()"
 </div>
 
 
-<!-- بيانات الدخول -->
-
 <div class="credentialsBox">
 
 <div class="credentialsTitle">
@@ -1798,29 +1796,22 @@ ${category}
 USERNAME GENERATOR
 ========================= */
 
+/*
+   مهم:
+   اسم المستخدم الآن لا يعتمد على اسم اللاعب.
+   سواء كان اسم اللاعب عربي أو إنجليزي،
+   اليوزر سيكون إنجليزي + أرقام فقط.
+*/
+
 function generateUsername(player){
 
-let name =
-String(
-player.player_name || "player"
-)
-.trim()
-.toLowerCase();
+    const random =
+        Math.floor(
+            100000 +
+            Math.random() * 900000
+        );
 
-
-name =
-name
-.replace(/[^\u0600-\u06FFa-zA-Z0-9]/g,"");
-
-
-const random =
-Math.floor(
-1000 +
-Math.random() * 9000
-);
-
-
-return "aht_" + name.slice(0,8) + random;
+    return "aht_player" + random;
 
 }
 
@@ -4691,4 +4682,3 @@ showApp();
 
 </body>
 </html>
-```
