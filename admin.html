@@ -1,3 +1,4 @@
+```html
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -20,7 +21,10 @@ body{
     color:#1f2937;
 }
 
-button,input,select,textarea{
+button,
+input,
+select,
+textarea{
     font-family:inherit;
 }
 
@@ -35,7 +39,7 @@ button{
 
 .sidebar{
     width:245px;
-    background:#374151;
+    background:#111827;
     color:white;
     position:fixed;
     right:0;
@@ -59,7 +63,7 @@ button{
     width:100%;
     border:0;
     background:transparent;
-    color:#e5e7eb;
+    color:#cbd5e1;
     padding:14px;
     text-align:right;
     border-radius:10px;
@@ -95,22 +99,8 @@ button{
     color:#ff6900;
 }
 
-.userInfo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.currentUser{
-    background:white;
-    border:1px solid #e5e7eb;
-    padding:10px 15px;
-    border-radius:9px;
-    font-size:13px;
-}
-
 .logout{
-    background:#374151;
+    background:#111827;
     color:white;
     border:0;
     padding:11px 18px;
@@ -228,7 +218,7 @@ button{
 table{
     width:100%;
     border-collapse:collapse;
-    min-width:850px;
+    min-width:900px;
 }
 
 th{
@@ -269,21 +259,6 @@ tr:hover td{
 .badge.rejected{
     background:#f1f1f1;
     color:#666;
-}
-
-.badge.admin{
-    background:#fff4e8;
-    color:#d85b00;
-}
-
-.badge.employee{
-    background:#eef0f2;
-    color:#374151;
-}
-
-.badge.visitor{
-    background:#e9f9ef;
-    color:#087a35;
 }
 
 .badge.active{
@@ -377,6 +352,61 @@ tr:hover td{
     margin-bottom:20px;
 }
 
+/* =========================
+   USERNAME BOX
+========================= */
+
+.credentialsBox{
+    background:#f8fafc;
+    border:1px solid #e5e7eb;
+    border-radius:12px;
+    padding:15px;
+    margin-top:15px;
+}
+
+.credentialsTitle{
+    font-weight:bold;
+    margin-bottom:12px;
+}
+
+.credentialRow{
+    display:grid;
+    grid-template-columns:1fr auto;
+    gap:8px;
+    align-items:center;
+    margin-bottom:8px;
+}
+
+.credentialValue{
+    background:white;
+    border:1px solid #ddd;
+    padding:10px;
+    border-radius:8px;
+    direction:ltr;
+    text-align:left;
+    font-family:monospace;
+    font-weight:bold;
+}
+
+.userActions{
+    display:flex;
+    gap:7px;
+    flex-wrap:wrap;
+    margin-top:10px;
+}
+
+.userBadge{
+    display:inline-flex;
+    align-items:center;
+    gap:5px;
+    background:#fff4e8;
+    color:#d85b00;
+    padding:6px 10px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
 .scheduleToolbar{
     display:flex;
     gap:10px;
@@ -390,7 +420,7 @@ tr:hover td{
 }
 
 .scheduleTable th{
-    background:#374151;
+    background:#111827;
     color:white;
     text-align:center;
     padding:10px 6px;
@@ -539,26 +569,6 @@ textarea.input{
     color:#ff6900;
 }
 
-.permissionBox{
-    background:#f8fafc;
-    border:1px solid #e5e7eb;
-    border-radius:10px;
-    padding:15px;
-    margin-top:10px;
-}
-
-.permissionBox label{
-    display:flex;
-    gap:8px;
-    align-items:center;
-    margin-bottom:10px;
-    font-size:13px;
-}
-
-.hidden{
-    display:none !important;
-}
-
 @media(max-width:900px){
 
     .sidebar{
@@ -605,7 +615,6 @@ textarea.input{
     .topbar{
         gap:10px;
         align-items:flex-start;
-        flex-direction:column;
     }
 
     .formGrid{
@@ -623,87 +632,75 @@ textarea.input{
 
 <body>
 
-<!-- LOGIN -->
-
 <div id="loginPage" class="loginPage">
 
-    <div class="loginBox">
+<div class="loginBox">
 
-        <h1>
-            إدارة
-            <span>عصر الاحتراف</span>
-        </h1>
+<h1>
+إدارة
+<span>عصر الاحتراف</span>
+</h1>
 
-        <p style="text-align:center;color:#777;">
-            تسجيل الدخول
-        </p>
+<p style="text-align:center;color:#777;">
+تسجيل دخول لوحة الإدارة
+</p>
 
-        <input
-            id="email"
-            class="input"
-            type="email"
-            placeholder="البريد الإلكتروني"
-        >
+<input
+id="email"
+class="input"
+type="email"
+placeholder="البريد الإلكتروني"
+>
 
-        <input
-            id="password"
-            class="input"
-            type="password"
-            placeholder="كلمة المرور"
-        >
+<input
+id="password"
+class="input"
+type="password"
+placeholder="كلمة المرور"
+>
 
-        <button id="loginBtn" class="loginBtn">
-            تسجيل الدخول
-        </button>
+<button id="loginBtn" class="loginBtn">
+تسجيل الدخول
+</button>
 
-        <p
-            id="loginMessage"
-            style="text-align:center;font-weight:bold;"
-        ></p>
-
-    </div>
+<p
+id="loginMessage"
+style="text-align:center;font-weight:bold;"
+></p>
 
 </div>
 
+</div>
 
-<!-- APP -->
 
 <div id="app" class="app" style="display:none;">
 
 <aside class="sidebar">
 
-    <div class="logo">
-        عصر
-        <span>الاحتراف ⚽</span>
-    </div>
+<div class="logo">
+عصر
+<span>الاحتراف ⚽</span>
+</div>
 
-    <button class="navButton active" data-page="dashboard">
-        🏠 الرئيسية
-    </button>
+<button class="navButton active" data-page="dashboard">
+🏠 الرئيسية
+</button>
 
-    <button class="navButton" data-page="players">
-        👥 اللاعبين
-    </button>
+<button class="navButton" data-page="players">
+👥 اللاعبين
+</button>
 
-    <button class="navButton" data-page="pending">
-        📨 الطلبات
-    </button>
+<button class="navButton" data-page="pending">
+📨 الطلبات
+</button>
 
-    <button class="navButton" data-page="schedule">
-        📅 جدول التدريب
-    </button>
+<button class="navButton" data-page="schedule">
+📅 جدول التدريب
+</button>
 
-    <button class="navButton" data-page="matches">
-        ⚽ المباريات الودية
-    </button>
-
-    <button
-        id="usersNav"
-        class="navButton"
-        data-page="users"
-    >
-        👤 المستخدمين
-    </button>
+<button class="navButton" data-page="matches">
+⚽ المباريات الودية
+</button>
 
 </aside>
 
@@ -712,56 +709,44 @@ textarea.input{
 
 <div class="topbar">
 
-    <h1>
-        لوحة تحكم
-        <span>عصر الاحتراف</span>
-    </h1>
+<h1>
+لوحة تحكم
+<span>عصر الاحتراف</span>
+</h1>
 
-    <div class="userInfo">
-
-        <div class="currentUser">
-            👤
-            <span id="currentUsername">-</span>
-            -
-            <span id="currentRole">-</span>
-        </div>
-
-        <button id="logoutBtn" class="logout">
-            تسجيل الخروج
-        </button>
-
-    </div>
+<button id="logoutBtn" class="logout">
+تسجيل الخروج
+</button>
 
 </div>
 
-
-<!-- DASHBOARD -->
 
 <section id="dashboard" class="page active">
 
 <div class="stats">
 
 <div class="stat">
-    <div id="totalCount" class="statNumber">0</div>
-    <div class="statTitle">إجمالي الطلبات</div>
+<div id="totalCount" class="statNumber">0</div>
+<div class="statTitle">إجمالي الطلبات</div>
 </div>
 
 <div class="stat">
-    <div id="pendingCount" class="statNumber">0</div>
-    <div class="statTitle">طلبات جديدة</div>
+<div id="pendingCount" class="statNumber">0</div>
+<div class="statTitle">طلبات جديدة</div>
 </div>
 
 <div class="stat">
-    <div id="acceptedCount" class="statNumber">0</div>
-    <div class="statTitle">اللاعبين المقبولين</div>
+<div id="acceptedCount" class="statNumber">0</div>
+<div class="statTitle">اللاعبين المقبولين</div>
 </div>
 
 <div class="stat">
-    <div id="scheduleCount" class="statNumber">0</div>
-    <div class="statTitle">مواعيد الجدول</div>
+<div id="scheduleCount" class="statNumber">0</div>
+<div class="statTitle">مواعيد الجدول</div>
 </div>
 
 </div>
+
 
 <div class="panel">
 
@@ -770,16 +755,16 @@ textarea.input{
 <h2>آخر الطلبات</h2>
 
 <button
-    class="btn btnOrange"
-    onclick="goPage('pending')"
+class="btn btnOrange"
+onclick="goPage('pending')"
 >
-    عرض الطلبات
+عرض الطلبات
 </button>
 
 </div>
 
 <div id="recentPlayers" class="tableWrap">
-    جاري التحميل...
+جاري التحميل...
 </div>
 
 </div>
@@ -787,22 +772,23 @@ textarea.input{
 </section>
 
 
-<!-- PLAYERS -->
-
 <section id="players" class="page">
 
 <div class="panel">
 
 <div class="panelHeader">
-    <h2>اللاعبين</h2>
+
+<h2>اللاعبين</h2>
+
 </div>
+
 
 <div class="filters">
 
 <input
-    id="playerSearch"
-    class="input"
-    placeholder="بحث باسم اللاعب..."
+id="playerSearch"
+class="input"
+placeholder="بحث باسم اللاعب..."
 >
 
 <select id="categoryFilter" class="input">
@@ -818,6 +804,7 @@ textarea.input{
 
 </select>
 
+
 <select id="pathwayFilter" class="input">
 
 <option value="">كل المسارات</option>
@@ -828,35 +815,32 @@ textarea.input{
 
 </div>
 
+
 <div id="playersTable" class="tableWrap">
-    جاري التحميل...
+جاري التحميل...
 </div>
 
 </div>
 
 </section>
 
-
-<!-- REQUESTS -->
 
 <section id="pending" class="page">
 
 <div class="panel">
 
 <div class="panelHeader">
-    <h2>طلبات التسجيل</h2>
+<h2>طلبات التسجيل</h2>
 </div>
 
 <div id="requestsTable" class="tableWrap">
-    جاري التحميل...
+جاري التحميل...
 </div>
 
 </div>
 
 </section>
 
-
-<!-- SCHEDULE -->
 
 <section id="schedule" class="page">
 
@@ -867,10 +851,10 @@ textarea.input{
 <h2>جدول التدريب</h2>
 
 <button
-    class="btn btnOrange"
-    onclick="openScheduleModal()"
+class="btn btnOrange"
+onclick="openScheduleModal()"
 >
-    + إضافة موعد
++ إضافة موعد
 </button>
 
 </div>
@@ -878,24 +862,22 @@ textarea.input{
 <div class="scheduleToolbar">
 
 <button
-    class="btn btnLight"
-    onclick="loadSchedule()"
+class="btn btnLight"
+onclick="loadSchedule()"
 >
-    تحديث الجدول
+تحديث الجدول
 </button>
 
 </div>
 
 <div id="scheduleTable" class="tableWrap">
-    جاري تحميل الجدول...
+جاري تحميل الجدول...
 </div>
 
 </div>
 
 </section>
 
-
-<!-- MATCHES -->
 
 <section id="matches" class="page">
 
@@ -906,44 +888,16 @@ textarea.input{
 <h2>المباريات الودية</h2>
 
 <button
-    class="btn btnOrange"
-    onclick="openMatchModal()"
+class="btn btnOrange"
+onclick="openMatchModal()"
 >
-    + إضافة مباراة
++ إضافة مباراة
 </button>
 
 </div>
 
 <div id="matchesTable" class="tableWrap">
-    جاري تحميل المباريات...
-</div>
-
-</div>
-
-</section>
-
-
-<!-- USERS -->
-
-<section id="users" class="page">
-
-<div class="panel">
-
-<div class="panelHeader">
-
-<h2>إدارة المستخدمين</h2>
-
-<button
-    class="btn btnOrange"
-    onclick="openUserModal()"
->
-    + إضافة مستخدم
-</button>
-
-</div>
-
-<div id="usersTable" class="tableWrap">
-    جاري تحميل المستخدمين...
+جاري تحميل المباريات...
 </div>
 
 </div>
@@ -962,23 +916,95 @@ textarea.input{
 
 <div class="modalHeader">
 
-<h2>إدارة اشتراك اللاعب</h2>
+<h2>إدارة اللاعب</h2>
 
 <button
-    class="close"
-    onclick="closePlayerModal()"
+class="close"
+onclick="closePlayerModal()"
 >
-    ✕
+✕
 </button>
 
 </div>
 
 <input type="hidden" id="playerModalId">
 
+
 <div class="subscriptionInfo">
-    اللاعب:
-    <strong id="playerModalName">-</strong>
+
+اللاعب:
+<strong id="playerModalName">-</strong>
+
 </div>
+
+
+<!-- بيانات الدخول -->
+
+<div class="credentialsBox">
+
+<div class="credentialsTitle">
+🔐 بيانات دخول اللاعب
+</div>
+
+
+<div class="credentialRow">
+
+<input
+id="playerUsername"
+class="credentialValue"
+readonly
+placeholder="اسم المستخدم"
+>
+
+<button
+class="btn btnLight"
+onclick="copyUsername()"
+>
+نسخ
+</button>
+
+</div>
+
+
+<div class="credentialRow">
+
+<input
+id="playerPassword"
+class="credentialValue"
+readonly
+placeholder="كلمة المرور"
+>
+
+<button
+class="btn btnLight"
+onclick="copyPassword()"
+>
+نسخ
+</button>
+
+</div>
+
+
+<div class="userActions">
+
+<button
+class="btn btnOrange"
+onclick="generateNewCredentials()"
+>
+🔄 توليد بيانات جديدة
+</button>
+
+<button
+class="btn btnDark"
+onclick="copyCredentials()"
+>
+📋 نسخ بيانات الدخول
+</button>
+
+</div>
+
+</div>
+
 
 <div class="formGrid">
 
@@ -996,6 +1022,7 @@ textarea.input{
 
 </div>
 
+
 <div class="formGroup">
 
 <label>حالة الدفع</label>
@@ -1010,71 +1037,78 @@ textarea.input{
 
 </div>
 
+
 <div class="formGroup">
 
 <label>المبلغ المدفوع</label>
 
 <input
-    id="amountPaid"
-    class="input"
-    type="number"
-    min="0"
-    step="0.01"
+id="amountPaid"
+class="input"
+type="number"
+min="0"
+step="0.01"
+placeholder="مثال: 500"
 >
 
 </div>
+
 
 <div class="formGroup">
 
 <label>تاريخ بداية الاشتراك</label>
 
 <input
-    id="subscriptionStart"
-    class="input"
-    type="date"
+id="subscriptionStart"
+class="input"
+type="date"
 >
 
 </div>
+
 
 <div class="formGroup">
 
 <label>تاريخ نهاية الاشتراك</label>
 
 <input
-    id="subscriptionEnd"
-    class="input"
-    type="date"
+id="subscriptionEnd"
+class="input"
+type="date"
 >
 
 </div>
+
 
 <div class="formGroup full">
 
 <label>ملاحظات</label>
 
 <textarea
-    id="subscriptionNotes"
-    class="input"
+id="subscriptionNotes"
+class="input"
+placeholder="اكتب ملاحظات الاشتراك هنا..."
 ></textarea>
 
 </div>
 
 </div>
 
+
 <div class="modalFooter">
 
 <button
-    class="btn btnLight"
-    onclick="closePlayerModal()"
+class="btn btnLight"
+onclick="closePlayerModal()"
 >
-    إلغاء
+إلغاء
 </button>
 
 <button
-    class="btn btnOrange"
-    onclick="savePlayerSubscription()"
+class="btn btnOrange"
+onclick="savePlayerSubscription()"
 >
-    حفظ التعديلات
+حفظ التعديلات
 </button>
 
 </div>
@@ -1093,14 +1127,14 @@ textarea.input{
 <div class="modalHeader">
 
 <h2 id="scheduleModalTitle">
-    إضافة موعد تدريب
+إضافة موعد تدريب
 </h2>
 
 <button
-    class="close"
-    onclick="closeScheduleModal()"
+class="close"
+onclick="closeScheduleModal()"
 >
-    ✕
+✕
 </button>
 
 </div>
@@ -1127,6 +1161,7 @@ textarea.input{
 
 </div>
 
+
 <div class="formGroup">
 
 <label>المسار</label>
@@ -1140,6 +1175,7 @@ textarea.input{
 </select>
 
 </div>
+
 
 <div class="formGroup">
 
@@ -1159,69 +1195,75 @@ textarea.input{
 
 </div>
 
+
 <div class="formGroup">
 
 <label>المدرب</label>
 
 <input
-    id="scheduleCoach"
-    class="input"
-    placeholder="اسم المدرب"
+id="scheduleCoach"
+class="input"
+placeholder="اسم المدرب"
 >
 
 </div>
+
 
 <div class="formGroup">
 
 <label>من الساعة</label>
 
 <input
-    id="scheduleStart"
-    class="input"
-    type="time"
+id="scheduleStart"
+class="input"
+type="time"
 >
 
 </div>
+
 
 <div class="formGroup">
 
 <label>إلى الساعة</label>
 
 <input
-    id="scheduleEnd"
-    class="input"
-    type="time"
+id="scheduleEnd"
+class="input"
+type="time"
 >
 
 </div>
+
 
 <div class="formGroup full">
 
 <label>ملاحظات</label>
 
 <textarea
-    id="scheduleNotes"
-    class="input"
+id="scheduleNotes"
+class="input"
+placeholder="ملاحظات اختيارية"
 ></textarea>
 
 </div>
 
 </div>
 
+
 <div class="modalFooter">
 
 <button
-    class="btn btnLight"
-    onclick="closeScheduleModal()"
+class="btn btnLight"
+onclick="closeScheduleModal()"
 >
-    إلغاء
+إلغاء
 </button>
 
 <button
-    class="btn btnOrange"
-    onclick="saveSchedule()"
+class="btn btnOrange"
+onclick="saveSchedule()"
 >
-    حفظ
+حفظ
 </button>
 
 </div>
@@ -1240,14 +1282,14 @@ textarea.input{
 <div class="modalHeader">
 
 <h2 id="matchModalTitle">
-    إضافة مباراة ودية
+إضافة مباراة ودية
 </h2>
 
 <button
-    class="close"
-    onclick="closeMatchModal()"
+class="close"
+onclick="closeMatchModal()"
 >
-    ✕
+✕
 </button>
 
 </div>
@@ -1274,17 +1316,19 @@ textarea.input{
 
 </div>
 
+
 <div class="formGroup">
 
 <label>الخصم</label>
 
 <input
-    id="matchOpponent"
-    class="input"
-    placeholder="اسم الفريق الخصم"
+id="matchOpponent"
+class="input"
+placeholder="اسم الفريق الخصم"
 >
 
 </div>
+
 
 <div class="formGroup">
 
@@ -1304,215 +1348,75 @@ textarea.input{
 
 </div>
 
+
 <div class="formGroup">
 
 <label>المدرب</label>
 
 <input
-    id="matchCoach"
-    class="input"
+id="matchCoach"
+class="input"
+placeholder="المدرب المسؤول"
 >
 
 </div>
+
 
 <div class="formGroup">
 
 <label>وقت المباراة</label>
 
 <input
-    id="matchStart"
-    class="input"
-    type="time"
+id="matchStart"
+class="input"
+type="time"
 >
 
 </div>
+
 
 <div class="formGroup">
 
 <label>الملعب / المكان</label>
 
 <input
-    id="matchLocation"
-    class="input"
+id="matchLocation"
+class="input"
+placeholder="اسم الملعب"
 >
 
 </div>
+
 
 <div class="formGroup full">
 
 <label>ملاحظات</label>
 
 <textarea
-    id="matchNotes"
-    class="input"
+id="matchNotes"
+class="input"
+placeholder="ملاحظات المباراة"
 ></textarea>
 
 </div>
 
 </div>
 
-<div class="modalFooter">
-
-<button
-    class="btn btnLight"
-    onclick="closeMatchModal()"
->
-    إلغاء
-</button>
-
-<button
-    class="btn btnOrange"
-    onclick="saveMatch()"
->
-    حفظ المباراة
-</button>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- USER MODAL -->
-
-<div id="userModal" class="modal">
-
-<div class="modalBox">
-
-<div class="modalHeader">
-
-<h2 id="userModalTitle">
-    إضافة مستخدم
-</h2>
-
-<button
-    class="close"
-    onclick="closeUserModal()"
->
-    ✕
-</button>
-
-</div>
-
-<input type="hidden" id="userId">
-
-<div class="formGrid">
-
-<div class="formGroup">
-
-<label>اسم المستخدم</label>
-
-<input
-    id="username"
-    class="input"
-    placeholder="مثال: admin"
->
-
-</div>
-
-<div class="formGroup">
-
-<label>البريد الإلكتروني</label>
-
-<input
-    id="userEmail"
-    class="input"
-    type="email"
-    placeholder="example@email.com"
->
-
-</div>
-
-<div class="formGroup">
-
-<label>كلمة المرور</label>
-
-<input
-    id="userPassword"
-    class="input"
-    type="password"
-    placeholder="كلمة المرور"
->
-
-</div>
-
-<div class="formGroup">
-
-<label>نوع الحساب</label>
-
-<select id="userRole" class="input">
-
-<option value="admin">مدير</option>
-<option value="employee">موظف</option>
-<option value="visitor">زائر</option>
-
-</select>
-
-</div>
-
-<div class="formGroup full">
-
-<label>حالة الحساب</label>
-
-<select id="userActive" class="input">
-
-<option value="true">فعال</option>
-<option value="false">موقوف</option>
-
-</select>
-
-</div>
-
-<div
-    id="permissionArea"
-    class="formGroup full"
->
-
-<label>صلاحيات الموظف</label>
-
-<div class="permissionBox">
-
-<label>
-    <input type="checkbox" id="permPlayers">
-    إدارة اللاعبين
-</label>
-
-<label>
-    <input type="checkbox" id="permRequests">
-    إدارة الطلبات
-</label>
-
-<label>
-    <input type="checkbox" id="permSchedule">
-    إدارة جدول التدريب
-</label>
-
-<label>
-    <input type="checkbox" id="permMatches">
-    إدارة المباريات
-</label>
-
-</div>
-
-</div>
-
-</div>
 
 <div class="modalFooter">
 
 <button
-    class="btn btnLight"
-    onclick="closeUserModal()"
+class="btn btnLight"
+onclick="closeMatchModal()"
 >
-    إلغاء
+إلغاء
 </button>
 
 <button
-    class="btn btnOrange"
-    onclick="saveUser()"
+class="btn btnOrange"
+onclick="saveMatch()"
 >
-    حفظ المستخدم
+حفظ المباراة
 </button>
 
 </div>
@@ -1525,7 +1429,7 @@ textarea.input{
 <script type="module">
 
 import {
-    createClient
+createClient
 }
 from
 "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
@@ -1534,13 +1438,15 @@ from
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
 
+
 const supabase =
 createClient(
-    SUPABASE_URL,
-    SUPABASE_KEY
+SUPABASE_URL,
+SUPABASE_KEY
 );
 
 
@@ -1559,376 +1465,160 @@ document.getElementById("logoutBtn");
 
 let allPlayers = [];
 let allSchedule = [];
-let allUsers = [];
-let currentProfile = null;
 
 
 /* =========================
-   ROLE NAMES
-========================= */
-
-function roleName(role){
-
-    if(role === "admin"){
-        return "مدير";
-    }
-
-    if(role === "employee"){
-        return "موظف";
-    }
-
-    if(role === "visitor"){
-        return "زائر";
-    }
-
-    return role || "-";
-}
-
-
-/* =========================
-   LOGIN
+LOGIN
 ========================= */
 
 loginBtn.addEventListener(
-    "click",
-    async function(){
+"click",
+async function(){
 
-        const email =
-        document.getElementById("email").value.trim();
+const email =
+document
+.getElementById("email")
+.value
+.trim();
 
-        const password =
-        document.getElementById("password").value;
+const password =
+document
+.getElementById("password")
+.value;
 
-        const message =
-        document.getElementById("loginMessage");
-
-        if(!email || !password){
-
-            message.style.color="#d92d20";
-            message.innerText =
-            "اكتب البريد وكلمة المرور.";
-
-            return;
-        }
-
-        message.style.color="#777";
-        message.innerText =
-        "جاري تسجيل الدخول...";
-
-        const {
-            data,
-            error
-        } =
-        await supabase.auth.signInWithPassword({
-            email,
-            password
-        });
-
-        if(error){
-
-            console.error(error);
-
-            message.style.color="#d92d20";
-            message.innerText =
-            "بيانات الدخول غير صحيحة ❌";
-
-            return;
-        }
-
-        const profile =
-        await loadCurrentProfile(
-            data.user.id
-        );
-
-        if(!profile){
-
-            await supabase.auth.signOut();
-
-            message.style.color="#d92d20";
-            message.innerText =
-            "لا يوجد حساب مستخدم مرتبط بهذا الحساب.";
-
-            return;
-        }
-
-        if(profile.active === false){
-
-            await supabase.auth.signOut();
-
-            message.style.color="#d92d20";
-            message.innerText =
-            "هذا الحساب موقوف.";
-
-            return;
-        }
-
-        if(profile.role === "visitor"){
-
-            await supabase.auth.signOut();
-
-            message.style.color="#d92d20";
-            message.innerText =
-            "حساب الزائر لا يدخل لوحة الإدارة.";
-
-            return;
-        }
-
-        message.style.color="#087a35";
-        message.innerText =
-        "تم تسجيل الدخول ✅";
-
-        await showApp();
-
-    }
+const message =
+document.getElementById(
+"loginMessage"
 );
 
-
-/* =========================
-   LOGOUT
-========================= */
-
-logoutBtn.addEventListener(
-    "click",
-    async function(){
-
-        await supabase.auth.signOut();
-
-        currentProfile = null;
-
-        app.style.display = "none";
-        loginPage.style.display = "flex";
-
-    }
-);
+message.innerText =
+"جاري تسجيل الدخول...";
 
 
-/* =========================
-   CURRENT PROFILE
-========================= */
+const {
+error
+} =
+await supabase.auth.signInWithPassword({
+email,
+password
+});
 
-async function loadCurrentProfile(userId){
 
-    const {
-        data,
-        error
-    } =
-    await supabase
-    .from("user_profiles")
-    .select("*")
-    .eq("id",userId)
-    .maybeSingle();
+if(error){
 
-    if(error){
+console.error(error);
 
-        console.error(error);
-        return null;
+message.style.color =
+"#d92d20";
 
-    }
+message.innerText =
+"بيانات الدخول غير صحيحة ❌";
 
-    currentProfile = data;
-
-    return data;
+return;
 
 }
 
 
+message.style.color =
+"#087a35";
+
+message.innerText =
+"تم تسجيل الدخول ✅";
+
+showApp();
+
+}
+);
+
+
 /* =========================
-   SESSION
+LOGOUT
+========================= */
+
+logoutBtn.addEventListener(
+"click",
+async function(){
+
+await supabase.auth.signOut();
+
+app.style.display =
+"none";
+
+loginPage.style.display =
+"flex";
+
+}
+);
+
+
+/* =========================
+SESSION
 ========================= */
 
 async function checkSession(){
 
-    const {
-        data:{
-            session
-        }
-    } =
-    await supabase.auth.getSession();
+const {
+data:{
+session
+}
+} =
+await supabase.auth.getSession();
 
-    if(session){
 
-        const profile =
-        await loadCurrentProfile(
-            session.user.id
-        );
+if(session){
 
-        if(
-            profile &&
-            profile.active !== false &&
-            profile.role !== "visitor"
-        ){
+showApp();
 
-            showApp();
+}else{
 
-        }else{
+loginPage.style.display =
+"flex";
 
-            await supabase.auth.signOut();
+app.style.display =
+"none";
 
-            loginPage.style.display="flex";
-            app.style.display="none";
-
-        }
-
-    }else{
-
-        loginPage.style.display = "flex";
-        app.style.display = "none";
-
-    }
+}
 
 }
 
 
 /* =========================
-   SHOW APP
+SHOW APP
 ========================= */
 
 async function showApp(){
 
-    loginPage.style.display = "none";
-    app.style.display = "flex";
+loginPage.style.display =
+"none";
 
-    document.getElementById(
-        "currentUsername"
-    ).innerText =
-    currentProfile?.username || "-";
+app.style.display =
+"flex";
 
-    document.getElementById(
-        "currentRole"
-    ).innerText =
-    roleName(currentProfile?.role);
+await loadPlayers();
 
-    applyPermissions();
-
-    await loadPlayers();
-    await loadSchedule();
+await loadSchedule();
 
 }
 
 
 /* =========================
-   PERMISSIONS
-========================= */
-
-function hasPermission(permission){
-
-    if(!currentProfile){
-        return false;
-    }
-
-    if(currentProfile.role === "admin"){
-        return true;
-    }
-
-    const permissions =
-    currentProfile.permissions || {};
-
-    return permissions[permission] === true;
-
-}
-
-
-function applyPermissions(){
-
-    const navPlayers =
-    document.querySelector(
-        '[data-page="players"]'
-    );
-
-    const navPending =
-    document.querySelector(
-        '[data-page="pending"]'
-    );
-
-    const navSchedule =
-    document.querySelector(
-        '[data-page="schedule"]'
-    );
-
-    const navMatches =
-    document.querySelector(
-        '[data-page="matches"]'
-    );
-
-    const usersNav =
-    document.getElementById(
-        "usersNav"
-    );
-
-
-    if(
-        !hasPermission("players")
-    ){
-        navPlayers.classList.add("hidden");
-    }else{
-        navPlayers.classList.remove("hidden");
-    }
-
-
-    if(
-        !hasPermission("requests")
-    ){
-        navPending.classList.add("hidden");
-    }else{
-        navPending.classList.remove("hidden");
-    }
-
-
-    if(
-        !hasPermission("schedule")
-    ){
-        navSchedule.classList.add("hidden");
-    }else{
-        navSchedule.classList.remove("hidden");
-    }
-
-
-    if(
-        !hasPermission("matches")
-    ){
-        navMatches.classList.add("hidden");
-    }else{
-        navMatches.classList.remove("hidden");
-    }
-
-
-    if(
-        currentProfile?.role !== "admin"
-    ){
-        usersNav.classList.add("hidden");
-    }else{
-        usersNav.classList.remove("hidden");
-    }
-
-}
-
-
-/* =========================
-   NAVIGATION
+NAVIGATION
 ========================= */
 
 document
 .querySelectorAll(".navButton")
 .forEach(button => {
 
-    button.addEventListener(
-        "click",
-        function(){
+button.addEventListener(
+"click",
+function(){
 
-            const page =
-            this.dataset.page;
+goPage(
+this.dataset.page
+);
 
-            if(
-                page === "users" &&
-                currentProfile?.role !== "admin"
-            ){
-                return;
-            }
-
-            goPage(page);
-
-        }
-    );
+}
+);
 
 });
 
@@ -1936,2825 +1626,3070 @@ document
 window.goPage =
 function(page){
 
-    const permissionMap = {
-        players:"players",
-        pending:"requests",
-        schedule:"schedule",
-        matches:"matches"
-    };
+document
+.querySelectorAll(".navButton")
+.forEach(button => {
 
-    if(
-        permissionMap[page] &&
-        !hasPermission(
-            permissionMap[page]
-        )
-    ){
+button.classList.toggle(
+"active",
+button.dataset.page === page
+);
 
-        alert(
-            "ليس لديك صلاحية للدخول لهذا القسم."
-        );
-
-        return;
-
-    }
+});
 
 
-    if(
-        page === "users" &&
-        currentProfile?.role !== "admin"
-    ){
-        alert("هذا القسم للمدير فقط.");
-        return;
-    }
+document
+.querySelectorAll(".page")
+.forEach(section => {
+
+section.classList.remove(
+"active"
+);
+
+});
 
 
-    document
-    .querySelectorAll(".navButton")
-    .forEach(button => {
-
-        button.classList.toggle(
-            "active",
-            button.dataset.page === page
-        );
-
-    });
+document
+.getElementById(page)
+.classList.add("active");
 
 
-    document
-    .querySelectorAll(".page")
-    .forEach(section => {
+if(page === "schedule"){
 
-        section.classList.remove("active");
+loadSchedule();
 
-    });
+}
 
 
-    const section =
-    document.getElementById(page);
+if(page === "matches"){
 
-    if(section){
-        section.classList.add("active");
-    }
+renderMatches();
 
-
-    if(page === "schedule"){
-        loadSchedule();
-    }
-
-    if(page === "matches"){
-        renderMatches();
-    }
-
-    if(page === "users"){
-        loadUsers();
-    }
+}
 
 };
 
 
 /* =========================
-   LOAD PLAYERS
+LOAD PLAYERS
 ========================= */
 
 async function loadPlayers(){
 
-    const {
-        data,
-        error
-    } =
-    await supabase
-    .from("registration")
-    .select("*")
-    .order("id",{
-        ascending:false
-    });
+const {
+data,
+error
+} =
+await supabase
+.from("registration")
+.select("*")
+.order("id",{
+ascending:false
+});
 
-    if(error){
 
-        console.error(error);
-        return;
+if(error){
 
-    }
+console.error(error);
 
-    allPlayers =
-    data || [];
+return;
 
-    updateStats();
-    renderPlayers();
-    renderRequests();
-    renderRecent();
+}
+
+
+allPlayers =
+data || [];
+
+
+updateStats();
+
+renderPlayers();
+
+renderRequests();
+
+renderRecent();
 
 }
 
 
 /* =========================
-   STATS
+STATS
 ========================= */
 
 function updateStats(){
 
-    document.getElementById(
-        "totalCount"
-    ).innerText =
-    allPlayers.length;
+const total =
+allPlayers.length;
 
 
-    document.getElementById(
-        "pendingCount"
-    ).innerText =
-    allPlayers.filter(
-        p =>
-        !p.status ||
-        p.status === "pending"
-    ).length;
+const pending =
+allPlayers.filter(
+p =>
+!p.status ||
+p.status === "pending"
+).length;
 
 
-    document.getElementById(
-        "acceptedCount"
-    ).innerText =
-    allPlayers.filter(
-        p =>
-        p.status === "accepted"
-    ).length;
+const accepted =
+allPlayers.filter(
+p =>
+p.status === "accepted"
+).length;
 
 
-    document.getElementById(
-        "scheduleCount"
-    ).innerText =
-    allSchedule.length;
+document.getElementById(
+"totalCount"
+).innerText =
+total;
+
+
+document.getElementById(
+"pendingCount"
+).innerText =
+pending;
+
+
+document.getElementById(
+"acceptedCount"
+).innerText =
+accepted;
+
+
+document.getElementById(
+"scheduleCount"
+).innerText =
+allSchedule.length;
 
 }
 
 
 /* =========================
-   CATEGORY OPTIONS
+CATEGORY OPTIONS
 ========================= */
 
 function categoryOptions(selected){
 
-    const categories = [
-        "2021–2019",
-        "2018–2017",
-        "2016",
-        "2015–2014",
-        "2013–2012",
-        "2011–2009"
-    ];
+const categories = [
+"2021–2019",
+"2018–2017",
+"2016",
+"2015–2014",
+"2013–2012",
+"2011–2009"
+];
 
-    return categories.map(
-        category => `
 
-        <option
-            value="${category}"
-            ${category === selected ? "selected" : ""}
-        >
-            ${category}
-        </option>
+return categories.map(
+category => `
 
-        `
-    ).join("");
+<option
+value="${category}"
+${category === selected ? "selected" : ""}
+>
+${category}
+</option>
+
+`
+).join("");
 
 }
 
 
 /* =========================
-   CHANGE CATEGORY
+USERNAME GENERATOR
+========================= */
+
+function generateUsername(player){
+
+let name =
+String(
+player.player_name || "player"
+)
+.trim()
+.toLowerCase();
+
+
+name =
+name
+.replace(/[^\u0600-\u06FFa-zA-Z0-9]/g,"");
+
+
+const random =
+Math.floor(
+1000 +
+Math.random() * 9000
+);
+
+
+return "aht_" + name.slice(0,8) + random;
+
+}
+
+
+/* =========================
+PASSWORD GENERATOR
+========================= */
+
+function generatePassword(){
+
+const chars =
+"ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz23456789";
+
+
+let password = "";
+
+
+for(
+let i = 0;
+i < 8;
+i++
+){
+
+password +=
+chars.charAt(
+Math.floor(
+Math.random() * chars.length
+)
+);
+
+}
+
+
+return password;
+
+}
+
+
+/* =========================
+CREATE CREDENTIALS
+========================= */
+
+async function createPlayerCredentials(
+player
+){
+
+if(
+player.username &&
+player.login_password
+){
+
+return {
+username:player.username,
+password:player.login_password
+};
+
+}
+
+
+let username =
+generateUsername(player);
+
+let password =
+generatePassword();
+
+
+let exists = true;
+
+
+while(exists){
+
+const {
+data
+} =
+await supabase
+.from("registration")
+.select("id")
+.eq("username",username)
+.limit(1);
+
+
+exists =
+data &&
+data.length > 0;
+
+
+if(exists){
+
+username =
+generateUsername(player);
+
+}
+
+}
+
+
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
+
+username:username,
+
+login_password:password
+
+})
+.eq("id",player.id);
+
+
+if(error){
+
+console.error(error);
+
+throw error;
+
+}
+
+
+return {
+username,
+password
+};
+
+}
+
+
+/* =========================
+CHANGE CATEGORY
 ========================= */
 
 window.changePlayerCategory =
 async function(id,value){
 
-    if(!value){
-        return;
-    }
+if(!value){
+return;
+}
 
-    const {
-        error
-    } =
-    await supabase
-    .from("registration")
-    .update({
-        category:value
-    })
-    .eq("id",id);
 
-    if(error){
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
+category:value
+})
+.eq("id",id);
 
-        console.error(error);
 
-        alert(
-            "تعذر تعديل الفئة ❌"
-        );
+if(error){
 
-        return;
+console.error(error);
 
-    }
+alert(
+"تعذر تعديل الفئة ❌"
+);
 
-    await loadPlayers();
+return;
+
+}
+
+
+await loadPlayers();
 
 };
 
 
 /* =========================
-   PLAYER MODAL
+OPEN PLAYER MODAL
 ========================= */
 
 window.openPlayerModal =
 function(id){
 
-    const player =
-    allPlayers.find(
-        x =>
-        String(x.id) ===
-        String(id)
-    );
+const player =
+allPlayers.find(
+x =>
+String(x.id) ===
+String(id)
+);
 
-    if(!player){
-        alert("تعذر العثور على اللاعب.");
-        return;
-    }
 
-    document.getElementById(
-        "playerModalId"
-    ).value = player.id;
+if(!player){
 
-    document.getElementById(
-        "playerModalName"
-    ).innerText =
-    player.player_name || "-";
+alert(
+"تعذر العثور على اللاعب."
+);
 
-    document.getElementById(
-        "subscriptionStatus"
-    ).value =
-    player.subscription_status || "active";
+return;
 
-    document.getElementById(
-        "paymentStatus"
-    ).value =
-    player.payment_status || "unpaid";
+}
 
-    document.getElementById(
-        "amountPaid"
-    ).value =
-    player.amount_paid ?? "";
 
-    document.getElementById(
-        "subscriptionStart"
-    ).value =
-    player.subscription_start || "";
+document.getElementById(
+"playerModalId"
+).value =
+player.id;
 
-    document.getElementById(
-        "subscriptionEnd"
-    ).value =
-    player.subscription_end || "";
 
-    document.getElementById(
-        "subscriptionNotes"
-    ).value =
-    player.subscription_notes || "";
+document.getElementById(
+"playerModalName"
+).innerText =
+player.player_name || "-";
 
-    document.getElementById(
-        "playerModal"
-    ).classList.add("show");
+
+document.getElementById(
+"playerUsername"
+).value =
+player.username || "";
+
+
+document.getElementById(
+"playerPassword"
+).value =
+player.login_password || "";
+
+
+document.getElementById(
+"subscriptionStatus"
+).value =
+player.subscription_status ||
+"active";
+
+
+document.getElementById(
+"paymentStatus"
+).value =
+player.payment_status ||
+"unpaid";
+
+
+document.getElementById(
+"amountPaid"
+).value =
+player.amount_paid ?? "";
+
+
+document.getElementById(
+"subscriptionStart"
+).value =
+player.subscription_start || "";
+
+
+document.getElementById(
+"subscriptionEnd"
+).value =
+player.subscription_end || "";
+
+
+document.getElementById(
+"subscriptionNotes"
+).value =
+player.subscription_notes || "";
+
+
+document.getElementById(
+"playerModal"
+).classList.add("show");
 
 };
 
+
+/* =========================
+CLOSE PLAYER MODAL
+========================= */
 
 window.closePlayerModal =
 function(){
 
-    document
-    .getElementById("playerModal")
-    .classList.remove("show");
+document
+.getElementById("playerModal")
+.classList.remove("show");
 
 };
 
+
+/* =========================
+GENERATE NEW CREDENTIALS
+========================= */
+
+window.generateNewCredentials =
+async function(){
+
+const id =
+document.getElementById(
+"playerModalId"
+).value;
+
+
+const player =
+allPlayers.find(
+x =>
+String(x.id) ===
+String(id)
+);
+
+
+if(!player){
+
+alert(
+"تعذر العثور على اللاعب."
+);
+
+return;
+
+}
+
+
+if(
+!confirm(
+"هل تريد إنشاء اسم مستخدم وكلمة مرور جديدة لهذا اللاعب؟"
+)
+){
+
+return;
+
+}
+
+
+const username =
+generateUsername(player);
+
+
+const password =
+generatePassword();
+
+
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
+
+username:username,
+
+login_password:password
+
+})
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"تعذر إنشاء بيانات الدخول ❌\n\n" +
+error.message
+);
+
+return;
+
+}
+
+
+document.getElementById(
+"playerUsername"
+).value =
+username;
+
+
+document.getElementById(
+"playerPassword"
+).value =
+password;
+
+
+alert(
+"تم إنشاء بيانات الدخول الجديدة ✅"
+);
+
+
+await loadPlayers();
+
+};
+
+
+/* =========================
+COPY USERNAME
+========================= */
+
+window.copyUsername =
+async function(){
+
+const value =
+document.getElementById(
+"playerUsername"
+).value;
+
+
+if(!value){
+
+alert(
+"لا يوجد اسم مستخدم."
+);
+
+return;
+
+}
+
+
+await navigator.clipboard.writeText(
+value
+);
+
+
+alert(
+"تم نسخ اسم المستخدم ✅"
+);
+
+};
+
+
+/* =========================
+COPY PASSWORD
+========================= */
+
+window.copyPassword =
+async function(){
+
+const value =
+document.getElementById(
+"playerPassword"
+).value;
+
+
+if(!value){
+
+alert(
+"لا توجد كلمة مرور."
+);
+
+return;
+
+}
+
+
+await navigator.clipboard.writeText(
+value
+);
+
+
+alert(
+"تم نسخ كلمة المرور ✅"
+);
+
+};
+
+
+/* =========================
+COPY CREDENTIALS
+========================= */
+
+window.copyCredentials =
+async function(){
+
+const username =
+document.getElementById(
+"playerUsername"
+).value;
+
+
+const password =
+document.getElementById(
+"playerPassword"
+).value;
+
+
+if(!username || !password){
+
+alert(
+"بيانات الدخول غير موجودة."
+);
+
+return;
+
+}
+
+
+const text =
+`اسم المستخدم: ${username}
+كلمة المرور: ${password}`;
+
+
+await navigator.clipboard.writeText(
+text
+);
+
+
+alert(
+"تم نسخ بيانات الدخول كاملة ✅"
+);
+
+};
+
+
+/* =========================
+SAVE PLAYER
+========================= */
 
 window.savePlayerSubscription =
 async function(){
 
-    const id =
-    document.getElementById(
-        "playerModalId"
-    ).value;
-
-    const payload = {
-
-        subscription_status:
-        document.getElementById(
-            "subscriptionStatus"
-        ).value,
-
-        payment_status:
-        document.getElementById(
-            "paymentStatus"
-        ).value,
-
-        amount_paid:
-        document.getElementById(
-            "amountPaid"
-        ).value === ""
-        ?
-        null
-        :
-        Number(
-            document.getElementById(
-                "amountPaid"
-            ).value
-        ),
-
-        subscription_start:
-        document.getElementById(
-            "subscriptionStart"
-        ).value || null,
-
-        subscription_end:
-        document.getElementById(
-            "subscriptionEnd"
-        ).value || null,
-
-        subscription_notes:
-        document.getElementById(
-            "subscriptionNotes"
-        ).value.trim() || null
-
-    };
+const id =
+document.getElementById(
+"playerModalId"
+).value;
 
 
-    const {
-        error
-    } =
-    await supabase
-    .from("registration")
-    .update(payload)
-    .eq("id",id);
+if(!id){
+
+alert(
+"تعذر تحديد اللاعب."
+);
+
+return;
+
+}
 
 
-    if(error){
-
-        console.error(error);
-
-        alert(
-            "تعذر حفظ بيانات الاشتراك ❌"
-        );
-
-        return;
-
-    }
+const username =
+document.getElementById(
+"playerUsername"
+).value
+.trim();
 
 
-    alert(
-        "تم حفظ بيانات الاشتراك بنجاح ✅"
-    );
+const password =
+document.getElementById(
+"playerPassword"
+).value
+.trim();
 
-    closePlayerModal();
 
-    await loadPlayers();
+const payload = {
+
+username:
+username || null,
+
+login_password:
+password || null,
+
+subscription_status:
+document.getElementById(
+"subscriptionStatus"
+).value ||
+"active",
+
+payment_status:
+document.getElementById(
+"paymentStatus"
+).value ||
+"unpaid",
+
+amount_paid:
+document.getElementById(
+"amountPaid"
+).value === ""
+?
+null
+:
+Number(
+document.getElementById(
+"amountPaid"
+).value
+),
+
+subscription_start:
+document.getElementById(
+"subscriptionStart"
+).value ||
+null,
+
+subscription_end:
+document.getElementById(
+"subscriptionEnd"
+).value ||
+null,
+
+subscription_notes:
+document.getElementById(
+"subscriptionNotes"
+).value
+.trim() ||
+null
+
+};
+
+
+const {
+error
+} =
+await supabase
+.from("registration")
+.update(payload)
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"تعذر حفظ البيانات ❌\n\n" +
+error.message
+);
+
+return;
+
+}
+
+
+alert(
+"تم حفظ بيانات اللاعب بنجاح ✅"
+);
+
+
+closePlayerModal();
+
+await loadPlayers();
 
 };
 
 
 /* =========================
-   PLAYER TABLE
+PLAYER TABLE
 ========================= */
 
 function renderPlayers(){
 
-    const container =
-    document.getElementById(
-        "playersTable"
-    );
-
-    const search =
-    document.getElementById(
-        "playerSearch"
-    ).value
-    .trim()
-    .toLowerCase();
-
-    const category =
-    document.getElementById(
-        "categoryFilter"
-    ).value;
-
-    const pathway =
-    document.getElementById(
-        "pathwayFilter"
-    ).value;
+const container =
+document.getElementById(
+"playersTable"
+);
 
 
-    const players =
-    allPlayers.filter(
-        player => {
-
-            if(
-                player.status !==
-                "accepted"
-            ){
-                return false;
-            }
-
-            const name =
-            (
-                player.player_name ||
-                ""
-            ).toLowerCase();
-
-            if(
-                search &&
-                !name.includes(search)
-            ){
-                return false;
-            }
-
-            if(
-                category &&
-                player.category !== category
-            ){
-                return false;
-            }
-
-            if(
-                pathway &&
-                player.pathway !== pathway
-            ){
-                return false;
-            }
-
-            return true;
-
-        }
-    );
+const search =
+document.getElementById(
+"playerSearch"
+).value
+.trim()
+.toLowerCase();
 
 
-    if(!players.length){
-
-        container.innerHTML = `
-        <div style="
-            padding:30px;
-            text-align:center;
-            color:#777;
-        ">
-            لا يوجد لاعبين.
-        </div>
-        `;
-
-        return;
-
-    }
+const category =
+document.getElementById(
+"categoryFilter"
+).value;
 
 
-    container.innerHTML = `
-
-    <table>
-
-        <thead>
-
-            <tr>
-
-                <th>اللاعب</th>
-                <th>الميلاد</th>
-                <th>الفئة</th>
-                <th>المسار</th>
-                <th>الجوال</th>
-                <th>الاشتراك</th>
-                <th>الدفع</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-        ${
-            players.map(
-                player => {
-
-                    const subscription =
-                    player.subscription_status ||
-                    "active";
-
-                    const payment =
-                    player.payment_status ||
-                    "unpaid";
+const pathway =
+document.getElementById(
+"pathwayFilter"
+).value;
 
 
-                    const subscriptionText =
-                    subscription === "active"
-                    ?
-                    "فعال"
-                    :
-                    subscription === "expired"
-                    ?
-                    "منتهي"
-                    :
-                    "موقوف";
+const players =
+allPlayers.filter(
+player => {
+
+if(
+player.status !==
+"accepted"
+){
+
+return false;
+
+}
 
 
-                    const paymentText =
-                    payment === "paid"
-                    ?
-                    "مدفوع"
-                    :
-                    payment === "partial"
-                    ?
-                    "جزئي"
-                    :
-                    "غير مدفوع";
+const name =
+(
+player.player_name ||
+""
+)
+.toLowerCase();
 
 
-                    return `
+if(
+search &&
+!name.includes(search)
+){
 
-                    <tr>
+return false;
 
-                        <td>
+}
 
-                            <button
-                                class="playerNameButton"
-                                onclick="
-                                    openPlayerModal(
-                                        '${player.id}'
-                                    )
-                                "
-                            >
-                                ${escapeHtml(
-                                    player.player_name || "-"
-                                )}
-                            </button>
 
-                        </td>
+if(
+category &&
+player.category !== category
+){
 
-                        <td>
-                            ${escapeHtml(
-                                player.birth_date || "-"
-                            )}
-                        </td>
+return false;
 
-                        <td>
+}
 
-                            <select
-                                class="input"
-                                style="
-                                    margin:0;
-                                    min-width:145px;
-                                    padding:8px;
-                                "
-                                onchange="
-                                    changePlayerCategory(
-                                        '${player.id}',
-                                        this.value
-                                    )
-                                "
-                            >
 
-                            ${categoryOptions(
-                                player.category
-                            )}
+if(
+pathway &&
+player.pathway !== pathway
+){
 
-                            </select>
+return false;
 
-                        </td>
+}
 
-                        <td>
-                            ${escapeHtml(
-                                player.pathway || "—"
-                            )}
-                        </td>
 
-                        <td>
-                            ${escapeHtml(
-                                player.phone || "-"
-                            )}
-                        </td>
+return true;
 
-                        <td>
-                            <span
-                                class="badge ${subscription}"
-                            >
-                                ${subscriptionText}
-                            </span>
-                        </td>
+}
+);
 
-                        <td>
-                            <span
-                                class="badge ${payment}"
-                            >
-                                ${paymentText}
-                            </span>
-                        </td>
 
-                    </tr>
+if(!players.length){
 
-                    `;
+container.innerHTML = `
 
-                }
-            ).join("")
-        }
+<div style="
+padding:30px;
+text-align:center;
+color:#777;
+">
+لا يوجد لاعبين.
+</div>
 
-        </tbody>
+`;
 
-    </table>
+return;
 
-    `;
+}
+
+
+container.innerHTML = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>اللاعب</th>
+<th>اسم المستخدم</th>
+<th>الميلاد</th>
+<th>الفئة</th>
+<th>المسار</th>
+<th>الجوال</th>
+<th>الاشتراك</th>
+<th>الدفع</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+${
+players.map(
+player => {
+
+const subscription =
+player.subscription_status ||
+"active";
+
+
+const payment =
+player.payment_status ||
+"unpaid";
+
+
+const subscriptionText =
+subscription === "active"
+?
+"فعال"
+:
+subscription === "expired"
+?
+"منتهي"
+:
+"موقوف";
+
+
+const paymentText =
+payment === "paid"
+?
+"مدفوع"
+:
+payment === "partial"
+?
+"جزئي"
+:
+"غير مدفوع";
+
+
+return `
+
+<tr>
+
+<td>
+
+<button
+class="playerNameButton"
+onclick="
+openPlayerModal(
+'${player.id}'
+)
+"
+>
+
+${escapeHtml(
+player.player_name || "-"
+)}
+
+</button>
+
+</td>
+
+
+<td>
+
+${
+player.username
+?
+`
+<span class="userBadge">
+🔑
+${escapeHtml(
+player.username
+)}
+</span>
+`
+:
+`
+<span
+style="color:#999;"
+>
+لم يتم إنشاء
+</span>
+`
+}
+
+</td>
+
+
+<td>
+${escapeHtml(
+player.birth_date || "-"
+)}
+</td>
+
+
+<td>
+
+<select
+class="input"
+style="
+margin:0;
+min-width:145px;
+padding:8px;
+"
+onchange="
+changePlayerCategory(
+'${player.id}',
+this.value
+)
+"
+>
+
+${categoryOptions(
+player.category
+)}
+
+</select>
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+player.pathway || "—"
+)}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+player.phone || "-"
+)}
+
+</td>
+
+
+<td>
+
+<span
+class="badge ${subscription}"
+>
+
+${subscriptionText}
+
+</span>
+
+</td>
+
+
+<td>
+
+<span
+class="badge ${payment}"
+>
+
+${paymentText}
+
+</span>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
 
 }
 
 
 /* =========================
-   REQUESTS
+REQUESTS
 ========================= */
 
 function renderRequests(){
 
-    const container =
-    document.getElementById(
-        "requestsTable"
-    );
-
-    const list =
-    [
-        ...allPlayers.filter(
-            p =>
-            !p.status ||
-            p.status === "pending"
-        ),
-        ...allPlayers.filter(
-            p =>
-            p.status === "accepted"
-        ),
-        ...allPlayers.filter(
-            p =>
-            p.status === "rejected"
-        )
-    ];
+const container =
+document.getElementById(
+"requestsTable"
+);
 
 
-    if(!list.length){
-
-        container.innerHTML = `
-        <div style="
-            padding:30px;
-            text-align:center;
-            color:#777;
-        ">
-            لا توجد طلبات.
-        </div>
-        `;
-
-        return;
-
-    }
+const requests =
+allPlayers.filter(
+p =>
+!p.status ||
+p.status === "pending"
+);
 
 
-    container.innerHTML = `
-
-    <table>
-
-        <thead>
-
-            <tr>
-                <th>اللاعب</th>
-                <th>ولي الأمر</th>
-                <th>الجوال</th>
-                <th>الفئة</th>
-                <th>الحالة</th>
-                <th>الإجراءات</th>
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-        ${
-            list.map(
-                player => {
-
-                    const status =
-                    player.status ||
-                    "pending";
-
-                    const statusText =
-                    status === "accepted"
-                    ?
-                    "مقبول"
-                    :
-                    status === "rejected"
-                    ?
-                    "مرفوض"
-                    :
-                    "جديد";
+const accepted =
+allPlayers.filter(
+p =>
+p.status === "accepted"
+);
 
 
-                    return `
+const rejected =
+allPlayers.filter(
+p =>
+p.status === "rejected"
+);
 
-                    <tr>
 
-                        <td>
-                            <strong>
-                                ${escapeHtml(
-                                    player.player_name || "-"
-                                )}
-                            </strong>
-                        </td>
+const list =
+[
+...requests,
+...accepted,
+...rejected
+];
 
-                        <td>
-                            ${escapeHtml(
-                                player.guardian_name || "-"
-                            )}
-                        </td>
 
-                        <td>
-                            ${escapeHtml(
-                                player.phone || "-"
-                            )}
-                        </td>
+if(!list.length){
 
-                        <td>
-                            ${escapeHtml(
-                                player.category || "-"
-                            )}
-                        </td>
+container.innerHTML = `
 
-                        <td>
+<div style="
+padding:30px;
+text-align:center;
+color:#777;
+">
 
-                            <span
-                                class="badge ${status}"
-                            >
-                                ${statusText}
-                            </span>
+لا توجد طلبات.
 
-                        </td>
+</div>
 
-                        <td>
+`;
 
-                            <div class="actions">
+return;
 
-                            ${
-                                status !== "accepted"
-                                ?
-                                `
-                                <button
-                                    class="btn btnGreen"
-                                    onclick="
-                                        acceptPlayer(
-                                            '${player.id}'
-                                        )
-                                    "
-                                >
-                                    قبول
-                                </button>
-                                `
-                                :
-                                ""
-                            }
+}
 
-                            ${
-                                status !== "rejected"
-                                ?
-                                `
-                                <button
-                                    class="btn btnRed"
-                                    onclick="
-                                        rejectPlayer(
-                                            '${player.id}'
-                                        )
-                                    "
-                                >
-                                    رفض
-                                </button>
-                                `
-                                :
-                                ""
-                            }
 
-                            <button
-                                class="btn btnDark"
-                                onclick="
-                                    deletePlayer(
-                                        '${player.id}'
-                                    )
-                                "
-                            >
-                                حذف
-                            </button>
+container.innerHTML = `
 
-                            </div>
+<table>
 
-                        </td>
+<thead>
 
-                    </tr>
+<tr>
 
-                    `;
+<th>اللاعب</th>
+<th>ولي الأمر</th>
+<th>الجوال</th>
+<th>الفئة</th>
+<th>الحالة</th>
+<th>اسم المستخدم</th>
+<th>الإجراءات</th>
 
-                }
-            ).join("")
-        }
+</tr>
 
-        </tbody>
+</thead>
 
-    </table>
 
-    `;
+<tbody>
+
+${
+list.map(
+player => {
+
+const status =
+player.status ||
+"pending";
+
+
+const statusText =
+status === "accepted"
+?
+"مقبول"
+:
+status === "rejected"
+?
+"مرفوض"
+:
+"جديد";
+
+
+return `
+
+<tr>
+
+<td>
+
+<strong>
+
+${escapeHtml(
+player.player_name || "-"
+)}
+
+</strong>
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+player.guardian_name || "-"
+)}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+player.phone || "-"
+)}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+player.category || "-"
+)}
+
+</td>
+
+
+<td>
+
+<span
+class="badge ${status}"
+>
+
+${statusText}
+
+</span>
+
+</td>
+
+
+<td>
+
+${
+player.username
+?
+escapeHtml(player.username)
+:
+"—"
+}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+${
+status !== "accepted"
+?
+`
+
+<button
+class="btn btnGreen"
+onclick="
+acceptPlayer(
+'${player.id}'
+)
+"
+>
+قبول
+</button>
+
+`
+:
+""
+}
+
+
+${
+status !== "rejected"
+?
+`
+
+<button
+class="btn btnRed"
+onclick="
+rejectPlayer(
+'${player.id}'
+)
+"
+>
+رفض
+</button>
+
+`
+:
+""
+}
+
+
+<button
+class="btn btnDark"
+onclick="
+deletePlayer(
+'${player.id}'
+)
+"
+>
+حذف
+</button>
+
+
+</div>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
 
 }
 
 
 /* =========================
-   RECENT
+RECENT
 ========================= */
 
 function renderRecent(){
 
-    const container =
-    document.getElementById(
-        "recentPlayers"
-    );
-
-    const list =
-    allPlayers.slice(0,5);
+const container =
+document.getElementById(
+"recentPlayers"
+);
 
 
-    if(!list.length){
-
-        container.innerHTML =
-        "لا توجد طلبات.";
-
-        return;
-
-    }
+const list =
+allPlayers.slice(0,5);
 
 
-    container.innerHTML = `
+if(!list.length){
 
-    <table>
+container.innerHTML =
+"لا توجد طلبات.";
 
-        <thead>
+return;
 
-            <tr>
-                <th>اللاعب</th>
-                <th>الفئة</th>
-                <th>الحالة</th>
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-        ${
-            list.map(
-                p => {
-
-                    const status =
-                    p.status ||
-                    "pending";
-
-                    const text =
-                    status === "accepted"
-                    ?
-                    "مقبول"
-                    :
-                    status === "rejected"
-                    ?
-                    "مرفوض"
-                    :
-                    "جديد";
+}
 
 
-                    return `
+container.innerHTML = `
 
-                    <tr>
+<table>
 
-                        <td>
-                            ${escapeHtml(
-                                p.player_name || "-"
-                            )}
-                        </td>
+<thead>
 
-                        <td>
-                            ${escapeHtml(
-                                p.category || "-"
-                            )}
-                        </td>
+<tr>
 
-                        <td>
+<th>اللاعب</th>
+<th>الفئة</th>
+<th>اسم المستخدم</th>
+<th>الحالة</th>
 
-                            <span
-                                class="badge ${status}"
-                            >
-                                ${text}
-                            </span>
+</tr>
 
-                        </td>
+</thead>
 
-                    </tr>
 
-                    `;
+<tbody>
 
-                }
-            ).join("")
-        }
+${
+list.map(
+p => {
 
-        </tbody>
+const status =
+p.status ||
+"pending";
 
-    </table>
 
-    `;
+const text =
+status === "accepted"
+?
+"مقبول"
+:
+status === "rejected"
+?
+"مرفوض"
+:
+"جديد";
+
+
+return `
+
+<tr>
+
+<td>
+
+${escapeHtml(
+p.player_name || "-"
+)}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+p.category || "-"
+)}
+
+</td>
+
+
+<td>
+
+${
+p.username
+?
+escapeHtml(
+p.username
+)
+:
+"—"
+}
+
+</td>
+
+
+<td>
+
+<span
+class="badge ${status}"
+>
+
+${text}
+
+</span>
+
+</td>
+
+</tr>
+
+`;
+
+}
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
 
 }
 
 
 /* =========================
-   ACCEPT / REJECT / DELETE
+ACCEPT
 ========================= */
 
 window.acceptPlayer =
 async function(id){
 
-    const {
-        error
-    } =
-    await supabase
-    .from("registration")
-    .update({
-        status:"accepted"
-    })
-    .eq("id",id);
+const player =
+allPlayers.find(
+x =>
+String(x.id) ===
+String(id)
+);
 
-    if(error){
 
-        console.error(error);
+if(!player){
 
-        alert("تعذر قبول اللاعب ❌");
-        return;
+alert(
+"تعذر العثور على اللاعب."
+);
 
-    }
+return;
 
-    await loadPlayers();
+}
 
+
+try{
+
+let credentials;
+
+
+if(
+player.username &&
+player.login_password
+){
+
+credentials = {
+username:player.username,
+password:player.login_password
 };
 
+}else{
 
-window.rejectPlayer =
-async function(id){
+credentials =
+await createPlayerCredentials(
+player
+);
 
-    const {
-        error
-    } =
-    await supabase
-    .from("registration")
-    .update({
-        status:"rejected"
-    })
-    .eq("id",id);
-
-    if(error){
-
-        console.error(error);
-
-        alert("تعذر رفض اللاعب ❌");
-        return;
-
-    }
-
-    await loadPlayers();
-
-};
+}
 
 
-window.deletePlayer =
-async function(id){
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
 
-    if(
-        !confirm(
-            "هل أنت متأكد من حذف اللاعب؟"
-        )
-    ){
-        return;
-    }
+status:"accepted",
 
-    const {
-        error
-    } =
-    await supabase
-    .from("registration")
-    .delete()
-    .eq("id",id);
+username:
+credentials.username,
 
-    if(error){
+login_password:
+credentials.password
 
-        console.error(error);
+})
+.eq("id",id);
 
-        alert("تعذر حذف اللاعب ❌");
-        return;
 
-    }
+if(error){
 
-    await loadPlayers();
+throw error;
+
+}
+
+
+alert(
+`تم قبول اللاعب بنجاح ✅
+
+اسم المستخدم:
+${credentials.username}
+
+كلمة المرور:
+${credentials.password}`
+);
+
+
+await loadPlayers();
+
+
+}catch(error){
+
+console.error(error);
+
+alert(
+"تعذر قبول اللاعب ❌\n\n" +
+error.message
+);
+
+}
 
 };
 
 
 /* =========================
-   SEARCH
+REJECT
+========================= */
+
+window.rejectPlayer =
+async function(id){
+
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
+
+status:"rejected"
+
+})
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"تعذر رفض اللاعب ❌"
+);
+
+return;
+
+}
+
+
+await loadPlayers();
+
+};
+
+
+/* =========================
+DELETE
+========================= */
+
+window.deletePlayer =
+async function(id){
+
+if(
+!confirm(
+"هل أنت متأكد من حذف اللاعب؟"
+)
+){
+
+return;
+
+}
+
+
+const {
+error
+} =
+await supabase
+.from("registration")
+.delete()
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"تعذر حذف اللاعب ❌"
+);
+
+return;
+
+}
+
+
+await loadPlayers();
+
+};
+
+
+/* =========================
+SEARCH
 ========================= */
 
 document
 .getElementById("playerSearch")
 .addEventListener(
-    "input",
-    renderPlayers
+"input",
+renderPlayers
 );
+
 
 document
 .getElementById("categoryFilter")
 .addEventListener(
-    "change",
-    renderPlayers
+"change",
+renderPlayers
 );
+
 
 document
 .getElementById("pathwayFilter")
 .addEventListener(
-    "change",
-    renderPlayers
+"change",
+renderPlayers
 );
 
 
 /* =========================
-   SCHEDULE
+LOAD SCHEDULE
 ========================= */
 
 window.loadSchedule =
 async function(){
 
-    const container =
-    document.getElementById(
-        "scheduleTable"
-    );
-
-    container.innerHTML =
-    "جاري تحميل الجدول...";
+const container =
+document.getElementById(
+"scheduleTable"
+);
 
 
-    const {
-        data,
-        error
-    } =
-    await supabase
-    .from("academy_schedule")
-    .select("*")
-    .order("id",{
-        ascending:true
-    });
+container.innerHTML =
+"جاري تحميل الجدول...";
 
 
-    if(error){
-
-        console.error(error);
-
-        container.innerHTML = `
-        <div style="
-            padding:30px;
-            text-align:center;
-            color:#d92d20;
-        ">
-            تعذر تحميل الجدول ❌
-        </div>
-        `;
-
-        return;
-
-    }
+const {
+data,
+error
+} =
+await supabase
+.from("academy_schedule")
+.select("*")
+.order("id",{
+ascending:true
+});
 
 
-    allSchedule =
-    data || [];
+if(error){
 
-    updateStats();
-    renderSchedule();
-    renderMatches();
+console.error(error);
+
+container.innerHTML = `
+
+<div style="
+padding:30px;
+text-align:center;
+color:#d92d20;
+">
+
+تعذر تحميل الجدول ❌
+
+</div>
+
+`;
+
+return;
+
+}
+
+
+allSchedule =
+data || [];
+
+
+updateStats();
+
+renderSchedule();
+
+renderMatches();
 
 };
 
 
+/* =========================
+DAYS
+========================= */
+
 const days = [
-    "السبت",
-    "الأحد",
-    "الاثنين",
-    "الثلاثاء",
-    "الأربعاء",
-    "الخميس",
-    "الجمعة"
+"السبت",
+"الأحد",
+"الاثنين",
+"الثلاثاء",
+"الأربعاء",
+"الخميس",
+"الجمعة"
 ];
 
 
+/* =========================
+RENDER SCHEDULE
+========================= */
+
 function renderSchedule(){
 
-    const container =
-    document.getElementById(
-        "scheduleTable"
-    );
-
-    const training =
-    allSchedule.filter(
-        item =>
-        item.type === "training"
-    );
+const container =
+document.getElementById(
+"scheduleTable"
+);
 
 
-    if(!training.length){
-
-        container.innerHTML = `
-        <div style="
-            padding:30px;
-            text-align:center;
-            color:#777;
-        ">
-            لا توجد مواعيد تدريب مضافة حاليًا.
-        </div>
-        `;
-
-        return;
-
-    }
+const training =
+allSchedule.filter(
+item =>
+item.type === "training"
+);
 
 
-    container.innerHTML = `
+if(!training.length){
 
-    <table class="scheduleTable">
+container.innerHTML = `
 
-        <thead>
+<div style="
+padding:30px;
+text-align:center;
+color:#777;
+">
 
-            <tr>
+لا توجد مواعيد تدريب مضافة حاليًا.
 
-                <th>الوقت</th>
+</div>
 
-                ${
-                    days.map(
-                        day =>
-                        `<th>${day}</th>`
-                    ).join("")
-                }
+`;
 
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-            ${createScheduleRows(training)}
-
-        </tbody>
-
-    </table>
-
-    `;
+return;
 
 }
 
+
+container.innerHTML = `
+
+<table class="scheduleTable">
+
+<thead>
+
+<tr>
+
+<th>الوقت</th>
+
+${
+days.map(
+day =>
+`<th>${day}</th>`
+).join("")
+}
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+${
+createScheduleRows(
+training
+)
+}
+
+</tbody>
+
+</table>
+
+`;
+
+}
+
+
+/* =========================
+CREATE ROWS
+========================= */
 
 function createScheduleRows(items){
 
-    const timeMap = {};
-
-    items.forEach(
-        item => {
-
-            const start =
-            item.start_time || "";
-
-            const end =
-            item.end_time || "";
-
-            const key =
-            `${start}-${end}`;
-
-            if(!timeMap[key]){
-                timeMap[key] = [];
-            }
-
-            timeMap[key].push(item);
-
-        }
-    );
+const timeMap = {};
 
 
-    const keys =
-    Object.keys(timeMap)
-    .sort(
-        (a,b) =>
-        a.localeCompare(b)
-    );
+items.forEach(
+item => {
+
+const start =
+item.start_time || "";
+
+const end =
+item.end_time || "";
+
+const key =
+`${start}-${end}`;
 
 
-    return keys.map(
-        key => {
+if(!timeMap[key]){
 
-            const parts =
-            key.split("-");
-
-            const start =
-            parts[0] || "";
-
-            const end =
-            parts[1] || "";
-
-
-            return `
-
-            <tr>
-
-                <td class="timeCell">
-
-                    ${
-                        start && end
-                        ?
-                        `${formatTime(start)} - ${formatTime(end)}`
-                        :
-                        "—"
-                    }
-
-                </td>
-
-                ${
-                    days.map(
-                        day => {
-
-                            const list =
-                            timeMap[key].filter(
-                                item =>
-                                item.day === day
-                            );
-
-                            if(!list.length){
-                                return `<td></td>`;
-                            }
-
-                            return `
-                            <td>
-                                ${
-                                    list.map(
-                                        createScheduleItem
-                                    ).join("")
-                                }
-                            </td>
-                            `;
-
-                        }
-                    ).join("")
-                }
-
-            </tr>
-
-            `;
-
-        }
-    ).join("");
+timeMap[key] = [];
 
 }
 
+
+timeMap[key].push(item);
+
+}
+);
+
+
+const keys =
+Object.keys(timeMap)
+.sort(
+(a,b) => {
+
+const aStart =
+a.split("-")[0] ||
+"99:99";
+
+
+const bStart =
+b.split("-")[0] ||
+"99:99";
+
+
+return aStart.localeCompare(
+bStart
+);
+
+}
+);
+
+
+return keys.map(
+key => {
+
+const parts =
+key.split("-");
+
+
+const start =
+parts[0] || "";
+
+
+const end =
+parts[1] || "";
+
+
+return `
+
+<tr>
+
+<td class="timeCell">
+
+${
+start && end
+?
+`${formatTime(start)} - ${formatTime(end)}`
+:
+"—"
+}
+
+</td>
+
+
+${
+days.map(
+day => {
+
+const list =
+timeMap[key].filter(
+item =>
+item.day === day
+);
+
+
+if(!list.length){
+
+return `<td></td>`;
+
+}
+
+
+return `
+
+<td>
+
+${
+list.map(
+createScheduleItem
+).join("")
+}
+
+</td>
+
+`;
+
+}
+).join("")
+}
+
+</tr>
+
+`;
+
+}
+).join("");
+
+}
+
+
+/* =========================
+SCHEDULE ITEM
+========================= */
 
 function createScheduleItem(item){
 
-    return `
+return `
 
-    <div class="scheduleItem">
+<div class="scheduleItem">
 
-        <strong>
-            ${escapeHtml(
-                item.category ||
-                "تدريب"
-            )}
-        </strong>
+<strong>
 
-        ${
-            item.pathway
-            ?
-            `
-            <small>
-                ${escapeHtml(
-                    item.pathway
-                )}
-            </small>
-            `
-            :
-            ""
-        }
+${escapeHtml(
+item.category ||
+"تدريب"
+)}
 
-        ${
-            item.coach
-            ?
-            `
-            <small>
-                👤 ${escapeHtml(
-                    item.coach
-                )}
-            </small>
-            `
-            :
-            ""
-        }
+</strong>
 
-        <div class="actions">
 
-            ${
-                hasPermission("schedule")
-                ?
-                `
-                <button
-                    class="btn btnLight"
-                    onclick="
-                        editSchedule(
-                            '${item.id}'
-                        )
-                    "
-                >
-                    تعديل
-                </button>
+${
+item.pathway
+?
+`
 
-                <button
-                    class="btn btnRed"
-                    onclick="
-                        deleteSchedule(
-                            '${item.id}'
-                        )
-                    "
-                >
-                    حذف
-                </button>
-                `
-                :
-                ""
-            }
+<small>
+${escapeHtml(
+item.pathway
+)}
+</small>
 
-        </div>
+`
+:
+""
+}
 
-    </div>
 
-    `;
+${
+item.coach
+?
+`
+
+<small>
+👤
+${escapeHtml(
+item.coach
+)}
+</small>
+
+`
+:
+""
+}
+
+
+<div class="actions">
+
+<button
+class="btn btnLight"
+onclick="
+editSchedule(
+'${item.id}'
+)
+"
+>
+تعديل
+</button>
+
+
+<button
+class="btn btnRed"
+onclick="
+deleteSchedule(
+'${item.id}'
+)
+"
+>
+حذف
+</button>
+
+</div>
+
+</div>
+
+`;
 
 }
 
+
+/* =========================
+OPEN SCHEDULE
+========================= */
 
 window.openScheduleModal =
 function(){
 
-    document.getElementById(
-        "scheduleModalTitle"
-    ).innerText =
-    "إضافة موعد تدريب";
+document.getElementById(
+"scheduleModalTitle"
+).innerText =
+"إضافة موعد تدريب";
 
-    document.getElementById(
-        "scheduleId"
-    ).value = "";
 
-    document.getElementById(
-        "scheduleCategory"
-    ).value = "";
+document.getElementById(
+"scheduleId"
+).value = "";
 
-    document.getElementById(
-        "schedulePathway"
-    ).value = "";
 
-    document.getElementById(
-        "scheduleDay"
-    ).value = "السبت";
+document.getElementById(
+"scheduleCategory"
+).value = "";
 
-    document.getElementById(
-        "scheduleCoach"
-    ).value = "";
 
-    document.getElementById(
-        "scheduleStart"
-    ).value = "";
+document.getElementById(
+"schedulePathway"
+).value = "";
 
-    document.getElementById(
-        "scheduleEnd"
-    ).value = "";
 
-    document.getElementById(
-        "scheduleNotes"
-    ).value = "";
+document.getElementById(
+"scheduleDay"
+).value =
+"السبت";
 
-    document.getElementById(
-        "scheduleModal"
-    ).classList.add("show");
+
+document.getElementById(
+"scheduleCoach"
+).value = "";
+
+
+document.getElementById(
+"scheduleStart"
+).value = "";
+
+
+document.getElementById(
+"scheduleEnd"
+).value = "";
+
+
+document.getElementById(
+"scheduleNotes"
+).value = "";
+
+
+document.getElementById(
+"scheduleModal"
+).classList.add("show");
 
 };
 
+
+/* =========================
+CLOSE SCHEDULE
+========================= */
 
 window.closeScheduleModal =
 function(){
 
-    document
-    .getElementById("scheduleModal")
-    .classList.remove("show");
+document
+.getElementById(
+"scheduleModal"
+)
+.classList.remove("show");
 
 };
 
+
+/* =========================
+EDIT SCHEDULE
+========================= */
 
 window.editSchedule =
 function(id){
 
-    const item =
-    allSchedule.find(
-        x =>
-        String(x.id) ===
-        String(id)
-    );
+const item =
+allSchedule.find(
+x =>
+String(x.id) ===
+String(id)
+);
 
-    if(!item){
-        return;
-    }
 
-    document.getElementById(
-        "scheduleModalTitle"
-    ).innerText =
-    "تعديل موعد التدريب";
+if(!item){
 
-    document.getElementById(
-        "scheduleId"
-    ).value =
-    item.id;
+return;
 
-    document.getElementById(
-        "scheduleCategory"
-    ).value =
-    item.category || "";
+}
 
-    document.getElementById(
-        "schedulePathway"
-    ).value =
-    item.pathway || "";
 
-    document.getElementById(
-        "scheduleDay"
-    ).value =
-    item.day || "السبت";
+document.getElementById(
+"scheduleModalTitle"
+).innerText =
+"تعديل موعد التدريب";
 
-    document.getElementById(
-        "scheduleCoach"
-    ).value =
-    item.coach || "";
 
-    document.getElementById(
-        "scheduleStart"
-    ).value =
-    item.start_time || "";
+document.getElementById(
+"scheduleId"
+).value =
+item.id;
 
-    document.getElementById(
-        "scheduleEnd"
-    ).value =
-    item.end_time || "";
 
-    document.getElementById(
-        "scheduleNotes"
-    ).value =
-    item.notes || "";
+document.getElementById(
+"scheduleCategory"
+).value =
+item.category || "";
 
-    document.getElementById(
-        "scheduleModal"
-    ).classList.add("show");
+
+document.getElementById(
+"schedulePathway"
+).value =
+item.pathway || "";
+
+
+document.getElementById(
+"scheduleDay"
+).value =
+item.day || "السبت";
+
+
+document.getElementById(
+"scheduleCoach"
+).value =
+item.coach || "";
+
+
+document.getElementById(
+"scheduleStart"
+).value =
+item.start_time || "";
+
+
+document.getElementById(
+"scheduleEnd"
+).value =
+item.end_time || "";
+
+
+document.getElementById(
+"scheduleNotes"
+).value =
+item.notes || "";
+
+
+document.getElementById(
+"scheduleModal"
+).classList.add("show");
 
 };
 
+
+/* =========================
+SAVE SCHEDULE
+========================= */
 
 window.saveSchedule =
 async function(){
 
-    if(!hasPermission("schedule")){
-
-        alert("ليس لديك صلاحية.");
-        return;
-
-    }
-
-    const id =
-    document.getElementById(
-        "scheduleId"
-    ).value;
+const id =
+document.getElementById(
+"scheduleId"
+).value;
 
 
-    const payload = {
+const payload = {
 
-        type:"training",
+type:"training",
 
-        category:
-        document.getElementById(
-            "scheduleCategory"
-        ).value || null,
+category:
+document.getElementById(
+"scheduleCategory"
+).value ||
+null,
 
-        pathway:
-        document.getElementById(
-            "schedulePathway"
-        ).value || null,
+pathway:
+document.getElementById(
+"schedulePathway"
+).value ||
+null,
 
-        day:
-        document.getElementById(
-            "scheduleDay"
-        ).value,
+day:
+document.getElementById(
+"scheduleDay"
+).value,
 
-        start_time:
-        document.getElementById(
-            "scheduleStart"
-        ).value || null,
+start_time:
+document.getElementById(
+"scheduleStart"
+).value ||
+null,
 
-        end_time:
-        document.getElementById(
-            "scheduleEnd"
-        ).value || null,
+end_time:
+document.getElementById(
+"scheduleEnd"
+).value ||
+null,
 
-        coach:
-        document.getElementById(
-            "scheduleCoach"
-        ).value || null,
+coach:
+document.getElementById(
+"scheduleCoach"
+).value ||
+null,
 
-        notes:
-        document.getElementById(
-            "scheduleNotes"
-        ).value || null
-
-    };
-
-
-    if(!payload.category){
-
-        alert("اختر الفئة أولًا.");
-        return;
-
-    }
-
-
-    let result;
-
-
-    if(id){
-
-        result =
-        await supabase
-        .from("academy_schedule")
-        .update(payload)
-        .eq("id",id);
-
-    }else{
-
-        result =
-        await supabase
-        .from("academy_schedule")
-        .insert(payload);
-
-    }
-
-
-    if(result.error){
-
-        console.error(result.error);
-
-        alert("تعذر حفظ الموعد ❌");
-        return;
-
-    }
-
-
-    closeScheduleModal();
-
-    await loadSchedule();
+notes:
+document.getElementById(
+"scheduleNotes"
+).value ||
+null
 
 };
 
+
+if(!payload.category){
+
+alert(
+"اختر الفئة أولًا."
+);
+
+return;
+
+}
+
+
+let result;
+
+
+if(id){
+
+result =
+await supabase
+.from("academy_schedule")
+.update(payload)
+.eq("id",id);
+
+}else{
+
+result =
+await supabase
+.from("academy_schedule")
+.insert(payload);
+
+}
+
+
+if(result.error){
+
+console.error(
+result.error
+);
+
+alert(
+"تعذر حفظ الموعد ❌"
+);
+
+return;
+
+}
+
+
+closeScheduleModal();
+
+await loadSchedule();
+
+};
+
+
+/* =========================
+DELETE SCHEDULE
+========================= */
 
 window.deleteSchedule =
 async function(id){
 
-    if(!hasPermission("schedule")){
+if(
+!confirm(
+"هل تريد حذف هذا الموعد؟"
+)
+){
 
-        alert("ليس لديك صلاحية.");
-        return;
+return;
 
-    }
-
-    if(
-        !confirm(
-            "هل تريد حذف هذا الموعد؟"
-        )
-    ){
-        return;
-    }
+}
 
 
-    const {
-        error
-    } =
-    await supabase
-    .from("academy_schedule")
-    .delete()
-    .eq("id",id);
+const {
+error
+} =
+await supabase
+.from("academy_schedule")
+.delete()
+.eq("id",id);
 
 
-    if(error){
+if(error){
 
-        console.error(error);
+console.error(error);
 
-        alert("تعذر حذف الموعد ❌");
-        return;
+alert(
+"تعذر حذف الموعد ❌"
+);
 
-    }
+return;
 
-    await loadSchedule();
+}
+
+
+await loadSchedule();
 
 };
 
 
 /* =========================
-   MATCHES
+MATCHES
 ========================= */
 
 function renderMatches(){
 
-    const container =
-    document.getElementById(
-        "matchesTable"
-    );
-
-    const matches =
-    allSchedule.filter(
-        item =>
-        item.type === "match"
-    );
+const container =
+document.getElementById(
+"matchesTable"
+);
 
 
-    if(!matches.length){
-
-        container.innerHTML = `
-        <div style="
-            padding:35px;
-            text-align:center;
-            color:#777;
-        ">
-            لا توجد مباريات ودية مضافة.
-        </div>
-        `;
-
-        return;
-
-    }
+const matches =
+allSchedule.filter(
+item =>
+item.type === "match"
+);
 
 
-    container.innerHTML = `
+if(!matches.length){
 
-    <table>
+container.innerHTML = `
 
-        <thead>
+<div style="
+padding:35px;
+text-align:center;
+color:#777;
+">
 
-            <tr>
+لا توجد مباريات ودية مضافة.
 
-                <th>اليوم</th>
-                <th>الفئة</th>
-                <th>الخصم</th>
-                <th>الوقت</th>
-                <th>المكان</th>
-                <th>المدرب</th>
-                <th>الإجراءات</th>
+</div>
 
-            </tr>
+`;
 
-        </thead>
-
-        <tbody>
-
-        ${
-            matches.map(
-                match => `
-
-                <tr>
-
-                    <td>
-                        ${escapeHtml(
-                            match.day || "-"
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            match.category || "-"
-                        )}
-                    </td>
-
-                    <td>
-                        <strong>
-                            ${escapeHtml(
-                                match.opponent || "-"
-                            )}
-                        </strong>
-                    </td>
-
-                    <td>
-                        ${
-                            match.start_time
-                            ?
-                            formatTime(
-                                match.start_time
-                            )
-                            :
-                            "-"
-                        }
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            match.location || "-"
-                        )}
-                    </td>
-
-                    <td>
-                        ${escapeHtml(
-                            match.coach || "-"
-                        )}
-                    </td>
-
-                    <td>
-
-                        ${
-                            hasPermission("matches")
-                            ?
-                            `
-                            <div class="actions">
-
-                                <button
-                                    class="btn btnOrange"
-                                    onclick="
-                                        editMatch(
-                                            '${match.id}'
-                                        )
-                                    "
-                                >
-                                    تعديل
-                                </button>
-
-                                <button
-                                    class="btn btnRed"
-                                    onclick="
-                                        deleteMatch(
-                                            '${match.id}'
-                                        )
-                                    "
-                                >
-                                    حذف
-                                </button>
-
-                            </div>
-                            `
-                            :
-                            ""
-                        }
-
-                    </td>
-
-                </tr>
-
-                `
-            ).join("")
-        }
-
-        </tbody>
-
-    </table>
-
-    `;
+return;
 
 }
 
+
+container.innerHTML = `
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>اليوم</th>
+<th>الفئة</th>
+<th>الخصم</th>
+<th>الوقت</th>
+<th>المكان</th>
+<th>المدرب</th>
+<th>الإجراءات</th>
+
+</tr>
+
+</thead>
+
+
+<tbody>
+
+${
+matches.map(
+match => `
+
+<tr>
+
+<td>
+
+${escapeHtml(
+match.day || "-"
+)}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+match.category || "-"
+)}
+
+</td>
+
+
+<td>
+
+<strong>
+
+${escapeHtml(
+match.opponent || "-"
+)}
+
+</strong>
+
+</td>
+
+
+<td>
+
+${
+match.start_time
+?
+formatTime(
+match.start_time
+)
+:
+"-"
+}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+match.location || "-"
+)}
+
+</td>
+
+
+<td>
+
+${escapeHtml(
+match.coach || "-"
+)}
+
+</td>
+
+
+<td>
+
+<div class="actions">
+
+<button
+class="btn btnOrange"
+onclick="
+editMatch(
+'${match.id}'
+)
+"
+>
+تعديل
+</button>
+
+
+<button
+class="btn btnRed"
+onclick="
+deleteMatch(
+'${match.id}'
+)
+"
+>
+حذف
+</button>
+
+</div>
+
+</td>
+
+</tr>
+
+`
+).join("")
+}
+
+</tbody>
+
+</table>
+
+`;
+
+}
+
+
+/* =========================
+OPEN MATCH
+========================= */
 
 window.openMatchModal =
 function(){
 
-    document.getElementById(
-        "matchModalTitle"
-    ).innerText =
-    "إضافة مباراة ودية";
+document.getElementById(
+"matchModalTitle"
+).innerText =
+"إضافة مباراة ودية";
 
-    document.getElementById(
-        "matchId"
-    ).value = "";
 
-    document.getElementById(
-        "matchCategory"
-    ).value = "";
+document.getElementById(
+"matchId"
+).value = "";
 
-    document.getElementById(
-        "matchOpponent"
-    ).value = "";
 
-    document.getElementById(
-        "matchDay"
-    ).value = "السبت";
+document.getElementById(
+"matchCategory"
+).value = "";
 
-    document.getElementById(
-        "matchCoach"
-    ).value = "";
 
-    document.getElementById(
-        "matchStart"
-    ).value = "";
+document.getElementById(
+"matchOpponent"
+).value = "";
 
-    document.getElementById(
-        "matchLocation"
-    ).value = "";
 
-    document.getElementById(
-        "matchNotes"
-    ).value = "";
+document.getElementById(
+"matchDay"
+).value =
+"السبت";
 
-    document.getElementById(
-        "matchModal"
-    ).classList.add("show");
+
+document.getElementById(
+"matchCoach"
+).value = "";
+
+
+document.getElementById(
+"matchStart"
+).value = "";
+
+
+document.getElementById(
+"matchLocation"
+).value = "";
+
+
+document.getElementById(
+"matchNotes"
+).value = "";
+
+
+document.getElementById(
+"matchModal"
+).classList.add("show");
 
 };
 
+
+/* =========================
+CLOSE MATCH
+========================= */
 
 window.closeMatchModal =
 function(){
 
-    document
-    .getElementById("matchModal")
-    .classList.remove("show");
+document
+.getElementById(
+"matchModal"
+)
+.classList.remove("show");
 
 };
 
+
+/* =========================
+EDIT MATCH
+========================= */
 
 window.editMatch =
 function(id){
 
-    const match =
-    allSchedule.find(
-        x =>
-        String(x.id) ===
-        String(id)
-    );
+const match =
+allSchedule.find(
+x =>
+String(x.id) ===
+String(id)
+);
 
-    if(!match){
-        return;
-    }
 
-    document.getElementById(
-        "matchModalTitle"
-    ).innerText =
-    "تعديل المباراة";
+if(!match){
 
-    document.getElementById(
-        "matchId"
-    ).value =
-    match.id;
+return;
 
-    document.getElementById(
-        "matchCategory"
-    ).value =
-    match.category || "";
+}
 
-    document.getElementById(
-        "matchOpponent"
-    ).value =
-    match.opponent || "";
 
-    document.getElementById(
-        "matchDay"
-    ).value =
-    match.day || "السبت";
+document.getElementById(
+"matchModalTitle"
+).innerText =
+"تعديل المباراة";
 
-    document.getElementById(
-        "matchCoach"
-    ).value =
-    match.coach || "";
 
-    document.getElementById(
-        "matchStart"
-    ).value =
-    match.start_time || "";
+document.getElementById(
+"matchId"
+).value =
+match.id;
 
-    document.getElementById(
-        "matchLocation"
-    ).value =
-    match.location || "";
 
-    document.getElementById(
-        "matchNotes"
-    ).value =
-    match.notes || "";
+document.getElementById(
+"matchCategory"
+).value =
+match.category || "";
 
-    document.getElementById(
-        "matchModal"
-    ).classList.add("show");
+
+document.getElementById(
+"matchOpponent"
+).value =
+match.opponent || "";
+
+
+document.getElementById(
+"matchDay"
+).value =
+match.day || "السبت";
+
+
+document.getElementById(
+"matchCoach"
+).value =
+match.coach || "";
+
+
+document.getElementById(
+"matchStart"
+).value =
+match.start_time || "";
+
+
+document.getElementById(
+"matchLocation"
+).value =
+match.location || "";
+
+
+document.getElementById(
+"matchNotes"
+).value =
+match.notes || "";
+
+
+document.getElementById(
+"matchModal"
+).classList.add("show");
 
 };
 
+
+/* =========================
+SAVE MATCH
+========================= */
 
 window.saveMatch =
 async function(){
 
-    if(!hasPermission("matches")){
-
-        alert("ليس لديك صلاحية.");
-        return;
-
-    }
-
-    const id =
-    document.getElementById(
-        "matchId"
-    ).value;
+const id =
+document.getElementById(
+"matchId"
+).value;
 
 
-    const payload = {
+const payload = {
 
-        type:"match",
+type:"match",
 
-        category:
-        document.getElementById(
-            "matchCategory"
-        ).value || null,
+category:
+document.getElementById(
+"matchCategory"
+).value ||
+null,
 
-        day:
-        document.getElementById(
-            "matchDay"
-        ).value,
+day:
+document.getElementById(
+"matchDay"
+).value,
 
-        start_time:
-        document.getElementById(
-            "matchStart"
-        ).value || null,
+start_time:
+document.getElementById(
+"matchStart"
+).value ||
+null,
 
-        coach:
-        document.getElementById(
-            "matchCoach"
-        ).value || null,
+coach:
+document.getElementById(
+"matchCoach"
+).value ||
+null,
 
-        opponent:
-        document.getElementById(
-            "matchOpponent"
-        ).value || null,
+opponent:
+document.getElementById(
+"matchOpponent"
+).value ||
+null,
 
-        location:
-        document.getElementById(
-            "matchLocation"
-        ).value || null,
+location:
+document.getElementById(
+"matchLocation"
+).value ||
+null,
 
-        notes:
-        document.getElementById(
-            "matchNotes"
-        ).value || null
-
-    };
-
-
-    if(!payload.category){
-
-        alert("اختر الفئة أولًا.");
-        return;
-
-    }
-
-    if(!payload.opponent){
-
-        alert("اكتب اسم الفريق الخصم.");
-        return;
-
-    }
-
-
-    let result;
-
-
-    if(id){
-
-        result =
-        await supabase
-        .from("academy_schedule")
-        .update(payload)
-        .eq("id",id);
-
-    }else{
-
-        result =
-        await supabase
-        .from("academy_schedule")
-        .insert(payload);
-
-    }
-
-
-    if(result.error){
-
-        console.error(result.error);
-
-        alert("تعذر حفظ المباراة ❌");
-        return;
-
-    }
-
-
-    closeMatchModal();
-
-    await loadSchedule();
+notes:
+document.getElementById(
+"matchNotes"
+).value ||
+null
 
 };
 
+
+if(!payload.category){
+
+alert(
+"اختر الفئة أولًا."
+);
+
+return;
+
+}
+
+
+if(!payload.opponent){
+
+alert(
+"اكتب اسم الفريق الخصم."
+);
+
+return;
+
+}
+
+
+let result;
+
+
+if(id){
+
+result =
+await supabase
+.from("academy_schedule")
+.update(payload)
+.eq("id",id);
+
+}else{
+
+result =
+await supabase
+.from("academy_schedule")
+.insert(payload);
+
+}
+
+
+if(result.error){
+
+console.error(
+result.error
+);
+
+alert(
+"تعذر حفظ المباراة ❌"
+);
+
+return;
+
+}
+
+
+closeMatchModal();
+
+await loadSchedule();
+
+};
+
+
+/* =========================
+DELETE MATCH
+========================= */
 
 window.deleteMatch =
 async function(id){
 
-    if(!hasPermission("matches")){
+if(
+!confirm(
+"هل تريد حذف المباراة؟"
+)
+){
 
-        alert("ليس لديك صلاحية.");
-        return;
-
-    }
-
-    if(
-        !confirm(
-            "هل تريد حذف المباراة؟"
-        )
-    ){
-        return;
-    }
-
-
-    const {
-        error
-    } =
-    await supabase
-    .from("academy_schedule")
-    .delete()
-    .eq("id",id);
-
-
-    if(error){
-
-        console.error(error);
-
-        alert("تعذر حذف المباراة ❌");
-        return;
-
-    }
-
-
-    await loadSchedule();
-
-};
-
-
-/* =========================
-   USERS
-========================= */
-
-async function loadUsers(){
-
-    if(currentProfile?.role !== "admin"){
-        return;
-    }
-
-
-    const container =
-    document.getElementById(
-        "usersTable"
-    );
-
-    container.innerHTML =
-    "جاري تحميل المستخدمين...";
-
-
-    const {
-        data,
-        error
-    } =
-    await supabase
-    .from("user_profiles")
-    .select("*")
-    .order("created_at",{
-        ascending:false
-    });
-
-
-    if(error){
-
-        console.error(error);
-
-        container.innerHTML = `
-        <div style="
-            padding:30px;
-            text-align:center;
-            color:#d92d20;
-        ">
-            تعذر تحميل المستخدمين ❌
-        </div>
-        `;
-
-        return;
-
-    }
-
-
-    allUsers =
-    data || [];
-
-    renderUsers();
+return;
 
 }
 
 
-function renderUsers(){
+const {
+error
+} =
+await supabase
+.from("academy_schedule")
+.delete()
+.eq("id",id);
 
-    const container =
-    document.getElementById(
-        "usersTable"
-    );
 
+if(error){
 
-    if(!allUsers.length){
+console.error(error);
 
-        container.innerHTML = `
-        <div style="
-            padding:30px;
-            text-align:center;
-            color:#777;
-        ">
-            لا يوجد مستخدمين.
-        </div>
-        `;
-
-        return;
-
-    }
-
-
-    container.innerHTML = `
-
-    <table>
-
-        <thead>
-
-            <tr>
-
-                <th>اسم المستخدم</th>
-                <th>البريد</th>
-                <th>نوع الحساب</th>
-                <th>الحالة</th>
-                <th>الإجراءات</th>
-
-            </tr>
-
-        </thead>
-
-        <tbody>
-
-        ${
-            allUsers.map(
-                user => {
-
-                    const active =
-                    user.active !== false;
-
-
-                    return `
-
-                    <tr>
-
-                        <td>
-                            <strong>
-                                ${escapeHtml(
-                                    user.username || "-"
-                                )}
-                            </strong>
-                        </td>
-
-                        <td>
-                            ${escapeHtml(
-                                user.email || "-"
-                            )}
-                        </td>
-
-                        <td>
-
-                            <span
-                                class="badge ${user.role}"
-                            >
-                                ${roleName(
-                                    user.role
-                                )}
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <span
-                                class="badge ${
-                                    active
-                                    ?
-                                    "active"
-                                    :
-                                    "suspended"
-                                }"
-                            >
-                                ${
-                                    active
-                                    ?
-                                    "فعال"
-                                    :
-                                    "موقوف"
-                                }
-                            </span>
-
-                        </td>
-
-                        <td>
-
-                            <div class="actions">
-
-                                <button
-                                    class="btn btnOrange"
-                                    onclick="
-                                        editUser(
-                                            '${user.id}'
-                                        )
-                                    "
-                                >
-                                    تعديل
-                                </button>
-
-                                ${
-                                    String(user.id) !==
-                                    String(currentProfile.id)
-                                    ?
-                                    `
-                                    <button
-                                        class="btn btnRed"
-                                        onclick="
-                                            deleteUser(
-                                                '${user.id}'
-                                            )
-                                        "
-                                    >
-                                        حذف
-                                    </button>
-                                    `
-                                    :
-                                    ""
-                                }
-
-                            </div>
-
-                        </td>
-
-                    </tr>
-
-                    `;
-
-                }
-            ).join("")
-        }
-
-        </tbody>
-
-    </table>
-
-    `;
-
-}
-
-
-/* =========================
-   USER MODAL
-========================= */
-
-window.openUserModal =
-function(){
-
-    document.getElementById(
-        "userModalTitle"
-    ).innerText =
-    "إضافة مستخدم";
-
-    document.getElementById(
-        "userId"
-    ).value = "";
-
-    document.getElementById(
-        "username"
-    ).value = "";
-
-    document.getElementById(
-        "userEmail"
-    ).value = "";
-
-    document.getElementById(
-        "userPassword"
-    ).value = "";
-
-    document.getElementById(
-        "userRole"
-    ).value = "visitor";
-
-    document.getElementById(
-        "userActive"
-    ).value = "true";
-
-    document.getElementById(
-        "permPlayers"
-    ).checked = false;
-
-    document.getElementById(
-        "permRequests"
-    ).checked = false;
-
-    document.getElementById(
-        "permSchedule"
-    ).checked = false;
-
-    document.getElementById(
-        "permMatches"
-    ).checked = false;
-
-    updatePermissionVisibility();
-
-    document.getElementById(
-        "userModal"
-    ).classList.add("show");
-
-};
-
-
-window.closeUserModal =
-function(){
-
-    document
-    .getElementById("userModal")
-    .classList.remove("show");
-
-};
-
-
-function updatePermissionVisibility(){
-
-    const role =
-    document.getElementById(
-        "userRole"
-    ).value;
-
-    const area =
-    document.getElementById(
-        "permissionArea"
-    );
-
-    if(role === "employee"){
-
-        area.classList.remove(
-            "hidden"
-        );
-
-    }else{
-
-        area.classList.add(
-            "hidden"
-        );
-
-    }
-
-}
-
-
-document
-.getElementById("userRole")
-.addEventListener(
-    "change",
-    updatePermissionVisibility
+alert(
+"تعذر حذف المباراة ❌"
 );
 
+return;
 
-/* =========================
-   SAVE USER
-========================= */
-
-window.saveUser =
-async function(){
-
-    if(currentProfile?.role !== "admin"){
-
-        alert(
-            "فقط المدير يستطيع إدارة المستخدمين."
-        );
-
-        return;
-
-    }
+}
 
 
-    const id =
-    document.getElementById(
-        "userId"
-    ).value;
-
-
-    const username =
-    document.getElementById(
-        "username"
-    ).value.trim();
-
-
-    const email =
-    document.getElementById(
-        "userEmail"
-    ).value.trim();
-
-
-    const password =
-    document.getElementById(
-        "userPassword"
-    ).value;
-
-
-    const role =
-    document.getElementById(
-        "userRole"
-    ).value;
-
-
-    const active =
-    document.getElementById(
-        "userActive"
-    ).value === "true";
-
-
-    if(!username){
-
-        alert("اكتب اسم المستخدم.");
-        return;
-
-    }
-
-
-    if(!email){
-
-        alert("اكتب البريد الإلكتروني.");
-        return;
-
-    }
-
-
-    if(!id && !password){
-
-        alert("اكتب كلمة المرور.");
-        return;
-
-    }
-
-
-    const permissions = {
-
-        players:
-        document.getElementById(
-            "permPlayers"
-        ).checked,
-
-        requests:
-        document.getElementById(
-            "permRequests"
-        ).checked,
-
-        schedule:
-        document.getElementById(
-            "permSchedule"
-        ).checked,
-
-        matches:
-        document.getElementById(
-            "permMatches"
-        ).checked
-
-    };
-
-
-    /*
-      ملاحظة:
-      إنشاء حساب Auth جديد من المتصفح مباشرة
-      غير مناسب لأنه يحتاج Service Role Key.
-      لذلك هنا نحفظ ملف المستخدم،
-      والحساب نفسه يجب إنشاؤه من Supabase Auth.
-    */
-
-
-    if(id){
-
-        const payload = {
-
-            username,
-            email,
-            role,
-            active,
-            permissions:
-            role === "employee"
-            ?
-            permissions
-            :
-            {}
-
-        };
-
-
-        const {
-            error
-        } =
-        await supabase
-        .from("user_profiles")
-        .update(payload)
-        .eq("id",id);
-
-
-        if(error){
-
-            console.error(error);
-
-            alert(
-                "تعذر تعديل المستخدم ❌\n\n" +
-                error.message
-            );
-
-            return;
-
-        }
-
-
-        alert(
-            "تم تعديل المستخدم بنجاح ✅"
-        );
-
-
-    }else{
-
-        alert(
-            "أنشئ حساب المستخدم أولًا من Supabase Authentication بنفس البريد وكلمة المرور، ثم أضف بياناته هنا."
-        );
-
-        return;
-
-    }
-
-
-    closeUserModal();
-
-    await loadUsers();
+await loadSchedule();
 
 };
 
 
 /* =========================
-   EDIT USER
-========================= */
-
-window.editUser =
-function(id){
-
-    const user =
-    allUsers.find(
-        x =>
-        String(x.id) ===
-        String(id)
-    );
-
-
-    if(!user){
-        return;
-    }
-
-
-    document.getElementById(
-        "userModalTitle"
-    ).innerText =
-    "تعديل المستخدم";
-
-
-    document.getElementById(
-        "userId"
-    ).value =
-    user.id;
-
-
-    document.getElementById(
-        "username"
-    ).value =
-    user.username || "";
-
-
-    document.getElementById(
-        "userEmail"
-    ).value =
-    user.email || "";
-
-
-    document.getElementById(
-        "userPassword"
-    ).value = "";
-
-
-    document.getElementById(
-        "userRole"
-    ).value =
-    user.role || "visitor";
-
-
-    document.getElementById(
-        "userActive"
-    ).value =
-    user.active === false
-    ?
-    "false"
-    :
-    "true";
-
-
-    const permissions =
-    user.permissions || {};
-
-
-    document.getElementById(
-        "permPlayers"
-    ).checked =
-    permissions.players === true;
-
-
-    document.getElementById(
-        "permRequests"
-    ).checked =
-    permissions.requests === true;
-
-
-    document.getElementById(
-        "permSchedule"
-    ).checked =
-    permissions.schedule === true;
-
-
-    document.getElementById(
-        "permMatches"
-    ).checked =
-    permissions.matches === true;
-
-
-    updatePermissionVisibility();
-
-
-    document.getElementById(
-        "userModal"
-    ).classList.add("show");
-
-};
-
-
-/* =========================
-   DELETE USER
-========================= */
-
-window.deleteUser =
-async function(id){
-
-    if(currentProfile?.role !== "admin"){
-
-        alert(
-            "فقط المدير يستطيع حذف المستخدمين."
-        );
-
-        return;
-
-    }
-
-
-    if(
-        !confirm(
-            "هل أنت متأكد من حذف بيانات هذا المستخدم؟"
-        )
-    ){
-        return;
-    }
-
-
-    const {
-        error
-    } =
-    await supabase
-    .from("user_profiles")
-    .delete()
-    .eq("id",id);
-
-
-    if(error){
-
-        console.error(error);
-
-        alert(
-            "تعذر حذف المستخدم ❌\n\n" +
-            error.message
-        );
-
-        return;
-
-    }
-
-
-    await loadUsers();
-
-};
-
-
-/* =========================
-   FORMAT TIME
+FORMAT TIME
 ========================= */
 
 function formatTime(time){
 
-    if(!time){
-        return "—";
-    }
+if(!time){
 
-    const parts =
-    time.split(":");
+return "—";
 
-    let hour =
-    parseInt(parts[0]);
-
-    const minute =
-    parts[1] || "00";
-
-    const period =
-    hour >= 12
-    ?
-    "م"
-    :
-    "ص";
+}
 
 
-    hour =
-    hour % 12;
+const parts =
+time.split(":");
 
 
-    if(hour === 0){
-        hour = 12;
-    }
+let hour =
+parseInt(parts[0]);
 
 
-    return `${hour}:${minute} ${period}`;
+const minute =
+parts[1] ||
+"00";
+
+
+const period =
+hour >= 12
+?
+"م"
+:
+"ص";
+
+
+hour =
+hour % 12;
+
+
+if(hour === 0){
+
+hour = 12;
+
+}
+
+
+return `${hour}:${minute} ${period}`;
 
 }
 
 
 /* =========================
-   ESCAPE HTML
+ESCAPE HTML
 ========================= */
 
 function escapeHtml(value){
 
-    return String(value)
+return String(value)
 
-    .replaceAll("&","&amp;")
-    .replaceAll("<","&lt;")
-    .replaceAll(">","&gt;")
-    .replaceAll('"',"&quot;")
-    .replaceAll("'","&#039;");
+.replaceAll(
+"&",
+"&amp;"
+)
+
+.replaceAll(
+"<",
+"&lt;"
+)
+
+.replaceAll(
+">",
+"&gt;"
+)
+
+.replaceAll(
+'"',
+"&quot;"
+)
+
+.replaceAll(
+"'",
+"&#039;"
+);
 
 }
 
 
 /* =========================
-   START
+START
 ========================= */
 
 checkSession();
 
 
 supabase.auth.onAuthStateChange(
-    async (event,session) => {
+(event,session) => {
 
-        if(session){
+if(session){
 
-            const profile =
-            await loadCurrentProfile(
-                session.user.id
-            );
+showApp();
 
-            if(
-                profile &&
-                profile.active !== false &&
-                profile.role !== "visitor"
-            ){
+}
 
-                await showApp();
-
-            }
-
-        }
-
-    }
-);
+});
 
 </script>
 
 </body>
 </html>
+```
