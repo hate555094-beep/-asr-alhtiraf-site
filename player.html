@@ -1526,36 +1526,357 @@ function setupPayment(){
    LOGOUT
 ========================= */
 
-document
-.getElementById(
-    "logoutButton"
-)
-.addEventListener(
-    "click",
-    function(){
+<script type="module">
+
+import { createClient }
+from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
 
 
-        profilePage.style.display =
-        "none";
+const SUPABASE_URL =
+"https://ybbyvxpvblbnhqmkfxvw.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
+
+const supabase =
+createClient(
+    SUPABASE_URL,
+    SUPABASE_KEY
+);
 
 
-        loginPage.style.display =
-        "block";
+const loginButton =
+document.getElementById("loginButton");
+
+const loginMessage =
+document.getElementById("loginMessage");
+
+const usernameInput =
+document.getElementById("username");
+
+const passwordInput =
+document.getElementById("password");
+
+const loginPage =
+document.getElementById("loginPage");
+
+const profilePage =
+document.getElementById("profilePage");
 
 
-        usernameInput.value =
-        "";
+loginButton.addEventListener("click", login);
 
 
-        passwordInput.value =
-        "";
+passwordInput.addEventListener("keydown", function(event){
 
+    if(event.key === "Enter"){
+        login();
+    }
+
+});
+
+
+async function login(){
+
+    const username =
+    usernameInput.value.trim();
+
+    const password =
+    passwordInput.value.trim();
+
+
+    if(username === ""){
+
+        loginMessage.style.color = "#d32f2f";
 
         loginMessage.innerText =
-        "";
+        "اكتب اسم المستخدم أولًا.";
+
+        return;
 
     }
-);
+
+
+    if(password === ""){
+
+        loginMessage.style.color = "#d32f2f";
+
+        loginMessage.innerText =
+        "اكتب كلمة المرور أولًا.";
+
+        return;
+
+    }
+
+
+    loginButton.disabled = true;
+
+    loginButton.innerText =
+    "جاري الدخول...";
+
+
+    loginMessage.style.color =
+    "#777";
+
+    loginMessage.innerText =
+    "";
+
+
+    try{
+
+        const { data, error } =
+        await supabase
+        .from("registration")
+        .select("*")
+        .eq("username", username)
+        .eq("player_password", password)
+        .eq("status", "accepted")
+        .maybeSingle();
+
+
+        if(error){
+
+            console.error(error);
+
+            loginMessage.style.color =
+            "#d32f2f";
+
+            loginMessage.innerText =
+            "حدث خطأ في الاتصال بقاعدة البيانات ❌";
+
+            loginButton.disabled = false;
+
+            loginButton.innerText =
+            "دخول إلى ملفي 🔐";
+
+            return;
+
+        }
+
+
+        if(!data){
+
+            loginMessage.style.color =
+            "#d32f2f";
+
+            loginMessage.innerText =
+            "اسم المستخدم أو كلمة المرور غير صحيحة ❌";
+
+            loginButton.disabled = false;
+
+            loginButton.innerText =
+            "دخول إلى ملفي 🔐";
+
+            return;
+
+        }
+
+
+        showPlayer(data);
+
+
+    }catch(error){
+
+        console.error(error);
+
+        loginMessage.style.color =
+        "#d32f2f";
+
+        loginMessage.innerText =
+        "حدث خطأ غير متوقع ❌";
+
+
+        loginButton.disabled = false;
+
+        loginButton.innerText =
+        "دخول إلى ملفي 🔐";
+
+    }
+
+}
+
+
+function showPlayer(player){
+
+    loginPage.style.display =
+    "none";
+
+    profilePage.style.display =
+    "block";
+
+
+    document.getElementById("playerName").innerText =
+    player.player_name || "-";
+
+
+    document.getElementById("playerCodeView").innerText =
+    "رقم اللاعب: " +
+    (player.player_code || "-");
+
+
+    document.getElementById("category").innerText =
+    player.category || "-";
+
+
+    document.getElementById("birthDate").innerText =
+    player.birth_date || "-";
+
+
+    document.getElementById("age").innerText =
+    player.age
+    ?
+    player.age + " سنة"
+    :
+    "-";
+
+
+    document.getElementById("pathway").innerText =
+    player.pathway || "غير محدد";
+
+
+    document.getElementById("guardian").innerText =
+    player.guardian_name || "-";
+
+
+    document.getElementById("subscriptionStart").innerText =
+    player.subscription_start || "-";
+
+
+    document.getElementById("subscriptionEnd").innerText =
+    player.subscription_end || "-";
+
+
+    document.getElementById("price").innerText =
+    player.subscription_price || 0;
+
+
+    document.getElementById("paymentStatus").innerText =
+    getPaymentText(player.payment_status);
+
+
+    calculateRemaining(
+        player.subscription_end
+    );
+
+}
+
+
+function getPaymentText(status){
+
+    if(status === "paid"){
+        return "مدفوع ✅";
+    }
+
+    if(status === "partial"){
+        return "مدفوع جزئيًا";
+    }
+
+    return "غير مدفوع";
+
+}
+
+
+function calculateRemaining(endDate){
+
+    const statusElement =
+    document.getElementById(
+        "subscriptionStatus"
+    );
+
+    const daysElement =
+    document.getElementById(
+        "daysRemaining"
+    );
+
+
+    if(!endDate){
+
+        daysElement.innerText =
+        "-";
+
+        statusElement.innerText =
+        "غير مفعل";
+
+        statusElement.className =
+        "status inactive";
+
+        return;
+
+    }
+
+
+    const today =
+    new Date();
+
+    today.setHours(0,0,0,0);
+
+
+    const end =
+    new Date(
+        endDate + "T00:00:00"
+    );
+
+
+    const difference =
+    end - today;
+
+
+    const days =
+    Math.ceil(
+        difference /
+        (1000 * 60 * 60 * 24)
+    );
+
+
+    if(days > 0){
+
+        daysElement.innerText =
+        days;
+
+        statusElement.innerText =
+        "الاشتراك فعال";
+
+        statusElement.className =
+        "status active";
+
+    }else{
+
+        daysElement.innerText =
+        "0";
+
+        statusElement.innerText =
+        "الاشتراك منتهي";
+
+        statusElement.className =
+        "status expired";
+
+    }
+
+}
+
+
+document
+.getElementById("logoutButton")
+.addEventListener("click", function(){
+
+    profilePage.style.display =
+    "none";
+
+    loginPage.style.display =
+    "block";
+
+    usernameInput.value = "";
+
+    passwordInput.value = "";
+
+    loginMessage.innerText = "";
+
+    loginButton.disabled = false;
+
+    loginButton.innerText =
+    "دخول إلى ملفي 🔐";
+
+});
 
 </script>
 
