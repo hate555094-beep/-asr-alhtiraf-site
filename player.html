@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="ar" dir="rtl">
 
 <head>
@@ -301,46 +300,45 @@ body{
 
 <div id="loginPage" class="loginBox">
 
-```
-<h1>
-    عصر <span>الاحتراف</span>
-</h1>
+    <h1>
+        عصر <span>الاحتراف</span>
+    </h1>
 
-<p>
-    تسجيل دخول اللاعب
-</p>
+    <p>
+        تسجيل دخول اللاعب
+    </p>
 
-<input
-    id="username"
-    class="input"
-    type="text"
-    placeholder="اسم المستخدم"
-    autocomplete="username"
->
+    <input
+        id="username"
+        class="input"
+        type="text"
+        placeholder="اسم المستخدم"
+        autocomplete="username"
+    >
 
-<input
-    id="password"
-    class="input"
-    type="password"
-    placeholder="كلمة المرور"
-    autocomplete="current-password"
->
+    <input
+        id="password"
+        class="input"
+        type="password"
+        placeholder="كلمة المرور"
+        autocomplete="current-password"
+    >
 
-<button
-    id="loginButton"
-    class="button"
-    type="button"
->
-    دخول
-</button>
+    <button
+        id="loginButton"
+        class="button"
+        type="button"
+    >
+        دخول
+    </button>
 
-<div
-    id="loginMessage"
-    class="message"
-></div>
-```
+    <div
+        id="loginMessage"
+        class="message"
+    ></div>
 
 </div>
+
 
 <!-- =========================
      PROFILE
@@ -348,260 +346,260 @@ body{
 
 <div id="profilePage">
 
-```
-<div class="header">
+    <div class="header">
 
-    <div class="logo">
-        ⚽
-    </div>
-
-    <h1>
-        ملف لاعب
-        <span>عصر الاحتراف</span>
-    </h1>
-
-    <p>
-        جميع معلومات اللاعب والاشتراك
-    </p>
-
-</div>
-
-
-<div class="playerCard">
-
-    <div class="playerTop">
-
-        <div>
-
-            <div
-                id="playerName"
-                class="playerName"
-            >
-                -
-            </div>
-
-            <div
-                id="playerCodeView"
-                style="color:#777;margin-top:5px;"
-            >
-                -
-            </div>
-
+        <div class="logo">
+            ⚽
         </div>
 
-        <div
-            id="category"
-            class="playerCode"
-        >
-            -
-        </div>
+        <h1>
+            ملف لاعب
+            <span>عصر الاحتراف</span>
+        </h1>
 
-    </div>
-
-
-    <!-- INFO -->
-
-    <div class="infoGrid">
-
-        <div class="info">
-
-            <div class="infoTitle">
-                تاريخ الميلاد
-            </div>
-
-            <div
-                id="birthDate"
-                class="infoValue"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="infoTitle">
-                العمر
-            </div>
-
-            <div
-                id="age"
-                class="infoValue"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="infoTitle">
-                المسار
-            </div>
-
-            <div
-                id="pathway"
-                class="infoValue"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="infoTitle">
-                ولي الأمر
-            </div>
-
-            <div
-                id="guardian"
-                class="infoValue"
-            >
-                -
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- SUBSCRIPTION -->
-
-    <div class="subscription">
-
-        <h2>
-            الاشتراك
-        </h2>
-
-        <div
-            id="subscriptionStatus"
-            class="status inactive"
-        >
-            غير مفعل
-        </div>
-
-        <div
-            id="daysRemaining"
-            class="days"
-        >
-            -
-        </div>
-
-        <div>
-            الأيام المتبقية
-        </div>
-
-
-        <div class="subscriptionInfo">
-
-            <div class="subscriptionBox">
-
-                <div>
-                    بداية الاشتراك
-                </div>
-
-                <strong id="subscriptionStart">
-                    -
-                </strong>
-
-            </div>
-
-
-            <div class="subscriptionBox">
-
-                <div>
-                    نهاية الاشتراك
-                </div>
-
-                <strong id="subscriptionEnd">
-                    -
-                </strong>
-
-            </div>
-
-
-            <div class="subscriptionBox">
-
-                <div>
-                    قيمة الاشتراك
-                </div>
-
-                <strong>
-
-                    <span id="price">
-                        0
-                    </span>
-
-                    ريال
-
-                </strong>
-
-            </div>
-
-
-            <div class="subscriptionBox">
-
-                <div>
-                    حالة الدفع
-                </div>
-
-                <strong id="paymentStatus">
-                    غير مدفوع
-                </strong>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
-    <!-- PAYMENT -->
-
-    <div class="payment">
-
-        <h2>
-            الدفع
-        </h2>
-
-        <p
-            id="paymentText"
-            style="color:#777;line-height:1.8;"
-        >
-            لم يتم تحديد طريقة الدفع بعد.
+        <p>
+            جميع معلومات اللاعب والاشتراك
         </p>
 
-        <a
-            id="paymentButton"
-            class="paymentButton"
-            href="#"
-            target="_blank"
-            style="display:none;"
-        >
-            دفع الاشتراك 💳
-        </a>
-
     </div>
 
 
-    <button
-        id="logoutButton"
-        class="button logout"
-        type="button"
-    >
-        تسجيل الخروج
-    </button>
+    <div class="playerCard">
+
+        <div class="playerTop">
+
+            <div>
+
+                <div
+                    id="playerName"
+                    class="playerName"
+                >
+                    -
+                </div>
+
+                <div
+                    id="playerCodeView"
+                    style="color:#777;margin-top:5px;"
+                >
+                    -
+                </div>
+
+            </div>
+
+            <div
+                id="category"
+                class="playerCode"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <!-- INFO -->
+
+        <div class="infoGrid">
+
+            <div class="info">
+
+                <div class="infoTitle">
+                    تاريخ الميلاد
+                </div>
+
+                <div
+                    id="birthDate"
+                    class="infoValue"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="infoTitle">
+                    العمر
+                </div>
+
+                <div
+                    id="age"
+                    class="infoValue"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="infoTitle">
+                    المسار
+                </div>
+
+                <div
+                    id="pathway"
+                    class="infoValue"
+                >
+                    -
+                </div>
+
+            </div>
+
+
+            <div class="info">
+
+                <div class="infoTitle">
+                    ولي الأمر
+                </div>
+
+                <div
+                    id="guardian"
+                    class="infoValue"
+                >
+                    -
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- SUBSCRIPTION -->
+
+        <div class="subscription">
+
+            <h2>
+                الاشتراك
+            </h2>
+
+            <div
+                id="subscriptionStatus"
+                class="status inactive"
+            >
+                غير مفعل
+            </div>
+
+            <div
+                id="daysRemaining"
+                class="days"
+            >
+                -
+            </div>
+
+            <div>
+                الأيام المتبقية
+            </div>
+
+
+            <div class="subscriptionInfo">
+
+                <div class="subscriptionBox">
+
+                    <div>
+                        بداية الاشتراك
+                    </div>
+
+                    <strong id="subscriptionStart">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="subscriptionBox">
+
+                    <div>
+                        نهاية الاشتراك
+                    </div>
+
+                    <strong id="subscriptionEnd">
+                        -
+                    </strong>
+
+                </div>
+
+
+                <div class="subscriptionBox">
+
+                    <div>
+                        قيمة الاشتراك
+                    </div>
+
+                    <strong>
+
+                        <span id="price">
+                            0
+                        </span>
+
+                        ريال
+
+                    </strong>
+
+                </div>
+
+
+                <div class="subscriptionBox">
+
+                    <div>
+                        حالة الدفع
+                    </div>
+
+                    <strong id="paymentStatus">
+                        غير مدفوع
+                    </strong>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- PAYMENT -->
+
+        <div class="payment">
+
+            <h2>
+                الدفع
+            </h2>
+
+            <p
+                id="paymentText"
+                style="color:#777;line-height:1.8;"
+            >
+                لم يتم تحديد طريقة الدفع بعد.
+            </p>
+
+            <a
+                id="paymentButton"
+                class="paymentButton"
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                style="display:none;"
+            >
+                دفع الاشتراك 💳
+            </a>
+
+        </div>
+
+
+        <button
+            id="logoutButton"
+            class="button logout"
+            type="button"
+        >
+            تسجيل الخروج
+        </button>
+
+    </div>
 
 </div>
-```
 
 </div>
 
-</div>
 
 <!-- =========================
      SUPABASE
@@ -610,10 +608,6 @@ body{
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
-
-/* =========================
-   SUPABASE
-========================= */
 
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
@@ -664,8 +658,6 @@ async function loginPlayer(){
     passwordInput.value.trim();
 
 
-    /* USERNAME EMPTY */
-
     if(!username){
 
         loginMessage.style.color =
@@ -679,8 +671,6 @@ async function loginPlayer(){
         return;
     }
 
-
-    /* PASSWORD EMPTY */
 
     if(!password){
 
@@ -710,15 +700,6 @@ async function loginPlayer(){
 
     try{
 
-        /*
-        البحث داخل جدول registration
-
-        username
-        login_password
-
-        ويجب أن يكون status = accepted
-        */
-
         const {
             data,
             error
@@ -737,8 +718,6 @@ async function loginPlayer(){
         .maybeSingle();
 
 
-        /* DATABASE ERROR */
-
         if(error){
 
             console.error(
@@ -756,8 +735,6 @@ async function loginPlayer(){
         }
 
 
-        /* PLAYER NOT FOUND */
-
         if(!data){
 
             loginMessage.style.color =
@@ -769,8 +746,6 @@ async function loginPlayer(){
             return;
         }
 
-
-        /* SUCCESS */
 
         loginMessage.style.color =
         "#087a35";
@@ -947,6 +922,43 @@ function showPlayer(player){
         player.subscription_end
     );
 
+
+    /* PAYMENT LINK */
+
+    const paymentButton =
+    document.getElementById(
+        "paymentButton"
+    );
+
+    const paymentText =
+    document.getElementById(
+        "paymentText"
+    );
+
+
+    if(player.payment_link){
+
+        paymentButton.href =
+        player.payment_link;
+
+        paymentButton.style.display =
+        "block";
+
+        paymentText.innerText =
+        "يمكنك إتمام دفع الاشتراك من خلال الزر التالي:";
+
+    }
+
+    else{
+
+        paymentButton.style.display =
+        "none";
+
+        paymentText.innerText =
+        "لم يتم تحديد طريقة الدفع بعد.";
+
+    }
+
 }
 
 
@@ -1097,4 +1109,3 @@ document
 
 </body>
 </html>
-
