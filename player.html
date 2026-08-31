@@ -43,7 +43,6 @@ body{
 .loginBox h1{
     text-align:center;
     margin-top:0;
-    font-size:30px;
 }
 
 .loginBox h1 span{
@@ -53,7 +52,6 @@ body{
 .loginBox p{
     text-align:center;
     color:#777;
-    margin-bottom:25px;
 }
 
 .input{
@@ -95,7 +93,6 @@ body{
     text-align:center;
     margin-top:15px;
     font-weight:bold;
-    min-height:24px;
 }
 
 /* PROFILE */
@@ -606,27 +603,26 @@ body{
 
 </div>
 
-<script type="module">
+<!-- =========================
+     SUPABASE
+========================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
 
 /* =========================
    SUPABASE
 ========================= */
 
-import { createClient }
-from
-"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
-
-
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
-
 
 const SUPABASE_KEY =
 "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
 
-
 const supabase =
-createClient(
+window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
@@ -654,12 +650,9 @@ document.getElementById("username");
 const passwordInput =
 document.getElementById("password");
 
-const logoutButton =
-document.getElementById("logoutButton");
-
 
 /* =========================
-   LOGIN
+   LOGIN PLAYER
 ========================= */
 
 async function loginPlayer(){
@@ -670,6 +663,8 @@ async function loginPlayer(){
     const password =
     passwordInput.value.trim();
 
+
+    /* USERNAME EMPTY */
 
     if(!username){
 
@@ -684,6 +679,8 @@ async function loginPlayer(){
         return;
     }
 
+
+    /* PASSWORD EMPTY */
 
     if(!password){
 
@@ -713,27 +710,39 @@ async function loginPlayer(){
 
     try{
 
-        const result =
-        await supabase
+        /*
+        البحث داخل جدول registration
+
+        username
+        login_password
+
+        ويجب أن يكون status = accepted
+        */
+
+        const {
+            data,
+            error
+        } = await supabase
+
         .from("registration")
+
         .select("*")
+
         .eq("username", username)
+
         .eq("login_password", password)
+
         .eq("status", "accepted")
+
         .maybeSingle();
 
 
-        const data =
-        result.data;
-
-        const error =
-        result.error;
-
+        /* DATABASE ERROR */
 
         if(error){
 
             console.error(
-                "SUPABASE LOGIN ERROR:",
+                "SUPABASE ERROR:",
                 error
             );
 
@@ -741,11 +750,13 @@ async function loginPlayer(){
             "#d92d20";
 
             loginMessage.innerText =
-            "حدث خطأ في الاتصال بقاعدة البيانات ❌";
+            "حدث خطأ في قاعدة البيانات ❌";
 
             return;
         }
 
+
+        /* PLAYER NOT FOUND */
 
         if(!data){
 
@@ -759,16 +770,26 @@ async function loginPlayer(){
         }
 
 
-        showPlayer(data);
+        /* SUCCESS */
+
+        loginMessage.style.color =
+        "#087a35";
+
+        loginMessage.innerText =
+        "تم تسجيل الدخول بنجاح ✅";
+
+
+        setTimeout(function(){
+
+            showPlayer(data);
+
+        },300);
 
     }
 
     catch(error){
 
-        console.error(
-            "LOGIN ERROR:",
-            error
-        );
+        console.error(error);
 
         loginMessage.style.color =
         "#d92d20";
@@ -926,14 +947,11 @@ function showPlayer(player){
         player.subscription_end
     );
 
-
-    setupPayment();
-
 }
 
 
 /* =========================
-   REMAINING DAYS
+   CALCULATE REMAINING DAYS
 ========================= */
 
 function calculateRemaining(endDate){
@@ -969,7 +987,10 @@ function calculateRemaining(endDate){
     new Date();
 
     today.setHours(
-        0,0,0,0
+        0,
+        0,
+        0,
+        0
     );
 
 
@@ -1020,7 +1041,7 @@ function calculateRemaining(endDate){
 
 
 /* =========================
-   PAYMENT STATUS
+   PAYMENT TEXT
 ========================= */
 
 function getPaymentText(status){
@@ -1031,48 +1052,13 @@ function getPaymentText(status){
 
     }
 
-
     if(status === "partial"){
 
         return "مدفوع جزئيًا";
 
     }
 
-
     return "غير مدفوع";
-
-}
-
-
-/* =========================
-   PAYMENT BUTTON
-========================= */
-
-function setupPayment(){
-
-    const button =
-    document.getElementById(
-        "paymentButton"
-    );
-
-    /*
-       ضع رابط الدفع هنا لاحقًا
-       مثال:
-       const paymentLink = "https://...";
-    */
-
-    const paymentLink = "";
-
-
-    if(paymentLink){
-
-        button.href =
-        paymentLink;
-
-        button.style.display =
-        "block";
-
-    }
 
 }
 
@@ -1081,7 +1067,9 @@ function setupPayment(){
    LOGOUT
 ========================= */
 
-logoutButton.addEventListener(
+document
+.getElementById("logoutButton")
+.addEventListener(
     "click",
     function(){
 
@@ -1108,5 +1096,5 @@ logoutButton.addEventListener(
 </script>
 
 </body>
-
 </html>
+
