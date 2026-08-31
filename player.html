@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ar" dir="rtl">
 
@@ -21,6 +22,7 @@
     box-sizing:border-box;
 }
 
+
 body{
 
     margin:0;
@@ -33,8 +35,8 @@ body{
     background:
     linear-gradient(
         135deg,
-        #f7f9fc,
-        #ffffff
+        #eeeeee,
+        #dcdcdc
     );
 
     color:#222;
@@ -55,13 +57,16 @@ body{
 }
 
 
-/* LOGIN */
+/* =========================
+   LOGIN
+========================= */
 
 .loginBox{
 
     max-width:450px;
 
-    margin:80px auto;
+    margin:
+    80px auto;
 
     background:white;
 
@@ -71,23 +76,41 @@ body{
 
     box-shadow:
     0 10px 35px
-    rgba(0,0,0,.10);
+    rgba(0,0,0,.12);
+
+    border-top:
+    5px solid #ff6900;
 
 }
 
 
-.loginBox h1{
+.loginLogo{
 
     text-align:center;
 
-    margin-top:0;
+    font-size:30px;
+
+    font-weight:900;
+
+    margin-bottom:5px;
 
 }
 
 
-.loginBox h1 span{
+.loginLogo span{
 
     color:#ff6900;
+
+}
+
+
+.loginSubtitle{
+
+    text-align:center;
+
+    color:#777;
+
+    margin-bottom:25px;
 
 }
 
@@ -101,7 +124,7 @@ body{
     margin-bottom:15px;
 
     border:
-    1px solid #ddd;
+    1px solid #ccc;
 
     border-radius:10px;
 
@@ -109,12 +132,16 @@ body{
 
     outline:none;
 
+    background:#f7f7f7;
+
 }
 
 
 .input:focus{
 
     border-color:#ff6900;
+
+    background:white;
 
 }
 
@@ -139,6 +166,37 @@ body{
 
     cursor:pointer;
 
+    transition:.2s;
+
+}
+
+
+.button:hover{
+
+    background:#e85f00;
+
+}
+
+
+.backButton{
+
+    display:block;
+
+    text-align:center;
+
+    margin-top:15px;
+
+    color:#666;
+
+    text-decoration:none;
+
+}
+
+
+.backButton:hover{
+
+    color:#ff6900;
+
 }
 
 
@@ -153,7 +211,9 @@ body{
 }
 
 
-/* PROFILE */
+/* =========================
+   PROFILE
+========================= */
 
 #profilePage{
 
@@ -182,6 +242,8 @@ body{
 
     margin:5px 0;
 
+    color:#333;
+
 }
 
 
@@ -199,7 +261,9 @@ body{
 }
 
 
-/* PLAYER CARD */
+/* =========================
+   PLAYER CARD
+========================= */
 
 .playerCard{
 
@@ -211,10 +275,10 @@ body{
 
     box-shadow:
     0 10px 35px
-    rgba(0,0,0,.10);
+    rgba(0,0,0,.12);
 
     border:
-    1px solid #eee;
+    1px solid #ddd;
 
 }
 
@@ -245,7 +309,7 @@ body{
 
 .playerCode{
 
-    background:#fff4eb;
+    background:#fff0e6;
 
     color:#d95700;
 
@@ -258,7 +322,9 @@ body{
 }
 
 
-/* INFO */
+/* =========================
+   INFO
+========================= */
 
 .infoGrid{
 
@@ -274,11 +340,14 @@ body{
 
 .info{
 
-    background:#f8f9fa;
+    background:#f4f4f4;
 
     padding:17px;
 
     border-radius:12px;
+
+    border:
+    1px solid #e3e3e3;
 
 }
 
@@ -303,7 +372,9 @@ body{
 }
 
 
-/* SUBSCRIPTION */
+/* =========================
+   SUBSCRIPTION
+========================= */
 
 .subscription{
 
@@ -313,7 +384,7 @@ body{
 
     border-radius:16px;
 
-    background:#111827;
+    background:#444;
 
     color:white;
 
@@ -355,7 +426,7 @@ body{
 .subscriptionBox{
 
     background:
-    rgba(255,255,255,.08);
+    rgba(255,255,255,.10);
 
     padding:15px;
 
@@ -399,14 +470,16 @@ body{
 
 .status.inactive{
 
-    background:#eee;
+    background:#eeeeee;
 
     color:#666;
 
 }
 
 
-/* PAYMENT */
+/* =========================
+   PAYMENT
+========================= */
 
 .payment{
 
@@ -415,9 +488,11 @@ body{
     padding:20px;
 
     border:
-    1px solid #eee;
+    1px solid #ddd;
 
     border-radius:15px;
+
+    background:white;
 
 }
 
@@ -452,18 +527,29 @@ body{
 }
 
 
-/* LOGOUT */
+/* =========================
+   LOGOUT
+========================= */
 
 .logout{
 
     margin-top:20px;
 
-    background:#111827;
+    background:#444;
 
 }
 
 
-/* MOBILE */
+.logout:hover{
+
+    background:#333;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:600px){
 
@@ -473,11 +559,13 @@ body{
 
     }
 
+
     .subscriptionInfo{
 
         grid-template-columns:1fr;
 
     }
+
 
     .playerTop{
 
@@ -501,341 +589,424 @@ body{
 
 
 <!-- =========================
-     LOGIN
+     LOGIN PAGE
 ========================= -->
 
-<div id="loginPage" class="loginBox">
-
-    <h1>
-        عصر
-        <span>
-            الاحتراف
-        </span>
-    </h1>
-
-    <p style="
-        text-align:center;
-        color:#777;
-    ">
-        دخول ملف اللاعب
-    </p>
+<div
+    id="loginPage"
+    class="loginBox"
+>
 
 
-    <input
-        id="playerCode"
-        class="input"
-        placeholder="رقم اللاعب مثال: AEP-01001"
-    >
+<div class="loginLogo">
+
+عصر
+<span>
+الاحتراف
+</span>
+
+⚽
+
+</div>
 
 
-    <button
-        id="loginButton"
-        class="button"
-    >
-        دخول
-    </button>
+<p class="loginSubtitle">
+
+دخول ملف اللاعب
+
+</p>
 
 
-    <div
-        id="loginMessage"
-        class="message"
-    ></div>
+
+<input
+    id="username"
+    class="input"
+    type="text"
+    placeholder="اسم المستخدم"
+    autocomplete="username"
+>
+
+
+<input
+    id="password"
+    class="input"
+    type="password"
+    placeholder="كلمة المرور"
+    autocomplete="current-password"
+>
+
+
+<button
+    id="loginButton"
+    class="button"
+>
+
+دخول إلى ملفي 🔐
+
+</button>
+
+
+<div
+    id="loginMessage"
+    class="message"
+></div>
+
+
+<a
+    href="index.html"
+    class="backButton"
+>
+
+← العودة إلى الموقع
+
+</a>
+
 
 </div>
 
 
 
 <!-- =========================
-     PROFILE
+     PROFILE PAGE
 ========================= -->
 
 <div id="profilePage">
 
 
-    <div class="header">
+<div class="header">
 
-        <div class="logo">
-            ⚽
-        </div>
 
-        <h1>
-            ملف لاعب
-            <span>
-                عصر الاحتراف
-            </span>
-        </h1>
+<div class="logo">
+⚽
+</div>
 
-        <p>
-            جميع معلومات اللاعب والاشتراك
-        </p>
 
-    </div>
+<h1>
 
+ملف لاعب
+<span>
+عصر الاحتراف
+</span>
 
-    <div class="playerCard">
+</h1>
 
 
-        <div class="playerTop">
+<p>
 
-            <div>
+جميع معلومات اللاعب والاشتراك
 
-                <div
-                    id="playerName"
-                    class="playerName"
-                >
-                    -
-                </div>
+</p>
 
-                <div
-                    id="playerCodeView"
-                    style="
-                        color:#777;
-                        margin-top:5px;
-                    "
-                >
-                    -
-                </div>
 
-            </div>
+</div>
 
 
-            <div
-                id="category"
-                class="playerCode"
-            >
-                -
-            </div>
 
-        </div>
+<div class="playerCard">
 
 
-        <!-- INFO -->
+<div class="playerTop">
 
-        <div class="infoGrid">
 
+<div>
 
-            <div class="info">
 
-                <div class="infoTitle">
-                    تاريخ الميلاد
-                </div>
+<div
+    id="playerName"
+    class="playerName"
+>
+-
+</div>
 
-                <div
-                    id="birthDate"
-                    class="infoValue"
-                >
-                    -
-                </div>
 
-            </div>
+<div
+    id="playerCodeView"
+    style="
+        color:#777;
+        margin-top:5px;
+    "
+>
+-
+</div>
 
 
-            <div class="info">
+</div>
 
-                <div class="infoTitle">
-                    العمر
-                </div>
 
-                <div
-                    id="age"
-                    class="infoValue"
-                >
-                    -
-                </div>
+<div
+    id="category"
+    class="playerCode"
+>
+-
+</div>
 
-            </div>
 
+</div>
 
-            <div class="info">
 
-                <div class="infoTitle">
-                    المسار
-                </div>
 
-                <div
-                    id="pathway"
-                    class="infoValue"
-                >
-                    -
-                </div>
+<!-- =========================
+     PLAYER INFO
+========================= -->
 
-            </div>
+<div class="infoGrid">
 
 
-            <div class="info">
+<div class="info">
 
-                <div class="infoTitle">
-                    ولي الأمر
-                </div>
+<div class="infoTitle">
+تاريخ الميلاد
+</div>
 
-                <div
-                    id="guardian"
-                    class="infoValue"
-                >
-                    -
-                </div>
+<div
+    id="birthDate"
+    class="infoValue"
+>
+-
+</div>
 
-            </div>
+</div>
 
 
-        </div>
 
+<div class="info">
 
-        <!-- SUBSCRIPTION -->
+<div class="infoTitle">
+العمر
+</div>
 
-        <div class="subscription">
+<div
+    id="age"
+    class="infoValue"
+>
+-
+</div>
 
-            <h2>
-                الاشتراك
-            </h2>
+</div>
 
 
-            <div
-                id="subscriptionStatus"
-                class="status inactive"
-            >
-                غير مفعل
-            </div>
 
+<div class="info">
 
-            <div
-                id="daysRemaining"
-                class="days"
-            >
-                -
-            </div>
+<div class="infoTitle">
+المسار
+</div>
 
+<div
+    id="pathway"
+    class="infoValue"
+>
+-
+</div>
 
-            <div>
-                الأيام المتبقية
-            </div>
+</div>
 
 
-            <div class="subscriptionInfo">
 
+<div class="info">
 
-                <div class="subscriptionBox">
+<div class="infoTitle">
+ولي الأمر
+</div>
 
-                    <div>
-                        بداية الاشتراك
-                    </div>
-
-                    <strong
-                        id="subscriptionStart"
-                    >
-                        -
-                    </strong>
-
-                </div>
-
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        نهاية الاشتراك
-                    </div>
-
-                    <strong
-                        id="subscriptionEnd"
-                    >
-                        -
-                    </strong>
-
-                </div>
-
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        قيمة الاشتراك
-                    </div>
-
-                    <strong>
-                        <span id="price">
-                            0
-                        </span>
-                        ريال
-                    </strong>
-
-                </div>
-
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        حالة الدفع
-                    </div>
-
-                    <strong
-                        id="paymentStatus"
-                    >
-                        غير مدفوع
-                    </strong>
-
-                </div>
-
-
-            </div>
-
-        </div>
-
-
-        <!-- PAYMENT -->
-
-        <div class="payment">
-
-            <h2>
-                الدفع
-            </h2>
-
-            <p
-                id="paymentText"
-                style="
-                    color:#777;
-                    line-height:1.8;
-                "
-            >
-                لم يتم تحديد طريقة الدفع بعد.
-            </p>
-
-
-            <a
-                id="paymentButton"
-                class="paymentButton"
-                href="#"
-                target="_blank"
-                style="display:none;"
-            >
-                دفع الاشتراك 💳
-            </a>
-
-        </div>
-
-
-        <button
-            id="logoutButton"
-            class="button logout"
-        >
-            تسجيل الخروج
-        </button>
-
-
-    </div>
+<div
+    id="guardian"
+    class="infoValue"
+>
+-
+</div>
 
 </div>
 
 
 </div>
+
+
+
+<!-- =========================
+     SUBSCRIPTION
+========================= -->
+
+<div class="subscription">
+
+
+<h2>
+الاشتراك
+</h2>
+
+
+<div
+    id="subscriptionStatus"
+    class="status inactive"
+>
+غير مفعل
+</div>
+
+
+<div
+    id="daysRemaining"
+    class="days"
+>
+-
+</div>
+
+
+<div>
+الأيام المتبقية
+</div>
+
+
+
+<div class="subscriptionInfo">
+
+
+<div class="subscriptionBox">
+
+<div>
+بداية الاشتراك
+</div>
+
+<strong
+    id="subscriptionStart"
+>
+-
+</strong>
+
+</div>
+
+
+
+<div class="subscriptionBox">
+
+<div>
+نهاية الاشتراك
+</div>
+
+<strong
+    id="subscriptionEnd"
+>
+-
+</strong>
+
+</div>
+
+
+
+<div class="subscriptionBox">
+
+<div>
+قيمة الاشتراك
+</div>
+
+<strong>
+
+<span id="price">
+0
+</span>
+
+ريال
+
+</strong>
+
+</div>
+
+
+
+<div class="subscriptionBox">
+
+<div>
+حالة الدفع
+</div>
+
+<strong
+    id="paymentStatus"
+>
+غير مدفوع
+</strong>
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+<!-- =========================
+     PAYMENT
+========================= -->
+
+<div class="payment">
+
+
+<h2>
+الدفع
+</h2>
+
+
+<p
+    id="paymentText"
+    style="
+        color:#777;
+        line-height:1.8;
+    "
+>
+
+لم يتم تحديد طريقة الدفع بعد.
+
+</p>
+
+
+<a
+    id="paymentButton"
+    class="paymentButton"
+    href="#"
+    target="_blank"
+    style="display:none;"
+>
+
+دفع الاشتراك 💳
+
+</a>
+
+
+</div>
+
+
+
+<!-- =========================
+     LOGOUT
+========================= -->
+
+<button
+    id="logoutButton"
+    class="button logout"
+>
+
+تسجيل الخروج
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
 
 
 <script type="module">
-
 
 import {
     createClient
 }
 from
-"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
 
 
 
@@ -887,6 +1058,18 @@ document.getElementById(
 );
 
 
+const usernameInput =
+document.getElementById(
+    "username"
+);
+
+
+const passwordInput =
+document.getElementById(
+    "password"
+);
+
+
 
 /* =========================
    LOGIN
@@ -896,23 +1079,37 @@ loginButton.addEventListener(
     "click",
     async function(){
 
-        const code =
-        document
-        .getElementById(
-            "playerCode"
-        )
+        const username =
+        usernameInput
         .value
-        .trim()
-        .toUpperCase();
+        .trim();
 
 
-        if(!code){
+        const password =
+        passwordInput
+        .value;
+
+
+        if(!username){
 
             loginMessage.style.color =
-            "#d92d20";
+            "#d32f2f";
 
             loginMessage.innerText =
-            "اكتب رقم اللاعب أولًا.";
+            "اكتب اسم المستخدم أولًا.";
+
+            return;
+
+        }
+
+
+        if(!password){
+
+            loginMessage.style.color =
+            "#d32f2f";
+
+            loginMessage.innerText =
+            "اكتب كلمة المرور أولًا.";
 
             return;
 
@@ -923,7 +1120,7 @@ loginButton.addEventListener(
         "#777";
 
         loginMessage.innerText =
-        "جاري البحث...";
+        "جاري تسجيل الدخول...";
 
 
         const {
@@ -933,40 +1130,77 @@ loginButton.addEventListener(
         await supabase
         .from("registration")
         .select("*")
-        .eq("player_code",code)
-        .eq("status","accepted")
+        .eq(
+            "username",
+            username
+        )
+        .eq(
+            "player_password",
+            password
+        )
+        .eq(
+            "status",
+            "accepted"
+        )
         .maybeSingle();
+
 
 
         if(error){
 
             console.error(error);
 
+
             loginMessage.style.color =
-            "#d92d20";
+            "#d32f2f";
+
 
             loginMessage.innerText =
-            "حدث خطأ أثناء الدخول ❌";
+            "حدث خطأ أثناء تسجيل الدخول ❌";
+
 
             return;
 
         }
+
 
 
         if(!data){
 
             loginMessage.style.color =
-            "#d92d20";
+            "#d32f2f";
+
 
             loginMessage.innerText =
-            "رقم اللاعب غير صحيح أو اللاعب غير مقبول ❌";
+            "اسم المستخدم أو كلمة المرور غير صحيحة ❌";
+
 
             return;
 
         }
 
 
+
         showPlayer(data);
+
+    }
+);
+
+
+
+/* =========================
+   ENTER KEY
+========================= */
+
+passwordInput.addEventListener(
+    "keydown",
+    function(event){
+
+        if(event.key === "Enter"){
+
+            loginButton.click();
+
+        }
 
     }
 );
@@ -979,6 +1213,7 @@ loginButton.addEventListener(
 
 function showPlayer(player){
 
+
     loginPage.style.display =
     "none";
 
@@ -987,17 +1222,25 @@ function showPlayer(player){
     "block";
 
 
+
     document.getElementById(
         "playerName"
     ).innerText =
     player.player_name || "-";
 
 
+
     document.getElementById(
         "playerCodeView"
     ).innerText =
+
     "رقم اللاعب: " +
-    (player.player_code || "-");
+
+    (
+        player.player_code ||
+        "-"
+    );
+
 
 
     document.getElementById(
@@ -1006,63 +1249,84 @@ function showPlayer(player){
     player.category || "-";
 
 
+
     document.getElementById(
         "birthDate"
     ).innerText =
     player.birth_date || "-";
 
 
+
     document.getElementById(
         "age"
     ).innerText =
-    player.age ?
+
+    player.age
+
+    ?
+
     player.age + " سنة"
+
     :
+
     "-";
+
 
 
     document.getElementById(
         "pathway"
     ).innerText =
-    player.pathway || "غير محدد";
+    player.pathway ||
+    "غير محدد";
+
 
 
     document.getElementById(
         "guardian"
     ).innerText =
-    player.guardian_name || "-";
+    player.guardian_name ||
+    "-";
+
 
 
     document.getElementById(
         "subscriptionStart"
     ).innerText =
-    player.subscription_start || "-";
+    player.subscription_start ||
+    "-";
+
 
 
     document.getElementById(
         "subscriptionEnd"
     ).innerText =
-    player.subscription_end || "-";
+    player.subscription_end ||
+    "-";
+
 
 
     document.getElementById(
         "price"
     ).innerText =
-    player.subscription_price || 0;
+    player.subscription_price ||
+    0;
+
 
 
     document.getElementById(
         "paymentStatus"
     ).innerText =
+
     getPaymentText(
         player.payment_status
     );
 
 
+
     calculateRemaining(
-        player.subscription_end,
-        player.subscription_status
+        player.subscription_end
     );
+
 
 
     setupPayment();
@@ -1070,14 +1334,15 @@ function showPlayer(player){
 }
 
 
+
 /* =========================
-   REMAINING
+   REMAINING DAYS
 ========================= */
 
 function calculateRemaining(
-    endDate,
-    status
+    endDate
 ){
+
 
     const statusElement =
     document.getElementById(
@@ -1096,15 +1361,19 @@ function calculateRemaining(
         daysElement.innerText =
         "-";
 
+
         statusElement.innerText =
         "غير مفعل";
+
 
         statusElement.className =
         "status inactive";
 
+
         return;
 
     }
+
 
 
     const today =
@@ -1112,25 +1381,38 @@ function calculateRemaining(
 
 
     today.setHours(
-        0,0,0,0
+        0,
+        0,
+        0,
+        0
     );
+
 
 
     const end =
     new Date(
-        endDate + "T00:00:00"
+        endDate +
+        "T00:00:00"
     );
+
 
 
     const difference =
     end - today;
 
 
+
     const days =
     Math.ceil(
         difference /
-        (1000 * 60 * 60 * 24)
+        (
+            1000 *
+            60 *
+            60 *
+            24
+        )
     );
+
 
 
     if(days > 0){
@@ -1166,11 +1448,13 @@ function calculateRemaining(
 }
 
 
+
 /* =========================
-   PAYMENT TEXT
+   PAYMENT STATUS
 ========================= */
 
 function getPaymentText(status){
+
 
     if(status === "paid"){
 
@@ -1191,11 +1475,13 @@ function getPaymentText(status){
 }
 
 
+
 /* =========================
-   PAYMENT BUTTON
+   PAYMENT
 ========================= */
 
 function setupPayment(){
+
 
     const button =
     document.getElementById(
@@ -1203,8 +1489,14 @@ function setupPayment(){
     );
 
 
+    const paymentText =
+    document.getElementById(
+        "paymentText"
+    );
+
+
     /*
-       هنا نحط رابط الدفع لاحقًا
+       ضع رابط الدفع هنا لاحقًا
     */
 
     const paymentLink =
@@ -1216,12 +1508,18 @@ function setupPayment(){
         button.href =
         paymentLink;
 
+
         button.style.display =
         "block";
+
+
+        paymentText.innerText =
+        "يمكنك دفع الاشتراك من خلال الزر التالي.";
 
     }
 
 }
+
 
 
 /* =========================
@@ -1236,6 +1534,7 @@ document
     "click",
     function(){
 
+
         profilePage.style.display =
         "none";
 
@@ -1244,12 +1543,16 @@ document
         "block";
 
 
-        document.getElementById(
-            "playerCode"
-        ).value = "";
+        usernameInput.value =
+        "";
 
 
-        loginMessage.innerText = "";
+        passwordInput.value =
+        "";
+
+
+        loginMessage.innerText =
+        "";
 
     }
 );
@@ -1259,3 +1562,4 @@ document
 </body>
 
 </html>
+```
