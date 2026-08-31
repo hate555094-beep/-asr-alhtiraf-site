@@ -3,7 +3,6 @@
 <html lang="ar" dir="rtl">
 
 <head>
-
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -44,6 +43,7 @@ body{
 .loginBox h1{
     text-align:center;
     margin-top:0;
+    font-size:30px;
 }
 
 .loginBox h1 span{
@@ -53,6 +53,7 @@ body{
 .loginBox p{
     text-align:center;
     color:#777;
+    margin-bottom:25px;
 }
 
 .input{
@@ -85,10 +86,16 @@ body{
     opacity:.9;
 }
 
+.button:disabled{
+    opacity:.6;
+    cursor:not-allowed;
+}
+
 .message{
     text-align:center;
     margin-top:15px;
     font-weight:bold;
+    min-height:24px;
 }
 
 /* PROFILE */
@@ -601,22 +608,22 @@ body{
 
 <script type="module">
 
-import {
-    createClient
-}
-from
-"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2";
-
-
 /* =========================
    SUPABASE
 ========================= */
 
+import { createClient }
+from
+"https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/+esm";
+
+
 const SUPABASE_URL =
 "https://ybbyvxpvblbnhqmkfxvw.supabase.co";
 
+
 const SUPABASE_KEY =
 "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
+
 
 const supabase =
 createClient(
@@ -646,6 +653,9 @@ document.getElementById("username");
 
 const passwordInput =
 document.getElementById("password");
+
+const logoutButton =
+document.getElementById("logoutButton");
 
 
 /* =========================
@@ -703,16 +713,7 @@ async function loginPlayer(){
 
     try{
 
-        /*
-         مهم:
-         كلمة المرور في قاعدة البيانات
-         موجودة في login_password
-        */
-
-        const {
-            data,
-            error
-        } =
+        const result =
         await supabase
         .from("registration")
         .select("*")
@@ -720,6 +721,13 @@ async function loginPlayer(){
         .eq("login_password", password)
         .eq("status", "accepted")
         .maybeSingle();
+
+
+        const data =
+        result.data;
+
+        const error =
+        result.error;
 
 
         if(error){
@@ -757,7 +765,10 @@ async function loginPlayer(){
 
     catch(error){
 
-        console.error(error);
+        console.error(
+            "LOGIN ERROR:",
+            error
+        );
 
         loginMessage.style.color =
         "#d92d20";
@@ -780,7 +791,7 @@ async function loginPlayer(){
 
 
 /* =========================
-   BUTTON
+   LOGIN BUTTON
 ========================= */
 
 loginButton.addEventListener(
@@ -790,7 +801,7 @@ loginButton.addEventListener(
 
 
 /* =========================
-   ENTER
+   ENTER KEY
 ========================= */
 
 usernameInput.addEventListener(
@@ -915,11 +926,14 @@ function showPlayer(player){
         player.subscription_end
     );
 
+
+    setupPayment();
+
 }
 
 
 /* =========================
-   REMAINING
+   REMAINING DAYS
 ========================= */
 
 function calculateRemaining(endDate){
@@ -1006,7 +1020,7 @@ function calculateRemaining(endDate){
 
 
 /* =========================
-   PAYMENT TEXT
+   PAYMENT STATUS
 ========================= */
 
 function getPaymentText(status){
@@ -1017,13 +1031,48 @@ function getPaymentText(status){
 
     }
 
+
     if(status === "partial"){
 
         return "مدفوع جزئيًا";
 
     }
 
+
     return "غير مدفوع";
+
+}
+
+
+/* =========================
+   PAYMENT BUTTON
+========================= */
+
+function setupPayment(){
+
+    const button =
+    document.getElementById(
+        "paymentButton"
+    );
+
+    /*
+       ضع رابط الدفع هنا لاحقًا
+       مثال:
+       const paymentLink = "https://...";
+    */
+
+    const paymentLink = "";
+
+
+    if(paymentLink){
+
+        button.href =
+        paymentLink;
+
+        button.style.display =
+        "block";
+
+    }
 
 }
 
@@ -1032,9 +1081,7 @@ function getPaymentText(status){
    LOGOUT
 ========================= */
 
-document
-.getElementById("logoutButton")
-.addEventListener(
+logoutButton.addEventListener(
     "click",
     function(){
 
@@ -1063,4 +1110,3 @@ document
 </body>
 
 </html>
-
