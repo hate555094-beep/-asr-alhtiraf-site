@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="ar" dir="rtl">
 
 <head>
@@ -23,11 +24,9 @@ body{
 }
 
 .container{
-    max-width:850px;
+    max-width:1000px;
     margin:auto;
 }
-
-/* LOGIN */
 
 .loginBox{
     max-width:450px;
@@ -260,6 +259,133 @@ body{
     font-weight:bold;
 }
 
+/* SCHEDULE */
+
+.scheduleSection{
+    margin-top:25px;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    border:1px solid #e5e5e5;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.scheduleHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:20px;
+}
+
+.scheduleHeader h2{
+    margin:0;
+}
+
+.liveBadge{
+    background:#e9f9ef;
+    color:#087a35;
+    padding:7px 11px;
+    border-radius:20px;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.scheduleGrid{
+    display:grid;
+    grid-template-columns:repeat(7,1fr);
+    gap:10px;
+}
+
+.dayColumn{
+    background:#f7f7f7;
+    border-radius:12px;
+    overflow:hidden;
+    min-height:130px;
+}
+
+.dayTitle{
+    background:#2b2b2b;
+    color:white;
+    padding:10px 5px;
+    text-align:center;
+    font-weight:bold;
+    font-size:13px;
+}
+
+.trainingItem{
+    margin:8px;
+    padding:10px;
+    background:#fff8f2;
+    border-right:3px solid #ff6900;
+    border-radius:8px;
+}
+
+.trainingTime{
+    font-weight:bold;
+    color:#ff6900;
+    font-size:13px;
+    margin-bottom:6px;
+}
+
+.trainingCategory{
+    font-weight:bold;
+    font-size:13px;
+    margin-bottom:4px;
+}
+
+.trainingCoach{
+    color:#666;
+    font-size:12px;
+}
+
+.trainingPathway{
+    color:#666;
+    font-size:11px;
+    margin-top:3px;
+}
+
+.noTraining{
+    text-align:center;
+    color:#aaa;
+    font-size:12px;
+    padding:20px 5px;
+}
+
+/* MATCHES */
+
+.matchesSection{
+    margin-top:20px;
+    background:#fff;
+    border-radius:18px;
+    padding:25px;
+    border:1px solid #e5e5e5;
+    box-shadow:0 8px 25px rgba(0,0,0,.07);
+}
+
+.matchItem{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:15px;
+    padding:15px;
+    background:#f8f8f8;
+    border-radius:12px;
+    margin-bottom:10px;
+    border-right:4px solid #ff6900;
+}
+
+.matchOpponent{
+    font-size:17px;
+    font-weight:bold;
+}
+
+.matchInfo{
+    color:#666;
+    font-size:13px;
+    line-height:1.8;
+}
+
 /* LOGOUT */
 
 .logout{
@@ -268,6 +394,14 @@ body{
 }
 
 /* MOBILE */
+
+@media(max-width:850px){
+
+    .scheduleGrid{
+        grid-template-columns:repeat(4,1fr);
+    }
+
+}
 
 @media(max-width:600px){
 
@@ -284,6 +418,15 @@ body{
         align-items:flex-start;
     }
 
+    .scheduleGrid{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .matchItem{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
 }
 
 </style>
@@ -294,316 +437,339 @@ body{
 
 <div class="container">
 
-<!-- =========================
-     LOGIN
-========================= -->
+<!-- LOGIN -->
 
 <div id="loginPage" class="loginBox">
 
-    <h1>
-        عصر <span>الاحتراف</span>
-    </h1>
+```
+<h1>
+    عصر <span>الاحتراف</span>
+</h1>
 
-    <p>
-        تسجيل دخول اللاعب
-    </p>
+<p>
+    تسجيل دخول اللاعب
+</p>
 
-    <input
-        id="username"
-        class="input"
-        type="text"
-        placeholder="اسم المستخدم"
-        autocomplete="username"
-    >
+<input
+    id="username"
+    class="input"
+    type="text"
+    placeholder="اسم المستخدم"
+    autocomplete="username"
+>
 
-    <input
-        id="password"
-        class="input"
-        type="password"
-        placeholder="كلمة المرور"
-        autocomplete="current-password"
-    >
+<input
+    id="password"
+    class="input"
+    type="password"
+    placeholder="كلمة المرور"
+    autocomplete="current-password"
+>
 
-    <button
-        id="loginButton"
-        class="button"
-        type="button"
-    >
-        دخول
-    </button>
+<button
+    id="loginButton"
+    class="button"
+    type="button"
+>
+    دخول
+</button>
 
-    <div
-        id="loginMessage"
-        class="message"
-    ></div>
+<div
+    id="loginMessage"
+    class="message"
+></div>
+```
 
 </div>
 
-
-<!-- =========================
-     PROFILE
-========================= -->
+<!-- PROFILE -->
 
 <div id="profilePage">
 
-    <div class="header">
+```
+<div class="header">
 
-        <div class="logo">
-            ⚽
+    <div class="logo">
+        ⚽
+    </div>
+
+    <h1>
+        ملف لاعب
+        <span>عصر الاحتراف</span>
+    </h1>
+
+    <p>
+        جميع معلومات اللاعب والاشتراك والتمارين
+    </p>
+
+</div>
+
+
+<div class="playerCard">
+
+    <div class="playerTop">
+
+        <div>
+
+            <div
+                id="playerName"
+                class="playerName"
+            >
+                -
+            </div>
+
+            <div
+                id="playerCodeView"
+                style="color:#777;margin-top:5px;"
+            >
+                -
+            </div>
+
         </div>
 
-        <h1>
-            ملف لاعب
-            <span>عصر الاحتراف</span>
-        </h1>
+        <div
+            id="category"
+            class="playerCode"
+        >
+            -
+        </div>
 
-        <p>
-            جميع معلومات اللاعب والاشتراك
+    </div>
+
+
+    <!-- INFO -->
+
+    <div class="infoGrid">
+
+        <div class="info">
+
+            <div class="infoTitle">
+                تاريخ الميلاد
+            </div>
+
+            <div
+                id="birthDate"
+                class="infoValue"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="infoTitle">
+                العمر
+            </div>
+
+            <div
+                id="age"
+                class="infoValue"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="infoTitle">
+                المسار
+            </div>
+
+            <div
+                id="pathway"
+                class="infoValue"
+            >
+                -
+            </div>
+
+        </div>
+
+
+        <div class="info">
+
+            <div class="infoTitle">
+                ولي الأمر
+            </div>
+
+            <div
+                id="guardian"
+                class="infoValue"
+            >
+                -
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- SUBSCRIPTION -->
+
+    <div class="subscription">
+
+        <h2>
+            الاشتراك
+        </h2>
+
+        <div
+            id="subscriptionStatus"
+            class="status inactive"
+        >
+            غير مفعل
+        </div>
+
+        <div
+            id="daysRemaining"
+            class="days"
+        >
+            -
+        </div>
+
+        <div>
+            الأيام المتبقية
+        </div>
+
+
+        <div class="subscriptionInfo">
+
+            <div class="subscriptionBox">
+                بداية الاشتراك
+                <br>
+                <strong id="subscriptionStart">-</strong>
+            </div>
+
+            <div class="subscriptionBox">
+                نهاية الاشتراك
+                <br>
+                <strong id="subscriptionEnd">-</strong>
+            </div>
+
+            <div class="subscriptionBox">
+                قيمة الاشتراك
+                <br>
+                <strong>
+                    <span id="price">0</span>
+                    ريال
+                </strong>
+            </div>
+
+            <div class="subscriptionBox">
+                حالة الدفع
+                <br>
+                <strong id="paymentStatus">
+                    غير مدفوع
+                </strong>
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- TRAINING SCHEDULE -->
+
+    <div class="scheduleSection">
+
+        <div class="scheduleHeader">
+
+            <h2>
+                📅 جدول التمارين
+            </h2>
+
+            <div class="liveBadge">
+                ● يتحدث تلقائيًا
+            </div>
+
+        </div>
+
+        <div
+            id="scheduleMessage"
+            style="
+            color:#777;
+            margin-bottom:15px;
+            font-size:13px;
+            "
+        >
+            جدول تمارينك حسب الفئة والمسار
+        </div>
+
+        <div
+            id="playerSchedule"
+            class="scheduleGrid"
+        >
+            جاري تحميل الجدول...
+        </div>
+
+    </div>
+
+
+    <!-- MATCHES -->
+
+    <div class="matchesSection">
+
+        <div class="scheduleHeader">
+
+            <h2>
+                ⚽ المباريات الودية
+            </h2>
+
+        </div>
+
+        <div id="playerMatches">
+            جاري تحميل المباريات...
+        </div>
+
+    </div>
+
+
+    <!-- PAYMENT -->
+
+    <div class="payment">
+
+        <h2>
+            الدفع
+        </h2>
+
+        <p
+            id="paymentText"
+            style="color:#777;line-height:1.8;"
+        >
+            لم يتم تحديد طريقة الدفع بعد.
         </p>
 
-    </div>
-
-
-    <div class="playerCard">
-
-        <div class="playerTop">
-
-            <div>
-
-                <div
-                    id="playerName"
-                    class="playerName"
-                >
-                    -
-                </div>
-
-                <div
-                    id="playerCodeView"
-                    style="color:#777;margin-top:5px;"
-                >
-                    -
-                </div>
-
-            </div>
-
-            <div
-                id="category"
-                class="playerCode"
-            >
-                -
-            </div>
-
-        </div>
-
-
-        <!-- INFO -->
-
-        <div class="infoGrid">
-
-            <div class="info">
-
-                <div class="infoTitle">
-                    تاريخ الميلاد
-                </div>
-
-                <div
-                    id="birthDate"
-                    class="infoValue"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="info">
-
-                <div class="infoTitle">
-                    العمر
-                </div>
-
-                <div
-                    id="age"
-                    class="infoValue"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="info">
-
-                <div class="infoTitle">
-                    المسار
-                </div>
-
-                <div
-                    id="pathway"
-                    class="infoValue"
-                >
-                    -
-                </div>
-
-            </div>
-
-
-            <div class="info">
-
-                <div class="infoTitle">
-                    ولي الأمر
-                </div>
-
-                <div
-                    id="guardian"
-                    class="infoValue"
-                >
-                    -
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- SUBSCRIPTION -->
-
-        <div class="subscription">
-
-            <h2>
-                الاشتراك
-            </h2>
-
-            <div
-                id="subscriptionStatus"
-                class="status inactive"
-            >
-                غير مفعل
-            </div>
-
-            <div
-                id="daysRemaining"
-                class="days"
-            >
-                -
-            </div>
-
-            <div>
-                الأيام المتبقية
-            </div>
-
-
-            <div class="subscriptionInfo">
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        بداية الاشتراك
-                    </div>
-
-                    <strong id="subscriptionStart">
-                        -
-                    </strong>
-
-                </div>
-
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        نهاية الاشتراك
-                    </div>
-
-                    <strong id="subscriptionEnd">
-                        -
-                    </strong>
-
-                </div>
-
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        قيمة الاشتراك
-                    </div>
-
-                    <strong>
-
-                        <span id="price">
-                            0
-                        </span>
-
-                        ريال
-
-                    </strong>
-
-                </div>
-
-
-                <div class="subscriptionBox">
-
-                    <div>
-                        حالة الدفع
-                    </div>
-
-                    <strong id="paymentStatus">
-                        غير مدفوع
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <!-- PAYMENT -->
-
-        <div class="payment">
-
-            <h2>
-                الدفع
-            </h2>
-
-            <p
-                id="paymentText"
-                style="color:#777;line-height:1.8;"
-            >
-                لم يتم تحديد طريقة الدفع بعد.
-            </p>
-
-            <a
-                id="paymentButton"
-                class="paymentButton"
-                href="#"
-                target="_blank"
-                rel="noopener noreferrer"
-                style="display:none;"
-            >
-                دفع الاشتراك 💳
-            </a>
-
-        </div>
-
-
-        <button
-            id="logoutButton"
-            class="button logout"
-            type="button"
+        <a
+            id="paymentButton"
+            class="paymentButton"
+            href="#"
+            target="_blank"
+            rel="noopener noreferrer"
+            style="display:none;"
         >
-            تسجيل الخروج
-        </button>
+            دفع الاشتراك 💳
+        </a>
 
     </div>
 
+
+    <button
+        id="logoutButton"
+        class="button logout"
+        type="button"
+    >
+        تسجيل الخروج
+    </button>
+
+</div>
+```
+
 </div>
 
 </div>
 
-
-<!-- =========================
-     SUPABASE
-========================= -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -622,7 +788,7 @@ window.supabase.createClient(
 
 
 /* =========================
-   ELEMENTS
+ELEMENTS
 ========================= */
 
 const loginPage =
@@ -644,8 +810,11 @@ const passwordInput =
 document.getElementById("password");
 
 
+let currentPlayer = null;
+
+
 /* =========================
-   LOGIN PLAYER
+LOGIN
 ========================= */
 
 async function loginPlayer(){
@@ -665,8 +834,6 @@ async function loginPlayer(){
         loginMessage.innerText =
         "اكتب اسم المستخدم أولًا.";
 
-        usernameInput.focus();
-
         return;
     }
 
@@ -679,8 +846,6 @@ async function loginPlayer(){
         loginMessage.innerText =
         "اكتب كلمة المرور أولًا.";
 
-        passwordInput.focus();
-
         return;
     }
 
@@ -689,12 +854,6 @@ async function loginPlayer(){
 
     loginButton.innerText =
     "جاري الدخول...";
-
-    loginMessage.style.color =
-    "#777";
-
-    loginMessage.innerText =
-    "جاري التحقق من البيانات...";
 
 
     try{
@@ -708,21 +867,18 @@ async function loginPlayer(){
 
         .select("*")
 
-        .eq("username", username)
+        .eq("username",username)
 
-        .eq("login_password", password)
+        .eq("login_password",password)
 
-        .eq("status", "accepted")
+        .eq("status","accepted")
 
         .maybeSingle();
 
 
         if(error){
 
-            console.error(
-                "SUPABASE ERROR:",
-                error
-            );
+            console.error(error);
 
             loginMessage.style.color =
             "#d92d20";
@@ -746,6 +902,9 @@ async function loginPlayer(){
         }
 
 
+        currentPlayer = data;
+
+
         loginMessage.style.color =
         "#087a35";
 
@@ -753,11 +912,10 @@ async function loginPlayer(){
         "تم تسجيل الدخول بنجاح ✅";
 
 
-        setTimeout(function(){
-
-            showPlayer(data);
-
-        },300);
+        setTimeout(
+            () => showPlayer(data),
+            300
+        );
 
     }
 
@@ -785,10 +943,6 @@ async function loginPlayer(){
 }
 
 
-/* =========================
-   LOGIN BUTTON
-========================= */
-
 loginButton.addEventListener(
     "click",
     loginPlayer
@@ -796,7 +950,7 @@ loginButton.addEventListener(
 
 
 /* =========================
-   ENTER KEY
+ENTER
 ========================= */
 
 usernameInput.addEventListener(
@@ -832,10 +986,13 @@ passwordInput.addEventListener(
 
 
 /* =========================
-   SHOW PLAYER
+SHOW PLAYER
 ========================= */
 
 function showPlayer(player){
+
+    currentPlayer = player;
+
 
     loginPage.style.display =
     "none";
@@ -922,9 +1079,682 @@ function showPlayer(player){
     );
 
 
-    /* =========================
-       PAYMENT LINK
-    ========================= */
+    setupPayment(
+        player
+    );
+
+
+    loadPlayerSchedule();
+
+}
+
+
+/* =========================
+LOAD PLAYER AGAIN
+========================= */
+
+async function refreshPlayer(){
+
+    if(!currentPlayer){
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+    .from("registration")
+
+    .select("*")
+
+    .eq("id",currentPlayer.id)
+
+    .maybeSingle();
+
+
+    if(error){
+
+        console.error(
+            "PLAYER REFRESH ERROR:",
+            error
+        );
+
+        return;
+    }
+
+
+    if(!data){
+        return;
+    }
+
+
+    if(data.status !== "accepted"){
+
+        logoutPlayer();
+
+        return;
+    }
+
+
+    currentPlayer = data;
+
+
+    /* تحديث بيانات اللاعب بدون تسجيل خروج */
+
+    document.getElementById(
+        "playerName"
+    ).innerText =
+    data.player_name || "-";
+
+
+    document.getElementById(
+        "category"
+    ).innerText =
+    data.category || "-";
+
+
+    document.getElementById(
+        "birthDate"
+    ).innerText =
+    data.birth_date || "-";
+
+
+    document.getElementById(
+        "age"
+    ).innerText =
+    data.age
+    ?
+    data.age + " سنة"
+    :
+    "-";
+
+
+    document.getElementById(
+        "pathway"
+    ).innerText =
+    data.pathway || "غير محدد";
+
+
+    document.getElementById(
+        "guardian"
+    ).innerText =
+    data.guardian_name || "-";
+
+
+    document.getElementById(
+        "subscriptionStart"
+    ).innerText =
+    data.subscription_start || "-";
+
+
+    document.getElementById(
+        "subscriptionEnd"
+    ).innerText =
+    data.subscription_end || "-";
+
+
+    document.getElementById(
+        "price"
+    ).innerText =
+    data.subscription_price || 0;
+
+
+    document.getElementById(
+        "paymentStatus"
+    ).innerText =
+    getPaymentText(
+        data.payment_status
+    );
+
+
+    calculateRemaining(
+        data.subscription_end
+    );
+
+
+    setupPayment(
+        data
+    );
+
+
+    /* أهم شيء: إعادة تحميل الجدول */
+
+    await loadPlayerSchedule();
+
+}
+
+
+/* =========================
+LOAD SCHEDULE
+========================= */
+
+async function loadPlayerSchedule(){
+
+    const container =
+    document.getElementById(
+        "playerSchedule"
+    );
+
+
+    if(!currentPlayer){
+
+        container.innerHTML =
+        "لا توجد بيانات اللاعب.";
+
+        return;
+    }
+
+
+    container.innerHTML =
+    "جاري تحديث الجدول...";
+
+
+    /*
+       نستخدم الفئة والمسار الموجودين
+       عند اللاعب مباشرة من registration
+    */
+
+    const category =
+    currentPlayer.category;
+
+
+    const pathway =
+    currentPlayer.pathway;
+
+
+    if(!category){
+
+        container.innerHTML = `
+
+        <div class="noTraining">
+
+            لم يتم تحديد فئة اللاعب حتى الآن.
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    let query =
+    supabaseClient
+
+    .from("academy_schedule")
+
+    .select("*")
+
+    .eq("type","training")
+
+    .eq("category",category);
+
+
+    /*
+       إذا اللاعب عنده مسار،
+       نعرض مواعيد مساره + المواعيد العامة بدون مسار
+    */
+
+    if(pathway){
+
+        const {
+            data,
+            error
+        } = await supabaseClient
+
+        .from("academy_schedule")
+
+        .select("*")
+
+        .eq("type","training")
+
+        .eq("category",category);
+
+
+        if(error){
+
+            console.error(error);
+
+            container.innerHTML = `
+
+            <div class="noTraining">
+
+                تعذر تحميل جدول التدريب ❌
+
+            </div>
+
+            `;
+
+            return;
+        }
+
+
+        const filtered =
+        (data || []).filter(
+            item => {
+
+                /*
+                   الموعد يظهر إذا:
+                   1- بدون مسار
+                   أو
+                   2- مساره نفس مسار اللاعب
+                */
+
+                return (
+                    !item.pathway ||
+                    item.pathway === pathway
+                );
+
+            }
+        );
+
+
+        renderPlayerSchedule(
+            filtered
+        );
+
+        return;
+
+    }
+
+
+    const {
+        data,
+        error
+    } = await query;
+
+
+    if(error){
+
+        console.error(error);
+
+        container.innerHTML = `
+
+        <div class="noTraining">
+
+            تعذر تحميل جدول التدريب ❌
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    renderPlayerSchedule(
+        data || []
+    );
+
+}
+
+
+/* =========================
+RENDER SCHEDULE
+========================= */
+
+function renderPlayerSchedule(items){
+
+    const container =
+    document.getElementById(
+        "playerSchedule"
+    );
+
+
+    const days = [
+
+        "السبت",
+        "الأحد",
+        "الاثنين",
+        "الثلاثاء",
+        "الأربعاء",
+        "الخميس",
+        "الجمعة"
+
+    ];
+
+
+    if(!items.length){
+
+        container.innerHTML = `
+
+        <div
+            class="noTraining"
+            style="
+            grid-column:1/-1;
+            width:100%;
+            "
+        >
+
+            لا توجد تمارين مضافة لهذه الفئة حاليًا.
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+    days.map(
+        day => {
+
+            const dayItems =
+            items
+            .filter(
+                item =>
+                item.day === day
+            )
+            .sort(
+                (a,b) =>
+                String(
+                    a.start_time || ""
+                ).localeCompare(
+                    String(
+                        b.start_time || ""
+                    )
+                )
+            );
+
+
+            return `
+
+            <div class="dayColumn">
+
+                <div class="dayTitle">
+                    ${day}
+                </div>
+
+                ${
+                    dayItems.length
+                    ?
+                    dayItems
+                    .map(
+                        createTrainingItem
+                    )
+                    .join("")
+                    :
+                    `
+                    <div class="noTraining">
+                        لا يوجد
+                    </div>
+                    `
+                }
+
+            </div>
+
+            `;
+
+        }
+    )
+    .join("");
+
+}
+
+
+/* =========================
+TRAINING ITEM
+========================= */
+
+function createTrainingItem(item){
+
+    return `
+
+    <div class="trainingItem">
+
+        <div class="trainingTime">
+
+            ${
+                item.start_time &&
+                item.end_time
+                ?
+                `${formatTime(item.start_time)}
+                -
+                ${formatTime(item.end_time)}`
+                :
+                "وقت غير محدد"
+            }
+
+        </div>
+
+
+        <div class="trainingCategory">
+
+            ${escapeHtml(
+                item.category ||
+                "تدريب"
+            )}
+
+        </div>
+
+
+        ${
+            item.pathway
+            ?
+            `
+            <div class="trainingPathway">
+
+                المسار:
+                ${escapeHtml(
+                    item.pathway
+                )}
+
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        ${
+            item.coach
+            ?
+            `
+            <div class="trainingCoach">
+
+                👤
+                ${escapeHtml(
+                    item.coach
+                )}
+
+            </div>
+            `
+            :
+            ""
+        }
+
+
+        ${
+            item.notes
+            ?
+            `
+            <div
+                style="
+                color:#777;
+                font-size:11px;
+                margin-top:5px;
+                "
+            >
+
+                ${escapeHtml(
+                    item.notes
+                )}
+
+            </div>
+            `
+            :
+            ""
+        }
+
+    </div>
+
+    `;
+
+}
+
+
+/* =========================
+MATCHES
+========================= */
+
+async function loadPlayerMatches(){
+
+    const container =
+    document.getElementById(
+        "playerMatches"
+    );
+
+
+    if(!currentPlayer){
+
+        return;
+    }
+
+
+    const {
+        data,
+        error
+    } =
+    await supabaseClient
+
+    .from("academy_schedule")
+
+    .select("*")
+
+    .eq("type","match")
+
+    .eq(
+        "category",
+        currentPlayer.category
+    )
+    .order(
+        "id",
+        {
+            ascending:true
+        }
+    );
+
+
+    if(error){
+
+        console.error(error);
+
+        container.innerHTML =
+        "تعذر تحميل المباريات ❌";
+
+        return;
+    }
+
+
+    const matches =
+    data || [];
+
+
+    if(!matches.length){
+
+        container.innerHTML = `
+
+        <div
+            style="
+            text-align:center;
+            color:#999;
+            padding:20px;
+            "
+        >
+
+            لا توجد مباريات ودية مضافة حاليًا.
+
+        </div>
+
+        `;
+
+        return;
+    }
+
+
+    container.innerHTML =
+    matches.map(
+        match => `
+
+        <div class="matchItem">
+
+            <div>
+
+                <div class="matchOpponent">
+
+                    ⚽ ضد
+                    ${escapeHtml(
+                        match.opponent ||
+                        "فريق غير محدد"
+                    )}
+
+                </div>
+
+                <div class="matchInfo">
+
+                    📅
+                    ${escapeHtml(
+                        match.day || "-"
+                    )}
+
+                    <br>
+
+                    ⏰
+                    ${
+                        match.start_time
+                        ?
+                        formatTime(
+                            match.start_time
+                        )
+                        :
+                        "-"
+                    }
+
+                    <br>
+
+                    📍
+                    ${escapeHtml(
+                        match.location || "-"
+                    )}
+
+                </div>
+
+            </div>
+
+
+            <div class="matchInfo">
+
+                ${
+                    match.coach
+                    ?
+                    "👤 " +
+                    escapeHtml(
+                        match.coach
+                    )
+                    :
+                    ""
+                }
+
+            </div>
+
+        </div>
+
+        `
+    )
+    .join("");
+
+}
+
+
+/* =========================
+PAYMENT
+========================= */
+
+function setupPayment(player){
 
     const paymentButton =
     document.getElementById(
@@ -970,7 +1800,7 @@ function showPlayer(player){
 
 
 /* =========================
-   CALCULATE REMAINING DAYS
+SUBSCRIPTION
 ========================= */
 
 function calculateRemaining(endDate){
@@ -998,7 +1828,6 @@ function calculateRemaining(endDate){
         "status inactive";
 
         return;
-
     }
 
 
@@ -1031,7 +1860,6 @@ function calculateRemaining(endDate){
         "status inactive";
 
         return;
-
     }
 
 
@@ -1076,7 +1904,7 @@ function calculateRemaining(endDate){
 
 
 /* =========================
-   PAYMENT TEXT
+PAYMENT TEXT
 ========================= */
 
 function getPaymentText(status){
@@ -1087,13 +1915,11 @@ function getPaymentText(status){
 
     }
 
-
     if(status === "partial"){
 
         return "مدفوع جزئيًا";
 
     }
-
 
     return "غير مدفوع";
 
@@ -1101,43 +1927,167 @@ function getPaymentText(status){
 
 
 /* =========================
-   LOGOUT
+FORMAT TIME
 ========================= */
+
+function formatTime(time){
+
+    if(!time){
+
+        return "—";
+
+    }
+
+
+    const parts =
+    time.split(":");
+
+
+    let hour =
+    parseInt(parts[0]);
+
+
+    const minute =
+    parts[1] || "00";
+
+
+    const period =
+    hour >= 12
+    ?
+    "م"
+    :
+    "ص";
+
+
+    hour =
+    hour % 12;
+
+
+    if(hour === 0){
+
+        hour = 12;
+
+    }
+
+
+    return `${hour}:${minute} ${period}`;
+
+}
+
+
+/* =========================
+ESCAPE HTML
+========================= */
+
+function escapeHtml(value){
+
+    return String(value)
+
+    .replaceAll(
+        "&",
+        "&amp;"
+    )
+
+    .replaceAll(
+        "<",
+        "&lt;"
+    )
+
+    .replaceAll(
+        ">",
+        "&gt;"
+    )
+
+    .replaceAll(
+        '"',
+        "&quot;"
+    )
+
+    .replaceAll(
+        "'",
+        "&#039;"
+    );
+
+}
+
+
+/* =========================
+LOGOUT
+========================= */
+
+function logoutPlayer(){
+
+    currentPlayer = null;
+
+
+    profilePage.style.display =
+    "none";
+
+    loginPage.style.display =
+    "block";
+
+
+    usernameInput.value =
+    "";
+
+    passwordInput.value =
+    "";
+
+
+    loginMessage.innerText =
+    "";
+
+    usernameInput.focus();
+
+}
+
 
 document
 .getElementById("logoutButton")
 .addEventListener(
     "click",
-    function(){
-
-        profilePage.style.display =
-        "none";
-
-        loginPage.style.display =
-        "block";
-
-
-        usernameInput.value =
-        "";
-
-        passwordInput.value =
-        "";
-
-
-        loginMessage.innerText =
-        "";
-
-        loginMessage.style.color =
-        "#777";
-
-
-        passwordInput.type =
-        "password";
-
-
-        usernameInput.focus();
-
-    }
+    logoutPlayer
 );
 
+
+/* =========================
+AUTO REFRESH
+========================= */
+
+/*
+   كل 10 ثواني:
+   1- يتأكد من بيانات اللاعب
+   2- يحدث الفئة والمسار
+   3- يحدث جدول التمارين
+   4- يحدث المباريات
+*/
+
+setInterval(
+    async function(){
+
+        if(!currentPlayer){
+
+            return;
+
+        }
+
+
+        await refreshPlayer();
+
+        await loadPlayerMatches();
+
+    },
+    10000
+);
+
+
+/* =========================
+INITIAL
+========================= */
+
 </script>
+
+</body>
+
+</html>
+
