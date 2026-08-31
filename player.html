@@ -604,7 +604,6 @@ body{
 <!-- =========================
      SUPABASE
 ========================= -->
-
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
 <script>
@@ -615,7 +614,7 @@ const SUPABASE_URL =
 const SUPABASE_KEY =
 "sb_publishable_zLOmmutAi-0PJ5xDqGzJug_Z4KtLLoW";
 
-const supabase =
+const supabaseClient =
 window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
@@ -703,7 +702,7 @@ async function loginPlayer(){
         const {
             data,
             error
-        } = await supabase
+        } = await supabaseClient
 
         .from("registration")
 
@@ -923,7 +922,9 @@ function showPlayer(player){
     );
 
 
-    /* PAYMENT LINK */
+    /* =========================
+       PAYMENT LINK
+    ========================= */
 
     const paymentButton =
     document.getElementById(
@@ -936,10 +937,13 @@ function showPlayer(player){
     );
 
 
-    if(player.payment_link){
+    if(
+        player.payment_link &&
+        player.payment_link.trim() !== ""
+    ){
 
         paymentButton.href =
-        player.payment_link;
+        player.payment_link.trim();
 
         paymentButton.style.display =
         "block";
@@ -950,6 +954,9 @@ function showPlayer(player){
     }
 
     else{
+
+        paymentButton.href =
+        "#";
 
         paymentButton.style.display =
         "none";
@@ -1012,6 +1019,22 @@ function calculateRemaining(endDate){
     );
 
 
+    if(isNaN(end.getTime())){
+
+        daysElement.innerText =
+        "-";
+
+        statusElement.innerText =
+        "تاريخ غير صحيح";
+
+        statusElement.className =
+        "status inactive";
+
+        return;
+
+    }
+
+
     const difference =
     end - today;
 
@@ -1064,11 +1087,13 @@ function getPaymentText(status){
 
     }
 
+
     if(status === "partial"){
 
         return "مدفوع جزئيًا";
 
     }
+
 
     return "غير مدفوع";
 
@@ -1091,14 +1116,24 @@ document
         loginPage.style.display =
         "block";
 
+
         usernameInput.value =
         "";
 
         passwordInput.value =
         "";
 
+
         loginMessage.innerText =
         "";
+
+        loginMessage.style.color =
+        "#777";
+
+
+        passwordInput.type =
+        "password";
+
 
         usernameInput.focus();
 
@@ -1106,6 +1141,3 @@ document
 );
 
 </script>
-
-</body>
-</html>
