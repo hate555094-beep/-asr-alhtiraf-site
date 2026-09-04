@@ -405,6 +405,20 @@ body{
 
 @media(max-width:600px){
 
+    body{
+        padding:12px 8px;
+        overflow-x:hidden;
+    }
+
+    .container{
+        width:100%;
+        max-width:100%;
+    }
+
+    .playerCard{
+        padding:14px 10px;
+    }
+
     .infoGrid{
         grid-template-columns:1fr;
     }
@@ -418,8 +432,66 @@ body{
         align-items:flex-start;
     }
 
+    .scheduleSection{
+        padding:12px 8px;
+        overflow:hidden;
+    }
+
+    .scheduleHeader{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:8px;
+    }
+
     .scheduleGrid{
-        grid-template-columns:repeat(2,1fr);
+        display:grid;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:7px;
+        width:100%;
+        min-width:0;
+    }
+
+    .dayColumn{
+        min-width:0;
+        width:100%;
+        overflow:hidden;
+    }
+
+    .dayTitle{
+        font-size:11px;
+        padding:8px 2px;
+        white-space:nowrap;
+    }
+
+    .trainingItem{
+        margin:5px;
+        padding:7px 5px;
+        border-right-width:2px;
+        overflow:hidden;
+    }
+
+    .trainingTime{
+        font-size:10px;
+        line-height:1.4;
+        white-space:normal;
+    }
+
+    .trainingCategory{
+        font-size:10px;
+        line-height:1.4;
+        word-break:break-word;
+    }
+
+    .trainingCoach,
+    .trainingPathway{
+        font-size:9px;
+        line-height:1.4;
+        word-break:break-word;
+    }
+
+    .noTraining{
+        font-size:10px;
+        padding:15px 3px;
     }
 
     .matchItem{
@@ -441,7 +513,6 @@ body{
 
 <div id="loginPage" class="loginBox">
 
-```
 <h1>
     عصر <span>الاحتراف</span>
 </h1>
@@ -478,7 +549,6 @@ body{
     id="loginMessage"
     class="message"
 ></div>
-```
 
 </div>
 
@@ -486,7 +556,6 @@ body{
 
 <div id="profilePage">
 
-```
 <div class="header">
 
     <div class="logo">
@@ -764,7 +833,6 @@ body{
     </button>
 
 </div>
-```
 
 </div>
 
@@ -1085,6 +1153,7 @@ function showPlayer(player){
 
 
     loadPlayerSchedule();
+    loadPlayerMatches();
 
 }
 
@@ -1234,163 +1303,73 @@ LOAD SCHEDULE
 async function loadPlayerSchedule(){
 
     const container =
-    document.getElementById(
-        "playerSchedule"
-    );
-
+    document.getElementById("playerSchedule");
 
     if(!currentPlayer){
-
-        container.innerHTML =
-        "لا توجد بيانات اللاعب.";
-
+        container.innerHTML = "لا توجد بيانات اللاعب.";
         return;
     }
 
+    container.innerHTML = "جاري تحديث الجدول...";
 
-    container.innerHTML =
-    "جاري تحديث الجدول...";
-
-
-    /*
-       نستخدم الفئة والمسار الموجودين
-       عند اللاعب مباشرة من registration
-    */
-
-    const category =
-    currentPlayer.category;
-
-
-    const pathway =
-    currentPlayer.pathway;
-
+    const category = String(currentPlayer.category || "").trim();
+    const pathway = String(currentPlayer.pathway || "").trim();
 
     if(!category){
-
         container.innerHTML = `
-
-        <div class="noTraining">
-
-            لم يتم تحديد فئة اللاعب حتى الآن.
-
-        </div>
-
-        `;
-
-        return;
-    }
-
-
-    let query =
-    supabaseClient
-
-    .from("academy_schedule")
-
-    .select("*")
-
-    .eq("type","training")
-
-    .eq("category",category);
-
-
-    /*
-       إذا اللاعب عنده مسار،
-       نعرض مواعيد مساره + المواعيد العامة بدون مسار
-    */
-
-    if(pathway){
-
-        const {
-            data,
-            error
-        } = await supabaseClient
-
-        .from("academy_schedule")
-
-        .select("*")
-
-        .eq("type","training")
-
-        .eq("category",category);
-
-
-        if(error){
-
-            console.error(error);
-
-            container.innerHTML = `
-
             <div class="noTraining">
-
-                تعذر تحميل جدول التدريب ❌
-
+                لم يتم تحديد فئة اللاعب حتى الآن.
             </div>
-
-            `;
-
-            return;
-        }
-
-
-        const filtered =
-        (data || []).filter(
-            item => {
-
-                /*
-                   الموعد يظهر إذا:
-                   1- بدون مسار
-                   أو
-                   2- مساره نفس مسار اللاعب
-                */
-
-                return (
-                    !item.pathway ||
-                    item.pathway === pathway
-                );
-
-            }
-        );
-
-
-        renderPlayerSchedule(
-            filtered
-        );
-
+        `;
         return;
-
     }
 
-
-    const {
-        data,
-        error
-    } = await query;
-
+    const { data, error } = await supabaseClient
+        .from("academy_schedule")
+        .select("*")
+        .eq("type","training");
 
     if(error){
-
-        console.error(error);
-
+        console.error("SCHEDULE ERROR:", error);
         container.innerHTML = `
-
-        <div class="noTraining">
-
-            تعذر تحميل جدول التدريب ❌
-
-        </div>
-
+            <div class="noTraining">
+                تعذر تحميل جدول التدريب ❌
+            </div>
         `;
-
         return;
     }
 
+    const normalize = value =>
+        String(value || "")
+            .trim()
+            .replace(/\s+/g," ");
 
-    renderPlayerSchedule(
-        data || []
-    );
+    const playerCategory = normalize(category);
+    const playerPathway = normalize(pathway);
+
+    const filtered = (data || []).filter(item => {
+        const itemCategory = normalize(item.category);
+        const itemPathway = normalize(item.pathway);
+
+        const categoryMatch =
+            itemCategory === playerCategory;
+
+        const pathwayMatch =
+            !playerPathway ||
+            !itemPathway ||
+            itemPathway === playerPathway;
+
+        return categoryMatch && pathwayMatch;
+    });
+
+    console.log("PLAYER CATEGORY:", category);
+    console.log("PLAYER PATHWAY:", pathway);
+    console.log("ALL TRAINING:", data);
+    console.log("PLAYER SCHEDULE:", filtered);
+
+    renderPlayerSchedule(filtered);
 
 }
-
 
 /* =========================
 RENDER SCHEDULE
@@ -1445,10 +1424,13 @@ function renderPlayerSchedule(items){
 
             const dayItems =
             items
-            .filter(
-                item =>
-                item.day === day
-            )
+            .filter(item => {
+                const itemDay = String(item.day || "")
+                    .trim()
+                    .replace(/\s+/g," ");
+
+                return itemDay === day;
+            })
             .sort(
                 (a,b) =>
                 String(
