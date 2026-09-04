@@ -13,6 +13,10 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     margin:0;
     font-family:Arial,Tahoma,sans-serif;
@@ -68,6 +72,7 @@ button{
     border-radius:10px;
     margin-bottom:7px;
     font-size:15px;
+    transition:.2s;
 }
 
 .navButton:hover,
@@ -212,6 +217,7 @@ button{
 
 .tableWrap{
     overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
 }
 
 table{
@@ -296,6 +302,11 @@ tr:hover td{
     border-radius:8px;
     font-size:13px;
     font-weight:bold;
+    transition:.2s;
+}
+
+.btn:active{
+    transform:scale(.97);
 }
 
 .btnOrange{
@@ -350,6 +361,7 @@ tr:hover td{
     gap:12px;
     margin-bottom:20px;
 }
+
 
 /* =========================
    USERNAME BOX
@@ -568,6 +580,11 @@ textarea.input{
     color:#ff6900;
 }
 
+
+/* =========================
+   TABLET
+========================= */
+
 @media(max-width:900px){
 
     .sidebar{
@@ -577,6 +594,7 @@ textarea.input{
     .main{
         margin-right:200px;
         width:calc(100% - 200px);
+        padding:22px;
     }
 
     .stats{
@@ -585,43 +603,646 @@ textarea.input{
 
 }
 
+
+/* =========================================================
+   MOBILE DESIGN
+========================================================= */
+
 @media(max-width:650px){
 
-    .sidebar{
-        position:relative;
+    html,
+    body{
         width:100%;
-        height:auto;
+        max-width:100%;
+        overflow-x:hidden;
+    }
+
+    body{
+        background:#f4f6f8;
     }
 
     .app{
         display:block;
+        min-height:100vh;
+    }
+
+    .sidebar{
+        position:relative;
+        right:auto;
+        top:auto;
+        bottom:auto;
+
+        width:100%;
+        height:auto;
+        min-height:auto;
+
+        padding:12px 10px 10px;
+
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        align-items:center;
+
+        gap:7px;
+
+        box-shadow:0 3px 15px rgba(0,0,0,.08);
+    }
+
+    .logo{
+        width:100%;
+        text-align:center;
+
+        padding:5px 5px 10px;
+
+        margin:0;
+
+        font-size:21px;
+    }
+
+    .navButton{
+        width:auto;
+
+        flex:1 1 calc(50% - 7px);
+
+        max-width:calc(50% - 4px);
+
+        min-height:46px;
+
+        margin:0;
+
+        padding:10px 7px;
+
+        display:flex;
+        align-items:center;
+        justify-content:center;
+
+        text-align:center;
+
+        border-radius:11px;
+
+        font-size:13px;
+
+        white-space:nowrap;
+
+        transition:.2s;
+    }
+
+    .navButton:active{
+        transform:scale(.97);
     }
 
     .main{
         margin:0;
         width:100%;
-        padding:15px;
+
+        padding:12px 10px 25px;
+    }
+
+    .topbar{
+        display:flex;
+
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:10px;
+
+        margin-bottom:14px;
+    }
+
+    .topbar h1{
+        font-size:21px;
+        line-height:1.5;
+
+        text-align:center;
+    }
+
+    .logout{
+        width:100%;
+
+        min-height:45px;
+
+        border-radius:11px;
+
+        font-size:14px;
     }
 
     .stats{
         grid-template-columns:1fr 1fr;
+
+        gap:9px;
+
+        margin-bottom:14px;
+    }
+
+    .stat{
+        padding:15px 10px;
+
+        border-radius:13px;
+
+        text-align:center;
+
+        box-shadow:0 2px 8px rgba(0,0,0,.03);
+    }
+
+    .statNumber{
+        font-size:24px;
+    }
+
+    .statTitle{
+        font-size:12px;
+
+        line-height:1.5;
+
+        margin-top:4px;
+    }
+
+    .panel{
+        padding:13px;
+
+        border-radius:14px;
+
+        margin-bottom:12px;
+
+        box-shadow:0 2px 10px rgba(0,0,0,.025);
+    }
+
+    .panelHeader{
+        flex-direction:column;
+
+        align-items:stretch;
+
+        gap:10px;
+
+        margin-bottom:13px;
+    }
+
+    .panelHeader h2{
+        font-size:17px;
+
+        text-align:center;
+    }
+
+    .panelHeader .btn{
+        width:100%;
     }
 
     .filters{
         grid-template-columns:1fr;
+
+        gap:8px;
+
+        margin-bottom:13px;
     }
 
-    .topbar{
-        gap:10px;
-        align-items:flex-start;
+    .input{
+        min-height:45px;
+
+        padding:11px 12px;
+
+        margin-bottom:0;
+
+        border-radius:10px;
+
+        font-size:14px;
+    }
+
+    .btn{
+        min-height:42px;
+
+        padding:9px 11px;
+
+        border-radius:9px;
+
+        font-size:13px;
+    }
+
+    .tableWrap{
+        width:100%;
+
+        overflow-x:auto;
+
+        overflow-y:hidden;
+
+        -webkit-overflow-scrolling:touch;
+
+        border-radius:10px;
+    }
+
+    table{
+        min-width:760px;
+    }
+
+    th{
+        padding:11px 10px;
+
+        font-size:12px;
+
+        white-space:nowrap;
+    }
+
+    td{
+        padding:11px 10px;
+
+        font-size:13px;
+
+        white-space:nowrap;
+    }
+
+    .playerNameButton{
+        font-size:14px;
+    }
+
+    .actions{
+        gap:5px;
+    }
+
+    .actions .btn{
+        min-height:38px;
+        padding:7px 9px;
+    }
+
+    td select.input{
+        min-width:135px;
+
+        min-height:40px;
+
+        padding:7px 8px;
+
+        font-size:12px;
+    }
+
+    .badge{
+        padding:6px 9px;
+
+        font-size:11px;
+
+        white-space:nowrap;
+    }
+
+    .userBadge{
+        font-size:11px;
+
+        padding:6px 9px;
+    }
+
+    .scheduleToolbar{
+        flex-direction:column;
+
+        gap:8px;
+
+        margin-bottom:12px;
+    }
+
+    .scheduleToolbar .btn{
+        width:100%;
+    }
+
+    .scheduleTable{
+        min-width:820px !important;
+    }
+
+    .scheduleTable th{
+        padding:9px 5px;
+
+        font-size:11px;
+    }
+
+    .scheduleTable td{
+        padding:6px;
+
+        height:52px;
+    }
+
+    .scheduleItem{
+        padding:7px 6px;
+
+        border-right-width:3px;
+
+        border-radius:7px;
+
+        font-size:11px;
+    }
+
+    .scheduleItem strong{
+        font-size:12px;
+    }
+
+    .scheduleItem small{
+        font-size:10px;
+    }
+
+    .scheduleItem .actions{
+        display:flex;
+
+        flex-direction:column;
+
+        gap:4px;
+    }
+
+    .scheduleItem .btn{
+        width:100%;
+
+        min-height:30px;
+
+        padding:5px;
+
+        font-size:10px;
+    }
+
+    .modal{
+        padding:0;
+
+        align-items:flex-end;
+
+        justify-content:center;
+    }
+
+    .modalBox{
+        width:100%;
+
+        max-width:none;
+
+        max-height:92vh;
+
+        padding:17px 14px 20px;
+
+        border-radius:20px 20px 0 0;
+
+        overflow-y:auto;
+
+        -webkit-overflow-scrolling:touch;
+
+        box-shadow:0 -5px 30px rgba(0,0,0,.15);
+
+        animation:mobileModal .2s ease-out;
+    }
+
+    @keyframes mobileModal{
+
+        from{
+            transform:translateY(30px);
+            opacity:.5;
+        }
+
+        to{
+            transform:translateY(0);
+            opacity:1;
+        }
+
+    }
+
+    .modalHeader{
+        margin-bottom:15px;
+
+        position:sticky;
+
+        top:-17px;
+
+        background:white;
+
+        padding-top:3px;
+
+        padding-bottom:10px;
+
+        z-index:2;
+    }
+
+    .modalHeader h2{
+        font-size:18px;
+    }
+
+    .close{
+        width:38px;
+
+        height:38px;
+
+        flex-shrink:0;
+
+        font-size:16px;
     }
 
     .formGrid{
         grid-template-columns:1fr;
+
+        gap:0;
+    }
+
+    .formGroup{
+        margin-bottom:10px;
     }
 
     .formGroup.full{
         grid-column:auto;
+    }
+
+    .formGroup label{
+        font-size:13px;
+
+        margin-bottom:5px;
+    }
+
+    textarea.input{
+        min-height:100px;
+    }
+
+    .modalFooter{
+        display:grid;
+
+        grid-template-columns:1fr 1fr;
+
+        gap:8px;
+
+        margin-top:12px;
+
+        position:sticky;
+
+        bottom:-20px;
+
+        background:white;
+
+        padding-top:10px;
+
+        padding-bottom:2px;
+    }
+
+    .modalFooter .btn{
+        width:100%;
+
+        min-height:45px;
+    }
+
+    .credentialsBox{
+        padding:12px;
+
+        border-radius:12px;
+
+        margin-top:10px;
+    }
+
+    .credentialsTitle{
+        font-size:14px;
+
+        margin-bottom:10px;
+    }
+
+    .credentialRow{
+        grid-template-columns:1fr;
+
+        gap:6px;
+
+        margin-bottom:9px;
+    }
+
+    .credentialValue{
+        width:100%;
+
+        min-height:43px;
+
+        font-size:13px;
+    }
+
+    .credentialRow .btn{
+        width:100%;
+    }
+
+    .userActions{
+        display:grid;
+
+        grid-template-columns:1fr;
+
+        gap:7px;
+    }
+
+    .userActions .btn{
+        width:100%;
+    }
+
+    .subscriptionInfo{
+        padding:11px;
+
+        border-radius:10px;
+
+        margin-bottom:13px;
+
+        font-size:13px;
+    }
+
+    .loginPage{
+        min-height:100vh;
+
+        padding:15px;
+    }
+
+    .loginBox{
+        width:100%;
+
+        max-width:420px;
+
+        padding:23px 17px;
+
+        border-radius:17px;
+
+        box-shadow:0 10px 35px rgba(0,0,0,.08);
+    }
+
+    .loginBox h1{
+        font-size:23px;
+
+        line-height:1.5;
+    }
+
+    .loginBox p{
+        font-size:13px;
+    }
+
+    .loginBtn{
+        min-height:46px;
+    }
+
+}
+
+
+/* =========================
+   SMALL PHONES
+========================= */
+
+@media(max-width:400px){
+
+    .sidebar{
+        padding:10px 8px;
+    }
+
+    .logo{
+        font-size:19px;
+
+        padding-bottom:8px;
+    }
+
+    .navButton{
+        min-height:44px;
+
+        font-size:12px;
+
+        padding:8px 5px;
+    }
+
+    .main{
+        padding:10px 8px 20px;
+    }
+
+    .topbar h1{
+        font-size:19px;
+    }
+
+    .stats{
+        gap:7px;
+    }
+
+    .stat{
+        padding:12px 7px;
+    }
+
+    .statNumber{
+        font-size:21px;
+    }
+
+    .statTitle{
+        font-size:11px;
+    }
+
+    .panel{
+        padding:10px;
+    }
+
+    .panelHeader h2{
+        font-size:16px;
+    }
+
+    .modalBox{
+        padding-left:11px;
+        padding-right:11px;
+    }
+
+}
+
+
+/* =========================
+   VERY SMALL PHONES
+========================= */
+
+@media(max-width:340px){
+
+    .navButton{
+        font-size:11px;
+    }
+
+    .statNumber{
+        font-size:19px;
+    }
+
+    .statTitle{
+        font-size:10px;
     }
 
 }
@@ -1664,6 +2285,32 @@ renderMatches();
 
 }
 
+
+/* في الجوال يرجع لبداية القسم بدل أعلى الصفحة */
+
+if(window.innerWidth <= 650){
+
+const main =
+document.querySelector(".main");
+
+if(main){
+
+window.setTimeout(
+function(){
+
+main.scrollIntoView({
+behavior:"smooth",
+block:"start"
+});
+
+},
+50
+);
+
+}
+
+}
+
 };
 
 
@@ -1796,22 +2443,15 @@ ${category}
 USERNAME GENERATOR
 ========================= */
 
-/*
-   مهم:
-   اسم المستخدم الآن لا يعتمد على اسم اللاعب.
-   سواء كان اسم اللاعب عربي أو إنجليزي،
-   اليوزر سيكون إنجليزي + أرقام فقط.
-*/
-
 function generateUsername(player){
 
-    const random =
-        Math.floor(
-            100000 +
-            Math.random() * 900000
-        );
+const random =
+Math.floor(
+100000 +
+Math.random() * 900000
+);
 
-    return "aht_player" + random;
+return "aht_player" + random;
 
 }
 
@@ -1977,6 +2617,63 @@ return;
 
 
 await loadPlayers();
+
+};
+
+
+/* =========================
+CHANGE PATHWAY
+========================= */
+
+window.changePlayerPathway =
+async function(id,value){
+
+const {
+error
+} =
+await supabase
+.from("registration")
+.update({
+pathway:value || null
+})
+.eq("id",id);
+
+
+if(error){
+
+console.error(error);
+
+alert(
+"تعذر تعديل مسار اللاعب ❌"
+);
+
+return;
+
+}
+
+
+/* تحديث البيانات محليًا
+بدون إعادة تحميل الصفحة */
+
+const player =
+allPlayers.find(
+x =>
+String(x.id) ===
+String(id)
+);
+
+
+if(player){
+
+player.pathway =
+value || null;
+
+}
+
+
+/* إعادة رسم الجدول */
+
+renderPlayers();
 
 };
 
@@ -2695,9 +3392,43 @@ player.category
 
 <td>
 
-${escapeHtml(
-player.pathway || "—"
-)}
+<select
+class="input"
+style="
+margin:0;
+min-width:145px;
+padding:8px;
+"
+onchange="
+changePlayerPathway(
+'${player.id}',
+this.value
+)
+"
+>
+
+<option
+value=""
+${!player.pathway ? "selected" : ""}
+>
+بدون مسار
+</option>
+
+<option
+value="التميز اللياقي"
+${player.pathway === "التميز اللياقي" ? "selected" : ""}
+>
+التميز اللياقي
+</option>
+
+<option
+value="التطوير"
+${player.pathway === "التطوير" ? "selected" : ""}
+>
+التطوير
+</option>
+
+</select>
 
 </td>
 
